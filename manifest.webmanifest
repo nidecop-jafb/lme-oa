@@ -1,0 +1,21 @@
+{
+  "name": "Laboratório de Mecânica · Licenciatura em Física",
+  "short_name": "LME",
+  "start_url": "/lme-oa/",
+  "scope": "/lme-oa/",
+  "display": "standalone",
+  "background_color": "#131110",
+  "theme_color": "#131110",
+  "icons": [
+    {
+      "src": "/lme-oa/_icones/app-site-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/lme-oa/_icones/app-site-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
