@@ -128,7 +128,7 @@
 
 </style>
 </head>
-<body>
+<body data-pagina="inicio">
 <!-- ABAS:INICIO -->
 <!-- ABAS LATERAIS -->
 <button class="aba-toggle" id="abaSiteT">Site</button>
@@ -298,6 +298,9 @@
 
   <div class="footer">
     IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) · Primeira edição · 2026
+    <!-- SELO:INICIO -->
+    <div style="margin-top:10px;"><span id="seloAcessos" style="display:none;"></span></div>
+    <!-- SELO:FIM -->
   </div>
 </div>
 
@@ -371,5 +374,9 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
 }
 </script>
 <!-- SW:FIM -->
+<!-- CONTADOR:INICIO -->
+<script src="contador-config.js"></script>
+<script src="acessos.js"></script>
+<!-- CONTADOR:FIM -->
 </body>
 </html>
