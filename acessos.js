@@ -49,7 +49,7 @@
   function mostrarTotal(total) {
     var selo = document.getElementById('seloAcessos');
     if (!selo || !total) return;
-    selo.textContent = Number(total).toLocaleString('pt-BR') + ' acessos';
+    selo.innerHTML = '<strong style="color: var(--epi);">' + Number(total).toLocaleString('pt-BR') + ' acessos</strong>';
     selo.style.display = '';
   }
 
