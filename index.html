@@ -289,7 +289,27 @@
   </div>
 
   <!-- TRILHAS:INICIO -->
-  <p class="vazio">As trilhas do Laboratório de Mecânica aparecem aqui conforme forem publicadas.</p>
+
+  <details class="trilha" id="t0a">
+  <summary>T0A &middot; Primeiros Passos no Laboratório</summary>
+  <div class="trilha-corpo">
+  <p class="parada">Pré-Lab <span>&middot; fazer em casa, antes do encontro</span></p>
+  <ul>
+    <li><a class="oa" href="t0a/tt/">Texto Temático (TT)<span class="tag">ler · a disciplina explicada</span></a></li>
+  </ul>
+  </div>
+  </details>
+  <script>
+/* Atalho #t{nn} abre a trilha na sanfona; sem JS o toque no titulo ainda abre. */
+(function () {
+  function abrir() {
+    var alvo = location.hash && document.getElementById(location.hash.slice(1));
+    if (alvo && alvo.tagName === 'DETAILS') alvo.open = true;
+  }
+  window.addEventListener('hashchange', abrir);
+  abrir();
+})();
+</script>
 
   <!-- TRILHAS:FIM -->
 
