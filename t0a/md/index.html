@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LME-T0A &middot; Primeiros Passos no Laborat&oacute;rio: onde o dado nasce &mdash; Resumo em &Aacute;udio</title>
+<style>
+:root {
+  --verde: #3E8E5A; --verde-claro: #5FAE7A; --verde-bg: oklch(0.28 0.05 152);
+  --aco: #7FB2D6; --aco-claro: #A7CCE6; --aco-bg: oklch(0.28 0.05 240);
+  --ok: oklch(0.72 0.15 150); --ok-bg: oklch(0.25 0.05 150);
+  --erro: oklch(0.62 0.20 25); --erro-bg: oklch(0.24 0.06 25);
+  --cinza: oklch(0.62 0.01 260); --cinza-borda: oklch(0.40 0.01 260);
+  --texto: oklch(0.93 0 0); --branco: oklch(0.96 0 0);
+  --superficie: oklch(0.22 0.01 260); --hover: oklch(0.25 0.01 260);
+  --fundo: oklch(0.13 0.01 260); --painel: oklch(0.16 0.01 260);
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'Courier New', 'Cascadia Code', Consolas, monospace;
+  --serif: Georgia, Cambria, 'Times New Roman', serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--fundo); color: var(--texto); line-height: 1.6; min-height: 100vh; }
+
+.header { background: var(--painel); border-top: 3px solid var(--verde); padding: 14px 20px; }
+.header-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.header .marca { width: 52px; height: 52px; flex-shrink: 0; }
+.header h1 { font-size: 1.4rem; font-weight: 900; letter-spacing: -0.02em; flex: 1 1 240px; }
+.header h1 .trilha-code { color: var(--verde); }
+.badge { display: inline-block; background: var(--verde); color: oklch(0.13 0.01 260); padding: 4px 12px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+.header-sub { max-width: 800px; margin: 6px auto 0; font-size: 0.88rem; color: var(--cinza); }
+.progresso { max-width: 800px; margin: 12px auto 0; display: flex; gap: 3px; height: 6px; }
+.progresso .seg { flex: 1; background: var(--cinza-borda); transition: background .3s; }
+.progresso .seg.ouvido { background: var(--ok); }
+
+main { max-width: 800px; margin: 0 auto; padding: 16px; }
+
+.piazzi-bar { display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; background:var(--painel); border:1px solid var(--cinza-borda); padding:10px 16px; margin-bottom:16px; font-size:.78rem; }
+.piazzi-bar .piazzi-ref { color:var(--cinza); }
+.piazzi-bar .piazzi-tag { display:inline-block; border:1px solid var(--verde); color:var(--verde); padding:2px 10px; font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.piazzi-bar .piazzi-text { color:var(--texto); font-style:italic; font-size:.74rem; }
+.piazzi-bar .piazzi-yt { display:inline-flex; align-items:center; gap:5px; background:var(--erro); color:var(--branco); padding:4px 12px; font-size:.72rem; font-weight:700; text-decoration:none; }
+.piazzi-bar .piazzi-yt::before { content:'\25B6'; font-size:.6rem; }
+
+.intro-box { background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: 4px solid var(--aco); padding: 16px 18px; margin-bottom: 16px; font-size: .88rem; }
+.intro-box strong { color: var(--verde); }
+
+.player { background: var(--painel); border: 1px solid var(--cinza-borda); border-top: 3px solid var(--verde); padding: 16px 18px; margin-bottom: 16px; }
+.player-topo { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.player-titulo { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--verde); flex: 1 1 auto; }
+.faixa-btn { background: transparent; color: var(--texto); border: 1px solid var(--cinza-borda); padding: 6px 14px; font-family: var(--font); font-size: .76rem; font-weight: 600; cursor: pointer; min-height: 36px; }
+.faixa-btn.ativa { border-color: var(--verde); color: var(--verde); background: var(--verde-bg); }
+.player audio { width: 100%; }
+.player .sem-audio { font-size: .78rem; color: var(--cinza); border-left: 3px solid var(--erro); padding: 8px 12px; background: var(--erro-bg); display: none; }
+.player.indisponivel .sem-audio { display: block; }
+
+.secao { background: var(--superficie); margin-bottom: 8px; border-left: 3px solid var(--cinza-borda); transition: border-color .3s; }
+.secao.ouvida { border-left-color: var(--ok); }
+.secao-header { display: flex; align-items: center; gap: 10px; padding: 12px 16px; cursor: pointer; user-select: none; }
+.secao-header:hover { background: var(--hover); }
+.secao-num { font-family: var(--mono); font-size: .68rem; font-weight: 700; color: var(--verde); min-width: 20px; }
+.secao-titulo { font-size: .9rem; font-weight: 600; flex: 1; }
+.secao-check { display: flex; align-items: center; gap: 6px; font-size: .68rem; color: var(--cinza); }
+.secao-check input[type="checkbox"] { accent-color: var(--ok); width: 18px; height: 18px; }
+.secao-seta { color: var(--cinza); font-size: .8rem; transition: transform .2s; }
+.secao.aberta .secao-seta { transform: rotate(90deg); }
+.secao-body { display: none; padding: 0 16px 14px 16px; }
+.secao.aberta .secao-body { display: block; }
+.secao-texto { font-size: .88rem; line-height: 1.75; color: oklch(0.84 0 0); }
+.secao-texto p { margin-bottom: 10px; }
+.secao-texto .termo { color: var(--verde); font-weight: 600; }
+.secao-texto .citacao { font-family: var(--serif); font-style: italic; color: var(--aco-claro); }
+.secao-texto strong { color: var(--branco); }
+
+.quiz-section { background: var(--superficie); border: 1px solid var(--cinza-borda); border-top: 3px solid var(--aco); padding: 18px 20px; margin: 20px 0; }
+.quiz-titulo { font-size: .72rem; font-weight: 700; color: var(--aco); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1.5px; }
+.quiz-sub { font-size: .8rem; color: var(--cinza); margin-bottom: 14px; }
+.quiz-q { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--cinza-borda); }
+.quiz-q:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.quiz-enunciado { font-size: .86rem; margin-bottom: 8px; font-weight: 600; }
+.quiz-opcoes { display: flex; flex-direction: column; gap: 4px; }
+.quiz-op { display: flex; align-items: flex-start; gap: 8px; padding: 8px 12px; background: oklch(0.18 0.01 260); cursor: pointer; font-size: .84rem; border: 1px solid transparent; }
+.quiz-op:hover { background: var(--hover); }
+.quiz-op.certa { border-color: var(--ok); background: var(--ok-bg); }
+.quiz-op.errada { border-color: var(--erro); background: var(--erro-bg); }
+.quiz-op.travada { pointer-events: none; }
+.quiz-op input[type="radio"] { margin-top: 3px; accent-color: var(--verde); }
+.quiz-porque { display: none; margin-top: 8px; font-size: .82rem; color: oklch(0.84 0 0); border-left: 3px solid var(--verde); padding: 8px 12px; background: var(--verde-bg); }
+.quiz-porque.visivel { display: block; }
+.quiz-porque strong { color: var(--branco); }
+
+.encerramento { max-width:800px; margin:30px auto 10px; padding:20px 16px; border-top:2px solid var(--verde); text-align:center; }
+.encerramento .fecho-frase { font-family:var(--serif); font-size:1.02rem; line-height:1.5; }
+.encerramento .fecho-acao { color:var(--verde); font-size:.95rem; text-transform:uppercase; font-weight:700; margin-top:10px; }
+.encerramento .fecho-links { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:14px; }
+.encerramento .fecho-btn { display:inline-flex; align-items:center; gap:7px; padding:10px 18px; min-height:44px; background:var(--verde); color:oklch(0.13 0.01 260); font-family:var(--mono); font-size:.8rem; font-weight:700; text-decoration:none; }
+.encerramento .fecho-btn::before { content:'\25B6'; font-size:.62rem; }
+.encerramento .fecho-btn.secundario { background:transparent; color:var(--aco); border:1px solid var(--aco); }
+.encerramento .fecho-btn.secundario::before { content:'\2630'; font-size:.72rem; }
+.encerramento .fecho-inst { color:var(--cinza); font-size:.85rem; margin-top:16px; }
+.footer-line { text-align:center; font-size:.82rem; color:var(--cinza); padding:16px 12px; line-height:1.5; }
+
+@media (max-width: 600px) { main { padding: 10px; } .header h1 { font-size: 1.15rem; } }
+@media print {
+  body { background: #fff !important; color: #1A1A1A !important; }
+  .header { background: none !important; border-top: 2px solid #1F3864; }
+  .secao { background: #F8F8F8 !important; border-left-color: #D0D0D0 !important; page-break-inside: avoid; }
+  .secao-body { display: block !important; }
+  .progresso, .player, .piazzi-bar { display: none !important; }
+}
+.fecho-marcas { display: flex; width: fit-content; gap: 14px; align-items: center; margin: 0 auto 10px; }
+.fecho-marcas svg { width: 30px; height: 30px; display: block; }
+.fecho-marcas a, .fa-marcas a { display: flex; }
+.desp-inst > .fecho-marcas { display: inline-flex; vertical-align: middle; gap: 8px; margin: 0 10px 0 0; }
+.desp-inst > .fecho-marcas svg { width: 26px; height: 26px; }
+.desp-inst.desp-inst:has(> .fecho-marcas) { letter-spacing: 0; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <svg class="marca" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica">
+  <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none">
+    <line x1="36" y1="10" x2="84" y2="10"/>
+    <line x1="60" y1="10" x2="81.9" y2="70.1"/>
+  </g>
+  <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/>
+  <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <circle cx="60" cy="10" r="4" fill="#3E8E5A"/>
+  <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/>
+  <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square">
+    <line x1="26" y1="110" x2="94" y2="110"/>
+    <line x1="30" y1="110" x2="30" y2="104"/>
+    <line x1="40" y1="110" x2="40" y2="104"/>
+    <line x1="50" y1="110" x2="50" y2="104"/>
+    <line x1="60" y1="110" x2="60" y2="98"/>
+    <line x1="70" y1="110" x2="70" y2="104"/>
+    <line x1="80" y1="110" x2="80" y2="104"/>
+    <line x1="90" y1="110" x2="90" y2="104"/>
+  </g>
+</svg>
+    <h1><span class="trilha-code">LME-T0A</span> &middot; Primeiros Passos no Laborat&oacute;rio: onde o dado nasce</h1>
+    <span class="badge">Resumo em &Aacute;udio (MD)</span>
+  </div>
+  <div class="header-sub">Ou&ccedil;a e acompanhe &middot; marque cada trecho &middot; 3 a 5 min &middot; Pr&eacute;-Lab</div>
+  <div class="progresso" id="progresso"></div>
+</header>
+
+<main>
+
+<div class="piazzi-bar">
+  <span class="piazzi-ref">Pierluigi Piazzi recomenda em <em>Aprendendo Intelig&ecirc;ncia</em>:</span>
+  <span class="piazzi-tag">Ouvir</span><span class="piazzi-tag">Ler</span><span class="piazzi-tag">Anotar</span>
+  <span class="piazzi-text">o &aacute;udio primeiro, o texto depois</span>
+  <a class="piazzi-yt" href="https://music.youtube.com/search?q=Bach+Suites+violoncelo+BWV+1007" target="_blank" rel="noopener">YouTube Music</a>
+  <span class="piazzi-text">J. S. Bach &mdash; Su&iacute;tes para violoncelo, BWV 1007 &middot; c. 1720 &middot; ~18 min</span>
+</div>
+
+<div class="intro-box">
+  <strong>Como usar.</strong> Ou&ccedil;a no trajeto at&eacute; o campus, sem ler nada. Depois, com o texto na tela, abra cada trecho, marque o que j&aacute; ouviu e responda a autoavalia&ccedil;&atilde;o do fim &mdash; ela n&atilde;o vale nota e n&atilde;o sai do seu aparelho. S&oacute; ent&atilde;o v&aacute; ao <strong>Texto Tem&aacute;tico</strong>: o &aacute;udio monta o esqueleto, o texto preenche.
+</div>
+
+<div class="player" id="player">
+  <div class="player-topo">
+    <span class="player-titulo">&Aacute;udio da trilha</span>
+    <button class="faixa-btn ativa" data-src="LME-T0A-MD-v1-padrao.m4a">Vers&atilde;o padr&atilde;o</button><button class="faixa-btn" data-src="LME-T0A-MD-v1-curto.m4a">Vers&atilde;o curta</button>
+  </div>
+  <audio id="audio" controls preload="none" src="LME-T0A-MD-v1-padrao.m4a"></audio>
+  <div class="sem-audio">O arquivo de &aacute;udio ainda n&atilde;o foi publicado nesta pasta. O texto abaixo &eacute; o roteiro completo &mdash; d&aacute; para ler enquanto isso.</div>
+</div>
+
+<div class="secao" data-idx="0">
+  <div class="secao-header" data-idx="0">
+    <span class="secao-num">00</span><span class="secao-titulo">Antes de tudo — onde você está</span><div class="secao-check"><input type="checkbox" id="chk-0" data-idx="0"><label for="chk-0">ouvido</label></div><span class="secao-seta">&#9654;</span>
+  </div>
+  <div class="secao-body"><div class="secao-texto">
+<p>Você atravessa de novo a porta do <span class="termo">Pavilhão de Física</span> do Instituto Federal de Minas Gerais, campus Ouro Preto — mas agora é outra pergunta que te espera. Há um ano você entrou aqui para aprender a medir: ler a menor divisão de uma régua, estimar a incerteza, montar a tabela, traçar o gráfico. Hoje você já sabe Mecânica, e a pergunta muda: <strong>o modelo que você estudou aguenta o que a bancada vai dizer?</strong> E, se não aguentar, você vai saber dizer por quê?</p>
+<p>Este é o <span class="termo">Laboratório de Mecânica</span>, o par mais avançado da Introdução ao Laboratório que você já cursou. Lá o experimento era <strong>veículo</strong>: media-se para aprender a medir. Aqui ele é <strong>objeto</strong>: mede-se para pôr o modelo à prova.</p>
+<p class="citacao">&ldquo;O modelo só vale até onde o dado constatado o sustenta.&rdquo; &mdash; a partir de Francis Bacon, 1620</p>
+<p>E há a dobra de toda licenciatura: um dia você vai estar do outro lado desta bancada, mostrando a uma turma que um modelo pode falhar.</p></div></div>
+</div>
+<div class="secao" data-idx="1">
+  <div class="secao-header" data-idx="1">
+    <span class="secao-num">01</span><span class="secao-titulo">1. O que os documentos oficiais revelam</span><div class="secao-check"><input type="checkbox" id="chk-1" data-idx="1"><label for="chk-1">ouvido</label></div><span class="secao-seta">&#9654;</span>
+  </div>
+  <div class="secao-body"><div class="secao-texto">
+<p>Toda disciplina existe primeiro no papel, e esta tem uma particularidade: um dos documentos está mudando enquanto você a cursa. São quatro, e estão na aba <em>Documentos</em> do site.</p>
+<p>O <span class="termo">Projeto Pedagógico do Curso (PPC)</span> e a <span class="termo">matriz curricular</span> dizem o que a Licenciatura em Física se compromete a formar: um professor de Física para a educação básica. Na matriz, o Laboratório de Mecânica está no <strong>4.&ordm; período</strong>, com <strong>30 horas</strong> de prática, e tem dois pré-requisitos: a Introdução ao Laboratório e Mecânica I.</p>
+<p>A <span class="termo">ementa vigente</span> tem duas frases: realização de experimentos em congruência com Mecânica I e II; análise e apresentação de resultados. Uma <span class="termo">proposta de nova ementa</span> nomeia o que a vigente deixava implícito: o modelo confrontado com o dado, a propagação de incertezas, o ajuste de curvas.</p>
+<p>O <span class="termo">Plano de Ensino 2026.2</span> desdobra isso em <strong>três temas, treze trilhas, quinze encontros</strong>. E o <span class="termo">Regulamento de Ensino</span> fixa os números que não se negociam: <strong>frequência mínima de 75%</strong>, <strong>rendimento mínimo de 60%</strong>, teto de 40% por instrumento.</p></div></div>
+</div>
+<div class="secao" data-idx="2">
+  <div class="secao-header" data-idx="2">
+    <span class="secao-num">02</span><span class="secao-titulo">2. As Trilhas de Aprendizagem, as tr&ecirc;s paradas e os dezesseis OAs</span><div class="secao-check"><input type="checkbox" id="chk-2" data-idx="2"><label for="chk-2">ouvido</label></div><span class="secao-seta">&#9654;</span>
+  </div>
+  <div class="secao-body"><div class="secao-texto">
+<p>A disciplina não é dada em aulas soltas: é dada em <span class="termo">trilhas</span> — treze, em três temas, ao longo de quinze encontros.</p>
+O Tema 0 é esta boas-vindas e a trilha sobre unidades; o Tema 1 retoma o tratamento de dados; o Tema 2 entra na Mecânica: leis de Newton, forças, atrito, colisões, hidrostática.</p>
+<p>Cada trilha tem sempre as mesmas <strong>três paradas</strong>: <span class="termo">Pré-Lab</span>, 20 min em casa, antes — a previsão já escrita &middot; <span class="termo">Lab</span>, 100 min na bancada — a medição acontece aqui, e só aqui &middot; <span class="termo">Pós-Lab</span>, 40 min em casa, depois: tratamento, ajuste, confronto com o modelo.</p>
+<p>Dentro das paradas ficam os <span class="termo">Objetos de Aprendizagem (OAs)</span> — <strong>dezesseis</strong> ao todo, os mesmos da Introdução ao Laboratório, agora a serviço de outro objetivo.</p>
+<p><strong>Esta trilha é a exceção.</strong> Sem medição hoje, entrega só <strong>cinco</strong>: o Resumo em Áudio, o Texto Temático, os Cartões Didáticos, o Roteiro de Bancada de reconhecimento e a Apresentação do Lab. Sem dado coletado, não há Pós-Lab. Os outros onze entram a partir da T01.</p></div></div>
+</div>
+<div class="secao" data-idx="3">
+  <div class="secao-header" data-idx="3">
+    <span class="secao-num">03</span><span class="secao-titulo">3. A sequ&ecirc;ncia de estudo: previs&atilde;o, seguran&ccedil;a, acervo e registro</span><div class="secao-check"><input type="checkbox" id="chk-3" data-idx="3"><label for="chk-3">ouvido</label></div><span class="secao-seta">&#9654;</span>
+  </div>
+  <div class="secao-body"><div class="secao-texto">
+<p>Aqui, escrever antes de medir não é opcional — é o próprio método. <strong>Antes da aula</strong>, você ouve este áudio, lê o Texto Temático e <strong>escreve o que o modelo prevê</strong>. A previsão não precisa estar certa; precisa existir. <em>Quem chega sem ela não tem o que testar.</em></p>
+<p><strong>Antes da aula (20 min).</strong> Ou&ccedil;a este &aacute;udio, leia o Texto Tem&aacute;tico, preveja o resultado do que vai medir e confira o Invent&aacute;rio de Equipamento (IE) e o Checklist de Seguran&ccedil;a (CS). A previs&atilde;o n&atilde;o precisa estar certa &mdash; precisa existir. <em>Chegar sem previs&atilde;o &eacute; chegar sem pergunta.</em></p>
+<p><strong>Na aula — segurança primeiro.</strong> As regras da Introdução ao Laboratório continuam valendo: saída de emergência, extintor e kit de primeiros socorros na <span class="termo">sala de permanência dos professores</span>, calçado fechado, instrumento devolvido ao lugar. A Mecânica acrescenta riscos novos — massas suspensas em roldanas, molas tensionadas, carrinhos em trilhos, colisões — e por isso o EPI cresce com as trilhas. Você assina o <span class="termo">termo de segurança</span>: pré-requisito para entrar na bancada na T01.</p>
+<p><strong>Na aula — o acervo.</strong> Você revê réguas, paquímetros, balanças, cronômetros, e conhece os instrumentos novos da Mecânica: trilho com sensores fotoelétricos, máquina de Atwood, dinamômetros, plano inclinado com transferidor, manômetro.</p>
+<p><strong>Na aula — o registro.</strong> No Roteiro de Bancada a ordem é fixa: <span class="termo">previsão</span> antes, datada; <span class="termo">dado bruto</span> durante; <span class="termo">decisão</span> depois. E a regra vale o semestre inteiro: <strong>o dado bruto não se apaga e não se corrige</strong> — um dado corrigido para caber no modelo não testa o modelo, confirma a sua vontade.</p></div></div>
+</div>
+<div class="secao" data-idx="4">
+  <div class="secao-header" data-idx="4">
+    <span class="secao-num">04</span><span class="secao-titulo">4. Como funciona a avalia&ccedil;&atilde;o</span><div class="secao-check"><input type="checkbox" id="chk-4" data-idx="4"><label for="chk-4">ouvido</label></div><span class="secao-seta">&#9654;</span>
+  </div>
+  <div class="secao-body"><div class="secao-texto">
+<p>Quanto vale acertar a previsão? <strong>Nada</strong> — e é isso que muda tudo. A avaliação é processual, com quatro instrumentos, válidos das trilhas <strong>T01 a T11</strong>.</p>
+<p><strong>Pré-Lab 20%</strong> (avalia preparo, não acerto) &middot; <strong>Lab 40%</strong> (conduta, montagem, registro) &middot; <strong>Relatório Mínimo 15%</strong> (até 1 dia) &middot; <strong>Relatório Completo 25%</strong>, com o critério novo: a <span class="termo">decisão sobre o modelo</span>. Um relatório que mede bem e para ali está incompleto. Um relatório que conclui, com a incerteza na mão, que o modelo sem atrito não explica o dado — e diz por quê — está completo, <em>mesmo que a previsão tenha falhado</em>.</p>
+<p><strong>Esta trilha é a exceção:</strong> não vale nota de conteúdo. Cobra-se <strong>presença</strong> e o <strong>termo de segurança assinado</strong>.</p>
+<p>Repare na estratégia: <strong>60% da nota se decide antes de você sair do laboratório</strong>, entre a previsão e a bancada.</p></div></div>
+</div>
+<div class="secao" data-idx="5">
+  <div class="secao-header" data-idx="5">
+    <span class="secao-num">05</span><span class="secao-titulo">5. Como carregar os materiais e o m&eacute;todo na m&atilde;o</span><div class="secao-check"><input type="checkbox" id="chk-5" data-idx="5"><label for="chk-5">ouvido</label></div><span class="secao-seta">&#9654;</span>
+  </div>
+  <div class="secao-body"><div class="secao-texto">
+<p>Nenhum material desta disciplina depende de você estar no campus — e, na Mecânica, a mão carrega também um laboratório inteiro, em simulação.</p>
+<p>O <span class="termo">site da disciplina</span> é a porta de entrada: materiais de todas as trilhas, aba Documentos, entrega dos relatórios. Este <span class="termo">Resumo em Áudio</span> monta o esqueleto do assunto. Os <span class="termo">Cartões Didáticos</span> revisam o vocabulário e os instrumentos do acervo. O <span class="termo">Texto Temático</span>, na tela, tem sumário, índice de figuras e a marca de quanto você já leu.</p>
+<p>Os <span class="termo">laboratórios virtuais</span> — Universidade Federal do Ceará, animações de Vaščák, simulações PhET — são gratuitos e preparam a montagem. A partir da T01, você pode usar <span class="termo">inteligência artificial</span> para ajustar a curva aos dados, com duas condições inegociáveis: o resultado é <strong>sempre conferido por você</strong>, e o uso é <strong>declarado no relatório</strong>.</p></div></div>
+</div>
+<div class="secao" data-idx="6">
+  <div class="secao-header" data-idx="6">
+    <span class="secao-num">06</span><span class="secao-titulo">S&iacute;ntese — as cinco respostas</span><div class="secao-check"><input type="checkbox" id="chk-6" data-idx="6"><label for="chk-6">ouvido</label></div><span class="secao-seta">&#9654;</span>
+  </div>
+  <div class="secao-body"><div class="secao-texto">
+<p><strong>1.</strong> O que os documentos obrigam: PPC, matriz, ementa e Regulamento — 75% de frequência, 60% de rendimento. <strong>2.</strong> Como a disciplina é feita: treze trilhas, três paradas, dezesseis OAs — esta trilha entrega cinco. <strong>3.</strong> Como se estuda: a previsão escrita abre o Pré-Lab; a aula tem segurança, acervo e registro. <strong>4.</strong> Como ela avalia: 20, 40, 15 e 25%, com 60% decidido antes de sair do laboratório. <strong>5.</strong> Como ela cabe na sua mão: site, áudio, cartões e o texto em duas formas.</p>
+<p>Você sai deste primeiro encontro com três coisas: o <strong>termo de segurança assinado</strong>, o <strong>Roteiro de Bancada com a primeira entrada</strong> e uma pergunta para a T01 — <em>que previsão eu vou levar escrita?</em> Marie Curie anotou cada medida num caderno que ainda guarda radiação; Guimarães Rosa encheu sete cadernetas no sertão antes do romance. O registro vem antes da interpretação — e é exatamente essa a regra desta trilha.</p></div></div>
+</div>
+<div class="secao" data-idx="7">
+  <div class="secao-header" data-idx="7">
+    <span class="secao-num">07</span><span class="secao-titulo">Conex&otilde;es — pr&aacute;tica docente, hist&oacute;ria, metrologia, minera&ccedil;&atilde;o e arte</span><div class="secao-check"><input type="checkbox" id="chk-7" data-idx="7"><label for="chk-7">ouvido</label></div><span class="secao-seta">&#9654;</span>
+  </div>
+  <div class="secao-body"><div class="secao-texto">
+<p><strong>Prática docente:</strong> não punir a previsão errada é decisão didática — uma turma que perde nota por errar a previsão aprende a prever o que já sabe, e o experimento deixa de testar qualquer coisa.</p>
+<p><strong>História de Ouro Preto:</strong> a Escola de Minas, fundada por Claude-Henri Gorceix em 1876 na Praça Tiradentes — <strong>150 anos</strong> de <em>prever e conferir</em>, tradição que a mineração colonial não tinha, quando bastava a autoridade de quem já sabia.</p>
+<p><strong>Metrologia:</strong> dois valores só se dizem iguais, ou diferentes, quando se comparam as suas incertezas. Sem incerteza declarada, não há decisão a avaliar.</p>
+<p><strong>Mineração:</strong> a Norma Regulamentadora 22, de segurança na mineração, exige o mesmo gesto do seu termo de segurança — identificar o perigo antes, registrar as condições, nunca alterar o registro depois de um incidente.</p>
+<p><strong>Arte:</strong> três cadernos de bancada dizem a mesma coisa — o de Marie Curie, o de Guimarães Rosa, e a frase de Francis Bacon que abre esta trilha: <span class="citacao">o modelo só vale até onde o dado constatado o sustenta</span>.</p></div></div>
+</div>
+
+<div class="quiz-section">
+  <div class="quiz-titulo">Autoavalia&ccedil;&atilde;o</div>
+  <div class="quiz-sub">Cinco perguntas, sem nota e sem envio. Escolha e veja o porqu&ecirc;.</div>
+  <div class="quiz-q" data-q="0">
+  <div class="quiz-enunciado">1. Quantos Objetos de Aprendizagem tem a disciplina, e quantos esta trilha entrega?</div>
+  <div class="quiz-opcoes"><label class="quiz-op" data-q="0" data-op="0"><input type="radio" name="q0" value="0"><span>Cinco na disciplina, cinco nesta trilha</span></label>
+<label class="quiz-op" data-q="0" data-op="1"><input type="radio" name="q0" value="1"><span>Dezesseis na disciplina, cinco nesta trilha</span></label>
+<label class="quiz-op" data-q="0" data-op="2"><input type="radio" name="q0" value="2"><span>Dezesseis na disciplina, dezesseis nesta trilha</span></label>
+<label class="quiz-op" data-q="0" data-op="3"><input type="radio" name="q0" value="3"><span>Sete na disciplina, tr&ecirc;s nesta trilha</span></label></div>
+  <div class="quiz-porque" id="porque-0">O Laborat&oacute;rio de Mec&acirc;nica tem <strong>dezesseis</strong> OAs. A T0A &eacute; exce&ccedil;&atilde;o de trilha: como n&atilde;o mede nada, entrega cinco (MD, TT, CD, RB e AP) e n&atilde;o tem P&oacute;s-Lab.</div>
+</div>
+<div class="quiz-q" data-q="1">
+  <div class="quiz-enunciado">2. Onde ficam o extintor de inc&ecirc;ndio e o kit de primeiros socorros?</div>
+  <div class="quiz-opcoes"><label class="quiz-op" data-q="1" data-op="0"><input type="radio" name="q1" value="0"><span>Na bancada do fundo do laborat&oacute;rio</span></label>
+<label class="quiz-op" data-q="1" data-op="1"><input type="radio" name="q1" value="1"><span>No corredor do Pavilh&atilde;o, ao lado da sa&iacute;da</span></label>
+<label class="quiz-op" data-q="1" data-op="2"><input type="radio" name="q1" value="2"><span>Na sala de perman&ecirc;ncia dos professores</span></label>
+<label class="quiz-op" data-q="1" data-op="3"><input type="radio" name="q1" value="3"><span>Cada laborat&oacute;rio tem o seu, na porta</span></label></div>
+  <div class="quiz-porque" id="porque-1">Ficam <strong>fora do laborat&oacute;rio</strong>, na sala de perman&ecirc;ncia dos professores &mdash; e sempre no mesmo lugar. &Eacute; para l&aacute; que se corre; por isso o caminho se aprende hoje.</div>
+</div>
+<div class="quiz-q" data-q="2">
+  <div class="quiz-enunciado">3. Voc&ecirc; escreveu um valor errado no Roteiro de Bancada. O que se faz?</div>
+  <div class="quiz-opcoes"><label class="quiz-op" data-q="2" data-op="0"><input type="radio" name="q2" value="0"><span>Apaga e escreve o valor certo por cima</span></label>
+<label class="quiz-op" data-q="2" data-op="1"><input type="radio" name="q2" value="1"><span>Anota o valor certo ao lado, sem rasurar o anterior</span></label>
+<label class="quiz-op" data-q="2" data-op="2"><input type="radio" name="q2" value="2"><span>Rasura o antigo e assina embaixo</span></label>
+<label class="quiz-op" data-q="2" data-op="3"><input type="radio" name="q2" value="3"><span>Come&ccedil;a uma folha nova, s&oacute; com os valores bons</span></label></div>
+  <div class="quiz-porque" id="porque-2"><strong>O dado bruto n&atilde;o se apaga e n&atilde;o se corrige.</strong> Um dado corrigido para caber no modelo n&atilde;o testa o modelo &mdash; confirma a sua vontade.</div>
+</div>
+<div class="quiz-q" data-q="3">
+  <div class="quiz-enunciado">4. Onde se decide a maior parte da nota, das trilhas T01 a T11?</div>
+  <div class="quiz-opcoes"><label class="quiz-op" data-q="3" data-op="0"><input type="radio" name="q3" value="0"><span>No Relat&oacute;rio Completo, que vale 25%</span></label>
+<label class="quiz-op" data-q="3" data-op="1"><input type="radio" name="q3" value="1"><span>Numa prova final de encerramento</span></label>
+<label class="quiz-op" data-q="3" data-op="2"><input type="radio" name="q3" value="2"><span>Entre o Pr&eacute;-Lab e o Lab: 60% antes de sair do laborat&oacute;rio</span></label>
+<label class="quiz-op" data-q="3" data-op="3"><input type="radio" name="q3" value="3"><span>No Relat&oacute;rio M&iacute;nimo, entregue em 1 dia</span></label></div>
+  <div class="quiz-porque" id="porque-3">Pr&eacute;-Lab (20%) + Lab (40%) = <strong>60%</strong> decididos antes de voc&ecirc; sair da sala. Da&iacute; a estrat&eacute;gia: prever, chegar preparado e registrar bem.</div>
+</div>
+<div class="quiz-q" data-q="4">
+  <div class="quiz-enunciado">5. Nesta disciplina, o que caracteriza o experimento em rela&ccedil;&atilde;o &agrave; Introdu&ccedil;&atilde;o ao Laborat&oacute;rio?</div>
+  <div class="quiz-opcoes"><label class="quiz-op" data-q="4" data-op="0"><input type="radio" name="q4" value="0"><span>Ele continua sendo ve&iacute;culo: mede-se para aprender a medir</span></label>
+<label class="quiz-op" data-q="4" data-op="1"><input type="radio" name="q4" value="1"><span>Ele passa a ser objeto: mede-se para p&ocirc;r o modelo da Mec&acirc;nica &agrave; prova</span></label>
+<label class="quiz-op" data-q="4" data-op="2"><input type="radio" name="q4" value="2"><span>Ele deixa de ter incerteza</span></label>
+<label class="quiz-op" data-q="4" data-op="3"><input type="radio" name="q4" value="3"><span>Ele s&oacute; conta para a nota do Relat&oacute;rio M&iacute;nimo</span></label></div>
+  <div class="quiz-porque" id="porque-4">Na Introdu&ccedil;&atilde;o ao Laborat&oacute;rio o experimento era <strong>ve&iacute;culo</strong>. No Laborat&oacute;rio de Mec&acirc;nica ele &eacute; <strong>objeto</strong>: previs&atilde;o, medi&ccedil;&atilde;o com incerteza e decis&atilde;o sobre o modelo.</div>
+</div>
+</div>
+
+<div class="encerramento">
+  <div class="fecho-frase">Voc&ecirc; ainda n&atilde;o mediu nada &mdash; e essa &eacute; a inten&ccedil;&atilde;o.<br>Hoje se aprende a olhar o laborat&oacute;rio; na T01, a medir dentro dele.</div>
+  <div class="fecho-acao">Agora leia o Texto Tem&aacute;tico</div>
+  <div class="fecho-links">
+    <a class="fecho-btn" href="../tt/">Texto Tem&aacute;tico</a>
+    <a class="fecho-btn secundario" href="../../">Todas as trilhas</a>
+  </div>
+  <div class="fecho-inst"><div class="fecho-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#nidec-nucleo)"/> </svg></div>Este resumo em &aacute;udio foi elaborado pelos professores J&uacute;lio Azevedo e Felipe Beato.</div>
+</div>
+
+<div class="footer-line">
+  NIDEC-CODAFIS &middot; IFMG &mdash; Campus Ouro Preto &middot; Licenciatura em F&iacute;sica<br>
+  Laborat&oacute;rio de Mec&acirc;nica (LME) &middot; T0A &middot; Resumo em &Aacute;udio v1 &middot; J&uacute;lio Azevedo &middot; Felipe Beato
+</div>
+
+</main>
+<script>var GABARITO = [1, 2, 1, 2, 1];</script>
+
+<script>
+(function () {
+  var CHAVE = 'LME-T0A-MD-v1';
+  var estado = {};
+  try { estado = JSON.parse(localStorage.getItem(CHAVE) || '{}'); } catch (e) { estado = {}; }
+  function grava() { try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {} }
+
+  /* ---- sanfona + progresso ---- */
+  var secoes = document.querySelectorAll('.secao');
+  var barra = document.getElementById('progresso');
+  for (var i = 0; i < secoes.length; i++) {
+    var s = document.createElement('span');
+    s.className = 'seg'; s.dataset.idx = i; barra.appendChild(s);
+  }
+  function pinta(idx, ouvido) {
+    secoes[idx].classList.toggle('ouvida', ouvido);
+    barra.children[idx].classList.toggle('ouvido', ouvido);
+  }
+  document.querySelectorAll('.secao-header').forEach(function (h) {
+    h.addEventListener('click', function (ev) {
+      if (ev.target.tagName === 'INPUT' || ev.target.tagName === 'LABEL') return;
+      h.parentNode.classList.toggle('aberta');
+    });
+  });
+  document.querySelectorAll('.secao-check input').forEach(function (c) {
+    var idx = +c.dataset.idx;
+    c.checked = !!estado['s' + idx];
+    pinta(idx, c.checked);
+    c.addEventListener('change', function () {
+      estado['s' + idx] = c.checked; grava(); pinta(idx, c.checked);
+    });
+  });
+
+  /* ---- player: duas duracoes, e um aviso honesto se o arquivo faltar ---- */
+  var audio = document.getElementById('audio');
+  var caixa = document.getElementById('player');
+  document.querySelectorAll('.faixa-btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.faixa-btn').forEach(function (o) { o.classList.remove('ativa'); });
+      b.classList.add('ativa');
+      caixa.classList.remove('indisponivel');
+      audio.src = b.dataset.src;
+      audio.play().catch(function () {});
+    });
+  });
+  audio.addEventListener('error', function () { caixa.classList.add('indisponivel'); });
+
+  /* ---- autoavaliacao: responde, ve o porque, e nada sai da maquina ---- */
+  document.querySelectorAll('.quiz-op').forEach(function (op) {
+    op.addEventListener('click', function () {
+      var q = +op.dataset.q, escolha = +op.dataset.op, certa = GABARITO[q];
+      var bloco = document.querySelector('.quiz-q[data-q="' + q + '"]');
+      bloco.querySelectorAll('.quiz-op').forEach(function (o) {
+        o.classList.add('travada');
+        var v = +o.dataset.op;
+        if (v === certa) o.classList.add('certa');
+        else if (v === escolha) o.classList.add('errada');
+      });
+      document.getElementById('porque-' + q).classList.add('visivel');
+      estado['q' + q] = escolha; grava();
+    });
+  });
+})();
+</script>
+</body>
+</html>

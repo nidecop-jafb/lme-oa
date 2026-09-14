@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LME-T0A &middot; Primeiros Passos no Laboratório: onde o dado nasce &mdash; Cart&otilde;es Did&aacute;ticos</title>
+<style>
+:root {
+  --verde: #3E8E5A; --verde-claro: #5FAE7A; --verde-bg: oklch(0.28 0.05 152);
+  --aco: #7FB2D6; --aco-bg: oklch(0.28 0.05 240);
+  --ouro: oklch(0.80 0.13 85); --ouro-bg: oklch(0.26 0.05 85);
+  --roxo: oklch(0.68 0.13 300); --roxo-bg: oklch(0.25 0.05 300);
+  --erro: oklch(0.62 0.20 25); --erro-bg: oklch(0.24 0.06 25);
+  --cinza: oklch(0.62 0.01 260); --cinza-borda: oklch(0.40 0.01 260);
+  --texto: oklch(0.93 0 0); --branco: oklch(0.96 0 0);
+  --superficie: oklch(0.22 0.01 260); --verso: oklch(0.19 0.01 260);
+  --fundo: oklch(0.13 0.01 260); --painel: oklch(0.16 0.01 260);
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'Courier New', 'Cascadia Code', Consolas, monospace;
+  --serif: Georgia, Cambria, 'Times New Roman', serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--fundo); color: var(--texto); line-height: 1.6; min-height: 100vh; }
+
+.header { background: var(--painel); border-top: 3px solid var(--verde); padding: 14px 20px; }
+.header-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.header .marca { width: 52px; height: 52px; flex-shrink: 0; }
+.header h1 { font-size: 1.4rem; font-weight: 900; letter-spacing: -0.02em; flex: 1 1 240px; }
+.header h1 .trilha-code { color: var(--verde); }
+.badge { display: inline-block; background: var(--verde); color: oklch(0.13 0.01 260); padding: 4px 12px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+.header-sub { max-width: 960px; margin: 6px auto 0; font-size: 0.88rem; color: var(--cinza); }
+
+main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
+
+.piazzi-bar { display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; background:var(--painel); border:1px solid var(--cinza-borda); padding:10px 16px; margin-bottom:16px; font-size:.78rem; }
+.piazzi-bar .piazzi-ref { color:var(--cinza); }
+.piazzi-bar .piazzi-tag { display:inline-block; border:1px solid var(--verde); color:var(--verde); padding:2px 10px; font-size:.72rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.piazzi-bar .piazzi-text { color:var(--texto); font-style:italic; font-size:.74rem; }
+.piazzi-bar .piazzi-yt { display:inline-flex; align-items:center; gap:5px; background:var(--erro); color:var(--branco); padding:4px 12px; font-size:.72rem; font-weight:700; text-decoration:none; }
+.piazzi-bar .piazzi-yt::before { content:'\25B6'; font-size:.6rem; }
+
+.intro-box { background: var(--painel); border-left: 3px solid var(--aco); padding: 14px 16px; margin-bottom: 18px; font-size: .9rem; }
+.intro-box strong { color: var(--verde); }
+
+.toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:14px; }
+.filtros { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+.filtros .filtro-rot { font-size:.68rem; color:var(--cinza); text-transform:uppercase; letter-spacing:.5px; font-weight:600; margin-right:4px; }
+.btn-filtro { background: var(--superficie); border:1px solid var(--cinza-borda); color: var(--texto); padding:6px 14px; min-height:34px; font-size:.72rem; font-weight:700; font-family: var(--font); cursor:pointer; text-transform:uppercase; letter-spacing:.3px; }
+.btn-filtro:hover { border-color: var(--verde); }
+.btn-filtro.ativo-all { background: var(--cinza-borda); border-color: var(--branco); color: var(--branco); }
+.btn-filtro.ativo-conceito { background: var(--verde-bg); border-color: var(--verde); color: var(--verde); }
+.btn-filtro.ativo-numero { background: var(--ouro-bg); border-color: var(--ouro); color: var(--ouro); }
+.btn-filtro.ativo-vocabulario { background: var(--aco-bg); border-color: var(--aco); color: var(--aco); }
+.btn-filtro.ativo-conexao { background: var(--roxo-bg); border-color: var(--roxo); color: var(--roxo); }
+.btn-filtro.ativo-aplicacao { background: var(--erro-bg); border-color: var(--erro); color: var(--erro); }
+
+.progresso-area { display:flex; align-items:center; gap:10px; }
+.progresso-conta { font-family: var(--mono); font-size:.82rem; color: var(--verde); font-weight:700; }
+.progresso-trilho { width:120px; height:5px; background: oklch(0.20 0.01 260); overflow:hidden; }
+.progresso-fill { height:100%; background: var(--verde); transition: width .3s; }
+
+.acoes { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+.btn-acao { background: var(--superficie); border:1px solid var(--cinza-borda); color: var(--texto); padding:8px 16px; min-height:36px; font-size:.72rem; font-weight:700; font-family: var(--font); cursor:pointer; text-transform:uppercase; letter-spacing:.5px; }
+.btn-acao.embaralhar { border-color: var(--verde); color: var(--verde); }
+.btn-acao.embaralhar:hover { background: var(--verde-bg); }
+.btn-acao.reiniciar { border-color: var(--erro); color: var(--erro); }
+.btn-acao.reiniciar:hover { background: var(--erro-bg); }
+
+.grade { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-bottom:24px; }
+.vaga { perspective: 900px; min-height: 230px; }
+.vaga.oculta { display:none; }
+.cartao { width:100%; height:100%; min-height:230px; position:relative; cursor:pointer; transform-style: preserve-3d; transition: transform .5s cubic-bezier(.4,0,.2,1); }
+.cartao.virado { transform: rotateY(180deg); }
+.face { position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; display:flex; flex-direction:column; padding:16px 18px 14px; overflow:hidden; }
+.frente { background: var(--superficie); border-left:3px solid var(--cinza-borda); }
+.verso { transform: rotateY(180deg); background: var(--verso); border-left:3px solid var(--cinza-borda); }
+
+.cat-conceito .frente, .cat-conceito .verso { border-left-color: var(--verde); }
+.cat-numero .frente, .cat-numero .verso { border-left-color: var(--ouro); }
+.cat-vocabulario .frente, .cat-vocabulario .verso { border-left-color: var(--aco); }
+.cat-conexao .frente, .cat-conexao .verso { border-left-color: var(--roxo); }
+.cat-aplicacao .frente, .cat-aplicacao .verso { border-left-color: var(--erro); }
+
+.cat-tag { font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.5px; padding:2px 8px; display:inline-block; margin-bottom:10px; align-self:flex-start; }
+.cat-conceito .cat-tag { background: var(--verde-bg); color: var(--verde); }
+.cat-numero .cat-tag { background: var(--ouro-bg); color: var(--ouro); }
+.cat-vocabulario .cat-tag { background: var(--aco-bg); color: var(--aco); }
+.cat-conexao .cat-tag { background: var(--roxo-bg); color: var(--roxo); }
+.cat-aplicacao .cat-tag { background: var(--erro-bg); color: var(--erro); }
+
+.pergunta { flex:1; display:flex; align-items:center; justify-content:center; text-align:center; font-size:.9rem; font-weight:700; line-height:1.45; padding:4px 0; }
+.resposta { flex:1; font-size:.78rem; line-height:1.55; color: oklch(0.86 0 0); overflow-y:auto; }
+.resposta b { color: var(--branco); }
+.resposta .num-line { display:block; font-family: var(--mono); color: var(--ouro); font-weight:700; font-size:.9rem; margin:0 0 8px; letter-spacing:.02em; }
+.cartao-id { font-family: var(--mono); font-size:.6rem; color: var(--cinza); text-align:right; margin-top:8px; font-weight:600; }
+.cartao-dica { font-size:.58rem; color: var(--cinza); text-align:center; margin-top:6px; letter-spacing:.3px; }
+.vaga.revisado .frente::after { content:''; position:absolute; top:8px; right:8px; width:8px; height:8px; background: var(--verde); }
+
+.encerramento { max-width:960px; margin:30px auto 10px; padding:20px 16px; border-top:2px solid var(--verde); text-align:center; }
+.encerramento .fecho-frase { font-family:var(--serif); font-size:1.02rem; line-height:1.5; }
+.encerramento .fecho-acao { color:var(--verde); font-size:.95rem; text-transform:uppercase; font-weight:700; margin-top:10px; }
+.encerramento .fecho-links { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:14px; }
+.encerramento .fecho-btn { display:inline-flex; align-items:center; gap:7px; padding:10px 18px; min-height:44px; background:var(--verde); color:oklch(0.13 0.01 260); font-family:var(--mono); font-size:.8rem; font-weight:700; text-decoration:none; }
+.encerramento .fecho-btn::before { content:'\25B6'; font-size:.62rem; }
+.encerramento .fecho-btn.secundario { background:transparent; color:var(--aco); border:1px solid var(--aco); }
+.encerramento .fecho-btn.secundario::before { content:'\2630'; font-size:.72rem; }
+.encerramento .fecho-inst { color:var(--cinza); font-size:.85rem; margin-top:16px; }
+.footer-line { text-align:center; font-size:.82rem; color:var(--cinza); padding:16px 12px; line-height:1.5; }
+
+@media (max-width: 900px) { .grade { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) {
+  .header h1 { font-size: 1.15rem; }
+  .grade { grid-template-columns: 1fr; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .filtros, .progresso-area, .acoes { justify-content: center; }
+}
+
+@media print {
+  body { background:#fff !important; color:#1A1A1A !important; }
+  .header { background:none !important; border-top:2px solid #1F3864; }
+  .piazzi-bar, .toolbar, .acoes, .cartao-dica, .encerramento .fecho-links { display:none !important; }
+  .grade { grid-template-columns: repeat(2, 1fr); gap:8px; }
+  .vaga, .cartao { min-height:0; perspective:none; }
+  .cartao { transform:none !important; }
+  .face { position:static; backface-visibility:visible; }
+  .frente { background:#F4F4F4 !important; border:1px solid #BBB; border-left:3px solid #777; }
+  .verso { transform:none; background:#FFF !important; border:1px solid #BBB; border-left:3px solid #777; }
+  .vaga { page-break-inside: avoid; border-bottom:1px dashed #999; padding-bottom:6px; }
+  .resposta { color:#1A1A1A !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <svg class="marca" viewBox="0 0 120 120" role="img" aria-label="Marca do Laborat&oacute;rio de Mec&acirc;nica">
+      <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none">
+        <line x1="36" y1="10" x2="84" y2="10"/>
+        <line x1="60" y1="10" x2="81.9" y2="70.1"/>
+      </g>
+      <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/>
+      <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/>
+      <circle cx="60" cy="10" r="4" fill="#3E8E5A"/>
+      <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/>
+      <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square">
+        <line x1="26" y1="110" x2="94" y2="110"/>
+        <line x1="30" y1="110" x2="30" y2="104"/><line x1="40" y1="110" x2="40" y2="104"/>
+        <line x1="50" y1="110" x2="50" y2="104"/><line x1="60" y1="110" x2="60" y2="98"/>
+        <line x1="70" y1="110" x2="70" y2="104"/><line x1="80" y1="110" x2="80" y2="104"/>
+        <line x1="90" y1="110" x2="90" y2="104"/>
+      </g>
+    </svg>
+    <h1><span class="trilha-code">LME-T0A</span> &middot; Primeiros Passos no Laboratório: onde o dado nasce</h1>
+    <span class="badge">Cart&otilde;es Did&aacute;ticos (CD)</span>
+  </div>
+  <div class="header-sub">25 cart&otilde;es &middot; 5 categorias &middot; revis&atilde;o ativa &middot; Pr&eacute;-Lab, apoio &middot; sem nota</div>
+</header>
+
+<main>
+
+<div class="piazzi-bar">
+  <span class="piazzi-ref">Pierluigi Piazzi recomenda em <em>Aprendendo Intelig&ecirc;ncia</em>:</span>
+  <span class="piazzi-tag">Responder</span><span class="piazzi-tag">Virar</span><span class="piazzi-tag">Repetir</span>
+  <span class="piazzi-text">recordar &eacute; mais forte do que reler</span>
+  <a class="piazzi-yt" href="https://music.youtube.com/search?q=Villa-Lobos+Bachianas+Brasileiras+n%C2%BA+5+ária" target="_blank" rel="noopener">YouTube Music</a>
+  <span class="piazzi-text">Villa-Lobos &mdash; Bachianas Brasileiras n.&ordm; 5, &aacute;ria &middot; 1938 &middot; ~6 min</span>
+</div>
+
+<div class="intro-box">
+  <strong>Como usar.</strong> Responda <em>antes</em> de virar &mdash; recordar fixa mais do que
+  reler, e o cartao que voce errar mostra exatamente onde voltar ao <strong>Texto
+  Tem&aacute;tico</strong>. O verso diz de qual t&oacute;pico do TT ele saiu. Filtre por categoria,
+  embaralhe quando a ordem come&ccedil;ar a virar decoreba, e recomece quando quiser: nada aqui
+  vale nota e nada sai do seu aparelho.
+</div>
+
+<div class="toolbar">
+  <div class="filtros">
+    <span class="filtro-rot">Filtrar:</span>
+    <button class="btn-filtro ativo-all" data-cat="all">Todos (25)</button>
+    <button class="btn-filtro" data-cat="conceito">Conceito (5)</button>
+    <button class="btn-filtro" data-cat="numero">Número e regra (5)</button>
+    <button class="btn-filtro" data-cat="vocabulario">Vocabulário (5)</button>
+    <button class="btn-filtro" data-cat="conexao">Conexão (5)</button>
+    <button class="btn-filtro" data-cat="aplicacao">Aplicação (5)</button>
+  </div>
+  <div class="progresso-area">
+    <span class="progresso-conta" id="progresso-conta">0/25 revisados</span>
+    <div class="progresso-trilho"><div class="progresso-fill" id="progresso-fill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<div class="acoes">
+  <button class="btn-acao embaralhar" id="btn-embaralhar">Embaralhar</button>
+  <button class="btn-acao reiniciar" id="btn-reiniciar">Reiniciar progresso</button>
+</div>
+
+<div class="grade" id="grade"></div>
+
+</main>
+
+<div class="encerramento">
+  <div class="fecho-frase">Vinte e cinco cart&otilde;es, nenhuma medida ainda.<br>A previs&atilde;o vem primeiro; o instrumento, na bancada.</div>
+  <div class="fecho-acao">Travou em algum? Volte ao Texto Tem&aacute;tico</div>
+  <div class="fecho-links">
+    <a class="fecho-btn" href="../tt/">Texto Tem&aacute;tico</a>
+    <a class="fecho-btn secundario" href="../../index.html#t0a">Todas as trilhas</a>
+  </div>
+</div>
+
+<div class="footer-line">
+  NIDEC-CODAFIS &middot; IFMG &mdash; Campus Ouro Preto &middot; Licenciatura em F&iacute;sica<br>
+  Laborat&oacute;rio de Mec&acirc;nica (LME) &middot; T0A &middot; Cart&otilde;es Did&aacute;ticos v1
+</div>
+
+<script>var CARTOES = [
+  { id: 'C1', cat: 'conceito', rot: 'Conceito', ancora: 'Tópico 1', frente: 'Quais documentos definem a LME, e o que cada um acrescenta em relação à ILB?', verso: 'Quatro, como na ILB, com uma diferença em cada um. O <b>PPC</b> e a matriz situam a LME no 4.º período, 30 h, com <b>dois</b> pré-requisitos: a ILB e Mecânica I. A <b>ementa</b> tem uma versão vigente e uma <b>proposta v3</b>, em análise, que nomeia o confronto entre modelo e dado, a propagação de incertezas e o ajuste linear e não linear. O <b>Plano de Ensino</b> organiza 3 temas em 13 trilhas e 15 encontros. O <b>Regulamento de Ensino</b> continua o mesmo — frequência e rendimento mínimos.' },
+  { id: 'C2', cat: 'conceito', rot: 'Conceito', ancora: 'Tópico 2', frente: 'O que muda no papel do experimento entre a ILB e a LME?', verso: 'Na ILB o experimento era <b>veículo</b>: media-se para aprender a medir. Na LME ele é <b>objeto</b>: mede-se para pôr o modelo da Mecânica à prova. A sequência que isso instala é <b>previsão do modelo → medição com incerteza → ajuste e decisão</b> — as três etapas da ILB (incerteza, tabela e gráfico, ajuste) não somem: viram o instrumental dos dois últimos passos.' },
+  { id: 'C3', cat: 'conceito', rot: 'Conceito', ancora: 'Tópico 3', frente: 'Existe uma sequência de estudo na LME, e o que ela acrescenta em relação à ILB?', verso: 'A mesma sequência da ILB — ouvir o MD, ler o TT, conferir IE e CS —, com um passo novo antes dela: <b>escrever o que o modelo prevê</b>. A previsão não precisa estar certa; precisa existir. Quem chega sem ela não tem o que testar na bancada.' },
+  { id: 'C4', cat: 'conceito', rot: 'Conceito', ancora: 'Tópico 4', frente: 'Os pesos da nota são os mesmos da ILB — o que muda é o quê?', verso: 'Os números continuam <b>20/40/15/25</b>, das trilhas T01 a T11. O que muda é o critério do Relatório Completo: ele passa a cobrar a <b>decisão sobre o modelo</b> — compatível com a previsão dentro da incerteza? Se não, qual hipótese falhou? <b>Errar a previsão não tira nota; deixar de decidir, sim.</b>' },
+  { id: 'C5', cat: 'conceito', rot: 'Conceito', ancora: 'Tópico 5', frente: 'O que a LME acrescenta ao "carregar o método na mão" que já vinha da ILB?', verso: 'Os mesmos suportes — site, MD, CD, TT em duas formas — mais os <b>laboratórios virtuais</b> (UFC, V. Vaščák, PhET), usados no Pré-Lab para preparar a montagem e no Pós-Lab para repetir ou estender a coleta. A partir da T01, o ajuste por inteligência artificial entra sob a mesma regra: cálculo delegável, julgamento não.' },
+  { id: 'N1', cat: 'numero', rot: 'Número e regra', ancora: 'Tópico 2', frente: 'Quantas horas, trilhas, temas e encontros tem a LME?', verso: '<span class="num-line">30 h · 13 trilhas · 3 temas · 15 encontros</span>Tema 0 — Boas-vindas (T0A, T0B) · Tema 1 — Entendendo as medidas (T01–T05) · Tema 2 — Brincando com Forças e Movimentos (T06–T11), mais dois fechamentos.' },
+  { id: 'N2', cat: 'numero', rot: 'Número e regra', ancora: 'Tópico 4', frente: 'Como se distribuem os pesos da nota, das trilhas T01 a T11?', verso: '<span class="num-line">Pré-Lab 20% · Lab 40% · RM 15% · RC 25%</span>Os mesmos números da ILB — mas aqui o RC não fecha em "análise de resultados": fecha numa <b>decisão sobre o modelo</b>. A T0A e a T0B são exceção: não valem nota de conteúdo.' },
+  { id: 'N3', cat: 'numero', rot: 'Número e regra', ancora: 'Tópico 4', frente: 'Quais são os prazos dos relatórios, e quando são os dois fechamentos?', verso: '<span class="num-line">RM até 1 dia · RC até 6 dias</span>Fechamentos de tema, com reapresentação possível: <b>E8 em 17/11</b> (Tema 1) e <b>E15 em 26/01/2027</b> (Tema 2). Na T0A não há nenhum dos dois relatórios — sem dado coletado, não há o que relatar.' },
+  { id: 'N4', cat: 'numero', rot: 'Número e regra', ancora: 'Tópico 2', frente: 'Quanto tempo tem cada uma das três paradas na LME?', verso: '<span class="num-line">Pré-Lab 20 min · Lab 100 min · Pós-Lab 40 min</span>Mesma distribuição da ILB. O Lab acontece sempre às terças, das 20:50 às 22:30 — a LME ocupa a bancada logo depois da ILB, na mesma noite.' },
+  { id: 'N5', cat: 'numero', rot: 'Número e regra', ancora: 'Tópico 2', frente: 'Quantos Objetos de Aprendizagem tem a disciplina, e quantos a T0A entrega?', verso: '<span class="num-line">16 OAs · esta trilha entrega 5</span>Os mesmos 16 da ILB, redistribuídos pelas paradas. A T0A entrega MD, TT, CD, RB de reconhecimento e AP — porque não mede nada; os outros onze entram a partir da T01.' },
+  { id: 'P1', cat: 'vocabulario', rot: 'Vocabulário', ancora: 'Tópico 2', frente: 'Experimento-veículo × experimento-objeto', verso: 'Na ILB o experimento é <b>veículo</b>: um meio para aprender a medir, e o que se mede importa menos do que o gesto de medir. Na LME ele é <b>objeto</b>: mede-se exatamente para saber se um modelo específico da Mecânica se sustenta. É a diferença que toda trilha de bancada, da T01 em diante, vai carregar.' },
+  { id: 'P2', cat: 'vocabulario', rot: 'Vocabulário', ancora: 'Tópico 3', frente: 'Previsão do modelo', verso: 'O que a Mecânica diz que deve acontecer, <b>escrito antes da coleta</b>, no Pré-Lab. Não precisa estar certa — precisa existir, para que o dado tenha o que confirmar ou desmentir. Sem ela, a bancada não testa nada: só produz um número.' },
+  { id: 'P3', cat: 'vocabulario', rot: 'Vocabulário', ancora: 'Tópico 4', frente: 'Decisão sobre o modelo', verso: 'O critério novo do Relatório Completo: o ajuste é <b>compatível com a previsão dentro da incerteza</b>? Se não, qual hipótese do modelo falhou — quase sempre uma força que se ignorou, como o atrito. Chegar a um valor bem medido e parar aí é relatório incompleto na LME.' },
+  { id: 'P4', cat: 'vocabulario', rot: 'Vocabulário', ancora: 'Tópico 3', frente: 'Dado bruto', verso: 'A mesma regra da ILB, com peso maior aqui: <b>o dado bruto não se apaga e não se corrige</b> — mudou de ideia, anota-se ao lado. Um dado ajustado para caber no modelo não testa o modelo; confirma a vontade de quem mediu.' },
+  { id: 'P5', cat: 'vocabulario', rot: 'Vocabulário', ancora: 'Tópico 3', frente: 'Termo de segurança', verso: 'Assinado no Roteiro de Bancada da T0A, depois de rever a saída de emergência, o extintor, o kit de primeiros socorros e o EPI de bancada — que cresce na LME: óculos de proteção onde houver mola, lançamento ou colisão. É <b>pré-requisito para a bancada na T01</b>.' },
+  { id: 'X1', cat: 'conexao', rot: 'Conexão', ancora: 'Ato I e Tópico 1', frente: 'Eixo Didático — o que a licenciatura ganha em manter as mesmas 5 perguntas da ILB?', verso: 'O futuro professor vê <b>a mesma forma de aula servir a duas disciplinas</b>: os documentos mudam, o peso da nota muda, mas a pergunta "como isto se avalia?" continua servindo. É uma lição de desenho de aula, não só de conteúdo.' },
+  { id: 'X2', cat: 'conexao', rot: 'Conexão', ancora: 'Explore (Ato I)', frente: 'Eixo Histórico-Cultural — o que a Escola de Minas tem a ver com "prever e conferir"?', verso: 'Fundada por Claude-Henri Gorceix em 1876, na Praça Tiradentes, ela trouxe a Ouro Preto uma ciência que confrontava a teoria com o terreno. São <b>150 anos</b>, em 2026, de <i>prever e conferir</i> — o mesmo verbo que a LME pede da bancada.' },
+  { id: 'X3', cat: 'conexao', rot: 'Conexão', ancora: 'Tópico 2', frente: 'Eixo Metrológico — por que o Tema 1 (medidas) vem antes do Tema 2 (Mecânica)?', verso: 'Porque dizer que um modelo é "<b>compatível dentro da incerteza</b>" só faz sentido se a incerteza foi estimada. Sem o instrumental de medição — herdado da ILB —, a decisão sobre o modelo vira opinião, não julgamento.' },
+  { id: 'X4', cat: 'conexao', rot: 'Conexão', ancora: 'Tópico 4', frente: 'Eixo Didático — por que não punir uma previsão errada é uma decisão didática?', verso: 'Uma turma que perde nota por errar a previsão aprende a prever só o que já sabe — e o experimento deixa de testar qualquer coisa. Recompensar a <b>decisão</b>, e não o acerto, é escolha que o futuro professor vai precisar tomar na própria turma.' },
+  { id: 'X5', cat: 'conexao', rot: 'Conexão', ancora: 'Tópico 5', frente: 'Eixo Metrológico — o que se pode delegar a uma inteligência artificial, a partir da T01?', verso: 'O <b>cálculo</b> do ajuste, sim; o <b>julgamento</b> sobre o modelo, não. O resultado é sempre conferido pelo estudante — coerência dimensional, ordem de grandeza, resíduos —, e o uso é declarado no relatório. Um ajuste que chega pronto é uma hipótese, não uma decisão.' },
+  { id: 'A1', cat: 'aplicacao', rot: 'Aplicação', ancora: 'Tópico 3 e Tópico 4', frente: 'Você faltou no encontro de 29/09 e aparece na T01 para medir. O que acontece?', verso: 'Você não entra na bancada: o termo de segurança assinado é pré-requisito. Quem faltou assina antes de <b>13/10</b>, com a monitoria. A T0A não vale nota de conteúdo, mas cobra presença e esse termo.' },
+  { id: 'A2', cat: 'aplicacao', rot: 'Aplicação', ancora: 'Tópico 3', frente: 'Alguém se corta na bancada da LME. Para onde você vai, e por que já sabe o caminho?', verso: 'Para a <b>sala de permanência dos professores</b>: é lá que ficam o extintor de incêndio e o kit de primeiros socorros — fora do laboratório, sempre no mesmo lugar, o mesmo da ILB.' },
+  { id: 'A3', cat: 'aplicacao', rot: 'Aplicação', ancora: 'Tópico 3 e Tópico 4', frente: 'Você previu uma aceleração e o Roteiro de Bancada mostra outro valor bem diferente. O que faz?', verso: 'Registra o dado como veio, <b>sem apagar a previsão</b>, e escreve no Relatório Completo qual hipótese do modelo pode ter falhado — quase sempre o atrito, que a previsão simples ignora. A diferença não é erro a esconder: é o que o relatório existe para decidir.' },
+  { id: 'A4', cat: 'aplicacao', rot: 'Aplicação', ancora: 'Tópico 3', frente: 'Percorrendo a bancada da LME, que duas perguntas bastam por instrumento novo?', verso: '<b>Para que serve</b> e <b>qual é a sua menor divisão</b> — as mesmas da ILB, agora sobre trilho com sensores fotoelétricos, máquina de Atwood, dinamômetros, plano inclinado e manômetro. Hoje você não mede nada: vê, nomeia e devolve cada um ao lugar.' },
+  { id: 'A5', cat: 'aplicacao', rot: 'Aplicação', ancora: 'Tópico 3', frente: 'Como você levaria esta aula — previsão antes de medir — a uma escola sem laboratório?', verso: 'Com uma massa pendurada num barbante e um carrinho numa rampa de papelão: pede-se à turma que <b>escreva a previsão</b> antes de soltar o carrinho. O equipamento é o que menos viaja; o hábito de prever antes de olhar viaja inteiro.' }
+];</script>
+
+<script>
+(function () {
+  var CHAVE = 'LME-T0A-CD-v1';
+  var estado = {};
+  try { estado = JSON.parse(localStorage.getItem(CHAVE) || '{}'); } catch (e) { estado = {}; }
+  function grava() { try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {} }
+
+  var revisados = estado.revisados || {};
+  var ordem = (estado.ordem && estado.ordem.length === CARTOES.length)
+              ? estado.ordem : CARTOES.map(function (c, i) { return i; });
+  var filtro = 'all';
+  var grade = document.getElementById('grade');
+
+  function desenha() {
+    grade.innerHTML = '';
+    ordem.forEach(function (i) {
+      var c = CARTOES[i];
+      var visto = !!revisados[c.id];
+      var oculta = (filtro !== 'all' && c.cat !== filtro);
+
+      var vaga = document.createElement('div');
+      vaga.className = 'vaga cat-' + c.cat + (oculta ? ' oculta' : '') + (visto ? ' revisado' : '');
+      vaga.dataset.cat = c.cat;
+
+      var cartao = document.createElement('div');
+      cartao.className = 'cartao' + (visto ? ' virado' : '');
+      cartao.innerHTML =
+        '<div class="face frente">' +
+          '<span class="cat-tag">' + c.rot + '</span>' +
+          '<div class="pergunta">' + c.frente + '</div>' +
+          '<div class="cartao-id">' + c.id + '</div>' +
+          '<div class="cartao-dica">clique para virar</div>' +
+        '</div>' +
+        '<div class="face verso">' +
+          '<span class="cat-tag">' + c.rot + ' &middot; ' + c.ancora + '</span>' +
+          '<div class="resposta">' + c.verso + '</div>' +
+          '<div class="cartao-id">' + c.id + '</div>' +
+          '<div class="cartao-dica">clique para desvirar</div>' +
+        '</div>';
+      cartao.addEventListener('click', function () {
+        var jaVirado = cartao.classList.toggle('virado');
+        vaga.classList.toggle('revisado', jaVirado);
+        if (jaVirado) { revisados[c.id] = true; } else { delete revisados[c.id]; }
+        estado.revisados = revisados; grava(); conta();
+      });
+      vaga.appendChild(cartao);
+      grade.appendChild(vaga);
+    });
+    conta();
+  }
+
+  function conta() {
+    var visiveis = (filtro === 'all') ? CARTOES : CARTOES.filter(function (c) { return c.cat === filtro; });
+    var vistos = visiveis.filter(function (c) { return !!revisados[c.id]; }).length;
+    document.getElementById('progresso-conta').textContent = vistos + '/' + visiveis.length + ' revisados';
+    document.getElementById('progresso-fill').style.width =
+      (visiveis.length ? (vistos / visiveis.length * 100) : 0) + '%';
+  }
+
+  document.querySelectorAll('.btn-filtro').forEach(function (b) {
+    b.addEventListener('click', function () {
+      filtro = b.dataset.cat;
+      document.querySelectorAll('.btn-filtro').forEach(function (o) { o.className = 'btn-filtro'; });
+      b.classList.add('ativo-' + filtro);
+      document.querySelectorAll('.vaga').forEach(function (v) {
+        v.classList.toggle('oculta', filtro !== 'all' && v.dataset.cat !== filtro);
+      });
+      conta();
+    });
+  });
+
+  document.getElementById('btn-embaralhar').addEventListener('click', function () {
+    for (var i = ordem.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = ordem[i]; ordem[i] = ordem[j]; ordem[j] = t;
+    }
+    estado.ordem = ordem; grava(); desenha();
+  });
+
+  document.getElementById('btn-reiniciar').addEventListener('click', function () {
+    revisados = {}; estado.revisados = revisados; grava(); desenha();
+  });
+
+  desenha();
+})();
+</script>
+</body>
+</html>
