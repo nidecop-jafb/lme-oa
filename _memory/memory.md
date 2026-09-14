@@ -20,10 +20,10 @@
 Pre-Planejamento (skill `entrevista-autor`) → briefing em `_planejamento/_pre/` →
 `atualizar_painel.py` → gate "aprovado" → execucao ate a implantacao.
 
-## 3. ESTADO EM 2026-09-11
+## 3. ESTADO EM 2026-09-14
 
-**No ar:** o site lme-oa, com as abas e sem trilhas. **Proximo alvo natural:** ementa e plano
-de ensino 2026.2, depois temas e trilhas. Nenhum OA sem Camada 2 aprovada.
+13 trilhas com pasta criada (T0A-T11). **T0A** = piloto avancada (Camada 2, TT, MD, CD, RB, AP
+v1; Pos vazio). **T0B-T11** = so pasta, sem OA. Plano de Ensino ja em v3. Nenhum OA sem Camada 2.
 
 ## 4. REGRAS INVIOLAVEIS DE LME
 
