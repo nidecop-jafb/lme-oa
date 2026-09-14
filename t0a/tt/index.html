@@ -707,14 +707,16 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   width: 100%; margin: 0 auto 12px; }
 .lme-inst-marcas a { display: flex; }
 .lme-inst-marcas svg { width: 30px; height: 30px; display: block; }
-/* TT: a capa e centrada; a linha de icones ocupa a largura e alinha a esquerda */
-.capa-marca:has(> .lme-cab-marcas) { align-self: stretch; width: 100%; max-width: 720px;
-  margin-left: auto; margin-right: auto; }  /* coluna do texto, longe das linguetas fixas */
-/* AP (1280x720): na capa, fora do fluxo; na despedida, dentro da frase */
-.capa-slide > .lme-cab-marcas { position: absolute; top: 28px; left: 40px; z-index: 3; }
-.capa-slide > .lme-cab-marcas svg { width: 56px; height: 56px; }
-.desp-frase > .lme-inst-marcas { margin: 0 0 10px; }
-.desp-frase > .lme-inst-marcas svg { width: 26px; height: 26px; }
+/* EXCECAO TT: capa centrada -> icones de curso e disciplina centralizados */
+.capa-marca > .lme-cab-marcas { justify-content: center; }
+/* EXCECAO AP slide 1 (1280x720): icones centralizados acima da disciplina; o nome da
+   disciplina numa linha so, para o slide caber (antes quebrava em 2 e passava 12 px) */
+.capa-conteudo > .lme-cab-marcas { justify-content: center; margin: 0 0 14px; }
+.capa-conteudo > .lme-cab-marcas svg { width: 56px; height: 56px; }
+.capa-slide .capa-disciplina { white-space: nowrap; font-size: 1.85rem; }
+/* AP slide 13 (Despedida): IFMG + NIDEC legiveis e com folga acima da frase */
+.desp-frase > .lme-inst-marcas { justify-content: center; margin: 6px 0 18px; }
+.desp-frase > .lme-inst-marcas svg { width: 36px; height: 36px; }
 /* RB impresso */
 .header > .lme-cab-marcas svg { width: 34px; height: 34px; }
 .header > .lme-cab-marcas + .header-left { margin-right: auto; }
