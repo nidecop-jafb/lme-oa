@@ -149,7 +149,7 @@
   <p class="parada-porque">Preparar o experimento antes de tocar no equipamento: chegar à bancada sabendo o que será medido, com qual instrumento e com quais cuidados.</p>
   <ol>
     <li><b>Ponto de Partida (PP)</b> — vale nota · antes do Lab · 10 min<br><span class="aba-nota">Responder antes de estudar cria erro produtivo: o cérebro marca a lacuna e passa a procurar a resposta durante todo o Pré-Lab. Testar antes de ensinar aumenta o que fica depois — e você vai usar isso na sua sala de aula.</span></li>
-    <li><b>Resumo em Áudio (MD)</b> — ouvir · 3 a 5 min<br><span class="aba-nota">O áudio monta o esqueleto da prática antes da leitura. Com o mapa geral pronto, a memória de trabalho gasta menos esforço com a estrutura e sobra para o detalhe do procedimento.</span></li>
+    <li><b>Resumo em Áudio (MD)</b> — ouvir · curto (5 a 10 min) · padrão (15 a 25 min)<br><span class="aba-nota">O áudio monta o esqueleto da prática antes da leitura. Com o mapa geral pronto, a memória de trabalho gasta menos esforço com a estrutura e sobra para o detalhe do procedimento.</span></li>
     <li><b>Texto Temático (TT)</b> — ler · a prática explicada<br><span class="aba-nota">Leitura profunda sobre um esquema já ativado: ouvir e depois ler codifica o mesmo conteúdo por duas vias e deixa dois caminhos de recuperação.</span></li>
     <li><b>Simulações (SM)</b> — explorar · simulações<br><span class="aba-nota">Manipular a simulação antes da bancada: errar sem risco e ver o invisível. O experimento virtual prepara o gesto do experimento real.</span></li>
     <li><b>Testinho (TN)</b> — vale nota · antes do Lab · 10 min<br><span class="aba-nota">Fecha o Pré-Lab medindo segurança e procedimento, com correção na hora. Erro corrigido na véspera vira aprendizagem; erro descoberto na bancada, risco.</span></li>
@@ -165,7 +165,7 @@
   <p class="parada-porque">Construir o conhecimento com as mãos: montar, medir e registrar — com o professor sustentando o passo que você ainda não dá sozinho.</p>
   <ol>
     <li><b>Roteiro de Bancada (RB)</b> — execução · registrar os dados<br><span class="aba-nota">Registrar a medição com as próprias mãos, no momento em que ela acontece: o que a gente gera e anota fica mais do que o que a gente copia. A folha pode ser impressa para levar à bancada; o envio é digital.</span></li>
-    <li><b>Apresentação do Lab (AP)</b> — roteiro dos 100 min · rever depois<br><span class="aba-nota">Atenção conjunta e fio condutor da sessão: o professor projeta o roteiro e sustenta o passo que você ainda não dá sozinho — e os slides ficam disponíveis para rever depois.</span></li>
+    <li><b>Apresentação do Lab (AP)</b> — roteiro dos 100 min · rever depois<br><span class="aba-nota">Atenção conjunta e fio condutor da sessão: o professor projeta a apresentação, explica e discute com você — e os slides ficam disponíveis para rever depois.</span></li>
     <li><b>Infográficos de Bancada (IG)</b> — painel e consultas · durante a prática<br><span class="aba-nota">Consulta visual no momento da dúvida: a resposta chega enquanto o problema ainda está na mão — e é assim que ela gruda.</span></li>
     <li><b>Provinha (PR)</b> — vale nota · fechamento do Lab<br><span class="aba-nota">Teste curto logo após a prática: consolida enquanto o traço ainda está fresco e mostra, ali mesmo, o que precisa voltar.</span></li>
   </ol>
@@ -413,5 +413,92 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
 <script src="contador-config.js"></script>
 <script src="acessos.js"></script>
 <!-- CONTADOR:FIM -->
+
+
+
+<!-- ABA-REFERENCIA-LME (abas_oa.py) -->
+<style>
+/* Recuo pendurado do item de bibliografia — o unico estilo que o CSS do
+   indice ainda nao tinha. O resto reusa `.aba-painel`, `.aba-sec` e
+   `.aba-nota`, que ja estao la. */
+.aba-painel .ref-i-lme { font-size: .84rem; color: #a8a8a8; margin: 0 0 9px;
+  padding-left: 14px; text-indent: -14px; word-break: break-word; }
+</style>
+<button class="aba-toggle" id="abaReferenciaT">Referência</button>
+<aside class="aba-painel" id="abaReferencia">
+  <h3>Referência</h3>
+  <div class="aba-sec">Bibliografia Básica</div>
+  <p class="ref-i-lme">LIMA, C. R. A.; ZAPPA, F. <em>Análise de dados para laboratório de física</em>. Juiz de Fora: UFJF, 2014. 57 p. Disponível em: https://www2.ufjf.br/carlos_lima/wp-content/uploads/sites/520/2019/01/analisedados.pdf. Acesso em: 13 set. 2026.</p>
+  <p class="ref-i-lme">CAMPOS, A. A.; ALVES, E. S.; SPEZIALI, N. L. <em>Física experimental básica na universidade</em>. 2. ed. Belo Horizonte: Editora UFMG, 2008.</p>
+  <p class="ref-i-lme">SANTORO, A. et al. <em>Estimativas e erros em experimentos de física</em>. 2. ed. Rio de Janeiro: EdUERJ, 2013.</p>
+  <div class="aba-sec">Bibliografia Complementar</div>
+  <p class="ref-i-lme">VUOLO, J. H. <em>Fundamentos da teoria de erros</em>. 2. ed. São Paulo: Edgard Blücher, 1996.</p>
+  <p class="ref-i-lme">UNIVERSIDADE FEDERAL DO CEARÁ. <em>Laboratório virtual de física</em>: mecânica. Fortaleza: UFC, 2020. Disponível em: https://www.laboratoriovirtual.fisica.ufc.br/. Acesso em: 13 set. 2026.</p>
+  <p class="ref-i-lme">VAŠČÁK, V. <em>Physics at school</em>: I. Mechanics. Morávia: Vladimír Vaščák, [20--]. Disponível em: https://www.vascak.cz/?id=1&amp;language=it#kapitola3. Acesso em: 13 set. 2026.</p>
+  <p class="ref-i-lme">UNIVERSITY OF COLORADO BOULDER. <em>PhET Interactive Simulations</em>. Boulder: University of Colorado Boulder, 2002-. Disponível em: https://phet.colorado.edu/pt_BR/. Acesso em: 13 set. 2026.</p>
+  <div class="aba-sec">Bibliografia Metodológica</div>
+  <p class="ref-i-lme">BLOOM, Benjamin S. (org.). <em>Taxonomia de objetivos educacionais</em>: domínio cognitivo. Porto Alegre: Globo, 1972.</p>
+  <p class="ref-i-lme">HEWITT, Paul G. <em>Física conceitual</em>. 12. ed. Porto Alegre: Bookman, 2015.</p>
+  <p class="ref-i-lme">NICOLELIS, Miguel. <em>O verdadeiro criador de tudo</em>: como o cérebro humano esculpiu o universo como nós o conhecemos. São Paulo: Crítica, 2020.</p>
+  <p class="ref-i-lme">PIAZZI, Pierluigi. <em>Aprendendo inteligência</em>. São Paulo: Aleph, 2008.</p>
+  <p class="ref-i-lme">PIAZZI, Pierluigi. <em>Inteligência em concursos</em>. São Paulo: Aleph, 2014.</p>
+  <div class="aba-sec">Documentos e normas</div>
+  <p class="ref-i-lme">IFMG. <em>Regulamento de Ensino</em>: Resolução n.º 01/2026. Ouro Preto, 2026.</p>
+  <p class="ref-i-lme">IFMG &mdash; CAMPUS OURO PRETO. <em>Calendário Acadêmico 2026</em>: versão de 25 ago. 2026. Ouro Preto, 2026.</p>
+  <p class="ref-i-lme">IFMG &mdash; CAMPUS OURO PRETO. <em>Colegiado do Curso de Licenciatura em Física</em>: composição (Anexo 3). Ouro Preto, 2026.</p>
+  <p class="ref-i-lme">IFMG &mdash; CAMPUS OURO PRETO. <em>Coordenação do Curso de Licenciatura em Física</em> (Anexo 2). Ouro Preto, 2026.</p>
+  <div class="aba-sec">Epígrafes desta trilha</div>
+  <p class="ref-i-lme">BACON, Francis. <em>Novum Organum</em>. Londres, 1620. Livro I, aforismo 1. Tradução brasileira (coleção Os Pensadores) a fixar.</p>
+  <p class="ref-i-lme">CURIE, Marie; CURIE, Pierre. <em>Cadernos de laboratório</em>, 1899&ndash;1902. Paris: Bibliothèque nationale de France. (usada no Roteiro de Bancada desta trilha)</p>
+  <p class="ref-i-lme">ROSA, João Guimarães. <em>A Boiada</em>. Rio de Janeiro: Nova Fronteira, 2011. Edição fac-similar.</p>
+</aside>
+<script>
+(function () {
+  'use strict';
+  var meu = document.getElementById('abaReferencia');
+  var minha = document.getElementById('abaReferenciaT');
+  if (!meu || !minha) { return; }
+  var toggles = [].slice.call(document.querySelectorAll('.aba-toggle'));
+  var paineis = [].slice.call(document.querySelectorAll('.aba-painel'));
+
+  /* Reempilha TODAS as linguetas com a mesma conta do indice (y = 56,
+     depois altura medida + 14), agora contando tambem a nossa. Roda depois
+     do JS do indice, entao o que ele fez fica igual e a nossa entra no fim. */
+  function empilhar() {
+    var y = 56;
+    toggles.forEach(function (t) {
+      t.style.top = y + 'px';
+      y += t.offsetHeight + 14;
+    });
+  }
+  empilhar();
+  window.addEventListener('resize', empilhar);
+
+  function fecharOutros() {
+    paineis.forEach(function (p) { if (p !== meu) { p.classList.remove('open'); } });
+  }
+  minha.addEventListener('click', function (e) {
+    e.stopPropagation();
+    fecharOutros();
+    meu.classList.toggle('open');
+  });
+  /* Nas linguetas do indice so FECHAMOS a nossa: abrir e fechar a delas
+     continua sendo tarefa do JS do indice. */
+  toggles.forEach(function (t) {
+    if (t !== minha) {
+      t.addEventListener('click', function () { meu.classList.remove('open'); });
+    }
+  });
+  document.addEventListener('click', function (e) {
+    if (!meu.contains(e.target) && e.target !== minha) {
+      meu.classList.remove('open');
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { meu.classList.remove('open'); }
+  });
+})();
+</script>
+<!-- /ABA-REFERENCIA-LME -->
 </body>
 </html>

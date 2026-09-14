@@ -42,7 +42,7 @@
   @media (max-width: 560px) { .qr img { width: 150px; height: 150px; } }
 </style>
 </head>
-<body data-pagina="instalar">
+<body>
 <div class="wrap">
 
   <h1>Instalar o site no seu aparelho</h1>
@@ -144,9 +144,5 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   navigator.serviceWorker.register('/lme-oa/sw.js', { scope: '/lme-oa/' }).catch(function () {});
 }
 </script>
-<!-- CONTADOR:INICIO -->
-<script src="../contador-config.js"></script>
-<script src="../acessos.js"></script>
-<!-- CONTADOR:FIM -->
 </body>
 </html>
