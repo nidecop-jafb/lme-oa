@@ -1007,6 +1007,34 @@ html, body {
 /* ajuste de transbordo — slide 10 (Normas) em 1366x768 */
 /* PADRAO-ABAS-CREDITOS (decisao do autor 2026-09-02): cargos na secundaria (aco --azul), caixa normal. */
 .cred-cargo { color: var(--azul); text-transform: none; }
+
+/* ── Despedida: texto abaixo do pescoco (SKILL.md apresentacao-trilha-digital,
+   Camada 4, "Texto sobre imagem de fundo — nunca sobre o rosto") ──
+   A Figura 8 traz os quatro licenciandos de frente: os rostos vao ate y~500 de
+   1200 e a linha de ombros fica em y~600. O corpo do slide vinha centrado na
+   vertical e comecava em y~454 — cortava o rosto de tres dos quatro.
+
+   Duas medidas, juntas, porque so ancorar nao bastava: o corpo inteiro tem
+   ~473px e a faixa livre abaixo dos ombros tem ~400px.
+   1) O corpo ancora na BASE. Ancorar, e nao descer um valor fixo em px, e o que
+      mantem a regra de pe em qualquer proporcao de tela: o recorte `cover` da
+      foto muda com o formato. O .slide e flex-column, entao quem alinha na
+      vertical e o justify-content.
+   2) O corpo encolhe o suficiente para caber na faixa livre: sem o respiro de
+      baixo, com as calhas menores e com a linha institucional fora do fluxo,
+      no rodape do proprio corpo. Nenhum tamanho de fonte muda — e deck de
+      projecao, o texto nao pode encolher. */
+.despedida { justify-content: flex-end; }
+.despedida .desp-body { padding-bottom: 0; row-gap: 12px; }
+.despedida .desp-inst {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  grid-row: auto; margin-top: 0;
+}
+/* 3) O enquadramento tambem ajuda, e sem tocar na imagem: `cover` recorta a
+      foto quadrada e o ponto de ancoragem decide o que fica de fora. Ancorando
+      mais abaixo, o grupo sobe no quadro e a faixa livre abaixo dos ombros
+      cresce, sem cortar o alto das cabecas (o cabelo comeca em y~365). */
+.despedida .desp-bg { background-position: center 70%; }
 .fecho-marcas { display: flex; width: fit-content; gap: 14px; align-items: center; margin: 0 auto 10px; }
 .fecho-marcas svg { width: 30px; height: 30px; display: block; }
 .fecho-marcas a, .fa-marcas a { display: flex; }
