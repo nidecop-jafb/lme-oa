@@ -691,6 +691,14 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
    ganha mais espaco do que uma figura comum. */
 .figura-destaque .figura-img { max-width: 880px; border-width: 2px; border-color: var(--azul);
   box-shadow: 0 10px 32px rgba(0,0,0,.28); }
+/* Biografia do autor da epigrafe: abaixo da legenda da figura, com
+   espaco de respiro (2026-09-14) para nao prender o olhar junto da
+   imagem — funciona como uma nota de rodape, nao como legenda extra. */
+.figura-bio {
+  font-size: 0.8rem; color: var(--cinza); font-style: normal;
+  max-width: 480px; margin: 40px auto 0; text-align: center;
+  padding-top: 20px; border-top: 1px solid var(--cinza-borda);
+}
 .fecho-marcas { display: flex; width: fit-content; gap: 14px; align-items: center; margin: 0 auto 10px; }
 .fecho-marcas svg { width: 30px; height: 30px; display: block; }
 .fecho-marcas a, .fa-marcas a { display: flex; }
@@ -909,16 +917,16 @@ antes da submissão à CBL.</div>
 <!-- ═══════════════════ EPIGRAFE ═══════════════════ -->
 <!-- A citacao em si fica so na imagem (Figura 2, atualizada em
      2026-09-14) — texto removido daqui para nao duplicar a
-     informacao; so a biografia do autor permanece, como nota. A
-     figura, sem repetir a frase ao lado, ganha destaque (maior). -->
-<div class="epigrafe" id="epigrafe">
-  <div class="nota"><strong>Francis Bacon</strong> (Londres, 1561 &mdash; Londres, 1626). Filósofo e estadista inglês. A frase é o primeiro aforismo do <em>Novum Organum</em> (1620), o livro em que ele propõe que o conhecimento da natureza se construa a partir do que se observa e se registra, e não do que se supõe. Numa disciplina em que você vai pôr à prova os modelos que já estudou, ela diz o limite de todo o trabalho: o modelo só vale até onde o dado constatado o sustenta.</div>
-</div>
-
-<figure class="figura figura-destaque">
+     informacao; a figura, sem repetir a frase ao lado, ganha destaque
+     (maior). A biografia do autor vem DEPOIS da legenda da figura
+     (2026-09-14, 2a rodada), com espaco acima para nao competir pela
+     atencao de quem acabou de olhar a imagem. -->
+<figure class="figura figura-destaque" id="epigrafe">
   <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-02-v1-web.jpg" alt="Caderno de laboratório aberto sobre a bancada: à esquerda a frase de Francis Bacon, à direita a palavra Previsão e uma tabela ainda vazia" loading="lazy">
   <figcaption class="figura-legenda"><span class="figura-num">Figura 2</span> &mdash; A frase de Bacon escrita na página de um caderno de laboratório; na página ao lado, ainda em branco, o registro que vai nascer na bancada.</figcaption>
 </figure>
+
+<div class="figura-bio"><strong>Francis Bacon</strong> (Londres, 1561 &mdash; Londres, 1626). Filósofo e estadista inglês. A frase é o primeiro aforismo do <em>Novum Organum</em> (1620), o livro em que ele propõe que o conhecimento da natureza se construa a partir do que se observa e se registra, e não do que se supõe. Numa disciplina em que você vai pôr à prova os modelos que já estudou, ela diz o limite de todo o trabalho: o modelo só vale até onde o dado constatado o sustenta.</div>
 
 <!-- ═══════════════════ ATO I ═══════════════════ -->
 <div class="ato" id="ato-i">
