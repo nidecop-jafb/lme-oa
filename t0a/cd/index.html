@@ -135,6 +135,14 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
 .lme-inst-marcas { display: flex; gap: 14px; align-items: center; justify-content: center;
   width: 100%; margin: 0 auto 12px; }
 .lme-inst-marcas a { display: flex; }
+.lme-agr-marca { display: flex; justify-content: center; width: 100%; margin: 0 auto 8px; }
+.lme-agr-marca a { display: flex; }
+.lme-agr-marca svg { width: 30px; height: 30px; display: block; }
+/* com o icone de Agradecimentos abaixo, o bloco fica mais justo para nao
+   invadir a linha institucional do slide (medido a 1280x720) */
+.desp-frase > .lme-agr-marca { margin: 0 auto 8px; }
+.desp-frase > .lme-agr-marca svg { width: 28px; height: 28px; }
+@media print { .lme-agr-marca { display: none !important; } }
 .lme-inst-marcas svg { width: 30px; height: 30px; display: block; }
 /* EXCECAO TT: capa centrada -> icones de curso e disciplina centralizados */
 .capa-marca > .lme-cab-marcas { justify-content: center; }
@@ -144,8 +152,8 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
 .capa-conteudo > .lme-cab-marcas svg { width: 56px; height: 56px; }
 .capa-slide .capa-disciplina { white-space: nowrap; font-size: 1.85rem; }
 /* AP slide 13 (Despedida): IFMG + NIDEC legiveis e com folga acima da frase */
-.desp-frase > .lme-inst-marcas { justify-content: center; margin: 6px 0 18px; }
-.desp-frase > .lme-inst-marcas svg { width: 36px; height: 36px; }
+.desp-frase > .lme-inst-marcas { justify-content: center; margin: 0 0 6px; }
+.desp-frase > .lme-inst-marcas svg { width: 32px; height: 32px; }
 /* RB impresso */
 .header > .lme-cab-marcas svg { width: 34px; height: 34px; }
 .header > .lme-cab-marcas + .header-left { margin-right: auto; }
@@ -211,7 +219,7 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
 </main>
 
 <div class="encerramento">
-  <div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="fecho-frase">Vinte e cinco cart&otilde;es, nenhuma medida ainda.<br>A previs&atilde;o vem primeiro; o instrumento, na bancada.</div>
+  <div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div><div class="fecho-frase">Vinte e cinco cart&otilde;es, nenhuma medida ainda.<br>A previs&atilde;o vem primeiro; o instrumento, na bancada.</div>
   <div class="fecho-acao">Travou em algum? Volte ao Texto Tem&aacute;tico</div>
   <div class="fecho-links">
     <a class="fecho-btn" href="../tt/">Texto Tem&aacute;tico</a>
@@ -349,93 +357,104 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
 <style>
 /* ── Trilho de 7 abas da LME (abas_oa.py) ──────────────────────────────
    Flex column ancorado no meio da borda esquerda: as abas se empilham
-   sozinhas, sem tabela de `top:` em px (que com sete abas quebraria na
-   primeira mudanca de rotulo). Cores literais: o trilho roda em cinco OAs
-   com sistemas de CSS diferentes e nao pode depender das variaveis da
-   pagina. z-index acima do conteudo, abaixo do painel. */
+   sozinhas, sem tabela de `top:` em px. Cores literais (o trilho roda em cinco
+   OAs com sistemas de CSS diferentes), mas TIRADAS DA AP DA T0A (autor,
+   2026-09-14): fundo e superficie do deck, verde-quadro como accent, azul-aco
+   nos titulos e destaques (a `.hi` da AP) e a caixa lima da `.ca-provinha`
+   (fundo tingido + filete de 4px + rotulo mono) nas notas e na regra. */
 .lme-abas { position: fixed; left: 0; top: 50%; transform: translateY(-50%);
   z-index: 998; display: flex; flex-direction: column; gap: 2px;
-  /* Sete abas nao cabem em tela baixa (celular deitado, 360px de altura:
-     medido, o trilho pede 367px). O limite e de ALTURA, nao de largura —
-     por isso fica aqui, na regra base, e nao dentro do @media de celular,
-     onde vazava a 740x360. Em tela alta nao muda nada. */
+  /* Sete abas nao cabem em tela baixa (celular deitado): o trilho rola. */
   max-height: 100vh; overflow-y: auto; scrollbar-width: none; }
 .lme-abas::-webkit-scrollbar { display: none; }
-.lme-aba-toggle { background: #1a1b1f; border: 1px solid #444; border-left: none;
-  color: #bbb; font-size: .68rem; padding: 7px 8px; cursor: pointer;
-  font-family: 'Courier New', monospace; writing-mode: vertical-rl;
+.lme-aba-toggle { background: oklch(0.20 0.02 260); border: 1px solid oklch(0.40 0.02 260); border-left: 3px solid transparent;
+  color: oklch(0.72 0.02 260); font-size: .68rem; padding: 7px 8px; cursor: pointer;
+  font-family: 'Space Mono', 'Courier New', monospace; writing-mode: vertical-rl;
   text-orientation: mixed; letter-spacing: 1px; text-transform: uppercase;
-  border-radius: 0; transition: color .15s; }
-.lme-aba-toggle:hover, .lme-aba-toggle.ativa { color: #3E8E5A; }
+  border-radius: 0; transition: color .15s, border-color .15s, background .15s; }
+.lme-aba-toggle:hover { color: #7FB2D6; border-left-color: #7FB2D6; }
+.lme-aba-toggle.ativa { color: oklch(0.13 0.02 260); background: #3E8E5A; border-color: #3E8E5A; font-weight: 700; }
 .lme-aba-painel { position: fixed; top: 0; left: 0; z-index: 1001;
-  width: 330px; max-width: 86vw; height: 100vh; overflow-y: auto;
-  background: #1a1b1f; border-right: 1px solid #444;
+  width: 340px; max-width: 86vw; height: 100vh; overflow-y: auto;
+  background: oklch(0.13 0.02 260); border-right: 3px solid #3E8E5A;
+  box-shadow: 8px 0 32px rgba(0,0,0,.55);
   padding: 24px 22px 24px 42px; transform: translateX(-100%);
-  transition: transform .25s; font-family: 'Segoe UI', system-ui, sans-serif;
-  font-size: .92rem; color: #c4c4c4; line-height: 1.6; }
+  transition: transform .25s; font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-size: .92rem; color: oklch(0.90 0 0); line-height: 1.6; }
 .lme-aba-painel.open { transform: translateX(0); }
-.lme-aba-painel h3 { font-family: 'Courier New', monospace; font-size: .8rem;
-  text-transform: uppercase; letter-spacing: 2px; color: #3E8E5A;
-  border-bottom: 1px solid #444; padding-bottom: 8px; margin: 0 0 14px; }
+.lme-aba-painel p strong, .lme-aba-painel p em { color: #7FB2D6; }
+.lme-aba-painel h3 { font-family: 'Space Mono', 'Courier New', monospace; font-size: .9rem;
+  text-transform: uppercase; letter-spacing: 2px; color: #7FB2D6; font-weight: 700;
+  border-bottom: 2px solid #3E8E5A; padding-bottom: 8px; margin: 0 0 14px; }
 .lme-aba-btn { display: block; margin: 10px 0; padding: 11px 14px;
-  border: 1px solid #444; color: #e8e8e8; text-decoration: none;
-  font-family: 'Courier New', monospace; font-size: .85rem; }
+  background: oklch(0.20 0.02 260); border: 1px solid oklch(0.40 0.02 260); border-left: 4px solid #3E8E5A;
+  color: oklch(0.98 0 0); text-decoration: none;
+  font-family: 'Space Mono', 'Courier New', monospace; font-size: .85rem;
+  transition: border-color .15s, color .15s; }
 .lme-aba-btn:hover { border-color: #7FB2D6; color: #7FB2D6; }
 .lme-aba-link { color: #7FB2D6; }
-/* Marcas do topo: a da disciplina (pendulo sobre regua) e a do curso (prisma).
-   Altura igual para as duas, apesar de viewBox diferente (120 e 200), para o
-   par ficar alinhado. O prisma e um medalhao escuro de aro verde: sobre o
-   painel #1a1b1f o disco se funde ao fundo e o que se le e o aro e o espectro
-   — e assim que ele foi desenhado para fundo escuro, nao precisa de chapa. */
+/* Marcas do topo: a da disciplina (pendulo sobre regua) e a do curso (prisma). */
 .lme-aba-marcas { display: flex; align-items: center; justify-content: center;
-  gap: 18px; margin: 0 0 16px; padding-bottom: 14px; border-bottom: 1px solid #444; }
+  gap: 18px; margin: 0 0 16px; padding-bottom: 14px; border-bottom: 1px solid oklch(0.40 0.02 260); }
 .lme-aba-marca { width: 44px; height: 44px; flex: 0 0 auto; display: block; }
 /* Selos institucionais do rodape do painel. */
 .lme-aba-rodape { display: flex; align-items: center; justify-content: center;
-  gap: 20px; margin-top: 20px; padding-top: 16px; border-top: 1px solid #444; }
+  gap: 20px; margin-top: 20px; padding-top: 16px; border-top: 1px solid oklch(0.40 0.02 260); }
 .lme-aba-selo { height: 40px; width: auto; display: block; }
 .lme-aba-rodape a { display: block; line-height: 0; }
-/* ── Corpo do painel Metodo ─────────────────────────────────────────── */
-.lme-aba-h4 { font-family: 'Courier New', monospace; font-size: .74rem;
-  text-transform: uppercase; letter-spacing: 1.5px; color: #7FB2D6;
-  margin: 20px 0 4px; }
-.lme-aba-lead { font-style: italic; color: #9a9a9a; margin: 0 0 10px; }
+.lme-aba-rodape { flex-wrap: wrap; row-gap: 12px; }
+.lme-aba-agr { flex-basis: 100%; display: flex; justify-content: center; }
+.lme-aba-agr svg { width: 40px; height: 40px; display: block; }
+/* ── Corpo dos paineis ─────────────────────────────────────────────── */
+.lme-aba-h4 { font-family: 'Space Mono', 'Courier New', monospace; font-size: .74rem;
+  text-transform: uppercase; letter-spacing: 1.5px; color: #3E8E5A; font-weight: 700;
+  margin: 22px 0 6px; }
+.lme-aba-lead { font-style: italic; color: oklch(0.72 0.02 260); margin: 0 0 10px; }
 .lme-aba-passos { margin: 0 0 6px; padding-left: 20px; }
 .lme-aba-passos li { margin-bottom: 9px; }
+.lme-aba-passos li::marker { color: #3E8E5A; font-weight: 700; }
 .lme-aba-apoio { margin: 6px 0 6px; padding-left: 18px; list-style: none; }
 .lme-aba-apoio li { margin-bottom: 9px; position: relative; }
 .lme-aba-apoio li::before { content: '·'; position: absolute; left: -12px;
   color: #3E8E5A; font-weight: 700; }
-.lme-aba-apoio-tit { font-size: .78rem; text-transform: uppercase;
-  letter-spacing: 1px; color: #8a8a8a; margin: 12px 0 2px;
-  font-family: 'Courier New', monospace; }
-.lme-aba-oa { color: #e8e8e8; font-weight: 600; }
+.lme-aba-apoio-tit { font-size: .74rem; text-transform: uppercase;
+  letter-spacing: 1px; color: oklch(0.72 0.02 260); margin: 12px 0 2px;
+  font-family: 'Space Mono', 'Courier New', monospace; }
+.lme-aba-oa { color: #7FB2D6; font-weight: 700; }
 .lme-aba-tag { color: #3E8E5A; font-size: .82rem; }
-.lme-aba-regra { border: 1px solid #3E8E5A; border-left-width: 3px;
-  padding: 14px 16px; margin: 20px 0 0; color: #d8d8d8; }
-.lme-aba-regra strong { color: #3E8E5A; display: block; margin-bottom: 6px; }
-/* ── Corpo do painel Creditos ──────────────────────────────────────── */
+.lme-aba-regra { background: oklch(0.26 0.05 105); border-left: 4px solid oklch(0.85 0.15 105);
+  padding: 14px 16px; margin: 20px 0 0; color: oklch(0.90 0 0); }
+.lme-aba-regra strong { color: oklch(0.85 0.15 105); display: block; margin-bottom: 6px; }
+/* Musica: um cartao por playlist, numero de um digito e o link para ouvir. */
+.lme-aba-faixa { background: oklch(0.20 0.02 260); border-left: 4px solid #3E8E5A;
+  padding: 10px 12px; margin: 0 0 10px; }
+.lme-aba-num { display: inline-block; min-width: 1.5em; color: oklch(0.13 0.02 260); background: #3E8E5A;
+  text-align: center; font-weight: 700; margin-right: 6px;
+  font-family: 'Space Mono', 'Courier New', monospace; }
+.lme-aba-ouvir { display: inline-block; margin-top: 6px; color: oklch(0.85 0.15 105); text-decoration: none;
+  font-family: 'Space Mono', 'Courier New', monospace; font-size: .78rem;
+  text-transform: uppercase; letter-spacing: 1px; }
+.lme-aba-ouvir:hover { text-decoration: underline; }
+.lme-aba-prep { display: inline-block; margin-top: 6px; color: oklch(0.72 0.02 260); font-size: .74rem;
+  font-family: 'Space Mono', 'Courier New', monospace; text-transform: uppercase; letter-spacing: 1px; }
+/* ── Creditos ──────────────────────────────────────────────────────── */
 .lme-aba-cred { margin: 0 0 10px; }
-.lme-aba-cargo { display: block; font-size: .74rem; text-transform: uppercase;
-  letter-spacing: 1px; color: #8a8a8a; font-family: 'Courier New', monospace; }
-.lme-aba-nome { color: #e8e8e8; }
-.lme-aba-bio { font-size: .86rem; color: #a8a8a8; margin: 0 0 6px; }
-/* ── Corpo do painel Referencia ────────────────────────────────────── */
-.lme-refs-label { font-family: 'Courier New', monospace; font-size: .74rem;
-  text-transform: uppercase; letter-spacing: 1.5px; color: #7FB2D6;
-  margin: 20px 0 8px; }
-.lme-refs-item { font-size: .84rem; color: #a8a8a8; margin: 0 0 9px;
+.lme-aba-cargo { display: block; font-size: .72rem; text-transform: uppercase;
+  letter-spacing: 1px; color: #3E8E5A; font-family: 'Space Mono', 'Courier New', monospace; }
+.lme-aba-nome { color: oklch(0.98 0 0); }
+.lme-aba-bio { font-size: .86rem; color: oklch(0.72 0.02 260); margin: 0 0 6px; }
+/* ── Referencia ────────────────────────────────────────────────────── */
+.lme-refs-label { font-family: 'Space Mono', 'Courier New', monospace; font-size: .74rem;
+  text-transform: uppercase; letter-spacing: 1.5px; color: #3E8E5A; font-weight: 700;
+  margin: 22px 0 8px; }
+.lme-refs-item { font-size: .84rem; color: oklch(0.72 0.02 260); margin: 0 0 9px;
   padding-left: 14px; text-indent: -14px; word-break: break-word; }
-/* Nota de aviso: discreta, para nao competir com os links. */
-.lme-aba-nota { font-size: .84rem; color: #8a8a8a; font-style: italic;
-  border-left: 2px solid #444; padding: 2px 0 2px 12px; margin: 14px 0 0; }
-/* O placeholder se anuncia como provisorio: e estrutura, nao conteudo. */
-.lme-aba-todo { font-style: italic; color: #8a8a8a; border: 1px dashed #444;
+/* Nota de aviso: a caixa lima da AP. */
+.lme-aba-nota { font-size: .84rem; color: oklch(0.90 0 0); font-style: italic;
+  background: oklch(0.26 0.05 105); border-left: 4px solid oklch(0.85 0.15 105); padding: 8px 12px; margin: 14px 0 0; }
+.lme-aba-todo { font-style: italic; color: oklch(0.72 0.02 260); border: 1px dashed oklch(0.40 0.02 260);
   padding: 14px; margin: 0; }
-/* Celular: o trilho e `position: fixed` na borda esquerda e passaria por cima
-   do texto — a faixa no body empurra o conteudo (#LESSONS 2026-08-09). Com
-   SETE abas o trilho tambem precisa caber na altura: fonte e respiro menores,
-   e, se ainda faltar, ele rola junto em vez de vazar pela tela. */
+/* Celular: a faixa no body empurra o conteudo (#LESSONS 2026-08-09). */
 @media (max-width: 600px) {
   body { padding-left: 30px; }
   .lme-aba-toggle { font-size: .58rem; padding: 5px 5px; letter-spacing: .5px; }
@@ -542,6 +561,7 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
   <div class="lme-aba-rodape">
     <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
     <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
   </div>
 </aside>
 <aside class="lme-aba-painel" id="lme-painel-metodo" hidden>
@@ -661,6 +681,7 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
   <div class="lme-aba-rodape">
     <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
     <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
   </div>
 </aside>
 <aside class="lme-aba-painel" id="lme-painel-documentos" hidden>
@@ -750,6 +771,7 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
   <div class="lme-aba-rodape">
     <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
     <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
   </div>
 </aside>
 <aside class="lme-aba-painel" id="lme-painel-musica" hidden>
@@ -833,22 +855,21 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
   <p>Por que estudar ouvindo? Miguel Nicolelis responde em <em>O Verdadeiro Criador de Tudo</em>: ciência e arte saem do mesmo lugar — o cérebro humano. E Pierluigi Piazzi, em <em>Aprendendo Inteligência</em>, acrescenta a parte prática: música sem letra não disputa com a leitura as áreas da linguagem. A palavra cantada rouba a palavra lida; a música instrumental sustenta, e some.</p>
   <p>Daí a regra do projeto — <strong>uma trilha, uma música</strong>: ler, escrever e medir ouvindo música instrumental. A peça de cada trilha aparece na barra do topo dos OAs e na aba Música do Texto Temático.</p>
   <div class="lme-aba-h4">O acervo — as oito playlists</div>
-  <ol class="lme-aba-passos">
-    <li><span class="lme-aba-oa">1 — Baden Powell</span> — nos Afro-sambas cabem a bossa, o candomblé e a harmonia de câmara. Somar mundos é o ofício de quem estuda Física: a bancada mede, o caderno deduz, a mina explica por que importa.</li>
-    <li><span class="lme-aba-oa">2 — Yamandu Costa</span> — improvisa porque conhece a estrutura até o último traste. Improviso não é sorte: é o nome da liberdade de quem estudou.</li>
-    <li><span class="lme-aba-oa">3 — Orquestra Ouro Preto</span> — no ano 2000, numa cidade de igrejas barrocas e de uma escola de minas, o professor Ronaldo R. B. Toffolo e o compositor e bandoneonista argentino Rufo Herrera decidiram que Ouro Preto merecia uma orquestra sua. Deu certo: hoje ela leva a música brasileira ao repertório de concerto — de <em>Ritmos Brasileiros</em> às óperas <em>Auto da Compadecida</em> e <em>Hilda Furacão</em> — e forma jovens músicos na Academia Jovem e no Núcleo de Apoio a Bandas. É, literalmente, uma casa: dos filhos de Ronaldo, Rodrigo rege a orquestra, Rodolfo é o violino solo e as gêmeas Marina e Mara também estão nos violinos. E é a casa desta escola. Ronaldo R. B. Toffolo foi aluno, professor e diretor-geral da Escola Técnica Federal de Ouro Preto — a instituição que hoje é o IFMG Campus Ouro Preto — e defende, hoje como então, a audição de música instrumental como hábito saudável. A orquestra da cidade nasceu, em boa parte, dentro de casa. Estudar Física com ela ao fundo é estudar ouvindo a própria escola.</li>
-    <li><span class="lme-aba-oa">4 — Filarmônica de Minas Gerais</span> — noventa músicos, um único referencial de tempo, erro na casa dos milissegundos: ordem de grandeza, sincronia, medida.</li>
-    <li><span class="lme-aba-oa">5 — J. S. Bach</span> — a fuga é a definição de sistema físico: muitas vozes, uma lei só.</li>
-    <li><span class="lme-aba-oa">6 — W. A. Mozart</span> — nada sobra, nada falta. Elegância é saber o que pode ser retirado sem quebrar o todo — no pentagrama e na montagem experimental.</li>
-    <li><span class="lme-aba-oa">7 — L. van Beethoven</span> — de quatro notas, uma sinfonia; de duas ou três letras, uma lei. Muda a escala; a lei, não. E a Nona, composta já na surdez, lembra: o modelo vem antes da medida.</li>
-    <li><span class="lme-aba-oa">8 — Marco Antônio Araújo</span> — violoncelista da Sinfônica de Minas e compositor que fez o barroco mineiro, a modinha e a seresta caberem no rock progressivo. A obra, interrompida aos 36 anos, ficou inacabada — e é isso que ela ensina a quem mede: nenhum experimento termina; toda medida com incerteza é um convite à medida seguinte.</li>
-  </ol>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">1</span><span class="lme-aba-oa">Baden Powell</span> — nos Afro-sambas cabem a bossa, o candomblé e a harmonia de câmara. Somar mundos é o ofício de quem estuda Física: a bancada mede, o caderno deduz, a mina explica por que importa.<br><a class="lme-aba-ouvir" href="https://music.youtube.com/playlist?list=PLMB5arbCorsU" target="_blank" rel="noopener">▶ Ouvir a playlist</a></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">2</span><span class="lme-aba-oa">Yamandu Costa</span> — improvisa porque conhece a estrutura até o último traste. Improviso não é sorte: é o nome da liberdade de quem estudou.<br><a class="lme-aba-ouvir" href="https://music.youtube.com/playlist?list=PLXyZd3QdGENs" target="_blank" rel="noopener">▶ Ouvir a playlist</a></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">3</span><span class="lme-aba-oa">Orquestra Ouro Preto</span> — no ano 2000, numa cidade de igrejas barrocas e de uma escola de minas, o professor Ronaldo R. B. Toffolo e o compositor e bandoneonista argentino Rufo Herrera decidiram que Ouro Preto merecia uma orquestra sua. Deu certo: hoje ela leva a música brasileira ao repertório de concerto — de <em>Ritmos Brasileiros</em> às óperas <em>Auto da Compadecida</em> e <em>Hilda Furacão</em> — e forma jovens músicos na Academia Jovem e no Núcleo de Apoio a Bandas. É, literalmente, uma casa: dos filhos de Ronaldo, Rodrigo rege a orquestra, Rodolfo é o violino solo e as gêmeas Marina e Mara também estão nos violinos. E é a casa desta escola. Ronaldo R. B. Toffolo foi aluno, professor e diretor-geral da Escola Técnica Federal de Ouro Preto — a instituição que hoje é o IFMG Campus Ouro Preto — e defende, hoje como então, a audição de música instrumental como hábito saudável. A orquestra da cidade nasceu, em boa parte, dentro de casa. Estudar Física com ela ao fundo é estudar ouvindo a própria escola.<br><a class="lme-aba-ouvir" href="https://music.youtube.com/playlist?list=PLLck6FRNMdAs" target="_blank" rel="noopener">▶ Ouvir a playlist</a></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">4</span><span class="lme-aba-oa">Filarmônica de Minas Gerais</span> — noventa músicos, um único referencial de tempo, erro na casa dos milissegundos: ordem de grandeza, sincronia, medida.<br><a class="lme-aba-ouvir" href="https://music.youtube.com/playlist?list=PLH9GvshumD2s" target="_blank" rel="noopener">▶ Ouvir a playlist</a></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">5</span><span class="lme-aba-oa">J. S. Bach</span> — a fuga é a definição de sistema físico: muitas vozes, uma lei só.<br><span class="lme-aba-prep">Playlist em preparação</span></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">6</span><span class="lme-aba-oa">W. A. Mozart</span> — nada sobra, nada falta. Elegância é saber o que pode ser retirado sem quebrar o todo — no pentagrama e na montagem experimental.<br><span class="lme-aba-prep">Playlist em preparação</span></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">7</span><span class="lme-aba-oa">L. van Beethoven</span> — de quatro notas, uma sinfonia; de duas ou três letras, uma lei. Muda a escala; a lei, não. E a Nona, composta já na surdez, lembra: o modelo vem antes da medida.<br><span class="lme-aba-prep">Playlist em preparação</span></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">8</span><span class="lme-aba-oa">Marco Antônio Araújo</span> — violoncelista da Sinfônica de Minas e compositor que fez o barroco mineiro, a modinha e a seresta caberem no rock progressivo. A obra, interrompida aos 36 anos, ficou inacabada — e é isso que ela ensina a quem mede: nenhum experimento termina; toda medida com incerteza é um convite à medida seguinte.<br><span class="lme-aba-prep">Playlist em preparação</span></div>
   <p>No Laboratório de Mecânica, as trilhas seguem o acervo do primeiro laboratório do curso: cinco playlists em ciclo — Baden Powell, Yamandu Costa, Orquestra Ouro Preto, Filarmônica de Minas Gerais e Marco Antônio Araújo.</p>
   <div class="lme-aba-h4">Ampliando o acervo — em preparação</div>
   <p><span class="lme-aba-oa">Raphael Rabello</span> (Petrópolis, 1962 — Rio de Janeiro, 1995) — primeiro registro profissional aos treze anos; discípulo de Dino 7 Cordas e parceiro de Radamés Gnattali, levou o violão de sete cordas do acompanhamento ao centro do palco. Morreu aos 32 anos, deixando uma obra relevante e inacabada.</p>
   <div class="lme-aba-rodape">
     <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
     <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
   </div>
 </aside>
 <aside class="lme-aba-painel" id="lme-painel-ineditismo" hidden>
@@ -937,6 +958,7 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
   <div class="lme-aba-rodape">
     <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
     <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
   </div>
 </aside>
 <aside class="lme-aba-painel" id="lme-painel-creditos" hidden>
@@ -1036,6 +1058,7 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
   <div class="lme-aba-rodape">
     <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
     <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
   </div>
 </aside>
 <aside class="lme-aba-painel" id="lme-painel-referencia" hidden>
@@ -1132,10 +1155,10 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
   <p class="lme-refs-item">PIAZZI, Pierluigi. <em>Aprendendo inteligência</em>. São Paulo: Aleph, 2008.</p>
   <p class="lme-refs-item">PIAZZI, Pierluigi. <em>Inteligência em concursos</em>. São Paulo: Aleph, 2014.</p>
   <div class="lme-refs-label">Documentos e normas</div>
-  <p class="lme-refs-item">IFMG. <em>Regulamento de Ensino</em>: Resolução n.º 01/2026. Ouro Preto, 2026.</p>
-  <p class="lme-refs-item">IFMG &mdash; CAMPUS OURO PRETO. <em>Calendário Acadêmico 2026</em>: versão de 25 ago. 2026. Ouro Preto, 2026.</p>
-  <p class="lme-refs-item">IFMG &mdash; CAMPUS OURO PRETO. <em>Colegiado do Curso de Licenciatura em Física</em>: composição (Anexo 3). Ouro Preto, 2026.</p>
-  <p class="lme-refs-item">IFMG &mdash; CAMPUS OURO PRETO. <em>Coordenação do Curso de Licenciatura em Física</em> (Anexo 2). Ouro Preto, 2026.</p>
+  <p class="lme-refs-item">INSTITUTO FEDERAL DE MINAS GERAIS. Campus Ouro Preto. <em>Legislação e normas de ensino</em>. Ouro Preto: IFMG, [202-?]. Disponível em: https://ouropreto.ifmg.edu.br/ouropreto/ensino/legislacao-e-normas-de-ensino. Acesso em: 14 set. 2026.</p>
+  <p class="lme-refs-item">INSTITUTO FEDERAL DE MINAS GERAIS. Campus Ouro Preto. <em>Calendário acadêmico 2026</em>. Ouro Preto: IFMG, 2026. Disponível em: https://ouropreto.ifmg.edu.br/ouropreto/ensino/calendario-escolar/2026/. Acesso em: 14 set. 2026.</p>
+  <p class="lme-refs-item">INSTITUTO FEDERAL DE MINAS GERAIS. Campus Ouro Preto. <em>Curso de Licenciatura em Física</em>. Ouro Preto: IFMG, [202-?]. Disponível em: https://ouropreto.ifmg.edu.br/ouropreto/cursos/graduacao/licenciatura-em-fisica. Acesso em: 14 set. 2026.</p>
+  <p class="lme-refs-item">INSTITUTO FEDERAL DE MINAS GERAIS. Campus Ouro Preto. <em>Projeto Pedagógico do Curso de Licenciatura em Física</em>. Ouro Preto: IFMG, 2026. Disponível em: https://ouropreto.ifmg.edu.br/ouropreto/cursos/graduacao/licenciatura-em-fisica. Acesso em: 14 set. 2026.</p>
   <div class="lme-refs-label">Epígrafes desta trilha</div>
   <p class="lme-refs-item">BACON, Francis. <em>Novum Organum</em>. Londres, 1620. Livro I, aforismo 1. Tradução brasileira (coleção Os Pensadores) a fixar.</p>
   <p class="lme-refs-item">CURIE, Marie; CURIE, Pierre. <em>Cadernos de laboratório</em>, 1899&ndash;1902. Paris: Bibliothèque nationale de France. (usada no Roteiro de Bancada desta trilha)</p>
@@ -1143,6 +1166,7 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
   <div class="lme-aba-rodape">
     <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
     <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
   </div>
 </aside>
 
@@ -1171,13 +1195,10 @@ main { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
       if (p && !aberto) { p.hidden = false; p.classList.add('open'); b.classList.add('ativa'); }
     });
   });
-  document.addEventListener('click', function (e) {
-    var dentro = false;
-    Object.keys(paineis).forEach(function (k) {
-      if (paineis[k] && paineis[k].contains(e.target)) { dentro = true; }
-    });
-    if (!dentro) { fechar(); }
-  });
+  /* Qualquer clique fecha a aba aberta — inclusive dentro do proprio painel
+     (autor, 2026-09-14). Link do painel segue funcionando: navega e a aba
+     fecha junto. O clique no botao do trilho nao chega aqui (stopPropagation). */
+  document.addEventListener('click', function () { fechar(); });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') { fechar(); }
   });

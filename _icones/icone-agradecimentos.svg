@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Agradecimentos — Física e Poesia">
+  <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/>
+    <line x1="60" y1="44" x2="60" y2="108"/>
+  </g>
+  <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7">
+    <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/>
+  </g>
+  <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/>
+</svg>
