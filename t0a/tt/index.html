@@ -686,6 +686,11 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 .figura-pendente .figura-aviso { border: 2px dashed var(--azul); padding: 48px 20px; text-align: center;
   font-family: var(--mono); font-size: .95rem; color: var(--azul); max-width: 560px; margin: 0 auto; }
 @media print { .figura-pendente .figura-aviso { color: #555 !important; border-color: #999 !important; } }
+/* Figura em destaque (2026-09-14): a epigrafe de abertura nao repete a
+   citacao em texto — ela ja esta na propria imagem — entao a imagem
+   ganha mais espaco do que uma figura comum. */
+.figura-destaque .figura-img { max-width: 880px; border-width: 2px; border-color: var(--azul);
+  box-shadow: 0 10px 32px rgba(0,0,0,.28); }
 .fecho-marcas { display: flex; width: fit-content; gap: 14px; align-items: center; margin: 0 auto 10px; }
 .fecho-marcas svg { width: 30px; height: 30px; display: block; }
 .fecho-marcas a, .fa-marcas a { display: flex; }
@@ -902,13 +907,15 @@ antes da submissão à CBL.</div>
 <div class="conteudo">
 
 <!-- ═══════════════════ EPIGRAFE ═══════════════════ -->
+<!-- A citacao em si fica so na imagem (Figura 2, atualizada em
+     2026-09-14) — texto removido daqui para nao duplicar a
+     informacao; so a biografia do autor permanece, como nota. A
+     figura, sem repetir a frase ao lado, ganha destaque (maior). -->
 <div class="epigrafe" id="epigrafe">
-  <blockquote>&ldquo;O homem, ministro e intérprete da natureza, faz e entende tanto quanto constata, pela observação dos fatos ou pelo trabalho da mente, sobre a ordem da natureza; não sabe nem pode mais.&rdquo;</blockquote>
-  <div class="autor">&mdash; Francis Bacon (1561&ndash;1626)</div>
   <div class="nota"><strong>Francis Bacon</strong> (Londres, 1561 &mdash; Londres, 1626). Filósofo e estadista inglês. A frase é o primeiro aforismo do <em>Novum Organum</em> (1620), o livro em que ele propõe que o conhecimento da natureza se construa a partir do que se observa e se registra, e não do que se supõe. Numa disciplina em que você vai pôr à prova os modelos que já estudou, ela diz o limite de todo o trabalho: o modelo só vale até onde o dado constatado o sustenta.</div>
 </div>
 
-<figure class="figura">
+<figure class="figura figura-destaque">
   <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-02-v1-web.jpg" alt="Caderno de laboratório aberto sobre a bancada: à esquerda a frase de Francis Bacon, à direita a palavra Previsão e uma tabela ainda vazia" loading="lazy">
   <figcaption class="figura-legenda"><span class="figura-num">Figura 2</span> &mdash; A frase de Bacon escrita na página de um caderno de laboratório; na página ao lado, ainda em branco, o registro que vai nascer na bancada.</figcaption>
 </figure>
