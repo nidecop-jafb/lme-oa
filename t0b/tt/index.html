@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LME · T0B · A Régua do Mundo — Texto Temático v1</title>
+<style>
+/* ═══ DESIGN SYSTEM: BRUTALISMO CIENTIFICO ═══ */
+:root {
+  --azul: oklch(0.65 0.22 45);
+  --azul-claro: oklch(0.72 0.19 45);
+  --azul-bg: oklch(0.28 0.05 45);
+  --ouro: oklch(0.72 0.13 152);
+  --ouro-claro: oklch(0.25 0.04 152);
+  /* Verde realinhado com a identidade dos sites da Licenciatura (2026-09-13): o tom
+     anterior (oklch hue 95, amarelo-esverdeado) nao batia com o verde real
+     do site (#3E8E5A) e vibrava demais sobre o fundo escuro. */
+  --verde: #3E8E5A;
+  --verde-claro: #1D3B28;
+  --erro: oklch(0.6 0.22 25);
+  --cinza: oklch(0.55 0.02 260);
+  --cinza-claro: oklch(0.18 0.02 260);
+  --cinza-borda: oklch(0.38 0.02 260);
+  --texto: oklch(0.93 0 0);
+  --branco: oklch(0.93 0 0);
+  --superficie: oklch(0.24 0.02 260);
+  --fundo: oklch(0.12 0.02 260);
+  --input-bg: oklch(0.2 0.02 260);
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'Space Mono', 'Cascadia Code', 'Consolas', monospace;
+  --serif: 'Georgia', 'Cambria', 'Times New Roman', serif;
+  --fs-base: 1.15rem;
+}
+
+/* ═══ LIGHT THEME ═══ */
+[data-theme="light"] {
+  --azul: oklch(0.50 0.22 45);
+  --azul-claro: oklch(0.55 0.19 45);
+  --azul-bg: oklch(0.90 0.03 45);
+  --ouro: oklch(0.48 0.12 152);
+  --ouro-claro: oklch(0.92 0.03 152);
+  --verde: #2F6E45;
+  --verde-claro: #DCEDE1;
+  --erro: oklch(0.50 0.22 25);
+  --cinza: oklch(0.50 0.02 260);
+  --cinza-claro: oklch(0.92 0.02 260);
+  --cinza-borda: oklch(0.75 0.02 260);
+  --texto: oklch(0.20 0 0);
+  --branco: oklch(0.20 0 0);
+  --superficie: oklch(0.95 0.01 260);
+  --fundo: oklch(0.98 0.005 260);
+  --input-bg: oklch(0.93 0.01 260);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.8;
+  min-height: 100vh;
+  padding-bottom: 40px;
+  border-radius: 0;
+}
+
+/* ═══ PROGRESS BAR ═══ */
+.progress-top { position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 1000; background: oklch(0.2 0.02 260); }
+[data-theme="light"] .progress-top { background: oklch(0.88 0.02 260); }
+.progress-top .bar { height: 100%; background: var(--ouro); width: 0%; transition: width 0.1s; }
+
+/* ═══ TOOLBAR (font size + theme) ═══ */
+.toolbar {
+  position: fixed; top: 3px; right: 0; z-index: 999;
+  display: flex; gap: 2px; padding: 6px 10px;
+  background: var(--superficie); border-bottom: 1px solid var(--cinza-borda); border-left: 1px solid var(--cinza-borda);
+}
+.toolbar button {
+  background: none; border: 1px solid var(--cinza-borda); color: var(--cinza);
+  font-family: var(--font); font-size: 0.75rem; padding: 4px 8px; cursor: pointer;
+  border-radius: 0; transition: color 0.15s, border-color 0.15s;
+}
+.toolbar button:hover { color: var(--texto); border-color: var(--texto); }
+.toolbar button.active { color: var(--ouro); border-color: var(--ouro); }
+
+/* ═══ TOC SIDEBAR ═══ */
+.toc-toggle {
+  position: fixed; top: 275px; left: 0; z-index: 998;
+  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
+  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
+  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
+  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
+  transition: color 0.15s;
+}
+.toc-toggle:hover { color: var(--ouro); }
+
+.toc-sidebar {
+  position: fixed; top: 60px; left: 0; z-index: 997;
+  width: 280px; max-height: calc(100vh - 80px); overflow-y: auto;
+  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
+  padding: 20px 16px 20px 40px; transform: translateX(-100%); transition: transform 0.25s;
+}
+.toc-sidebar.open { transform: translateX(0); }
+.toc-sidebar h3 {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--cinza); margin-bottom: 12px;
+}
+.toc-sidebar a {
+  display: block; padding: 6px 0; font-size: 0.85rem; color: oklch(0.75 0 0);
+  text-decoration: none; border-bottom: 1px solid oklch(0.22 0.02 260);
+  transition: color 0.15s;
+}
+[data-theme="light"] .toc-sidebar a { border-bottom-color: oklch(0.90 0.02 260); }
+.toc-sidebar a:hover { color: var(--ouro); }
+.toc-sidebar a.toc-ato { font-weight: 700; color: var(--azul); font-size: 0.9rem; }
+.toc-sidebar a.toc-topico { padding-left: 16px; font-size: 0.8rem; }
+.toc-sidebar a.toc-extra { font-style: italic; color: var(--cinza); font-size: 0.8rem; }
+
+/* ═══ HEADER ═══ */
+.header {
+  background: linear-gradient(180deg, oklch(0.14 0.03 240) 0%, var(--fundo) 100%);
+  padding: 48px 20px 24px; text-align: center;
+}
+[data-theme="light"] .header {
+  background: linear-gradient(180deg, oklch(0.95 0.02 240) 0%, var(--fundo) 100%);
+}
+.header-inner { max-width: 720px; margin: 0 auto; }
+.header h1 {
+  font-family: var(--serif); font-size: 1.8rem; font-weight: 400;
+  color: var(--branco); line-height: 1.3; margin-bottom: 10px;
+}
+.trilha-code {
+  font-family: var(--mono); font-weight: 700; font-size: 1.1rem;
+  color: var(--ouro); letter-spacing: 2px;
+}
+.badge {
+  display: inline-block; padding: 4px 14px; font-size: 0.75rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--ouro); border: 1px solid var(--ouro); margin-top: 4px;
+}
+.header-sub {
+  max-width: 720px; margin: 12px auto 0; font-size: 0.85rem;
+  color: var(--cinza); letter-spacing: 0.5px;
+}
+
+/* ═══ CONTENT ═══ */
+.conteudo { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+/* ═══ EPIGRAFE ═══ */
+.epigrafe {
+  padding: 40px 0; text-align: center;
+  border-bottom: 1px solid var(--cinza-borda); margin-bottom: 40px;
+}
+.epigrafe blockquote {
+  font-family: var(--serif); font-style: italic; font-size: 1.4rem;
+  line-height: 1.7; color: oklch(0.78 0 0); max-width: 520px; margin: 0 auto;
+}
+[data-theme="light"] .epigrafe blockquote { color: oklch(0.35 0 0); }
+.epigrafe .autor { font-size: 0.9rem; color: var(--verde); margin-top: 12px; font-style: normal; }
+.epigrafe .nota {
+  font-size: 0.8rem; color: var(--cinza); margin-top: 8px;
+  max-width: 480px; margin-left: auto; margin-right: auto;
+  font-style: normal;
+}
+
+/* ═══ ATO / TOPICO ═══ */
+.ato { margin-bottom: 48px; }
+.ato-titulo {
+  font-size: 1.2rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 3px; color: var(--ouro); padding: 16px 0;
+  border-top: 2px solid var(--ouro-claro); margin-bottom: 24px;
+}
+.ato-subtitulo {
+  font-family: var(--serif); font-size: 1.8rem; font-weight: 400;
+  font-style: italic; color: var(--branco); margin-bottom: 20px;
+}
+
+.topico { margin-bottom: 36px; }
+.topico-titulo {
+  font-size: 1.5rem; font-weight: 700; color: var(--verde);
+  margin-bottom: 16px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--verde-claro);
+}
+
+/* ═══ PARAGRAPHS ═══ */
+p {
+  font-family: var(--serif); font-size: var(--fs-base);
+  line-height: 1.85; margin-bottom: 16px; color: oklch(0.85 0 0);
+}
+[data-theme="light"] p { color: oklch(0.25 0 0); }
+p .termo { color: var(--ouro); font-weight: 600; }
+p .citacao { font-style: italic; color: var(--azul-claro); }
+p strong { color: var(--branco); }
+[data-theme="light"] p strong { color: oklch(0.15 0 0); }
+
+/* ═══ CONTEXT AXES (padrao FE-T04) ═══ */
+.eixo { margin-bottom: 14px; padding-left: 14px; border-left: 2px solid var(--cinza-borda); }
+.eixo-label {
+  font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 4px; font-family: var(--font);
+}
+.eixo-tecnico .eixo-label { color: var(--ouro); }
+.eixo-historico .eixo-label { color: var(--verde); }
+.eixo-cotidiano .eixo-label { color: var(--azul); }
+.eixo p { font-size: 1.1rem; }
+
+/* ═══ EQUACAO ═══ */
+.equacao {
+  background: oklch(0.16 0.02 260); padding: 18px 22px; margin: 20px 0;
+  border: 1px solid var(--cinza-borda); text-align: center;
+}
+[data-theme="light"] .equacao {
+  background: oklch(0.96 0.01 260); border-color: oklch(0.80 0.02 260);
+}
+.equacao-label {
+  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--ouro); margin-bottom: 10px;
+  text-align: left;
+}
+.equacao-formula {
+  font-family: var(--serif); font-size: 1.5rem; color: var(--branco);
+  margin-bottom: 12px; letter-spacing: 1px;
+}
+.equacao-tabela { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.equacao-tabela th {
+  padding: 6px 10px; text-align: left; font-size: 0.8rem;
+  font-weight: 600; color: var(--ouro); border-bottom: 1px solid var(--cinza-borda);
+  font-family: var(--font); text-transform: uppercase;
+}
+.equacao-tabela td {
+  padding: 6px 10px; font-size: 0.9rem; color: oklch(0.78 0 0);
+  border-bottom: 1px solid oklch(0.22 0.02 260); font-family: var(--font);
+}
+[data-theme="light"] .equacao-tabela td {
+  color: oklch(0.30 0 0); border-bottom-color: oklch(0.88 0.02 260);
+}
+.equacao-aplicacao {
+  background: oklch(0.14 0.02 260); padding: 12px 16px; margin-top: 12px;
+  text-align: left; font-size: 0.95rem; color: oklch(0.80 0 0);
+  border-left: 2px solid var(--ouro);
+}
+[data-theme="light"] .equacao-aplicacao {
+  background: oklch(0.94 0.01 260); color: oklch(0.25 0 0);
+}
+.equacao-aplicacao strong { color: var(--ouro); }
+
+/* ═══ QUADRO (TABLE) ═══ */
+.quadro { background: var(--superficie); padding: 14px 16px; margin: 20px 0; overflow-x: auto; }
+.quadro-titulo {
+  font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--ouro); margin-bottom: 10px;
+}
+.quadro table { width: 100%; border-collapse: collapse; font-size: 1.2rem; font-family: var(--font); }
+.quadro th {
+  padding: 8px 10px; text-align: left; font-weight: 600; color: var(--ouro);
+  border-bottom: 1px solid var(--cinza-borda); font-size: 0.85rem;
+}
+.quadro td {
+  padding: 8px 10px; border-bottom: 1px solid oklch(0.22 0.02 260);
+  color: oklch(0.82 0 0); vertical-align: top;
+}
+[data-theme="light"] .quadro td {
+  color: oklch(0.28 0 0); border-bottom-color: oklch(0.88 0.02 260);
+}
+
+/* ═══ FIGURES ═══ */
+.figura {
+  margin: 28px 0; text-align: center;
+}
+.figura-img {
+  width: 100%; max-width: 680px; height: auto; display: block; margin: 0 auto;
+  border: 1px solid var(--cinza-borda);
+}
+.figura-legenda {
+  font-family: var(--font); font-size: 1.0rem; color: var(--cinza);
+  margin-top: 8px; line-height: 1.5; max-width: 600px; margin-left: auto; margin-right: auto;
+}
+.figura-num {
+  font-weight: 700; color: var(--ouro); text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+/* ═══ COVER / CAPA (padrao FE-T04-TT-v5-digital) ═══ */
+.capa { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; background: linear-gradient(180deg, oklch(0.14 0.03 95) 0%, oklch(0.12 0.02 260) 100%); }
+[data-theme="light"] .capa { background: linear-gradient(180deg, oklch(0.93 0.03 95) 0%, var(--fundo) 100%); }
+.capa-disciplina { font-size: 2.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--ouro); margin-bottom: 6px; }
+.capa-curso { font-size: 1.8rem; letter-spacing: 1.5px; color: var(--cinza); margin-bottom: 24px; max-width: 680px; margin-left: auto; margin-right: auto; }
+.capa-img { max-width: 100%; margin: 0 auto 28px; border: 1px solid var(--cinza-borda); }
+.capa-img img { max-width: 100%; height: auto; display: block; }
+.capa-trilha { font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--verde); margin-bottom: 8px; }
+.capa-titulo { font-family: var(--serif); font-size: 2.2rem; font-weight: 400; font-style: italic; line-height: 1.25; color: var(--branco); margin-bottom: 28px; max-width: 540px; }
+.capa-autores { font-size: 1rem; color: var(--cinza); }
+.capa-autores strong { color: var(--texto); }
+.capa-inst { font-size: 1.0rem; color: var(--cinza); margin-top: 20px; letter-spacing: .5px; line-height: 1.5; max-width: 720px; margin-left: auto; margin-right: auto; }
+.capa-scroll { margin-top: 40px; font-size: .75rem; color: var(--cinza); animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.audio-hint { max-width: 720px; margin: -40px auto 40px; padding: 6px 0; text-align: center; font-size: .88rem; line-height: 1.5; color: var(--cinza); cursor: pointer; }
+.audio-hint strong { color: var(--ouro); }
+.audio-hint:hover { color: var(--texto); }
+[data-theme="light"] .audio-hint { background: oklch(0.94 0.03 95); color: oklch(0.30 0 0); }
+
+/* ═══ CREDITOS / CIP SIDEBAR ═══ */
+.creditos-toggle {
+  position: fixed; top: 365px; left: 0; z-index: 998;
+  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
+  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
+  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
+  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
+  transition: color 0.15s;
+}
+.creditos-toggle:hover { color: var(--ouro); }
+
+/* ═══ MUSICA TOGGLE + SIDEBAR ═══ */
+.musica-toggle {
+  position: fixed; top: 60px; left: 0; z-index: 998;
+  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
+  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
+  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
+  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
+  transition: color 0.15s;
+}
+.musica-toggle:hover { color: var(--ouro); }
+.musica-sidebar {
+  position: fixed; top: 0; left: 0; z-index: 996;
+  width: 340px; height: 100vh; overflow-y: auto;
+  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
+  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
+  font-family: var(--font); font-size: 0.95rem; line-height: 1.7;
+  color: var(--texto);
+}
+.musica-sidebar.open { transform: translateX(0); }
+.musica-sidebar .musica-titulo {
+  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
+  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
+}
+.musica-sidebar .musica-ref { font-style: italic; color: var(--cinza); margin-bottom: 16px; display: block; }
+.musica-sidebar .musica-tags { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.musica-sidebar .musica-tag {
+  background: var(--ouro); color: oklch(0.12 0 0); font-weight: 700;
+  font-size: 0.75rem; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px;
+}
+.musica-sidebar .musica-album { font-weight: 700; color: var(--branco); margin-bottom: 8px; }
+.musica-sidebar .musica-detail { color: var(--cinza); font-size: 0.85rem; margin-bottom: 16px; }
+.musica-sidebar .musica-link {
+  display: inline-block; padding: 8px 16px; background: var(--erro);
+  color: oklch(0.98 0 0); font-weight: 700; font-size: 0.8rem;
+  text-decoration: none; letter-spacing: 0.5px; transition: opacity 0.15s;
+}
+.musica-sidebar .musica-link:hover { opacity: 0.85; }
+
+/* ═══ INEDITISMO TOGGLE + SIDEBAR ═══ */
+.ineditismo-toggle {
+  position: fixed; top: 145px; left: 0; z-index: 998;
+  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
+  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
+  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
+  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
+  transition: color 0.15s;
+}
+.ineditismo-toggle:hover { color: var(--ouro); }
+.ineditismo-sidebar {
+  position: fixed; top: 0; left: 0; z-index: 996;
+  width: 340px; height: 100vh; overflow-y: auto;
+  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
+  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
+  font-family: var(--font); font-size: 0.95rem; line-height: 1.7;
+  color: var(--texto);
+}
+.ineditismo-sidebar.open { transform: translateX(0); }
+.ineditismo-sidebar .ineditismo-titulo {
+  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
+  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
+}
+.ineditismo-sidebar p {
+  font-size: 0.95rem; color: oklch(0.65 0 0); line-height: 1.7; margin-bottom: 10px;
+}
+[data-theme="light"] .ineditismo-sidebar p { color: oklch(0.40 0 0); }
+
+/* ═══ FIGURAS TOGGLE + SIDEBAR ═══ */
+.figuras-toggle {
+  position: fixed; top: 460px; left: 0; z-index: 998;
+  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
+  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
+  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
+  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
+  transition: color 0.15s;
+}
+.figuras-toggle:hover { color: var(--ouro); }
+.figuras-sidebar {
+  position: fixed; top: 0; left: 0; z-index: 996;
+  width: 380px; height: 100vh; overflow-y: auto;
+  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
+  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
+  font-family: var(--font); font-size: 0.88rem; line-height: 1.7;
+  color: var(--texto);
+}
+.figuras-sidebar.open { transform: translateX(0); }
+.figuras-sidebar .figuras-titulo {
+  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
+  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
+}
+.figuras-sidebar p {
+  font-size: 0.85rem; color: var(--texto); margin-bottom: 8px; line-height: 1.5;
+}
+.figuras-sidebar .figura-num { color: var(--azul); font-weight: 700; }
+
+.creditos-sidebar {
+  position: fixed; top: 0; left: 0; z-index: 996;
+  width: 340px; height: 100vh; overflow-y: auto;
+  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
+  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
+  font-family: var(--font); font-size: 0.85rem; line-height: 1.7;
+  color: var(--texto);
+}
+.creditos-sidebar.open { transform: translateX(0); }
+.creditos-sidebar p {
+  font-family: var(--font); font-size: 0.85rem; color: var(--texto);
+  line-height: 1.6; margin-bottom: 4px;
+}
+.creditos-titulo, .cip-titulo {
+  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
+  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
+}
+.creditos-instituicao {
+  font-weight: 700; font-size: 0.9rem; color: var(--branco);
+  margin-bottom: 12px;
+}
+.creditos-cargo {
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--cinza); margin-top: 10px; margin-bottom: 2px;
+}
+.creditos-nome { margin-bottom: 0; }
+.creditos-subtitulo {
+  font-weight: 700; font-size: 0.85rem; color: var(--ouro);
+  margin-top: 20px; margin-bottom: 8px;
+}
+.creditos-bio { margin-bottom: 8px; }
+.cip-section { margin-top: 24px; border-top: 1px solid var(--cinza-borda); padding-top: 16px; }
+.cip-bloco {
+  background: oklch(0.15 0.01 260); border: 1px solid var(--cinza-borda);
+  padding: 12px 14px; font-family: var(--mono); font-size: 0.7rem;
+  line-height: 1.5; white-space: pre-wrap; color: oklch(0.75 0 0);
+}
+[data-theme="light"] .cip-bloco {
+  background: oklch(0.94 0.01 260); color: oklch(0.30 0 0);
+}
+
+/* ═══ EXPLORE BOX ═══ */
+.explore {
+  background: oklch(0.16 0.03 150); padding: 20px 24px; margin: 24px 0;
+  border: 1px solid oklch(0.28 0.06 150);
+}
+[data-theme="light"] .explore {
+  background: oklch(0.95 0.03 150); border-color: oklch(0.75 0.06 150);
+}
+.explore-titulo {
+  font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--verde); margin-bottom: 10px;
+  font-family: var(--font);
+}
+.explore p { font-size: 1.05rem; }
+.explore a { color: var(--verde); }
+
+/* ═══ DESTAQUE ═══ */
+.destaque {
+  background: oklch(0.16 0.04 240); padding: 14px 20px; margin: 16px 0;
+  font-family: var(--serif); font-size: 1.2rem; font-style: italic;
+  color: var(--azul-claro); border-left: 3px solid var(--azul);
+}
+[data-theme="light"] .destaque {
+  background: oklch(0.95 0.03 240); color: oklch(0.40 0.10 240);
+}
+
+/* ═══ BLOCKQUOTE ═══ */
+blockquote {
+  font-family: var(--serif); font-style: italic; padding: 12px 20px;
+  margin: 16px 0; border-left: 3px solid var(--cinza-borda);
+  color: oklch(0.78 0 0);
+}
+[data-theme="light"] blockquote { color: oklch(0.35 0 0); }
+blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal; display: block; margin-top: 6px; }
+
+/* ═══ CIENCIA E ARTE ═══ */
+.ciencia-arte {
+  padding: 40px 0; border-top: 2px solid var(--ouro-claro); margin-top: 40px;
+}
+.ciencia-arte-titulo {
+  font-size: 1.5rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 3px; color: var(--ouro); margin-bottom: 24px;
+  text-align: center;
+}
+.ciencia-arte-obra {
+  font-size: 1.5rem; font-weight: 600; color: var(--branco);
+  text-align: center; margin-bottom: 20px;
+}
+.ciencia-arte blockquote {
+  font-family: var(--serif); font-style: italic; font-size: 1.5rem;
+  color: oklch(0.78 0 0); max-width: 500px; margin: 0 auto 12px;
+  text-align: center; border-left: none; padding: 0;
+}
+.ciencia-arte .ca-autor { font-size: 0.9rem; color: var(--ouro); text-align: center; }
+
+/* ═══ C5 PROTOCOL ═══ */
+.c5-box { background: var(--superficie); padding: 18px 22px; margin: 20px 0; }
+.c5-titulo {
+  font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--azul); margin-bottom: 12px;
+  font-family: var(--font);
+}
+.c5-tabela { width: 100%; border-collapse: collapse; }
+.c5-tabela th {
+  padding: 8px 10px; text-align: left; font-size: 0.8rem; font-weight: 700;
+  color: var(--ouro); border-bottom: 1px solid var(--cinza-borda);
+  font-family: var(--font); text-transform: uppercase;
+}
+.c5-tabela td {
+  padding: 8px 10px; border-bottom: 1px solid oklch(0.22 0.02 260);
+  color: oklch(0.82 0 0); vertical-align: top; font-size: 1.1rem;
+  font-family: var(--font);
+}
+[data-theme="light"] .c5-tabela td {
+  color: oklch(0.28 0 0); border-bottom-color: oklch(0.88 0.02 260);
+}
+.c5-tabela td:first-child {
+  font-family: var(--mono); font-weight: 700; color: var(--azul);
+  text-align: center; width: 40px;
+}
+
+/* ═══ ATIVIDADE INTERDISCIPLINAR ═══ */
+.atividade {
+  background: oklch(0.16 0.03 95); padding: 20px 24px; margin: 28px 0;
+  border-left: 3px solid var(--ouro);
+}
+[data-theme="light"] .atividade {
+  background: oklch(0.96 0.02 95);
+}
+.atividade-titulo {
+  font-size: 1rem; font-weight: 700; color: var(--ouro); margin-bottom: 10px;
+  font-family: var(--font);
+}
+.atividade p { font-size: 0.95rem; margin-bottom: 10px; }
+.atividade .conexao {
+  font-size: 0.82rem; font-style: italic; color: var(--cinza);
+  margin-top: 8px; border-top: 1px solid var(--cinza-borda); padding-top: 8px;
+}
+
+/* ═══ RCP (C5 SOLUTION) ═══ */
+.rcp {
+  margin-top: 14px; background: oklch(0.14 0.02 260); padding: 16px 20px;
+  border: 1px solid var(--cinza-borda);
+}
+[data-theme="light"] .rcp {
+  background: oklch(0.94 0.01 260);
+}
+.rcp summary {
+  font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--azul); cursor: pointer;
+  font-family: var(--font); padding: 4px 0;
+}
+.rcp summary:hover { color: var(--ouro); }
+.rcp-step {
+  margin: 8px 0; padding-left: 4px;
+}
+.rcp-step-label {
+  font-family: var(--font); font-size: 0.8rem; font-weight: 700;
+  color: var(--ouro); text-transform: uppercase; letter-spacing: 0.5px;
+}
+.rcp-step-text {
+  font-family: var(--font); font-size: 0.9rem; color: oklch(0.78 0 0);
+  line-height: 1.6; margin-top: 2px;
+}
+[data-theme="light"] .rcp-step-text { color: oklch(0.30 0 0); }
+
+/* ═══ FOOTNOTE ═══ */
+.footnote {
+  font-family: var(--font); font-size: 0.85rem; color: var(--cinza);
+  line-height: 1.6; margin: 12px 0; padding: 10px 16px;
+  background: oklch(0.15 0.01 260); border-left: 2px solid var(--cinza-borda);
+}
+[data-theme="light"] .footnote {
+  background: oklch(0.94 0.01 260);
+}
+.footnote strong { color: oklch(0.75 0 0); }
+[data-theme="light"] .footnote strong { color: oklch(0.30 0 0); }
+
+/* ═══ REFS ═══ */
+.refs { padding: 32px 0; border-top: 1px solid var(--cinza-borda); margin-top: 32px; }
+.refs-titulo {
+  font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--cinza); margin-bottom: 12px;
+  font-family: var(--font);
+}
+.refs p {
+  font-family: var(--font); font-size: 1.2rem; color: var(--cinza);
+  margin-bottom: 6px; line-height: 1.6;
+}
+
+/* ═══ SEPARADOR ═══ */
+.separador { width: 60px; height: 1px; background: var(--cinza-borda); margin: 36px auto; }
+
+/* ═══ ENCERRAMENTO + FOOTER ═══ */
+.encerramento {
+  max-width: 720px; margin: 40px auto 0; padding: 24px 20px;
+  border-top: 2px solid var(--ouro-claro); text-align: center;
+}
+.fecho-frase {
+  font-family: var(--serif); font-size: 1.5rem; font-style: italic;
+  color: var(--verde); margin-bottom: 10px;
+}
+.fecho-links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
+.fecho-btn {
+  display: inline-flex; align-items: center; gap: 7px; padding: 10px 18px;
+  min-height: 44px; background: var(--verde); color: oklch(0.13 0.01 260);
+  font-family: var(--mono); font-size: .8rem; font-weight: 700; text-decoration: none;
+}
+.fecho-btn::before { content: '\25B6'; font-size: .62rem; }
+.fecho-btn.secundario { background: transparent; color: #7FB2D6; border: 1px solid #7FB2D6; }
+.fecho-btn.secundario::before { content: '\2630'; font-size: .72rem; }
+.footer-line {
+  text-align: center; padding: 20px 0 12px; font-size: 0.75rem;
+  color: var(--cinza); letter-spacing: 0.5px; font-family: var(--font);
+}
+
+/* ═══ CONEXOES TITULO OVERRIDE ═══ */
+#conexoes > .ato-titulo { font-size: 1.5rem; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 600px) {
+  .header h1 { font-size: 1.4rem; }
+  .header { padding-left: 46px; padding-right: 46px; }
+  /* Gutter para as abas laterais: sem ele, as abas fixas da borda esquerda
+     cobrem o texto durante a rolagem em tela estreita. */
+  .conteudo { padding: 0 14px 0 46px; }
+  .toc-toggle, .musica-toggle, .ineditismo-toggle, .creditos-toggle, .figuras-toggle { font-size: 0.6rem; padding: 6px 6px; }
+  .toc-sidebar, .musica-sidebar, .ineditismo-sidebar, .creditos-sidebar, .figuras-sidebar { width: 82vw; }
+  .toolbar { padding: 4px 8px; }
+  .ato-titulo { font-size: 1rem; letter-spacing: 2px; }
+  .topico-titulo { font-size: 1.2rem; }
+  .equacao-formula { font-size: 1.2rem; }
+  .atividade { padding: 14px 16px; }
+  .capa-disciplina { font-size: 1.2rem; }
+  .capa-curso { font-size: .85rem; }
+  .capa-trilha { font-size: .95rem; }
+  .capa-titulo { font-size: 2rem; }
+  .capa-img { max-width: 280px; margin: 0 auto; }
+  .audio-hint { margin-left: 32px; }
+}
+
+/* ═══ PRINT ═══ */
+@media print {
+  body { background: white !important; color: #1A1A1A !important; padding-bottom: 0 !important; }
+  .progress-top, .toolbar, .toc-toggle, .toc-sidebar, .creditos-toggle, .creditos-sidebar, .musica-toggle, .musica-sidebar, .ineditismo-toggle, .ineditismo-sidebar, .figuras-toggle, .figuras-sidebar, .capa-scroll, .audio-hint { display: none !important; }
+  .capa { min-height: auto !important; background: none !important; padding: 30px 20px !important; }
+  .header { background: none !important; }
+  .ato-titulo { color: #1F3864 !important; border-top-color: #CCC !important; }
+  .topico-titulo { color: #8B6914 !important; border-bottom-color: #DDD !important; }
+  p { color: #333 !important; }
+  .figura-img { border-color: #CCC !important; }
+  .figura-legenda { color: #333 !important; }
+}
+
+.capa-marca { margin-bottom: 18px; }
+.capa-marca .marca { width: 92px; height: 92px; }
+/* PADRAO-ABAS-CREDITOS (decisao do autor 2026-09-02): cargos dos Creditos na secundaria (verde), caixa normal. */
+.creditos-cargo { color: var(--verde); text-transform: none; }
+/* PADRAO-ABAS-MUSICA (decisao do autor 2026-09-02): album e artistas na cor primaria (ouro). */
+.musica-sidebar .musica-album { color: var(--ouro); }
+.musica-sidebar .musica-detail strong { color: var(--ouro); }
+
+/* ── lista numerada das cinco perguntas do Ato I ── */
+.lista-perguntas { margin: 18px 0 18px 0; padding-left: 22px; }
+.lista-perguntas li { margin-bottom: 8px; }
+/* o Explore nao tem figura; o link fica visivel nos dois temas */
+.explore a { color: var(--accent); }
+
+/* ── LME: paleta da Licenciatura (verde-quadro #3E8E5A + azul-aco #7FB2D6) ── */
+:root { --azul: #7FB2D6; --azul-claro: #A5CBE5; --azul-bg: oklch(0.28 0.04 240); --accent: var(--azul); }
+[data-theme="light"] { --azul: #3F7AA3; --azul-claro: #4F8BB5; --azul-bg: oklch(0.92 0.03 240); }
+.capa-subtitulo { font-family: var(--serif); font-style: italic; font-size: 1.4rem; color: var(--azul); margin: -6px 0 18px; }
+.eixo-destino { border-left-color: var(--azul); }
+.eixo-destino { background: var(--azul-bg); padding: 10px 14px; }
+.eixo-destino .eixo-label { color: var(--texto); }
+.figura-pendente .figura-aviso { border: 2px dashed var(--azul); padding: 48px 20px; text-align: center;
+  font-family: var(--mono); font-size: .95rem; color: var(--azul); max-width: 560px; margin: 0 auto; }
+@media print { .figura-pendente .figura-aviso { color: #555 !important; border-color: #999 !important; } }
+/* Figura em destaque (2026-09-14): a epigrafe de abertura nao repete a
+   citacao em texto — ela ja esta na propria imagem — entao a imagem
+   ganha mais espaco do que uma figura comum. */
+.figura-destaque .figura-img { max-width: 880px; border-width: 2px; border-color: var(--azul);
+  box-shadow: 0 10px 32px rgba(0,0,0,.28); }
+/* Biografia do autor da epigrafe: abaixo da legenda da figura, com
+   espaco de respiro (2026-09-14) para nao prender o olhar junto da
+   imagem — funciona como uma nota de rodape, nao como legenda extra. */
+.figura-bio {
+  font-size: 0.8rem; color: var(--cinza); font-style: normal;
+  max-width: 480px; margin: 40px auto 0; text-align: center;
+  padding-top: 20px; border-top: 1px solid var(--cinza-borda);
+}
+/* ICONES-LME */
+.lme-cab-marcas { display: flex; gap: 10px; align-items: center; justify-content: flex-start;
+  flex-shrink: 0; }
+.lme-cab-marcas svg { width: 52px; height: 52px; display: block; }
+.lme-inst-marcas { display: flex; gap: 14px; align-items: center; justify-content: center;
+  width: 100%; margin: 0 auto 12px; }
+.lme-inst-marcas a { display: flex; }
+.lme-agr-marca { display: flex; justify-content: center; width: 100%; margin: 0 auto 8px; }
+.lme-agr-marca a { display: flex; }
+.lme-agr-marca svg { width: 30px; height: 30px; display: block; }
+/* com o icone de Agradecimentos abaixo, o bloco fica mais justo para nao
+   invadir a linha institucional do slide (medido a 1280x720) */
+.desp-frase > .lme-agr-marca { margin: 0 auto 8px; }
+.desp-frase > .lme-agr-marca svg { width: 28px; height: 28px; }
+@media print { .lme-agr-marca { display: none !important; } }
+.lme-inst-marcas svg { width: 30px; height: 30px; display: block; }
+/* RODAPE PADRAO (fig 2, PRE-outro-padronizacao-cabecalho-rodape-lme-2026-09-15) */
+.lme-rodape { text-align: center; padding: 22px 16px 26px; font-size: .82rem; line-height: 1.6;
+  color: var(--cinza, #8a8f98); }
+.lme-rodape .lme-inst-marcas { margin: 0 auto 10px; }
+.lme-rodape .lme-agr-marca { margin: 0 auto 10px; }
+.lme-rodape-texto { max-width: 960px; margin: 0 auto; }
+.lme-rodape-selo { margin-top: 6px; font-size: .78rem; }
+@media print { .lme-rodape-selo { display: none !important; } }
+/* CABECALHO PADRAO no RB (fig 1): codigo em verde, mensagem abaixo */
+.header h1 .trilha-code { color: #3E8E5A; }
+.lme-header-sub { font-size: .82rem; color: var(--cinza, #8a8f98); margin: 2px 0 10px; }
+.rodape-info .lme-selo-ap { margin-left: 12px; font-size: .75rem; color: var(--cinza, #8a8f98); }
+/* AP 1280x720: texto institucional numa linha so, sem invadir a frase (.7rem transbordava 88 px) */
+.despedida .desp-inst { font-size: .6rem; letter-spacing: 0; white-space: nowrap; }
+/* EXCECAO TT: capa centrada -> icones de curso e disciplina centralizados */
+.capa-marca > .lme-cab-marcas { justify-content: center; }
+/* EXCECAO AP slide 1 (1280x720): icones centralizados acima da disciplina; o nome da
+   disciplina numa linha so, para o slide caber (antes quebrava em 2 e passava 12 px) */
+.capa-conteudo > .lme-cab-marcas { justify-content: center; margin: 0 0 14px; }
+.capa-conteudo > .lme-cab-marcas svg { width: 56px; height: 56px; }
+.capa-slide .capa-disciplina { white-space: nowrap; font-size: 1.85rem; }
+/* AP slide 13 (Despedida): IFMG + NIDEC legiveis e com folga acima da frase */
+.desp-frase > .lme-inst-marcas { justify-content: center; margin: 0 0 6px; }
+.desp-frase > .lme-inst-marcas svg { width: 32px; height: 32px; }
+/* RB impresso */
+.header > .lme-cab-marcas svg { width: 34px; height: 34px; }
+.header > .lme-cab-marcas + .header-left { margin-right: auto; }
+.pagina > .lme-rodape { padding: 6px 0 2px; font-size: .72rem; line-height: 1.4; }
+.pagina > .lme-rodape .lme-inst-marcas { margin: 0 auto 4px; }
+@media print {
+  .header > .lme-cab-marcas svg { width: 24px; height: 24px; }
+  .pagina > .lme-rodape { padding: 2px 0 0; font-size: 6.5pt; color: #555 !important; }
+  .pagina > .lme-rodape .lme-inst-marcas svg { width: 20px; height: 20px; }
+  .lme-header-sub { font-size: 7.5pt; margin: 0 0 6px; color: #555 !important; }
+}
+/* /ICONES-LME */
+</style>
+</head>
+<body data-pagina="t0b:tt">
+
+<!-- PROGRESS BAR -->
+<div class="progress-top"><div class="bar" id="progressBar"></div></div>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <button id="btnFontMinus" title="Diminuir fonte">A&minus;</button>
+  <button id="btnFontReset" title="Fonte padrão" class="active">A</button>
+  <button id="btnFontPlus" title="Aumentar fonte">A+</button>
+  <button id="btnTheme" title="Alternar tema claro/escuro">Tema</button>
+</div>
+
+<!-- ═══════════════════ CAPA ═══════════════════ -->
+<div class="capa" id="capa">
+  <div class="capa-marca"><div class="lme-cab-marcas"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física"> <title>Prisma decompondo a luz — Licenciatura em Física</title> <defs> <radialGradient id="cab-prisma-fundo" cx="50%" cy="42%" r="60%"> <stop offset="0" stop-color="#26302B"/> <stop offset="1" stop-color="#0E1411"/> </radialGradient> <linearGradient id="cab-prisma-vidro" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/> <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/> </linearGradient> <clipPath id="cab-prisma-dentro"><circle cx="100" cy="100" r="86"/></clipPath> </defs> <circle cx="100" cy="100" r="96" fill="url(#cab-prisma-fundo)"/> <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/> <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1" stroke-dasharray="1.5 3" opacity="0.8"/> <g clip-path="url(#cab-prisma-dentro)"> <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/> <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/> <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/> <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/> <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/> <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/> <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/> <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/> <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/> </g> <polygon points="100,50 56,130 144,130" fill="url(#cab-prisma-vidro)" stroke="#DDEBF3" stroke-width="2.5" stroke-linejoin="round"/> <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/> <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/> <g fill="#FFFFFF" opacity="0.55"> <circle cx="46" cy="62" r="1.2"/> <circle cx="150" cy="56" r="1"/> <circle cx="70" cy="160" r="1"/> <circle cx="140" cy="164" r="1.2"/> </g> </svg><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica"> <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none"> <line x1="36" y1="10" x2="84" y2="10"/> <line x1="60" y1="10" x2="81.9" y2="70.1"/> </g> <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/> <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/> <circle cx="60" cy="10" r="4" fill="#3E8E5A"/> <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/> <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square"> <line x1="26" y1="110" x2="94" y2="110"/> <line x1="30" y1="110" x2="30" y2="104"/> <line x1="40" y1="110" x2="40" y2="104"/> <line x1="50" y1="110" x2="50" y2="104"/> <line x1="60" y1="110" x2="60" y2="98"/> <line x1="70" y1="110" x2="70" y2="104"/> <line x1="80" y1="110" x2="80" y2="104"/> <line x1="90" y1="110" x2="90" y2="104"/> </g> </svg></div></div>
+  <div class="capa-disciplina">Laboratório de Mecânica</div>
+  <div class="capa-curso">Licenciatura em Física &mdash; IFMG campus Ouro Preto</div>
+  <div class="capa-img figura-pendente"><div class="figura-aviso">Capa em produção &mdash; um grão de minério sobre a régua, com a cava ao fundo.</div></div>
+  <div class="capa-trilha">Trilha de Aprendizagem T0B</div>
+  <div class="capa-titulo">A Régua do Mundo</div>
+  <div class="capa-subtitulo">do grão à cava</div>
+  <div class="capa-autores"><strong>Júlio Azevedo</strong> &middot; <strong>Felipe Beato</strong></div>
+  <div class="capa-inst">IFMG campus Ouro Preto - Coordenadoria da Área de Física - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; LME &middot; T0B &middot; Primeira edição &middot; 2026</div>
+  <div class="capa-scroll">&#x25BC; role para ler</div>
+</div>
+
+<div class="audio-hint" id="audioHint" role="button" tabindex="0">&#9834; <em>Leia ouvindo</em> &mdash; clique aqui ou na aba <strong>MÚSICA</strong> e conheça a recomendação de Piazzi.</div>
+
+<div class="conteudo">
+
+<!-- ═══════════════════ EPIGRAFE ═══════════════════ -->
+<!-- Enquanto a Figura 2 nao existe, a legenda de obra entra em texto; quando a
+     figura for aprovada, o texto sai e a imagem fica em destaque, como na T0A. -->
+<div id="epigrafe">
+<figure class="figura figura-pendente">
+  <div class="figura-aviso">Figura 2 em produção &mdash; a imagem entra aqui assim que for gerada e aprovada.</div>
+  <figcaption class="figura-legenda"><span class="figura-num">Figura 2</span> &mdash; A legenda de Pascal no caderno; sobre a página, um grão e a régua que vai medi-lo.</figcaption>
+</figure>
+<blockquote>O homem suspenso entre dois infinitos: pequeno demais para o todo, vasto demais para o nada.</blockquote>
+<div class="ca-autor">&mdash; <em>Pensamentos</em>, Blaise Pascal, 1670</div>
+</div>
+
+<div class="figura-bio"><strong>Blaise Pascal</strong> (1623&ndash;1662). Matemático, físico e filósofo francês &mdash; o nome da unidade de pressão do SI é dele. A frase acima não é citação: é a legenda do fragmento dos <em>Pensamentos</em> sobre a &ldquo;desproporção do homem&rdquo;, e por isso entra sem aspas e assinada pela obra. Pascal olhava para o infinitamente grande e para o infinitamente pequeno e perguntava onde o ser humano fica entre os dois. Esta trilha faz a pergunta com uma régua: entre o grão e a cava, onde fica cada coisa que você vai medir?</div>
+
+<!-- ═══════════════════ ATO I ═══════════════════ -->
+<div class="ato" id="ato-i">
+  <div class="ato-titulo">Ato I &mdash; O Gancho</div>
+
+  <p>Antes de ler o próximo parágrafo, responda de cabeça: quanto pesa a terra retirada de uma cava de minério de ferro do Quadrilátero Ferrífero? Não precisa acertar o número. Basta dizer se é mais perto de mil toneladas, de um milhão ou de um bilhão.</p>
+
+  <p>Se você hesitou, está em boa companhia. A maior parte das pessoas não tem régua para essa pergunta: mil, um milhão e um bilhão soam todos como &ldquo;muito&rdquo;. Mas entre o primeiro e o último há seis potências de dez &mdash; a mesma distância que separa um grão de areia de uma quadra de futebol. Errar por seis ordens não é errar o número; é errar o mundo em que a pergunta está.</p>
+
+  <p>Na T0A você ouviu que, no Laboratório de Mecânica (LME), a previsão vem antes do dado. Esta noite você faz a primeira &mdash; com o modelo mais simples que existe: a <strong>ordem de grandeza</strong>. Antes de encostar em qualquer instrumento, você vai escrever &ldquo;espero algo da ordem de 10<sup>n</sup>, porque&hellip;&rdquo;. Depois vai medir. E o dado vai dizer se a sua estimativa aguentou. Se não aguentar, você escreve qual hipótese falhou. É o gesto de todo o semestre, em miniatura e ainda sem Mecânica: <strong>o experimento já é objeto</strong>, e o que vai à prova é o seu raciocínio.</p>
+
+  <p>O Sistema Internacional de Unidades (SI) você já conhece da Introdução ao Laboratório (ILB): as sete unidades de base, os prefixos, a grafia. Aqui ele volta como ferramenta. Um prefixo é uma ordem de grandeza com nome, e é assim que ele vai ser usado.</p>
+
+  <p><strong>Este texto tem cinco tópicos.</strong> O primeiro é a bancada &mdash; porque o que você faz com as mãos organiza o resto. Depois vêm as potências de dez, a estimativa como modelo, o SI revisto como régua de escala e, por fim, a volta à pergunta do primeiro parágrafo: do grão à cava.</p>
+
+  <div class="explore" id="explore">
+    <div class="explore-titulo">Explore este lugar no Google Maps</div>
+
+    <p><strong>Mina de Timbopeba &mdash; distrito de Antônio Pereira, Ouro Preto</strong></p>
+
+    <p>Abra a vista de satélite e afaste o zoom devagar. Primeiro aparecem as bancadas da cava, degraus de algumas dezenas de metros. Depois a cava inteira, da ordem de um kilometro. Mais um passo e surge o Quadrilátero Ferrífero, com a cidade de Ouro Preto a poucos kilometros. Cada vez que a imagem fica dez vezes maior, o que era paisagem vira detalhe.</p>
+
+    <p>Faça o exercício que a trilha pede: <strong>antes de usar a ferramenta de medir distância do mapa</strong>, escreva a sua estimativa para o comprimento da cava. Só então meça. Anote as duas &mdash; elas são o seu primeiro par estimativa e medida.</p>
+
+    <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Mina+de+Timbopeba+Ouro+Preto" target="_blank" rel="noopener">Ver no Google Maps</a></p>
+  </div>
+</div>
+
+<!-- ═══════════════════ ATO II ═══════════════════ -->
+<div class="ato" id="ato-ii">
+  <div class="ato-titulo">Ato II &mdash; O Desenvolvimento</div>
+  <div class="ato-subtitulo">Estimar, medir, comparar</div>
+
+  <p>A pergunta sobre a cava foi o gancho. Ela volta no último tópico, respondida com o que você tiver medido na bancada. Até lá, o caminho passa por cinco tópicos, e o primeiro é o que você vai fazer com as mãos.</p>
+
+  <!-- TOPICO 1 -->
+  <div class="topico" id="topico-1">
+    <div class="topico-titulo">Tópico 1 &mdash; A bancada primeiro: estimar antes de medir</div>
+
+    <p>A bancada desta noite é a mesma que a turma da Introdução ao Laboratório usou duas horas antes. Os instrumentos continuam no lugar &mdash; régua milimetrada, paquímetro, trena, balança de 0,1 g, a massa aferida de 100 g. O que muda são os objetos: sobre as bancadas estão grãos de areia de rejeito, grânulos de minério, uma amostra de rocha e a planta impressa de uma cava, com escala gráfica.</p>
+
+    <figure class="figura figura-pendente">
+  <div class="figura-aviso">Figura 4 em produção &mdash; a imagem entra aqui assim que for gerada e aprovada.</div>
+  <figcaption class="figura-legenda"><span class="figura-num">Figura 4</span> &mdash; As duas estações da noite: os instrumentos da tarde, os objetos da mineração.</figcaption>
+</figure>
+
+    <p>A turma se divide em duas estações, e na metade do tempo os grupos trocam. Cada tarefa tem três linhas no Roteiro de Bancada (RB), sempre nesta ordem: <strong>a estimativa</strong>, escrita e justificada antes de tocar no instrumento; <strong>a medida</strong>; e <strong>a razão</strong> entre as duas.</p>
+
+    <p><strong>Estação A &mdash; comprimento, do grão à cava.</strong></p>
+    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
+      <tr><th style="text-align:left;">Tarefa</th><th style="text-align:left;">Você escreve antes</th><th style="text-align:left;">Você mede</th></tr>
+      <tr><td><strong>A1</strong> &middot; o diâmetro de um grão de areia de rejeito</td><td>a ordem do diâmetro, em m</td><td>quantos grãos enfileirados cabem em 1 cm da régua</td></tr>
+      <tr><td><strong>A2</strong> &middot; o volume da amostra de rocha</td><td>a ordem do volume, em m³</td><td>as três arestas, com paquímetro e régua</td></tr>
+      <tr><td><strong>A3</strong> &middot; o comprimento da cava</td><td>a ordem do comprimento real, em m</td><td>o comprimento na planta, convertido pela escala gráfica</td></tr>
+    </table>
+
+    <p><strong>Estação B &mdash; massa, da réplica ao minério.</strong> Ela começa por uma tarefa sem estimativa: pôr a massa aferida na balança e conferir a leitura. Se a balança não disser 100 g, nenhuma massa da noite vale &mdash; e você descobre isso antes, não depois.</p>
+    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
+      <tr><th style="text-align:left;">Tarefa</th><th style="text-align:left;">Você escreve antes</th><th style="text-align:left;">Você mede</th></tr>
+      <tr><td><strong>B0</strong> &middot; a balança conferida</td><td>&mdash;</td><td>a leitura da massa aferida de 100 g</td></tr>
+      <tr><td><strong>B1</strong> &middot; a massa de um grânulo de minério</td><td>a ordem da massa, em kg</td><td>a massa de 20 grânulos, dividida por 20</td></tr>
+      <tr><td><strong>B2</strong> &middot; a densidade da amostra de rocha</td><td>a ordem da densidade, em kg/m³</td><td>a massa da amostra, dividida pelo volume de A2</td></tr>
+      <tr><td><strong>B3</strong> &middot; a massa retirada da cava</td><td>a ordem da massa, em kg e em t</td><td>nada: calcula-se com A3 e B2, mais duas hipóteses declaradas</td></tr>
+    </table>
+
+    <p><strong>A regra do registro.</strong> A estimativa é escrita a caneta, com a justificativa ao lado, e não se apaga. Se a medida mostrar que ela estava longe, a estimativa fica lá, e a explicação se escreve embaixo. É o que a T0A chamou de dado bruto, aplicado à previsão: se a estimativa pudesse ser corrigida depois, ela nunca erraria &mdash; e uma previsão que não pode errar não ensina nada.</p>
+
+    <p><strong>O critério de decisão.</strong> Para cada tarefa, divida a medida pela estimativa. Se a razão ficar <strong>entre 1/3 e 3</strong>, a estimativa acertou a ordem de grandeza. Fora dessa faixa, escreva qual hipótese falhou: o grão era menor do que você imaginava? a rocha era mais densa? a escala da planta foi lida ao contrário? Errar a ordem não é erro de conduta. Deixar de dizer por que errou, é.</p>
+
+<div class="eixo eixo-tecnico">
+  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
+  <p>Pedir a estimativa escrita antes da medida é a atividade mais barata que um professor tem: não custa equipamento, cabe em qualquer sala e transforma a turma em dona da previsão. Quando o dado chega, cada estudante tem um motivo pessoal para olhar para ele.</p>
+</div>
+
+<div class="eixo eixo-historico">
+  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
+  <p>A Escola de Minas de Ouro Preto, fundada em 1876, formou engenheiros que precisavam dizer o tamanho de uma jazida antes de abri-la. A estimativa escrita antes da escavação é, nesta cidade, uma prática com 150 anos.</p>
+</div>
+
+<div class="eixo eixo-cotidiano">
+  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
+  <p>A estimativa datada, registrada antes da medida e nunca apagada, é a forma mais simples de rastreabilidade de uma previsão: qualquer pessoa pode conferir depois o que foi dito antes, sem depender da memória de quem disse.</p>
+</div>
+
+<div class="eixo eixo-destino">
+  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
+  <p>O planejamento de lavra estima o volume de minério de cada bloco antes da detonação. Depois, a balança da britagem pesa o que realmente saiu. A comparação entre o previsto e o pesado é o que diz se o modelo da jazida está de pé.</p>
+</div>
+  </div>
+
+  <!-- TOPICO 2 -->
+  <div class="topico" id="topico-2">
+    <div class="topico-titulo">Tópico 2 &mdash; Potências de dez e ordem de grandeza</div>
+
+    <p>Uma grandeza muito grande ou muito pequena se escreve em <strong>notação científica</strong>: um número entre 1 e 10, multiplicado por uma potência de dez. A cava de 1 200 m é 1,2 &times; 10<sup>3</sup> m; o grão de areia de 0,000 3 m é 3 &times; 10<sup>&minus;4</sup> m. A notação não é enfeite: ela separa o que o número <em>é</em> (o 1,2 e o 3) de <em>onde ele mora</em> na escala (o 10<sup>3</sup> e o 10<sup>&minus;4</sup>).</p>
+
+    <p><strong>A ordem de grandeza</strong> é a potência de dez mais próxima do valor. Para decidir o que é &ldquo;mais próxima&rdquo;, é preciso um critério, e os livros não usam todos o mesmo. Aqui vale este: escrito o número como <em>a</em> &times; 10<sup>n</sup>, se <em>a</em> for menor que &radic;10 &asymp; 3,16, a ordem é 10<sup>n</sup>; se for maior ou igual, a ordem é 10<sup>n+1</sup>. A fronteira fica em &radic;10 porque é o ponto do meio entre 1 e 10 na escala de potências: 3,16 está tão longe de 1 quanto de 10, em fator.</p>
+
+    <div class="equacao" style="text-align:center;font-family:var(--mono);margin:14px 0;">1,2 &times; 10<sup>3</sup> m &nbsp;&rarr;&nbsp; ordem 10<sup>3</sup> m &nbsp;&nbsp;&nbsp;&nbsp; 5,3 &times; 10<sup>3</sup> kg/m³ &nbsp;&rarr;&nbsp; ordem 10<sup>4</sup> kg/m³</div>
+
+    <p>Repare no segundo exemplo: pelo critério, a densidade da hematita está mais perto de 10<sup>4</sup> do que de 10<sup>3</sup>. É o tipo de resultado que surpreende, e é por isso que o critério precisa estar escrito &mdash; o mesmo critério do Tópico 1, lido de outro jeito: a razão entre 1/3 e 3 é a faixa de &radic;10 para cada lado.</p>
+
+    <p><strong>A régua da mineração.</strong> Escritas em ordens de grandeza, as coisas desta trilha ocupam sete degraus:</p>
+
+    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
+      <tr><th style="text-align:left;">O que</th><th style="text-align:left;">Ordem de grandeza</th></tr>
+      <tr><td>grão de areia de rejeito</td><td>10<sup>&minus;4</sup> m</td></tr>
+      <tr><td>grânulo de minério</td><td>10<sup>&minus;3</sup> m a 10<sup>&minus;2</sup> m</td></tr>
+      <tr><td>amostra de rocha na bancada</td><td>10<sup>&minus;1</sup> m</td></tr>
+      <tr><td>altura de uma pessoa</td><td>10<sup>0</sup> m</td></tr>
+      <tr><td>bancada (degrau) da cava</td><td>10<sup>1</sup> m</td></tr>
+      <tr><td>profundidade da cava</td><td>10<sup>2</sup> m</td></tr>
+      <tr><td>comprimento da cava</td><td>10<sup>3</sup> m</td></tr>
+    </table>
+
+    <p>Sete ordens separam o grão da cava. É isto que o título da trilha chama de régua do mundo: não uma régua com milímetros, mas uma régua em que cada traço vale dez vezes o anterior.</p>
+
+    <p><strong>Operar com ordens.</strong> Multiplicar potências de dez é somar os expoentes; dividir é subtrair. Por isso a ordem de um produto sai sem calculadora. Uma amostra de rocha de arestas da ordem de 10<sup>&minus;1</sup> m tem volume da ordem de 10<sup>&minus;1</sup> &times; 10<sup>&minus;1</sup> &times; 10<sup>&minus;1</sup> = 10<sup>&minus;3</sup> m³. Uma consequência que vai aparecer na bancada: se um grão tem diâmetro dez vezes menor que outro, o volume &mdash; e a massa, para o mesmo material &mdash; é <strong>mil</strong> vezes menor. Diâmetro sobe ao cubo; ordens sobem multiplicadas por três.</p>
+
+<div class="eixo eixo-tecnico">
+  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
+  <p>A tabela dos sete degraus cabe numa parede de qualquer escola sem laboratório. Pedir que a turma pendure nela objetos do próprio bairro &mdash; o grão de feijão, a casa, a serra &mdash; ensina ordem de grandeza sem uma única conta.</p>
+</div>
+
+<div class="eixo eixo-historico">
+  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
+  <p>O ouro de Ouro Preto era pesado em oitavas, perto de 3,6 g cada. A cava moderna do mesmo Quadrilátero se mede em kilometros e a produção em milhões de toneladas. Entre a oitava e a tonelada da mineração de hoje, a região atravessou nove ordens de grandeza.</p>
+</div>
+
+<div class="eixo eixo-cotidiano">
+  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
+  <p>A ordem de grandeza é a incerteza mais grosseira que existe: diz o valor com um fator de &radic;10 para cada lado. Ela vem antes da incerteza da T01, e não a substitui &mdash; mas uma medida que erra a ordem denuncia um erro que nenhum algarismo significativo conserta.</p>
+</div>
+
+<div class="eixo eixo-destino">
+  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
+  <p>Na britagem, o minério entra em blocos da ordem do metro e sai em grãos da ordem do milímetro. Cada etapa do circuito reduz o tamanho por um fator conhecido, e o engenheiro de processo pensa o circuito em ordens de grandeza antes de pensá-lo em números.</p>
+</div>
+  </div>
+
+  <!-- TOPICO 3 -->
+  <div class="topico" id="topico-3">
+    <div class="topico-titulo">Tópico 3 &mdash; A estimativa como primeiro modelo</div>
+
+    <p>Algumas perguntas parecem impossíveis de responder sem dado: quanto minério sai de uma cava, quantos grãos de areia há numa barragem de rejeitos, quantos caminhões passam numa estrada de mina por dia. O físico italiano Enrico Fermi ficou conhecido por pedir a seus alunos respostas a perguntas assim &mdash; não o número exato, mas a ordem de grandeza, obtida com raciocínio. Por isso elas se chamam <strong>estimativas de Fermi</strong>.</p>
+
+    <p>O método tem quatro passos, e você já conhece todos, com outro nome. Eles são a versão de bolso do <strong>Protocolo C5</strong> de resolução de problemas:</p>
+
+    <ol class="lista-perguntas">
+      <li><strong>Interpretar e decompor.</strong> Trocar a pergunta intratável por fatores que se estimam um a um. &ldquo;Massa retirada da cava&rdquo; vira &ldquo;comprimento &times; largura &times; profundidade &times; densidade&rdquo;.</li>
+      <li><strong>Declarar as hipóteses.</strong> Cada fator ganha um valor e uma frase que o justifica: &ldquo;a cava tem forma aproximada de caixa&rdquo;, &ldquo;a largura é metade do comprimento&rdquo;.</li>
+      <li><strong>Calcular com unidades, em ordens.</strong> Somar expoentes, conferir que a unidade final é a pedida.</li>
+      <li><strong>Julgar a plausibilidade.</strong> O resultado faz sentido diante de algo que se conhece? Se não faz, qual hipótese é a suspeita?</li>
+    </ol>
+
+    <p><strong>Por que funciona.</strong> Cada fator estimado pode errar para mais ou para menos. Quando há vários fatores independentes, os erros tendem a se compensar em parte, e o produto final costuma errar menos do que o pior fator. Tendem &mdash; não é garantia. Se todas as hipóteses erram para o mesmo lado (a cava imaginada é mais funda, mais larga e mais comprida do que a real), os erros se somam, e a estimativa pode sair uma ordem acima. É por isso que o passo 4 existe.</p>
+
+    <p><strong>Estimar é o crivo do número pronto.</strong> Hoje o número chega pronto da calculadora, da planilha, da ferramenta de inteligência artificial (IA). Nenhuma delas erra a conta; todas podem receber o dado errado. Um prefixo trocado &mdash; milímetro por metro &mdash; muda o resultado em três ordens de grandeza, e passa despercebido por quem não tem uma estimativa na cabeça. Quem estimou antes olha para o resultado e diz, em um segundo: &ldquo;isto não pode estar certo&rdquo;.</p>
+
+<div class="eixo eixo-tecnico">
+  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
+  <p>A estimativa de Fermi é a melhor defesa que um professor pode ensinar contra o número que chega pronto. Uma turma que aprendeu a perguntar &ldquo;qual é a ordem que eu espero?&rdquo; antes de aceitar a resposta da calculadora ou da IA leva essa pergunta para qualquer disciplina.</p>
+</div>
+
+<div class="eixo eixo-historico">
+  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
+  <p>Antes da sondagem sistemática, a reserva de uma jazida era avaliada por estimativa: a extensão do afloramento, a espessura provável da camada, a densidade do minério. A engenharia de minas brasileira nasceu fazendo contas de Fermi sobre o Quadrilátero Ferrífero.</p>
+</div>
+
+<div class="eixo eixo-cotidiano">
+  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
+  <p>O passo 4, a plausibilidade, é a última etapa do Protocolo C5 e a primeira defesa contra o erro grosseiro. Uma estimativa não mede nada; ela diz em que faixa a medida precisa cair para não ser suspeita.</p>
+</div>
+
+<div class="eixo eixo-destino">
+  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
+  <p>Quanto tempo dura uma mina? A pergunta se decompõe em reserva (massa) dividida por produção anual (massa por ano). As duas se estimam, e a ordem de grandeza da vida útil &mdash; anos, décadas ou séculos &mdash; sai antes de qualquer planilha.</p>
+</div>
+  </div>
+
+  <!-- TOPICO 4 -->
+  <div class="topico" id="topico-4">
+    <div class="topico-titulo">Tópico 4 &mdash; O SI, revisto como régua de escala</div>
+
+    <p>Na Introdução ao Laboratório o Sistema Internacional de Unidades foi conteúdo. Aqui ele é ferramenta, e três de suas partes servem diretamente à estimativa.</p>
+
+    <p><strong>As sete unidades de base e a revolução de 2019.</strong> Metro, kilograma, segundo, ampere, kelvin, mol e candela. Desde 20 de maio de 2019, todas são definidas a partir de constantes da natureza com valor fixado. O kilograma, que por 130 anos foi um cilindro de platina e irídio guardado em Sèvres, na França, passou a ser definido pela constante de Planck. Na bancada desta noite, a mecânica usa três: m, kg e s.</p>
+
+    <figure class="figura">
+  <img class="figura-img" src="../_imagens/_web/LME-T0B-Figura-05-v1-web.jpg" alt="Diagrama circular das sete unidades de base do SI, com kilograma, metro e segundo em destaque" loading="lazy">
+  <figcaption class="figura-legenda"><span class="figura-num">Figura 5</span> &mdash; As sete unidades de base do SI. Três delas &mdash; kg, m e s &mdash; sustentam toda a Mecânica deste semestre.</figcaption>
+</figure>
+
+    <p><strong>As derivadas da Mecânica.</strong> Área em m², volume em m³, densidade em kg/m³, força em newton (N = kg&middot;m/s²), energia em joule (J = N&middot;m), pressão em pascal (Pa = N/m²). Toda derivada é produto de bases, e por isso a ordem de grandeza de uma derivada sai da soma das ordens das bases &mdash; o que você fez com o volume da amostra no Tópico 2.</p>
+
+    <p><strong>Os prefixos são ordens de grandeza com nome.</strong> Esta é a leitura que interessa aqui:</p>
+
+    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
+      <tr><th style="text-align:left;">Prefixo</th><th style="text-align:left;">Símbolo</th><th style="text-align:left;">Fator</th><th style="text-align:left;">Onde aparece na trilha</th></tr>
+      <tr><td>micro</td><td>µ</td><td>10<sup>&minus;6</sup></td><td>o grão de areia medido em µm</td></tr>
+      <tr><td>mili</td><td>m</td><td>10<sup>&minus;3</sup></td><td>o grânulo em mm; a massa do grão em mg</td></tr>
+      <tr><td>centi</td><td>c</td><td>10<sup>&minus;2</sup></td><td>as arestas da amostra em cm</td></tr>
+      <tr><td>kilo</td><td>k</td><td>10<sup>3</sup></td><td>o comprimento da cava em km; o kg</td></tr>
+      <tr><td>mega</td><td>M</td><td>10<sup>6</sup></td><td>a massa da cava em Mt (megatonelada)</td></tr>
+      <tr><td>giga</td><td>G</td><td>10<sup>9</sup></td><td>a mesma massa em kg, com seis ordens a mais</td></tr>
+    </table>
+
+    <p><strong>As unidades fora do SI que a mineração usa.</strong> A <strong>tonelada</strong> (1 t = 10<sup>3</sup> kg) é aceita para uso com o SI e é a unidade da produção mineral. O <strong>quilate</strong> (1 ct = 2 &times; 10<sup>&minus;4</sup> kg) ainda mede pedras preciosas. A <strong>oitava</strong> pesou o ouro colonial desta região. E o km/h está em toda estrada de mina. Converter uma delas para o SI é multiplicar por uma potência de dez e por um número entre 1 e 10 &mdash; ou seja, mudar de degrau na régua.</p>
+
+    <p><strong>Padrões e réplicas.</strong> A massa aferida de 100 g da Estação B não é um peso qualquer. Ela foi comparada com um padrão de maior exatidão, que foi comparado com outro, numa cadeia que sobe até o Instituto Nacional de Metrologia, Qualidade e Tecnologia (Inmetro) e, dele, ao Bureau Internacional de Pesos e Medidas (BIPM) &mdash; onde o kilograma é realizado a partir da constante de Planck. Essa cadeia se chama <strong>rastreabilidade</strong>. Quando você confere a balança com a massa aferida, na tarefa B0, você pendura a massa de cada grão da noite nessa corrente.</p>
+
+    <figure class="figura">
+  <img class="figura-img" src="../_imagens/_web/LME-T0B-Figura-03-v1-web.jpg" alt="Quatro jovens observam, através de uma vitrine de madeira e vidro, uma balança antiga de dois pratos com seus pesos de latão, num museu" loading="lazy">
+  <figcaption class="figura-legenda"><span class="figura-num">Figura 3</span> &mdash; A balança de pesar ouro do Museu de Ciência e Técnica da Escola de Minas: um padrão de outro tempo, antes da constante de Planck.</figcaption>
+</figure>
+
+    <p><strong>A grafia, em uma tabela.</strong> A regra que você aprendeu na Introdução ao Laboratório vale para todos os textos desta disciplina: a grafia do SI prevalece sobre o hábito.</p>
+
+    <figure class="figura">
+  <img class="figura-img" src="../_imagens/_web/LME-T0B-Figura-06-v1-web.jpg" alt="Seis medidas escritas duas vezes: à esquerda, com erros de grafia riscados em vermelho; à direita, na grafia correta do SI" loading="lazy">
+  <figcaption class="figura-legenda"><span class="figura-num">Figura 6</span> &mdash; A mesma medida, escrita como se costuma e como o SI exige.</figcaption>
+</figure>
+
+    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
+      <tr><th style="text-align:left;">Escreve-se</th><th style="text-align:left;">E não</th><th style="text-align:left;">Por quê</th></tr>
+      <tr><td>5 kg &middot; 1,2 km &middot; 12 s</td><td>5 kgs &middot; 1,2 KM &middot; 12 seg.</td><td>símbolo não é abreviação: sem plural, sem ponto, sem maiúscula trocada</td></tr>
+      <tr><td>3 &times; 10<sup>&minus;4</sup> m</td><td>3x10-4m</td><td>espaço entre número e unidade; o sinal de multiplicação é &times;</td></tr>
+      <tr><td>1,2</td><td>1.2</td><td>vírgula decimal, em português</td></tr>
+      <tr><td>kilograma &middot; kilometro &middot; micrometro</td><td>quilograma &middot; quilômetro &middot; micrômetro</td><td>prefixo + unidade, sem acento, como no SI</td></tr>
+    </table>
+
+    <p>Se quiser rever o SI com calma, os dois vídeos da T0B da Introdução ao Laboratório continuam valendo, como revisão opcional: <a href="https://www.youtube.com/watch?v=MUJX1Yyx6TI" target="_blank" rel="noopener">a evolução e a revolução das medidas</a> e <a href="https://www.youtube.com/watch?v=NAlMU6hqLak" target="_blank" rel="noopener">medidas produzem conhecimento</a>.</p>
+
+<div class="eixo eixo-tecnico">
+  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
+  <p>Ensinar prefixo como tabela para decorar produz estudante que sabe que &ldquo;mili&rdquo; é 10<sup>&minus;3</sup> e não sabe se um grão de areia tem um milímetro ou um micrometro. Ensinar prefixo como degrau da régua de escala produz estudante que sabe onde o grão mora.</p>
+</div>
+
+<div class="eixo eixo-historico">
+  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
+  <p>A oitava e o quilate pesaram o ouro e as pedras de Minas Gerais por mais de um século. O Museu de Ciência e Técnica da Escola de Minas guarda balanças desse tempo &mdash; padrões locais que só valiam enquanto todos concordavam com eles.</p>
+</div>
+
+<div class="eixo eixo-cotidiano">
+  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
+  <p>A redefinição de 2019 fechou uma fragilidade antiga: um padrão feito de objeto pode mudar, e ninguém percebe, porque não há com o que compará-lo. Uma constante da natureza não muda. A massa aferida da bancada é a ponta local de uma cadeia que termina nela.</p>
+</div>
+
+<div class="eixo eixo-destino">
+  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
+  <p>A balança rodoviária de uma mina pesa caminhões de dezenas de toneladas e é aferida pela mesma cadeia de rastreabilidade da massa de 100 g da bancada. É dessa balança que sai o número da produção que você vai usar no Tópico 5.</p>
+</div>
+  </div>
+
+  <!-- TOPICO 5 -->
+  <div class="topico" id="topico-5">
+    <div class="topico-titulo">Tópico 5 &mdash; Do grão à cava: a mineração em ordens de grandeza</div>
+
+    <p>Volte à pergunta do Ato I. Agora você tem o que precisa para respondê-la com método, e boa parte dos números sai da bancada.</p>
+
+    <p><strong>A tarefa B3, passo a passo.</strong> Os valores abaixo são um exemplo, para mostrar o caminho; na bancada você usa os seus.</p>
+
+    <ol class="lista-perguntas">
+      <li><strong>Decompor.</strong> Massa retirada = comprimento &times; largura &times; profundidade &times; densidade.</li>
+      <li><strong>Hipóteses.</strong> Comprimento medido na planta (A3): 1,2 &times; 10<sup>3</sup> m. Largura: metade do comprimento, 6 &times; 10<sup>2</sup> m. Profundidade média: 10<sup>2</sup> m. Forma de caixa &mdash; o que superestima, porque a cava real se estreita no fundo. Densidade da amostra (B2): 3,5 &times; 10<sup>3</sup> kg/m³.</li>
+      <li><strong>Calcular em ordens.</strong> Volume: 1,2 &times; 10<sup>3</sup> &times; 6 &times; 10<sup>2</sup> &times; 10<sup>2</sup> &asymp; 7 &times; 10<sup>7</sup> m³. Massa: 7 &times; 10<sup>7</sup> m³ &times; 3,5 &times; 10<sup>3</sup> kg/m³ &asymp; 2,5 &times; 10<sup>11</sup> kg = 2,5 &times; 10<sup>8</sup> t.</li>
+      <li><strong>Plausibilidade.</strong> Da ordem de centenas de milhões de toneladas. Compare com a produção anual publicada da mina escolhida pelo professor. Se ela produz algumas dezenas de milhões de toneladas por ano, a cava levou algo como uma década para ser aberta &mdash; plausível? Se a sua conta desse 10<sup>5</sup> t, a mina teria sido escavada em um dia.</li>
+    </ol>
+
+    <p>Repare no que o exemplo não fez. Ele não precisou de uma casa decimal certa em nenhum fator. Precisou de hipóteses declaradas e de uma comparação no fim. Se a razão entre a sua estimativa e o número publicado ficar fora de 1/3 a 3, a pergunta é a mesma da bancada: <em>qual hipótese falhou?</em> A forma de caixa? A profundidade? A densidade de uma amostra que talvez não represente a cava inteira?</p>
+
+    <p><strong>A ponte dos grãos.</strong> A mesma ideia serve para descer a escala. Na tarefa B1 você pesou grânulos de alguns milímetros e achou uma massa da ordem de 10<sup>&minus;5</sup> kg. O grão de areia de A1 tem diâmetro cerca de dez vezes menor. Pelo Tópico 2, a massa dele deve ser cerca de mil vezes menor &mdash; da ordem de 10<sup>&minus;8</sup> kg, uma massa que a balança da bancada não lê. Você acabou de medir, com raciocínio, o que o instrumento não alcança.</p>
+
+<div class="eixo eixo-tecnico">
+  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
+  <p>Confrontar a estimativa da turma com um número publicado ensina a desconfiar com método: nem a estimativa nem a fonte são aceitas sem pergunta. Se as duas discordam, a turma precisa dizer onde está a discordância &mdash; e isso é argumentação científica, não opinião.</p>
+</div>
+
+<div class="eixo eixo-historico">
+  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
+  <p>O Quadrilátero Ferrífero, que já foi a região do ouro pesado em oitavas, é hoje uma das maiores províncias de minério de ferro do mundo, e sua produção se mede em centenas de milhões de toneladas por ano. As cavas vistas do satélite no Explore são o registro físico dessa escala.</p>
+</div>
+
+<div class="eixo eixo-cotidiano">
+  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
+  <p>A razão entre estimativa e medida, com o critério de 1/3 a 3, é a primeira regra de decisão da disciplina. Na T01 ela ganha incerteza; no Tema 2, vira a pergunta sobre o modelo: o dado é compatível com a previsão, dentro da incerteza?</p>
+</div>
+
+<div class="eixo eixo-destino">
+  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
+  <p>Estimar a massa de minério removida de uma cava a partir de uma planta e de uma amostra é exatamente o que se faz, com mais dados e mais cuidado, no planejamento de lavra e na avaliação do volume de uma barragem de rejeitos.</p>
+</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ ATO III ═══════════════════ -->
+<div class="ato" id="ato-iii">
+  <div class="ato-titulo">Ato III &mdash; O Fechamento</div>
+
+  <p>Você sai desta noite com o Roteiro de Bancada preenchido em seis linhas, cada uma com três colunas: o que você esperava, o que mediu e a razão entre os dois. Algumas razões ficaram entre 1/3 e 3; talvez alguma tenha ficado fora, e ao lado dela está escrita a hipótese que falhou. Essa linha é a mais valiosa do roteiro.</p>
+
+  <figure class="figura figura-pendente">
+  <div class="figura-aviso">Figura 7 em produção &mdash; a imagem entra aqui assim que for gerada e aprovada.</div>
+  <figcaption class="figura-legenda"><span class="figura-num">Figura 7</span> &mdash; A saída do laboratório: na lousa, as razões de todos os grupos &mdash; quem superestimou, quem subestimou, e em que grandeza.</figcaption>
+</figure>
+
+  <p>Sai também com uma régua nova, que não tem milímetros: sete degraus entre o grão e a cava, e o hábito de perguntar em qual deles uma coisa mora antes de medi-la. Os prefixos do SI deixaram de ser tabela e passaram a ser degraus com nome.</p>
+
+  <p>Na T01, em 13/10, a medida ganha resolução declarada e a estimativa ganha companhia: a incerteza. A pergunta vai ficar mais fina &mdash; não só <em>acertei a ordem?</em>, mas <em>quanto posso confiar neste algarismo?</em> A régua de hoje continua servindo. Ela é o que impede a conta mais cuidadosa de sair seis ordens errada.</p>
+</div>
+
+<div class="separador"></div>
+
+<!-- ═══════════════════ CIÊNCIA E ARTE ═══════════════════ -->
+<div class="ciencia-arte" id="ciencia-arte">
+  <div class="ciencia-arte-titulo">Ciência e Arte</div>
+  <div class="ciencia-arte-obra"><strong>Filme:</strong> <em>Powers of Ten</em>, 1977 &mdash; Charles Eames (1907&ndash;1978) e Ray Eames (1912&ndash;1988)</div>
+
+  <p>O filme começa com um casal fazendo piquenique num gramado de Chicago, visto de cima, num quadrado de um metro de lado. A cada dez segundos, a câmera se afasta e o quadrado fica dez vezes maior: o parque, a cidade, o continente, a Terra, o Sistema Solar, a galáxia, até o limite do universo observável. Então a viagem volta, entra na mão de um dos personagens e desce, de dez em dez, até o interior de um átomo. São cerca de nove minutos, e cada potência de dez é um enquadramento.</p>
+
+  <p>Charles e Ray Eames eram designers, não físicos, e partiram de um livro de 1957, <em>Cosmic View</em>, do educador holandês Kees Boeke. O que eles fizeram foi dar à ordem de grandeza uma forma que se vê: a escala logarítmica, que no papel é uma abstração, virou movimento contínuo. Nenhum quadro do filme é mais importante que o outro. A galáxia e o núcleo atômico ocupam o mesmo tempo de tela &mdash; dez segundos por degrau.</p>
+
+  <figure class="figura figura-pendente">
+  <div class="figura-aviso">Figura 8 em produção &mdash; a imagem entra aqui assim que for gerada e aprovada.</div>
+  <figcaption class="figura-legenda"><span class="figura-num">Figura 8</span> &mdash; A régua do filme: cada quadrado dez vezes maior que o anterior.</figcaption>
+</figure>
+
+  <p>É o gesto desta trilha: <strong>situar uma coisa numa escala antes de medi-la</strong>. Duas perguntas ao futuro professor. Primeira: o que a escala logarítmica mostra que a régua linear esconde? Numa régua comum, o grão e a cava não cabem no mesmo desenho; na régua de potências, cabem os dois, a sete degraus de distância. Segunda: como se leva uma turma a errar a ordem de grandeza de propósito, e a aprender com o erro? O filme sugere uma resposta &mdash; pedir a previsão do próximo enquadramento antes dos dez segundos acabarem.</p>
+
+  <blockquote>De um piquenique em Chicago ao limite do universo e de volta ao núcleo de um átomo, dez vezes mais longe a cada dez segundos.</blockquote>
+  <div class="ca-autor">&mdash; <em>Powers of Ten</em>, Charles e Ray Eames, 1977</div>
+
+  <div class="footnote"><strong>Charles e Ray Eames</strong>. Casal norte-americano de designers e cineastas, autores de móveis, exposições e mais de cem filmes. A frase acima não é deles: é a legenda da obra, e por isso entra sem aspas e assinada pelo filme.</div>
+
+  <p style="margin-top:22px;"><em>Pascal viu o homem suspenso entre dois infinitos; Fermi mediu uma explosão com pedaços de papel e uma ordem de grandeza; Charles e Ray Eames foram de um piquenique às galáxias, dez vezes mais longe a cada dez segundos. Três cérebros, o mesmo gesto.</em></p>
+</div>
+
+<!-- ═══════════════════ REFERÊNCIAS ═══════════════════ -->
+<div class="refs" id="referencias">
+  <div class="refs-titulo">Referências &mdash; Fontes desta trilha</div>
+  <p>BUREAU INTERNATIONAL DES POIDS ET MESURES. <em>The International System of Units (SI)</em>. 9. ed. Sèvres: BIPM, 2019. Disponível em: https://www.bipm.org/en/publications/si-brochure. Acesso em: 15 set. 2026.</p>
+  <p>AZEVEDO, J. <em>O Sistema Internacional de Unidades (SI)</em>. Ouro Preto: NIDEC &mdash; IFMG campus Ouro Preto, 2026. Tabelas 1 a 9. (dados de edição a fixar)</p>
+
+  <div class="refs-titulo" style="margin-top:24px;">Referências &mdash; Bibliografia Básica</div>
+  <p>LIMA, C. R. A.; ZAPPA, F. <em>Análise de dados para laboratório de física</em>. Juiz de Fora: UFJF, 2014. 57 p. Disponível em: https://www2.ufjf.br/carlos_lima/wp-content/uploads/sites/520/2019/01/analisedados.pdf. Acesso em: 13 set. 2026.</p>
+  <p>CAMPOS, A. A.; ALVES, E. S.; SPEZIALI, N. L. <em>Física experimental básica na universidade</em>. 2. ed. Belo Horizonte: Editora UFMG, 2008.</p>
+  <p>SANTORO, A. et al. <em>Estimativas e erros em experimentos de física</em>. 2. ed. Rio de Janeiro: EdUERJ, 2013.</p>
+
+  <div class="refs-titulo" style="margin-top:24px;">Referências &mdash; Bibliografia Complementar</div>
+  <p>VUOLO, J. H. <em>Fundamentos da teoria de erros</em>. 2. ed. São Paulo: Edgard Blücher, 1996.</p>
+  <p>BOEKE, K. <em>Cosmic View</em>: the universe in 40 jumps. New York: John Day, 1957.</p>
+
+  <div class="refs-titulo" style="margin-top:24px;">Epígrafes desta trilha</div>
+  <p>PASCAL, Blaise. <em>Pensamentos</em>. 1670. Fragmento &ldquo;Desproporção do homem&rdquo;. Edição brasileira a fixar.</p>
+  <p>FERMI, Enrico. <em>My observations during the explosion at Trinity on July 16, 1945</em>. Los Alamos, 1945. (usada no Roteiro de Bancada desta trilha; referência a conferir)</p>
+  <p>EAMES, Charles; EAMES, Ray. <em>Powers of Ten</em>. Eames Office / IBM, 1977. Filme, 9 min.</p>
+
+  <div class="refs-titulo" style="margin-top:24px;">Declaração de autoria</div>
+  <p>Estas Trilhas de Aprendizagem são concebidas, dirigidas e revisadas por uma equipe humana &mdash; autor, colaborador, monitores e a equipe do Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) e da Coordenadoria da Área de Física.</p>
+  <p>A inteligência artificial entra no processo como ferramenta, nunca como autora: é usada sob curadoria humana, com princípios claros, diretrizes pedagógicas explícitas e honestidade intelectual.</p>
+  <p>Assim, declaramos abertamente o uso de IA como assistente de redação e diagramação de todos os Objetos de Aprendizagem (Claude Opus 5 e Claude Cowork, Anthropic, 2026; Gemini Notebook, Google, 2026), do mesmo modo que se declara o uso de qualquer ferramenta de autoria.</p>
+</div>
+
+
+</div><!-- fim .conteudo -->
+
+<!-- ═══════════════════ ENCERRAMENTO ═══════════════════ -->
+<div class="encerramento">
+  <div class="fecho-frase">Terminamos por aqui, um abraço, e até o próximo encontro.</div>
+  <div class="fecho-links">
+    <a class="fecho-btn secundario" href="../../index.html#t0b">Todas as trilhas</a>
+  </div>
+</div>
+
+<!-- RODAPE-LME:INICIO --><div class="lme-rodape"><div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div><div class="lme-rodape-texto">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; Primeira edição &middot; 2026</div><div class="lme-rodape-selo"><span id="seloAcessos" data-escopo="pagina" style="display:none;"></span></div></div><!-- RODAPE-LME:FIM -->
+
+
+<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
+<script>
+// ─── READING PROGRESS ───
+window.addEventListener('scroll', function() {
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  var pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+});
+
+// ─── SEMPRE ABRE NO TOPO ───
+// Restauracao de scroll REMOVIDA (2026-09-13): computador de laboratorio e
+// compartilhado entre turmas — o scroll salvo por um estudante reabria a
+// pagina de todo o proximo estudante ja no final do TT.
+var STORAGE_KEY = 'LME-T0B-TT-v1';
+window.scrollTo(0, 0);
+
+// ─── FONT SIZE ───
+var fontSteps = [1.0, 1.15, 1.30];
+var fontIdx = 1;
+try {
+  var savedFont = localStorage.getItem(STORAGE_KEY + '-font');
+  if (savedFont !== null) fontIdx = parseInt(savedFont);
+} catch(e) {}
+
+function applyFontSize() {
+  document.documentElement.style.setProperty('--fs-base', fontSteps[fontIdx] + 'rem');
+  document.getElementById('btnFontMinus').classList.toggle('active', fontIdx === 0);
+  document.getElementById('btnFontReset').classList.toggle('active', fontIdx === 1);
+  document.getElementById('btnFontPlus').classList.toggle('active', fontIdx === 2);
+  try { localStorage.setItem(STORAGE_KEY + '-font', fontIdx); } catch(e) {}
+}
+applyFontSize();
+
+document.getElementById('btnFontMinus').addEventListener('click', function() { fontIdx = 0; applyFontSize(); });
+document.getElementById('btnFontReset').addEventListener('click', function() { fontIdx = 1; applyFontSize(); });
+document.getElementById('btnFontPlus').addEventListener('click', function() { fontIdx = 2; applyFontSize(); });
+
+// ─── THEME TOGGLE ───
+function getTheme() {
+  try {
+    var saved = localStorage.getItem(STORAGE_KEY + '-theme');
+    if (saved) return saved;
+  } catch(e) {}
+  return 'dark';
+}
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  try { localStorage.setItem(STORAGE_KEY + '-theme', t); } catch(e) {}
+}
+setTheme(getTheme());
+
+document.getElementById('btnTheme').addEventListener('click', function() {
+  var current = document.documentElement.getAttribute('data-theme');
+  setTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+
+</script>
+<!-- ABAS-OA-LME (trilho de 7 abas — abas_oa.py) -->
+
+<style>
+/* ── Trilho de 7 abas da LME (abas_oa.py) ──────────────────────────────
+   Flex column ancorado no meio da borda esquerda: as abas se empilham
+   sozinhas, sem tabela de `top:` em px. Cores literais (o trilho roda em cinco
+   OAs com sistemas de CSS diferentes), mas TIRADAS DA AP DA T0A (autor,
+   2026-09-14): fundo e superficie do deck, verde-quadro como accent, azul-aco
+   nos titulos e destaques (a `.hi` da AP) e a caixa lima da `.ca-provinha`
+   (fundo tingido + filete de 4px + rotulo mono) nas notas e na regra. */
+.lme-abas { position: fixed; left: 0; top: 50%; transform: translateY(-50%);
+  z-index: 998; display: flex; flex-direction: column; gap: 2px;
+  /* Sete abas nao cabem em tela baixa (celular deitado): o trilho rola. */
+  max-height: 100vh; overflow-y: auto; scrollbar-width: none; }
+.lme-abas::-webkit-scrollbar { display: none; }
+.lme-aba-toggle { background: oklch(0.20 0.02 260); border: 1px solid oklch(0.40 0.02 260); border-left: 3px solid transparent;
+  color: oklch(0.72 0.02 260); font-size: .68rem; padding: 7px 8px; cursor: pointer;
+  font-family: 'Space Mono', 'Courier New', monospace; writing-mode: vertical-rl;
+  text-orientation: mixed; letter-spacing: 1px; text-transform: uppercase;
+  border-radius: 0; transition: color .15s, border-color .15s, background .15s; }
+.lme-aba-toggle:hover { color: #7FB2D6; border-left-color: #7FB2D6; }
+.lme-aba-toggle.ativa { color: oklch(0.13 0.02 260); background: #3E8E5A; border-color: #3E8E5A; font-weight: 700; }
+.lme-aba-painel { position: fixed; top: 0; left: 0; z-index: 1001;
+  width: 340px; max-width: 86vw; height: 100vh; overflow-y: auto;
+  background: oklch(0.13 0.02 260); border-right: 3px solid #3E8E5A;
+  box-shadow: 8px 0 32px rgba(0,0,0,.55);
+  padding: 24px 22px 24px 42px; transform: translateX(-100%);
+  transition: transform .25s; font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-size: .92rem; color: oklch(0.90 0 0); line-height: 1.6; }
+.lme-aba-painel.open { transform: translateX(0); }
+.lme-aba-painel p strong, .lme-aba-painel p em { color: #7FB2D6; }
+.lme-aba-painel h3 { font-family: 'Space Mono', 'Courier New', monospace; font-size: .9rem;
+  text-transform: uppercase; letter-spacing: 2px; color: #7FB2D6; font-weight: 700;
+  border-bottom: 2px solid #3E8E5A; padding-bottom: 8px; margin: 0 0 14px; }
+.lme-aba-btn { display: block; margin: 10px 0; padding: 11px 14px;
+  background: oklch(0.20 0.02 260); border: 1px solid oklch(0.40 0.02 260); border-left: 4px solid #3E8E5A;
+  color: oklch(0.98 0 0); text-decoration: none;
+  font-family: 'Space Mono', 'Courier New', monospace; font-size: .85rem;
+  transition: border-color .15s, color .15s; }
+.lme-aba-btn:hover { border-color: #7FB2D6; color: #7FB2D6; }
+.lme-aba-link { color: #7FB2D6; }
+/* Marcas do topo: a da disciplina (pendulo sobre regua) e a do curso (prisma). */
+.lme-aba-marcas { display: flex; align-items: center; justify-content: center;
+  gap: 18px; margin: 0 0 16px; padding-bottom: 14px; border-bottom: 1px solid oklch(0.40 0.02 260); }
+.lme-aba-marca { width: 44px; height: 44px; flex: 0 0 auto; display: block; }
+/* Selos institucionais do rodape do painel. */
+.lme-aba-rodape { display: flex; align-items: center; justify-content: center;
+  gap: 20px; margin-top: 20px; padding-top: 16px; border-top: 1px solid oklch(0.40 0.02 260); }
+.lme-aba-selo { height: 40px; width: auto; display: block; }
+.lme-aba-rodape a { display: block; line-height: 0; }
+.lme-aba-rodape { flex-wrap: wrap; row-gap: 12px; }
+.lme-aba-agr { flex-basis: 100%; display: flex; justify-content: center; }
+.lme-aba-agr svg { width: 40px; height: 40px; display: block; }
+/* ── Corpo dos paineis ─────────────────────────────────────────────── */
+.lme-aba-h4 { font-family: 'Space Mono', 'Courier New', monospace; font-size: .74rem;
+  text-transform: uppercase; letter-spacing: 1.5px; color: #3E8E5A; font-weight: 700;
+  margin: 22px 0 6px; }
+.lme-aba-lead { font-style: italic; color: oklch(0.72 0.02 260); margin: 0 0 10px; }
+.lme-aba-passos { margin: 0 0 6px; padding-left: 20px; }
+.lme-aba-passos li { margin-bottom: 9px; }
+.lme-aba-passos li::marker { color: #3E8E5A; font-weight: 700; }
+.lme-aba-apoio { margin: 6px 0 6px; padding-left: 18px; list-style: none; }
+.lme-aba-apoio li { margin-bottom: 9px; position: relative; }
+.lme-aba-apoio li::before { content: '·'; position: absolute; left: -12px;
+  color: #3E8E5A; font-weight: 700; }
+.lme-aba-apoio-tit { font-size: .74rem; text-transform: uppercase;
+  letter-spacing: 1px; color: oklch(0.72 0.02 260); margin: 12px 0 2px;
+  font-family: 'Space Mono', 'Courier New', monospace; }
+.lme-aba-oa { color: #7FB2D6; font-weight: 700; }
+.lme-aba-tag { color: #3E8E5A; font-size: .82rem; }
+.lme-aba-regra { background: oklch(0.26 0.05 105); border-left: 4px solid oklch(0.85 0.15 105);
+  padding: 14px 16px; margin: 20px 0 0; color: oklch(0.90 0 0); }
+.lme-aba-regra strong { color: oklch(0.85 0.15 105); display: block; margin-bottom: 6px; }
+/* Musica: um cartao por playlist, numero de um digito e o link para ouvir. */
+.lme-aba-faixa { background: oklch(0.20 0.02 260); border-left: 4px solid #3E8E5A;
+  padding: 10px 12px; margin: 0 0 10px; }
+.lme-aba-num { display: inline-block; min-width: 1.5em; color: oklch(0.13 0.02 260); background: #3E8E5A;
+  text-align: center; font-weight: 700; margin-right: 6px;
+  font-family: 'Space Mono', 'Courier New', monospace; }
+.lme-aba-ouvir { display: inline-block; margin-top: 6px; color: oklch(0.85 0.15 105); text-decoration: none;
+  font-family: 'Space Mono', 'Courier New', monospace; font-size: .78rem;
+  text-transform: uppercase; letter-spacing: 1px; }
+.lme-aba-ouvir:hover { text-decoration: underline; }
+.lme-aba-prep { display: inline-block; margin-top: 6px; color: oklch(0.72 0.02 260); font-size: .74rem;
+  font-family: 'Space Mono', 'Courier New', monospace; text-transform: uppercase; letter-spacing: 1px; }
+/* ── Creditos ──────────────────────────────────────────────────────── */
+.lme-aba-cred { margin: 0 0 10px; }
+.lme-aba-cargo { display: block; font-size: .72rem; text-transform: uppercase;
+  letter-spacing: 1px; color: #3E8E5A; font-family: 'Space Mono', 'Courier New', monospace; }
+.lme-aba-nome { color: oklch(0.98 0 0); }
+.lme-aba-bio { font-size: .86rem; color: oklch(0.72 0.02 260); margin: 0 0 6px; }
+/* ── Referencia ────────────────────────────────────────────────────── */
+.lme-refs-label { font-family: 'Space Mono', 'Courier New', monospace; font-size: .74rem;
+  text-transform: uppercase; letter-spacing: 1.5px; color: #3E8E5A; font-weight: 700;
+  margin: 22px 0 8px; }
+.lme-refs-item { font-size: .84rem; color: oklch(0.72 0.02 260); margin: 0 0 9px;
+  padding-left: 14px; text-indent: -14px; word-break: break-word; }
+/* Nota de aviso: a caixa lima da AP. */
+.lme-aba-nota { font-size: .84rem; color: oklch(0.90 0 0); font-style: italic;
+  background: oklch(0.26 0.05 105); border-left: 4px solid oklch(0.85 0.15 105); padding: 8px 12px; margin: 14px 0 0; }
+.lme-aba-todo { font-style: italic; color: oklch(0.72 0.02 260); border: 1px dashed oklch(0.40 0.02 260);
+  padding: 14px; margin: 0; }
+/* Celular: a faixa no body empurra o conteudo (#LESSONS 2026-08-09). */
+@media (max-width: 600px) {
+  body { padding-left: 30px; }
+  .lme-aba-toggle { font-size: .58rem; padding: 5px 5px; letter-spacing: .5px; }
+  .lme-aba-painel { width: 86vw; padding: 20px 18px 20px 38px; }
+}
+@media (max-height: 560px) {
+  .lme-aba-toggle { font-size: .55rem; padding: 4px 5px; letter-spacing: 0; }
+}
+@media print { .lme-abas, .lme-aba-painel { display: none !important; } }
+</style>
+<div class="lme-abas">
+  <button class="lme-aba-toggle" type="button" data-aba="site">Site</button>
+  <button class="lme-aba-toggle" type="button" data-aba="metodo">Método</button>
+  <button class="lme-aba-toggle" type="button" data-aba="documentos">Documentos</button>
+  <button class="lme-aba-toggle" type="button" data-aba="musica">Música</button>
+  <button class="lme-aba-toggle" type="button" data-aba="ineditismo">Ineditismo</button>
+  <button class="lme-aba-toggle" type="button" data-aba="creditos">Créditos</button>
+  <button class="lme-aba-toggle" type="button" data-aba="referencia">Referência</button>
+</div>
+<aside class="lme-aba-painel" id="lme-painel-site" hidden>
+  <h3>Site</h3>
+  <div class="lme-aba-marcas">
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica">
+  <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none">
+    <line x1="36" y1="10" x2="84" y2="10"/>
+    <line x1="60" y1="10" x2="81.9" y2="70.1"/>
+  </g>
+  <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/>
+  <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <circle cx="60" cy="10" r="4" fill="#3E8E5A"/>
+  <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/>
+  <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square">
+    <line x1="26" y1="110" x2="94" y2="110"/>
+    <line x1="30" y1="110" x2="30" y2="104"/>
+    <line x1="40" y1="110" x2="40" y2="104"/>
+    <line x1="50" y1="110" x2="50" y2="104"/>
+    <line x1="60" y1="110" x2="60" y2="98"/>
+    <line x1="70" y1="110" x2="70" y2="104"/>
+    <line x1="80" y1="110" x2="80" y2="104"/>
+    <line x1="90" y1="110" x2="90" y2="104"/>
+  </g>
+</svg>
+
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"
+     role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física">
+  <title>Prisma decompondo a luz — Licenciatura em Física</title>
+  <defs>
+    <radialGradient id="fundo" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#26302B"/>
+      <stop offset="1" stop-color="#0E1411"/>
+    </radialGradient>
+    <linearGradient id="vidro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/>
+    </linearGradient>
+    <clipPath id="dentro"><circle cx="100" cy="100" r="86"/></clipPath>
+  </defs>
+
+  <!-- medalhao: fundo, aro verde-quadro e anel pontilhado (familia da vagoneta) -->
+  <circle cx="100" cy="100" r="96" fill="url(#fundo)"/>
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1"
+          stroke-dasharray="1.5 3" opacity="0.8"/>
+
+  <g clip-path="url(#dentro)">
+    <!-- feixe branco incidente -->
+    <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/>
+    <!-- trajeto dentro do vidro -->
+    <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/>
+    <!-- espectro: vermelho desvia menos (em cima), violeta mais (embaixo) -->
+    <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/>
+    <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/>
+    <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/>
+    <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/>
+    <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/>
+    <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/>
+    <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/>
+  </g>
+
+  <!-- prisma de vidro -->
+  <polygon points="100,50 56,130 144,130" fill="url(#vidro)" stroke="#DDEBF3"
+           stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- bancada: traco azul-aco sob o prisma -->
+  <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- brilhos discretos -->
+  <g fill="#FFFFFF" opacity="0.55">
+    <circle cx="46" cy="62" r="1.2"/>
+    <circle cx="150" cy="56" r="1"/>
+    <circle cx="70" cy="160" r="1"/>
+    <circle cx="140" cy="164" r="1.2"/>
+  </g>
+</svg>
+
+  </div>
+  <p><strong>Endereço:</strong> <a class="lme-aba-link" href="https://nidecop-jafb.github.io/lme-oa/">nidecop-jafb.github.io/lme-oa</a> — abre direto, sem senha e sem aplicativo. Nos OAs, a identificação é pelo RA (7 dígitos) com confirmação.</p>
+  <a class="lme-aba-btn" href="https://nidecop-jafb.github.io/lme-oa/instalar/">Instalar o site no celular ou no PC · atalho com ícone</a>
+  <a class="lme-aba-btn" href="https://nidecop-jafb.github.io/lme-oa/#t0b">Ver todos os OAs da trilha</a>
+  <a class="lme-aba-btn" href="https://nidecop-jafb.github.io/lme-oa/">Início do site</a>
+  <a class="lme-aba-btn" href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/">Agradecimentos</a>
+  <a class="lme-aba-btn" href="https://nidecop-jafb.github.io/ilb-oa/">Disciplina irmã: ILB — Introdução ao Laboratório</a>
+  <div class="lme-aba-rodape">
+    <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
+    <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
+  </div>
+</aside>
+<aside class="lme-aba-painel" id="lme-painel-metodo" hidden>
+  <h3>Método</h3>
+  <div class="lme-aba-marcas">
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica">
+  <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none">
+    <line x1="36" y1="10" x2="84" y2="10"/>
+    <line x1="60" y1="10" x2="81.9" y2="70.1"/>
+  </g>
+  <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/>
+  <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <circle cx="60" cy="10" r="4" fill="#3E8E5A"/>
+  <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/>
+  <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square">
+    <line x1="26" y1="110" x2="94" y2="110"/>
+    <line x1="30" y1="110" x2="30" y2="104"/>
+    <line x1="40" y1="110" x2="40" y2="104"/>
+    <line x1="50" y1="110" x2="50" y2="104"/>
+    <line x1="60" y1="110" x2="60" y2="98"/>
+    <line x1="70" y1="110" x2="70" y2="104"/>
+    <line x1="80" y1="110" x2="80" y2="104"/>
+    <line x1="90" y1="110" x2="90" y2="104"/>
+  </g>
+</svg>
+
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"
+     role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física">
+  <title>Prisma decompondo a luz — Licenciatura em Física</title>
+  <defs>
+    <radialGradient id="fundo" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#26302B"/>
+      <stop offset="1" stop-color="#0E1411"/>
+    </radialGradient>
+    <linearGradient id="vidro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/>
+    </linearGradient>
+    <clipPath id="dentro"><circle cx="100" cy="100" r="86"/></clipPath>
+  </defs>
+
+  <!-- medalhao: fundo, aro verde-quadro e anel pontilhado (familia da vagoneta) -->
+  <circle cx="100" cy="100" r="96" fill="url(#fundo)"/>
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1"
+          stroke-dasharray="1.5 3" opacity="0.8"/>
+
+  <g clip-path="url(#dentro)">
+    <!-- feixe branco incidente -->
+    <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/>
+    <!-- trajeto dentro do vidro -->
+    <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/>
+    <!-- espectro: vermelho desvia menos (em cima), violeta mais (embaixo) -->
+    <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/>
+    <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/>
+    <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/>
+    <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/>
+    <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/>
+    <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/>
+    <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/>
+  </g>
+
+  <!-- prisma de vidro -->
+  <polygon points="100,50 56,130 144,130" fill="url(#vidro)" stroke="#DDEBF3"
+           stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- bancada: traco azul-aco sob o prisma -->
+  <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- brilhos discretos -->
+  <g fill="#FFFFFF" opacity="0.55">
+    <circle cx="46" cy="62" r="1.2"/>
+    <circle cx="150" cy="56" r="1"/>
+    <circle cx="70" cy="160" r="1"/>
+    <circle cx="140" cy="164" r="1.2"/>
+  </g>
+</svg>
+
+  </div>
+  <p class="lme-aba-lead">A ordem não é burocracia: ela segue como o cérebro aprende — preparação (pergunta antes da resposta), construção ativa (recuperar em vez de reler) e consolidação (revisão no mesmo dia e revisões espaçadas, com o sono fazendo a parte dele).</p>
+  <div class="lme-aba-h4">Pré-Lab · fazer em casa, antes da aula de bancada</div>
+  <p class="lme-aba-lead">Preparar o experimento antes de tocar no equipamento: chegar à bancada sabendo o que será medido, com qual instrumento e com quais cuidados.</p>
+  <ol class="lme-aba-passos">
+    <li><span class="lme-aba-oa">Ponto de Partida (PP)</span> <span class="lme-aba-tag">— vale nota · antes do Lab · 10 min</span><br>Responder antes de estudar cria erro produtivo: o cérebro marca a lacuna e passa a procurar a resposta durante todo o Pré-Lab. Testar antes de ensinar aumenta o que fica depois — e você vai usar isso na sua sala de aula.</li>
+    <li><span class="lme-aba-oa">Resumo em Áudio (MD)</span> <span class="lme-aba-tag">— ouvir · curto (5 a 10 min) · padrão (15 a 25 min)</span><br>O áudio monta o esqueleto da prática antes da leitura. Com o mapa geral pronto, a memória de trabalho gasta menos esforço com a estrutura e sobra para o detalhe do procedimento.</li>
+    <li><span class="lme-aba-oa">Texto Temático (TT)</span> <span class="lme-aba-tag">— ler · a prática explicada</span><br>Leitura profunda sobre um esquema já ativado: ouvir e depois ler codifica o mesmo conteúdo por duas vias e deixa dois caminhos de recuperação.</li>
+    <li><span class="lme-aba-oa">Simulações (SM)</span> <span class="lme-aba-tag">— explorar · simulações</span><br>Manipular a simulação antes da bancada: errar sem risco e ver o invisível. O experimento virtual prepara o gesto do experimento real.</li>
+    <li><span class="lme-aba-oa">Testinho (TN)</span> <span class="lme-aba-tag">— vale nota · antes do Lab · 10 min</span><br>Fecha o Pré-Lab medindo segurança e procedimento, com correção na hora. Erro corrigido na véspera vira aprendizagem; erro descoberto na bancada, risco.</li>
+  </ol>
+  <div class="lme-aba-apoio-tit">Materiais de apoio desta parada (sem número no caminho)</div>
+  <ul class="lme-aba-apoio">
+    <li><span class="lme-aba-oa">Cartões Didáticos (CD)</span> <span class="lme-aba-tag">— ler · revisão ativa</span><br>Recuperação ativa: virar o cartão e tentar responder antes de conferir custa esforço — e é esse esforço que fixa. Poucos minutos por dia rendem mais do que uma sessão longa de releitura.</li>
+    <li><span class="lme-aba-oa">Mapa Conceitual (MC)</span> <span class="lme-aba-tag">— ler · questões conceituais</span><br>O mapa liga cada conceito ao instrumento que o mede e mostra a estrutura inteira da prática de uma vez. Ver como as peças se conectam organiza o que a leitura acabou de construir.</li>
+    <li><span class="lme-aba-oa">Inventário de Equipamento (IE)</span> <span class="lme-aba-tag">— o que vai na bancada</span><br>Reconhecer cada instrumento pelo nome, pela função e pela menor divisão antes de manuseá-lo. Quem chega sabendo o que vai na bancada gasta os 100 minutos do Lab medindo, não descobrindo.</li>
+    <li><span class="lme-aba-oa">Checklist de Segurança (CS)</span> <span class="lme-aba-tag">— obrigatório · antes da bancada</span><br>Segurança é pré-condição, não etapa: quem entra sabendo os cuidados e os EPIs da prática libera a atenção para o experimento — e protege a si e aos colegas de bancada.</li>
+  </ul>
+  <div class="lme-aba-h4">Lab · na bancada, com o professor · 100 min</div>
+  <p class="lme-aba-lead">Construir o conhecimento com as mãos: montar, medir e registrar — com o professor sustentando o passo que você ainda não dá sozinho.</p>
+  <ol class="lme-aba-passos">
+    <li><span class="lme-aba-oa">Roteiro de Bancada (RB)</span> <span class="lme-aba-tag">— execução · registrar os dados</span><br>Registrar a medição com as próprias mãos, no momento em que ela acontece: o que a gente gera e anota fica mais do que o que a gente copia. A folha pode ser impressa para levar à bancada; o envio é digital.</li>
+    <li><span class="lme-aba-oa">Apresentação do Lab (AP)</span> <span class="lme-aba-tag">— roteiro dos 100 min · rever depois</span><br>Atenção conjunta e fio condutor da sessão: o professor projeta a apresentação, explica e discute com você — e os slides ficam disponíveis para rever depois.</li>
+    <li><span class="lme-aba-oa">Infográficos de Bancada (IG)</span> <span class="lme-aba-tag">— painel e consultas · durante a prática</span><br>Consulta visual no momento da dúvida: a resposta chega enquanto o problema ainda está na mão — e é assim que ela gruda.</li>
+    <li><span class="lme-aba-oa">Provinha (PR)</span> <span class="lme-aba-tag">— vale nota · fechamento do Lab</span><br>Teste curto logo após a prática: consolida enquanto o traço ainda está fresco e mostra, ali mesmo, o que precisa voltar.</li>
+  </ol>
+  <div class="lme-aba-h4">Pós-Lab · a partir do mesmo dia da prática</div>
+  <p class="lme-aba-lead">Transformar dados em conclusão. A memória não se fixa na bancada, e sim depois — em boa parte durante o sono.</p>
+  <ol class="lme-aba-passos">
+    <li><span class="lme-aba-oa">Relatório Mínimo (RM)</span> <span class="lme-aba-tag">— vale nota · até 1 dia após o Lab · 1 página</span><br>O que é revisto logo depois da prática entra na fila de consolidação da noite. É o “aula dada, aula estudada hoje” de Piazzi, aplicado aos dados da bancada — com um dia de folga para quem sai tarde do laboratório.</li>
+    <li><span class="lme-aba-oa">Relatório Completo (RC)</span> <span class="lme-aba-tag">— vale nota · até 6 dias após o Lab</span><br>Repetição espaçada com elaboração: voltar aos dados quando a lembrança já começou a cair rende mais — e escrever a análise completa é gerar, não copiar.</li>
+  </ol>
+  <div class="lme-aba-apoio-tit">Materiais de apoio desta parada (sem número no caminho)</div>
+  <ul class="lme-aba-apoio">
+    <li><span class="lme-aba-oa">Desafio Pedagógico (DX)</span> <span class="lme-aba-tag">— opcional · desafio</span><br>Aprofundamento para quem quer ir além: um problema de análise de dados que pede o método da trilha aplicado a uma situação nova. Fora do caminho numerado, de propósito — é convite, não obrigação.</li>
+  </ul>
+  <div class="lme-aba-regra"><strong>Não pule nenhum objeto de aprendizagem. Se pulou, volte.</strong>Cada passo prepara o terreno do seguinte: sem o Ponto de Partida a leitura não encontra pergunta; sem o Pré-Lab a bancada vira receita seguida às cegas — e aqui, onde o experimento é o próprio objeto de estudo, sem previsão não há o que pôr à prova; sem o Relatório Mínimo os dados esfriam antes de virar conclusão. Pular um objeto de aprendizagem não adianta a trilha — atrasa. Se você pulou, volte ao passo que ficou para trás e siga dali.</div>
+  <div class="lme-aba-rodape">
+    <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
+    <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
+  </div>
+</aside>
+<aside class="lme-aba-painel" id="lme-painel-documentos" hidden>
+  <h3>Documentos</h3>
+  <div class="lme-aba-marcas">
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica">
+  <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none">
+    <line x1="36" y1="10" x2="84" y2="10"/>
+    <line x1="60" y1="10" x2="81.9" y2="70.1"/>
+  </g>
+  <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/>
+  <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <circle cx="60" cy="10" r="4" fill="#3E8E5A"/>
+  <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/>
+  <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square">
+    <line x1="26" y1="110" x2="94" y2="110"/>
+    <line x1="30" y1="110" x2="30" y2="104"/>
+    <line x1="40" y1="110" x2="40" y2="104"/>
+    <line x1="50" y1="110" x2="50" y2="104"/>
+    <line x1="60" y1="110" x2="60" y2="98"/>
+    <line x1="70" y1="110" x2="70" y2="104"/>
+    <line x1="80" y1="110" x2="80" y2="104"/>
+    <line x1="90" y1="110" x2="90" y2="104"/>
+  </g>
+</svg>
+
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"
+     role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física">
+  <title>Prisma decompondo a luz — Licenciatura em Física</title>
+  <defs>
+    <radialGradient id="fundo" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#26302B"/>
+      <stop offset="1" stop-color="#0E1411"/>
+    </radialGradient>
+    <linearGradient id="vidro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/>
+    </linearGradient>
+    <clipPath id="dentro"><circle cx="100" cy="100" r="86"/></clipPath>
+  </defs>
+
+  <!-- medalhao: fundo, aro verde-quadro e anel pontilhado (familia da vagoneta) -->
+  <circle cx="100" cy="100" r="96" fill="url(#fundo)"/>
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1"
+          stroke-dasharray="1.5 3" opacity="0.8"/>
+
+  <g clip-path="url(#dentro)">
+    <!-- feixe branco incidente -->
+    <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/>
+    <!-- trajeto dentro do vidro -->
+    <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/>
+    <!-- espectro: vermelho desvia menos (em cima), violeta mais (embaixo) -->
+    <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/>
+    <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/>
+    <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/>
+    <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/>
+    <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/>
+    <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/>
+    <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/>
+  </g>
+
+  <!-- prisma de vidro -->
+  <polygon points="100,50 56,130 144,130" fill="url(#vidro)" stroke="#DDEBF3"
+           stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- bancada: traco azul-aco sob o prisma -->
+  <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- brilhos discretos -->
+  <g fill="#FFFFFF" opacity="0.55">
+    <circle cx="46" cy="62" r="1.2"/>
+    <circle cx="150" cy="56" r="1"/>
+    <circle cx="70" cy="160" r="1"/>
+    <circle cx="140" cy="164" r="1.2"/>
+  </g>
+</svg>
+
+  </div>
+  <p>Os documentos que regem o seu curso e esta disciplina — em HTML, para ler no celular, cada um com PDF e QR próprios.</p>
+  <a class="lme-aba-btn" href="https://nidecop-jafb.github.io/lme-oa/documentos/ppc/">Projeto Pedagógico do Curso (PPC) <span class="lme-aba-tag">· guia + PDF integral</span></a>
+  <a class="lme-aba-btn" href="https://nidecop-jafb.github.io/lme-oa/documentos/matriz/">Matriz Curricular <span class="lme-aba-tag">· os oito períodos</span></a>
+  <a class="lme-aba-btn" href="https://nidecop-jafb.github.io/lme-oa/documentos/ementa/">Ementa <span class="lme-aba-tag">· em vigor e proposta</span></a>
+  <a class="lme-aba-btn" href="https://nidecop-jafb.github.io/lme-oa/documentos/plano/">Plano de Ensino <span class="lme-aba-tag">· 2026.2</span></a>
+  <p class="lme-aba-nota">A proposta de nova ementa está em análise pela Coordenação do Curso; até a aprovação, vale a ementa em vigor.</p>
+  <div class="lme-aba-rodape">
+    <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
+    <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
+  </div>
+</aside>
+<aside class="lme-aba-painel" id="lme-painel-musica" hidden>
+  <h3>Música</h3>
+  <div class="lme-aba-marcas">
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica">
+  <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none">
+    <line x1="36" y1="10" x2="84" y2="10"/>
+    <line x1="60" y1="10" x2="81.9" y2="70.1"/>
+  </g>
+  <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/>
+  <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <circle cx="60" cy="10" r="4" fill="#3E8E5A"/>
+  <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/>
+  <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square">
+    <line x1="26" y1="110" x2="94" y2="110"/>
+    <line x1="30" y1="110" x2="30" y2="104"/>
+    <line x1="40" y1="110" x2="40" y2="104"/>
+    <line x1="50" y1="110" x2="50" y2="104"/>
+    <line x1="60" y1="110" x2="60" y2="98"/>
+    <line x1="70" y1="110" x2="70" y2="104"/>
+    <line x1="80" y1="110" x2="80" y2="104"/>
+    <line x1="90" y1="110" x2="90" y2="104"/>
+  </g>
+</svg>
+
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"
+     role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física">
+  <title>Prisma decompondo a luz — Licenciatura em Física</title>
+  <defs>
+    <radialGradient id="fundo" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#26302B"/>
+      <stop offset="1" stop-color="#0E1411"/>
+    </radialGradient>
+    <linearGradient id="vidro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/>
+    </linearGradient>
+    <clipPath id="dentro"><circle cx="100" cy="100" r="86"/></clipPath>
+  </defs>
+
+  <!-- medalhao: fundo, aro verde-quadro e anel pontilhado (familia da vagoneta) -->
+  <circle cx="100" cy="100" r="96" fill="url(#fundo)"/>
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1"
+          stroke-dasharray="1.5 3" opacity="0.8"/>
+
+  <g clip-path="url(#dentro)">
+    <!-- feixe branco incidente -->
+    <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/>
+    <!-- trajeto dentro do vidro -->
+    <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/>
+    <!-- espectro: vermelho desvia menos (em cima), violeta mais (embaixo) -->
+    <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/>
+    <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/>
+    <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/>
+    <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/>
+    <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/>
+    <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/>
+    <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/>
+  </g>
+
+  <!-- prisma de vidro -->
+  <polygon points="100,50 56,130 144,130" fill="url(#vidro)" stroke="#DDEBF3"
+           stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- bancada: traco azul-aco sob o prisma -->
+  <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- brilhos discretos -->
+  <g fill="#FFFFFF" opacity="0.55">
+    <circle cx="46" cy="62" r="1.2"/>
+    <circle cx="150" cy="56" r="1"/>
+    <circle cx="70" cy="160" r="1"/>
+    <circle cx="140" cy="164" r="1.2"/>
+  </g>
+</svg>
+
+  </div>
+  <p>Por que estudar ouvindo? Miguel Nicolelis responde em <em>O Verdadeiro Criador de Tudo</em>: ciência e arte saem do mesmo lugar — o cérebro humano. E Pierluigi Piazzi, em <em>Aprendendo Inteligência</em>, acrescenta a parte prática: música sem letra não disputa com a leitura as áreas da linguagem. A palavra cantada rouba a palavra lida; a música instrumental sustenta, e some.</p>
+  <p>Daí a regra do projeto — <strong>uma trilha, uma música</strong>: ler, escrever e medir ouvindo música instrumental. A peça de cada trilha aparece na barra do topo dos OAs e na aba Música do Texto Temático.</p>
+  <div class="lme-aba-h4">O acervo — as oito playlists</div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">1</span><span class="lme-aba-oa">Baden Powell</span> — nos Afro-sambas cabem a bossa, o candomblé e a harmonia de câmara. Somar mundos é o ofício de quem estuda Física: a bancada mede, o caderno deduz, a mina explica por que importa.<br><a class="lme-aba-ouvir" href="https://music.youtube.com/playlist?list=PLMB5arbCorsU" target="_blank" rel="noopener">▶ Ouvir a playlist</a></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">2</span><span class="lme-aba-oa">Yamandu Costa</span> — improvisa porque conhece a estrutura até o último traste. Improviso não é sorte: é o nome da liberdade de quem estudou.<br><a class="lme-aba-ouvir" href="https://music.youtube.com/playlist?list=PLXyZd3QdGENs" target="_blank" rel="noopener">▶ Ouvir a playlist</a></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">3</span><span class="lme-aba-oa">Orquestra Ouro Preto</span> — no ano 2000, numa cidade de igrejas barrocas e de uma escola de minas, o professor Ronaldo R. B. Toffolo e o compositor e bandoneonista argentino Rufo Herrera decidiram que Ouro Preto merecia uma orquestra sua. Deu certo: hoje ela leva a música brasileira ao repertório de concerto — de <em>Ritmos Brasileiros</em> às óperas <em>Auto da Compadecida</em> e <em>Hilda Furacão</em> — e forma jovens músicos na Academia Jovem e no Núcleo de Apoio a Bandas. É, literalmente, uma casa: dos filhos de Ronaldo, Rodrigo rege a orquestra, Rodolfo é o violino solo e as gêmeas Marina e Mara também estão nos violinos. E é a casa desta escola. Ronaldo R. B. Toffolo foi aluno, professor e diretor-geral da Escola Técnica Federal de Ouro Preto — a instituição que hoje é o IFMG Campus Ouro Preto — e defende, hoje como então, a audição de música instrumental como hábito saudável. A orquestra da cidade nasceu, em boa parte, dentro de casa. Estudar Física com ela ao fundo é estudar ouvindo a própria escola.<br><a class="lme-aba-ouvir" href="https://music.youtube.com/playlist?list=PLLck6FRNMdAs" target="_blank" rel="noopener">▶ Ouvir a playlist</a></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">4</span><span class="lme-aba-oa">Filarmônica de Minas Gerais</span> — noventa músicos, um único referencial de tempo, erro na casa dos milissegundos: ordem de grandeza, sincronia, medida.<br><a class="lme-aba-ouvir" href="https://music.youtube.com/playlist?list=PLH9GvshumD2s" target="_blank" rel="noopener">▶ Ouvir a playlist</a></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">5</span><span class="lme-aba-oa">J. S. Bach</span> — a fuga é a definição de sistema físico: muitas vozes, uma lei só.<br><span class="lme-aba-prep">Playlist em preparação</span></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">6</span><span class="lme-aba-oa">W. A. Mozart</span> — nada sobra, nada falta. Elegância é saber o que pode ser retirado sem quebrar o todo — no pentagrama e na montagem experimental.<br><span class="lme-aba-prep">Playlist em preparação</span></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">7</span><span class="lme-aba-oa">L. van Beethoven</span> — de quatro notas, uma sinfonia; de duas ou três letras, uma lei. Muda a escala; a lei, não. E a Nona, composta já na surdez, lembra: o modelo vem antes da medida.<br><span class="lme-aba-prep">Playlist em preparação</span></div>
+  <div class="lme-aba-faixa"><span class="lme-aba-num">8</span><span class="lme-aba-oa">Marco Antônio Araújo</span> — violoncelista da Sinfônica de Minas e compositor que fez o barroco mineiro, a modinha e a seresta caberem no rock progressivo. A obra, interrompida aos 36 anos, ficou inacabada — e é isso que ela ensina a quem mede: nenhum experimento termina; toda medida com incerteza é um convite à medida seguinte.<br><span class="lme-aba-prep">Playlist em preparação</span></div>
+  <p>No Laboratório de Mecânica, as trilhas seguem o acervo do primeiro laboratório do curso: cinco playlists em ciclo — Baden Powell, Yamandu Costa, Orquestra Ouro Preto, Filarmônica de Minas Gerais e Marco Antônio Araújo.</p>
+  <div class="lme-aba-h4">Ampliando o acervo — em preparação</div>
+  <p><span class="lme-aba-oa">Raphael Rabello</span> (Petrópolis, 1962 — Rio de Janeiro, 1995) — primeiro registro profissional aos treze anos; discípulo de Dino 7 Cordas e parceiro de Radamés Gnattali, levou o violão de sete cordas do acompanhamento ao centro do palco. Morreu aos 32 anos, deixando uma obra relevante e inacabada.</p>
+  <div class="lme-aba-rodape">
+    <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
+    <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
+  </div>
+</aside>
+<aside class="lme-aba-painel" id="lme-painel-ineditismo" hidden>
+  <h3>Ineditismo</h3>
+  <div class="lme-aba-marcas">
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica">
+  <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none">
+    <line x1="36" y1="10" x2="84" y2="10"/>
+    <line x1="60" y1="10" x2="81.9" y2="70.1"/>
+  </g>
+  <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/>
+  <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <circle cx="60" cy="10" r="4" fill="#3E8E5A"/>
+  <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/>
+  <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square">
+    <line x1="26" y1="110" x2="94" y2="110"/>
+    <line x1="30" y1="110" x2="30" y2="104"/>
+    <line x1="40" y1="110" x2="40" y2="104"/>
+    <line x1="50" y1="110" x2="50" y2="104"/>
+    <line x1="60" y1="110" x2="60" y2="98"/>
+    <line x1="70" y1="110" x2="70" y2="104"/>
+    <line x1="80" y1="110" x2="80" y2="104"/>
+    <line x1="90" y1="110" x2="90" y2="104"/>
+  </g>
+</svg>
+
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"
+     role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física">
+  <title>Prisma decompondo a luz — Licenciatura em Física</title>
+  <defs>
+    <radialGradient id="fundo" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#26302B"/>
+      <stop offset="1" stop-color="#0E1411"/>
+    </radialGradient>
+    <linearGradient id="vidro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/>
+    </linearGradient>
+    <clipPath id="dentro"><circle cx="100" cy="100" r="86"/></clipPath>
+  </defs>
+
+  <!-- medalhao: fundo, aro verde-quadro e anel pontilhado (familia da vagoneta) -->
+  <circle cx="100" cy="100" r="96" fill="url(#fundo)"/>
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1"
+          stroke-dasharray="1.5 3" opacity="0.8"/>
+
+  <g clip-path="url(#dentro)">
+    <!-- feixe branco incidente -->
+    <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/>
+    <!-- trajeto dentro do vidro -->
+    <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/>
+    <!-- espectro: vermelho desvia menos (em cima), violeta mais (embaixo) -->
+    <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/>
+    <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/>
+    <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/>
+    <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/>
+    <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/>
+    <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/>
+    <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/>
+  </g>
+
+  <!-- prisma de vidro -->
+  <polygon points="100,50 56,130 144,130" fill="url(#vidro)" stroke="#DDEBF3"
+           stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- bancada: traco azul-aco sob o prisma -->
+  <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- brilhos discretos -->
+  <g fill="#FFFFFF" opacity="0.55">
+    <circle cx="46" cy="62" r="1.2"/>
+    <circle cx="150" cy="56" r="1"/>
+    <circle cx="70" cy="160" r="1"/>
+    <circle cx="140" cy="164" r="1.2"/>
+  </g>
+</svg>
+
+  </div>
+  <p>O Laboratório de Mecânica é o segundo laboratório da Licenciatura em Física, no 4.º período, e o primeiro que caminha junto de uma disciplina teórica — a Mecânica I e II. Quem chega aqui já cursou o primeiro laboratório da Licenciatura: medir, estimar a incerteza, tabelar, graficar e ajustar uma curva já fazem parte do seu repertório.</p>
+  <p>Por isso o experimento muda de papel: deixa de ser <strong>veículo</strong> e passa a ser <strong>objeto</strong>. Mede-se para pôr à prova as leis da Mecânica — confrontar o modelo com o dado, decidir se a diferença cabe na incerteza e dizer o que o modelo deixou de fora.</p>
+  <p>Cada trilha tem três paradas. O <strong>Pré-Lab</strong>, feito em casa, prepara o experimento e a previsão do modelo. O <strong>Lab</strong> é a bancada, com o Roteiro de Bancada na mão. O <strong>Pós-Lab</strong> transforma o dado em relatório — é onde a previsão encontra a medida.</p>
+  <p>E porque quem estuda aqui vai ensinar Física, cada trilha faz uma pergunta a mais: o que desta bancada caberia numa sala de aula de ensino médio?</p>
+  <p class="lme-aba-lead">Boas-vindas — e sucesso na sua caminhada pelas Trilhas de Aprendizagem do Laboratório de Mecânica.</p>
+  <div class="lme-aba-rodape">
+    <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
+    <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
+  </div>
+</aside>
+<aside class="lme-aba-painel" id="lme-painel-creditos" hidden>
+  <h3>Créditos</h3>
+  <div class="lme-aba-marcas">
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica">
+  <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none">
+    <line x1="36" y1="10" x2="84" y2="10"/>
+    <line x1="60" y1="10" x2="81.9" y2="70.1"/>
+  </g>
+  <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/>
+  <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <circle cx="60" cy="10" r="4" fill="#3E8E5A"/>
+  <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/>
+  <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square">
+    <line x1="26" y1="110" x2="94" y2="110"/>
+    <line x1="30" y1="110" x2="30" y2="104"/>
+    <line x1="40" y1="110" x2="40" y2="104"/>
+    <line x1="50" y1="110" x2="50" y2="104"/>
+    <line x1="60" y1="110" x2="60" y2="98"/>
+    <line x1="70" y1="110" x2="70" y2="104"/>
+    <line x1="80" y1="110" x2="80" y2="104"/>
+    <line x1="90" y1="110" x2="90" y2="104"/>
+  </g>
+</svg>
+
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"
+     role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física">
+  <title>Prisma decompondo a luz — Licenciatura em Física</title>
+  <defs>
+    <radialGradient id="fundo" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#26302B"/>
+      <stop offset="1" stop-color="#0E1411"/>
+    </radialGradient>
+    <linearGradient id="vidro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/>
+    </linearGradient>
+    <clipPath id="dentro"><circle cx="100" cy="100" r="86"/></clipPath>
+  </defs>
+
+  <!-- medalhao: fundo, aro verde-quadro e anel pontilhado (familia da vagoneta) -->
+  <circle cx="100" cy="100" r="96" fill="url(#fundo)"/>
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1"
+          stroke-dasharray="1.5 3" opacity="0.8"/>
+
+  <g clip-path="url(#dentro)">
+    <!-- feixe branco incidente -->
+    <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/>
+    <!-- trajeto dentro do vidro -->
+    <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/>
+    <!-- espectro: vermelho desvia menos (em cima), violeta mais (embaixo) -->
+    <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/>
+    <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/>
+    <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/>
+    <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/>
+    <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/>
+    <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/>
+    <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/>
+  </g>
+
+  <!-- prisma de vidro -->
+  <polygon points="100,50 56,130 144,130" fill="url(#vidro)" stroke="#DDEBF3"
+           stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- bancada: traco azul-aco sob o prisma -->
+  <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- brilhos discretos -->
+  <g fill="#FFFFFF" opacity="0.55">
+    <circle cx="46" cy="62" r="1.2"/>
+    <circle cx="150" cy="56" r="1"/>
+    <circle cx="70" cy="160" r="1"/>
+    <circle cx="140" cy="164" r="1.2"/>
+  </g>
+</svg>
+
+  </div>
+  <p class="lme-aba-cred"><span class="lme-aba-cargo">Reitor</span><span class="lme-aba-nome">Rafael Bastos Teixeira</span></p>
+  <p class="lme-aba-cred"><span class="lme-aba-cargo">Pró-Reitor de Ensino</span><span class="lme-aba-nome">Mário Luiz Viana Alvarenga</span></p>
+  <p class="lme-aba-cred"><span class="lme-aba-cargo">Diretor-Geral do Campus Ouro Preto</span><span class="lme-aba-nome">Reginato Fernandes dos Santos</span></p>
+  <p class="lme-aba-cred"><span class="lme-aba-cargo">Diretora de Ensino</span><span class="lme-aba-nome">Talita Valadares</span></p>
+  <p class="lme-aba-cred"><span class="lme-aba-cargo">Coordenador da Área de Física</span><span class="lme-aba-nome">Lázaro Souza Lima</span></p>
+  <p class="lme-aba-cred"><span class="lme-aba-cargo">Presidente do Colegiado do Curso de Licenciatura em Física</span><span class="lme-aba-nome">Daniel da Mota Neri</span></p>
+  <p class="lme-aba-cred"><span class="lme-aba-cargo">Vice-Presidente do Colegiado do Curso de Licenciatura em Física</span><span class="lme-aba-nome">Daniel Bretas Roa</span></p>
+  <div class="lme-aba-h4">Autor da Trilha</div>
+  <p class="lme-aba-cred"><span class="lme-aba-nome">Julio Azevedo</span></p>
+  <p class="lme-aba-bio">Professor do Ensino Técnico e Tecnológico do IFMG, atuando na Área de Física do campus Ouro Preto desde 1985. Criador do Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) em 2016. Ex-aluno do Curso de Engenharia de Minas e do Curso de Física, ambos da UFOP.</p>
+  <div class="lme-aba-h4">Colaborador</div>
+  <p class="lme-aba-cred"><span class="lme-aba-nome">Felipe Beato</span></p>
+  <p class="lme-aba-bio">Professor, pesquisador, colaborador do Núcleo de Inovação e Desenvolvimento de Experimentos Científicos do IFMG campus Ouro Preto. Licenciado em Física, Mestre em Física dos Materiais.</p>
+  <div class="lme-aba-h4">Edição</div>
+  <p class="lme-aba-cred"><span class="lme-aba-nome">1.ª edição — Ouro Preto, 2026</span></p>
+  <a class="lme-aba-btn" href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/">Agradecimentos · Física e Poesia</a>
+  <div class="lme-aba-rodape">
+    <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
+    <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
+  </div>
+</aside>
+<aside class="lme-aba-painel" id="lme-painel-referencia" hidden>
+  <h3>Referência</h3>
+  <div class="lme-aba-marcas">
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica">
+  <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none">
+    <line x1="36" y1="10" x2="84" y2="10"/>
+    <line x1="60" y1="10" x2="81.9" y2="70.1"/>
+  </g>
+  <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/>
+  <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <circle cx="60" cy="10" r="4" fill="#3E8E5A"/>
+  <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/>
+  <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square">
+    <line x1="26" y1="110" x2="94" y2="110"/>
+    <line x1="30" y1="110" x2="30" y2="104"/>
+    <line x1="40" y1="110" x2="40" y2="104"/>
+    <line x1="50" y1="110" x2="50" y2="104"/>
+    <line x1="60" y1="110" x2="60" y2="98"/>
+    <line x1="70" y1="110" x2="70" y2="104"/>
+    <line x1="80" y1="110" x2="80" y2="104"/>
+    <line x1="90" y1="110" x2="90" y2="104"/>
+  </g>
+</svg>
+
+  <svg class="lme-aba-marca" aria-hidden="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"
+     role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física">
+  <title>Prisma decompondo a luz — Licenciatura em Física</title>
+  <defs>
+    <radialGradient id="fundo" cx="50%" cy="42%" r="60%">
+      <stop offset="0" stop-color="#26302B"/>
+      <stop offset="1" stop-color="#0E1411"/>
+    </radialGradient>
+    <linearGradient id="vidro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/>
+    </linearGradient>
+    <clipPath id="dentro"><circle cx="100" cy="100" r="86"/></clipPath>
+  </defs>
+
+  <!-- medalhao: fundo, aro verde-quadro e anel pontilhado (familia da vagoneta) -->
+  <circle cx="100" cy="100" r="96" fill="url(#fundo)"/>
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1"
+          stroke-dasharray="1.5 3" opacity="0.8"/>
+
+  <g clip-path="url(#dentro)">
+    <!-- feixe branco incidente -->
+    <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/>
+    <!-- trajeto dentro do vidro -->
+    <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/>
+    <!-- espectro: vermelho desvia menos (em cima), violeta mais (embaixo) -->
+    <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/>
+    <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/>
+    <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/>
+    <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/>
+    <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/>
+    <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/>
+    <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/>
+  </g>
+
+  <!-- prisma de vidro -->
+  <polygon points="100,50 56,130 144,130" fill="url(#vidro)" stroke="#DDEBF3"
+           stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- bancada: traco azul-aco sob o prisma -->
+  <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- brilhos discretos -->
+  <g fill="#FFFFFF" opacity="0.55">
+    <circle cx="46" cy="62" r="1.2"/>
+    <circle cx="150" cy="56" r="1"/>
+    <circle cx="70" cy="160" r="1"/>
+    <circle cx="140" cy="164" r="1.2"/>
+  </g>
+</svg>
+
+  </div>
+  <div class="lme-refs-label">Bibliografia Básica</div>
+  <p class="lme-refs-item">LIMA, C. R. A.; ZAPPA, F. <em>Análise de dados para laboratório de física</em>. Juiz de Fora: UFJF, 2014. 57 p. Disponível em: https://www2.ufjf.br/carlos_lima/wp-content/uploads/sites/520/2019/01/analisedados.pdf. Acesso em: 13 set. 2026.</p>
+  <p class="lme-refs-item">CAMPOS, A. A.; ALVES, E. S.; SPEZIALI, N. L. <em>Física experimental básica na universidade</em>. 2. ed. Belo Horizonte: Editora UFMG, 2008.</p>
+  <p class="lme-refs-item">SANTORO, A. et al. <em>Estimativas e erros em experimentos de física</em>. 2. ed. Rio de Janeiro: EdUERJ, 2013.</p>
+  <div class="lme-refs-label">Bibliografia Complementar</div>
+  <p class="lme-refs-item">VUOLO, J. H. <em>Fundamentos da teoria de erros</em>. 2. ed. São Paulo: Edgard Blücher, 1996.</p>
+  <p class="lme-refs-item">UNIVERSIDADE FEDERAL DO CEARÁ. <em>Laboratório virtual de física</em>: mecânica. Fortaleza: UFC, 2020. Disponível em: https://www.laboratoriovirtual.fisica.ufc.br/. Acesso em: 13 set. 2026.</p>
+  <p class="lme-refs-item">VAŠČÁK, V. <em>Physics at school</em>: I. Mechanics. Morávia: Vladimír Vaščák, [20--]. Disponível em: https://www.vascak.cz/?id=1&amp;language=it#kapitola3. Acesso em: 13 set. 2026.</p>
+  <p class="lme-refs-item">UNIVERSITY OF COLORADO BOULDER. <em>PhET Interactive Simulations</em>. Boulder: University of Colorado Boulder, 2002-. Disponível em: https://phet.colorado.edu/pt_BR/. Acesso em: 13 set. 2026.</p>
+  <div class="lme-refs-label">Bibliografia Metodológica</div>
+  <p class="lme-refs-item">BLOOM, Benjamin S. (org.). <em>Taxonomia de objetivos educacionais</em>: domínio cognitivo. Porto Alegre: Globo, 1972.</p>
+  <p class="lme-refs-item">HEWITT, Paul G. <em>Física conceitual</em>. 12. ed. Porto Alegre: Bookman, 2015.</p>
+  <p class="lme-refs-item">NICOLELIS, Miguel. <em>O verdadeiro criador de tudo</em>: como o cérebro humano esculpiu o universo como nós o conhecemos. São Paulo: Crítica, 2020.</p>
+  <p class="lme-refs-item">PIAZZI, Pierluigi. <em>Aprendendo inteligência</em>. São Paulo: Aleph, 2008.</p>
+  <p class="lme-refs-item">PIAZZI, Pierluigi. <em>Inteligência em concursos</em>. São Paulo: Aleph, 2014.</p>
+  <div class="lme-refs-label">Documentos e normas</div>
+  <p class="lme-refs-item">INSTITUTO FEDERAL DE MINAS GERAIS. Campus Ouro Preto. <em>Legislação e normas de ensino</em>. Ouro Preto: IFMG, [202-?]. Disponível em: https://ouropreto.ifmg.edu.br/ouropreto/ensino/legislacao-e-normas-de-ensino. Acesso em: 14 set. 2026.</p>
+  <p class="lme-refs-item">INSTITUTO FEDERAL DE MINAS GERAIS. Campus Ouro Preto. <em>Calendário acadêmico 2026</em>. Ouro Preto: IFMG, 2026. Disponível em: https://ouropreto.ifmg.edu.br/ouropreto/ensino/calendario-escolar/2026/. Acesso em: 14 set. 2026.</p>
+  <p class="lme-refs-item">INSTITUTO FEDERAL DE MINAS GERAIS. Campus Ouro Preto. <em>Curso de Licenciatura em Física</em>. Ouro Preto: IFMG, [202-?]. Disponível em: https://ouropreto.ifmg.edu.br/ouropreto/cursos/graduacao/licenciatura-em-fisica. Acesso em: 14 set. 2026.</p>
+  <p class="lme-refs-item">INSTITUTO FEDERAL DE MINAS GERAIS. Campus Ouro Preto. <em>Projeto Pedagógico do Curso de Licenciatura em Física</em>. Ouro Preto: IFMG, 2026. Disponível em: https://ouropreto.ifmg.edu.br/ouropreto/cursos/graduacao/licenciatura-em-fisica. Acesso em: 14 set. 2026.</p>
+  <div class="lme-refs-label">Epígrafes desta trilha</div>
+  <p class="lme-refs-item">PASCAL, Blaise. <em>Pensamentos</em>. 1670. Fragmento &ldquo;Desproporção do homem&rdquo;. Edição brasileira a fixar.</p>
+  <p class="lme-refs-item">FERMI, Enrico. <em>My observations during the explosion at Trinity on July 16, 1945</em>. Los Alamos, 1945. (usada no Roteiro de Bancada desta trilha; referência a conferir)</p>
+  <p class="lme-refs-item">EAMES, Charles; EAMES, Ray. <em>Powers of Ten</em>. Eames Office / IBM, 1977. Filme, 9 min.</p>
+  <div class="lme-aba-rodape">
+    <a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-ifmg.png" alt="IFMG — Campus Ouro Preto"></a>
+    <img class="lme-aba-selo" src="https://nidecop-jafb.github.io/lme-oa/_icones/icon-nidec.png" alt="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos">
+    <div class="lme-aba-agr"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
+  </div>
+</aside>
+
+<script>
+(function () {
+  'use strict';
+  var botoes = [].slice.call(document.querySelectorAll('.lme-aba-toggle'));
+  var paineis = {};
+  botoes.forEach(function (b) {
+    paineis[b.dataset.aba] = document.getElementById('lme-painel-' + b.dataset.aba);
+  });
+  function fechar() {
+    botoes.forEach(function (b) { b.classList.remove('ativa'); });
+    Object.keys(paineis).forEach(function (k) {
+      var p = paineis[k];
+      if (p) { p.classList.remove('open'); p.hidden = true; }
+    });
+  }
+  botoes.forEach(function (b) {
+    b.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var p = paineis[b.dataset.aba];
+      var aberto = p && p.classList.contains('open');
+      fechar();
+      /* Uma aberta por vez; clicar de novo na mesma fecha. */
+      if (p && !aberto) { p.hidden = false; p.classList.add('open'); b.classList.add('ativa'); }
+    });
+  });
+  /* Qualquer clique fecha a aba aberta — inclusive dentro do proprio painel
+     (autor, 2026-09-14). Link do painel segue funcionando: navega e a aba
+     fecha junto. O clique no botao do trilho nao chega aqui (stopPropagation). */
+  document.addEventListener('click', function () { fechar(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { fechar(); }
+  });
+})();
+</script>
+
+<!-- /ABAS-OA-LME -->
+<!-- CONTADOR:INICIO -->
+<script src="../../contador-config.js"></script>
+<script src="../../acessos.js"></script>
+<!-- CONTADOR:FIM -->
+</body>
+</html>
