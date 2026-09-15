@@ -39,28 +39,43 @@
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (!res || !res.ok) return;
-        try { sessionStorage.setItem('acessos:total:' + cfg.disciplina, res.total); }
-        catch (e) { /* sem storage, o selo so nao sobrevive a navegacao */ }
-        if (aoTotal) mostrarTotal(res.total);
+        try {
+          sessionStorage.setItem('acessos:total:' + cfg.disciplina, res.total);
+          if (res.pagina_total) sessionStorage.setItem('acessos:pag:' + cfg.disciplina + ':' + pagina, res.pagina_total);
+        } catch (e) { /* sem storage, o selo so nao sobrevive a navegacao */ }
+        if (aoTotal) mostrarTotal(res.total, res.pagina_total);
       })
       .catch(function () { /* silencio: o site nao depende do contador */ });
   }
 
-  function mostrarTotal(total) {
+  /* Selo com data-escopo="pagina" (rodape padrao dos OAs) mostra os acessos
+     DESTA pagina; sem o atributo (indice), o total do site. */
+  function porPagina() {
     var selo = document.getElementById('seloAcessos');
-    if (!selo || !total) return;
-    selo.innerHTML = '<strong style="color: var(--epi);">' + Number(total).toLocaleString('pt-BR') + ' acessos</strong>';
+    return !!(selo && selo.getAttribute('data-escopo') === 'pagina');
+  }
+
+  function mostrarTotal(total, daPagina) {
+    var selo = document.getElementById('seloAcessos');
+    if (!selo) return;
+    var n = porPagina() ? daPagina : total;
+    if (!n) return;
+    selo.textContent = Number(n).toLocaleString('pt-BR') +
+      (porPagina() ? ' acessos a esta p\u00e1gina' : ' acessos');
     selo.style.display = '';
   }
 
   function mostrarTotalGuardado() {
-    var t;
-    try { t = sessionStorage.getItem('acessos:total:' + cfg.disciplina); }
-    catch (e) { t = null; }
-    if (t) { mostrarTotal(t); return; }
-    fetch(cfg.url + '?total=1&disciplina=' + encodeURIComponent(cfg.disciplina))
+    var t, tp;
+    try {
+      t = sessionStorage.getItem('acessos:total:' + cfg.disciplina);
+      tp = sessionStorage.getItem('acessos:pag:' + cfg.disciplina + ':' + pagina);
+    } catch (e) { t = null; tp = null; }
+    if (porPagina() ? tp : t) { mostrarTotal(t, tp); return; }
+    fetch(cfg.url + '?total=1&disciplina=' + encodeURIComponent(cfg.disciplina) +
+          '&pagina=' + encodeURIComponent(pagina))
       .then(function (r) { return r.json(); })
-      .then(function (res) { if (res && res.ok) mostrarTotal(res.total); })
+      .then(function (res) { if (res && res.ok) mostrarTotal(res.total, res.pagina_total); })
       .catch(function () { /* silencio */ });
   }
 

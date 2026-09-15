@@ -71,6 +71,20 @@
 .desp-frase > .lme-agr-marca svg { width: 28px; height: 28px; }
 @media print { .lme-agr-marca { display: none !important; } }
 .lme-inst-marcas svg { width: 30px; height: 30px; display: block; }
+/* RODAPE PADRAO (fig 2, PRE-outro-padronizacao-cabecalho-rodape-lme-2026-09-15) */
+.lme-rodape { text-align: center; padding: 22px 16px 26px; font-size: .82rem; line-height: 1.6;
+  color: var(--cinza, #8a8f98); }
+.lme-rodape .lme-inst-marcas { margin: 0 auto 10px; }
+.lme-rodape .lme-agr-marca { margin: 0 auto 10px; }
+.lme-rodape-texto { max-width: 960px; margin: 0 auto; }
+.lme-rodape-selo { margin-top: 6px; font-size: .78rem; }
+@media print { .lme-rodape-selo { display: none !important; } }
+/* CABECALHO PADRAO no RB (fig 1): codigo em verde, mensagem abaixo */
+.header h1 .trilha-code { color: #3E8E5A; }
+.lme-header-sub { font-size: .82rem; color: var(--cinza, #8a8f98); margin: 2px 0 10px; }
+.rodape-info .lme-selo-ap { margin-left: 12px; font-size: .75rem; color: var(--cinza, #8a8f98); }
+/* AP 1280x720: texto institucional numa linha so, sem invadir a frase (.7rem transbordava 88 px) */
+.despedida .desp-inst { font-size: .6rem; letter-spacing: 0; white-space: nowrap; }
 /* EXCECAO TT: capa centrada -> icones de curso e disciplina centralizados */
 .capa-marca > .lme-cab-marcas { justify-content: center; }
 /* EXCECAO AP slide 1 (1280x720): icones centralizados acima da disciplina; o nome da
@@ -84,10 +98,13 @@
 /* RB impresso */
 .header > .lme-cab-marcas svg { width: 34px; height: 34px; }
 .header > .lme-cab-marcas + .header-left { margin-right: auto; }
-.pagina > .lme-inst-marcas { margin: 6px auto 4px; }
+.pagina > .lme-rodape { padding: 6px 0 2px; font-size: .72rem; line-height: 1.4; }
+.pagina > .lme-rodape .lme-inst-marcas { margin: 0 auto 4px; }
 @media print {
   .header > .lme-cab-marcas svg { width: 24px; height: 24px; }
-  .pagina > .lme-inst-marcas svg { width: 20px; height: 20px; }
+  .pagina > .lme-rodape { padding: 2px 0 0; font-size: 6.5pt; color: #555 !important; }
+  .pagina > .lme-rodape .lme-inst-marcas svg { width: 20px; height: 20px; }
+  .lme-header-sub { font-size: 7.5pt; margin: 0 0 6px; color: #555 !important; }
 }
 /* /ICONES-LME */
 
@@ -103,8 +120,7 @@ header .marca .lme-cab-marcas svg { width: 34px; height: 34px; }
 footer .lme-inst-marcas { margin: 0 auto 8px; }
 </style>
 </head>
-<body>
-<nav class="lme-topo"><a href="../">&larr; Voltar ao &iacute;ndice das Trilhas</a></nav>
+<body data-pagina="agradecimentos">
 
 <header>
   <div class="marca"><div class="lme-cab-marcas"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física"> <title>Prisma decompondo a luz — Licenciatura em Física</title> <defs> <radialGradient id="cab-prisma-fundo" cx="50%" cy="42%" r="60%"> <stop offset="0" stop-color="#26302B"/> <stop offset="1" stop-color="#0E1411"/> </radialGradient> <linearGradient id="cab-prisma-vidro" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/> <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/> </linearGradient> <clipPath id="cab-prisma-dentro"><circle cx="100" cy="100" r="86"/></clipPath> </defs> <circle cx="100" cy="100" r="96" fill="url(#cab-prisma-fundo)"/> <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/> <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1" stroke-dasharray="1.5 3" opacity="0.8"/> <g clip-path="url(#cab-prisma-dentro)"> <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/> <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/> <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/> <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/> <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/> <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/> <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/> <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/> <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/> </g> <polygon points="100,50 56,130 144,130" fill="url(#cab-prisma-vidro)" stroke="#DDEBF3" stroke-width="2.5" stroke-linejoin="round"/> <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/> <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/> <g fill="#FFFFFF" opacity="0.55"> <circle cx="46" cy="62" r="1.2"/> <circle cx="150" cy="56" r="1"/> <circle cx="70" cy="160" r="1"/> <circle cx="140" cy="164" r="1.2"/> </g> </svg><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica"> <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none"> <line x1="36" y1="10" x2="84" y2="10"/> <line x1="60" y1="10" x2="81.9" y2="70.1"/> </g> <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/> <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/> <circle cx="60" cy="10" r="4" fill="#3E8E5A"/> <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/> <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square"> <line x1="26" y1="110" x2="94" y2="110"/> <line x1="30" y1="110" x2="30" y2="104"/> <line x1="40" y1="110" x2="40" y2="104"/> <line x1="50" y1="110" x2="50" y2="104"/> <line x1="60" y1="110" x2="60" y2="98"/> <line x1="70" y1="110" x2="70" y2="104"/> <line x1="80" y1="110" x2="80" y2="104"/> <line x1="90" y1="110" x2="90" y2="104"/> </g> </svg></div>Trilhas de Aprendizagem &middot; Laborat&oacute;rio de Mec&acirc;nica &middot; Licenciatura em F&iacute;sica &middot; IFMG campus Ouro Preto</div>
@@ -191,5 +207,9 @@ footer .lme-inst-marcas { margin: 0 auto 8px; }
 IFMG campus Ouro Preto - Coordenadoria da &Aacute;rea de F&iacute;sica (CODAFIS) - N&uacute;cleo de Inova&ccedil;&atilde;o e Desenvolvimento de Experimentos Cient&iacute;ficos (NIDEC) &middot; Primeira edi&ccedil;&atilde;o &middot; 2026
 </footer>
 
+<!-- CONTADOR:INICIO -->
+<script src="../contador-config.js"></script>
+<script src="../acessos.js"></script>
+<!-- CONTADOR:FIM -->
 </body>
 </html>
