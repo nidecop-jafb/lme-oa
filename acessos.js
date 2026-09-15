@@ -60,8 +60,8 @@
     if (!selo) return;
     var n = porPagina() ? daPagina : total;
     if (!n) return;
-    selo.textContent = Number(n).toLocaleString('pt-BR') +
-      (porPagina() ? ' acessos a esta p\u00e1gina' : ' acessos');
+    selo.textContent = Number(n).toLocaleString('pt-BR') + (Number(n) === 1 ? ' acesso' : ' acessos') +
+      (porPagina() ? ' a esta p\u00e1gina' : '');
     selo.style.display = '';
   }
 
