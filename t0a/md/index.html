@@ -158,6 +158,44 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
   .pagina > .lme-rodape .lme-inst-marcas svg { width: 20px; height: 20px; }
   .lme-header-sub { font-size: 7.5pt; margin: 0 0 6px; color: #555 !important; }
 }
+/* AP · DESPEDIDA EM UMA COLUNA (regra 7 do CLAUDE.md da LME, autor 2026-09-15).
+   Ordem: frase -> Provinha/RM -> proxima aula -> fecho -> IFMG+NIDEC -> Agradecimentos
+   -> texto institucional; tudo centrado e ancorado na base (abaixo do pescoco).
+   Cores por papel, so com variaveis do deck (valem no tema claro e no escuro):
+   frase = azul-aco (--ouro) · chamada = texto · "proxima aula" = cinza ·
+   trilha seguinte = verde-quadro (--azul) · fecho = branco · institucional = cinza. */
+.despedida { justify-content: flex-end; }
+.despedida .desp-body.desp-coluna {
+  display: flex !important; flex-direction: column; align-items: center; text-align: center;
+  gap: 9px; max-width: 1100px; width: 100%; margin: 0 auto; padding-bottom: 4px; }
+.despedida .desp-coluna > * { grid-column: auto !important; grid-row: auto !important; margin: 0; }
+.despedida .desp-coluna .desp-sofia { font-family: var(--serif); font-style: italic;
+  font-size: 1.15rem; line-height: 1.35; color: var(--ouro) !important; }
+.despedida .desp-coluna .desp-antes { font-size: .95rem; font-weight: 700; color: var(--texto);
+  padding: 2px 14px; border-left: 3px solid var(--azul); border-right: 3px solid var(--azul); }
+.despedida .desp-coluna .desp-proxima { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.despedida .desp-coluna .desp-acao { font-size: .95rem; line-height: 1.35; color: var(--cinza); }
+.despedida .desp-coluna .desp-tarefa { background: none; padding: 0; font-size: 1.05rem;
+  letter-spacing: 0; text-transform: none; font-weight: 800; color: var(--azul); }
+.despedida .desp-coluna .desp-frase { display: flex; flex-direction: column; align-items: center;
+  font-family: var(--serif); font-weight: 700; font-size: 1.2rem; line-height: 1.3;
+  color: var(--branco); margin-top: 4px; width: 100%; align-self: stretch; padding: 0 !important; }
+.despedida .desp-coluna .desp-frase > .lme-inst-marcas { order: 1; width: 100%; justify-content: center;
+  margin: 8px 0 4px; padding-top: 8px; border-top: 1px solid var(--cinza-borda);
+  max-width: 360px; align-self: center; }
+.despedida .desp-coluna .desp-frase > .lme-agr-marca { order: 2; width: 100%; justify-content: center; margin: 0; }
+.despedida .desp-coluna .desp-inst { position: static !important; white-space: normal !important;
+  font-size: .72rem !important; line-height: 1.45; letter-spacing: 0; max-width: 900px;
+  margin-top: 2px; color: var(--cinza); }
+/* com foto ao fundo (.desp-bg, sempre escurecida) o texto fica CLARO nos dois temas:
+   no tema claro as variaveis viram tinta escura e sumiriam sobre a foto */
+.despedida:has(.desp-bg) .desp-coluna .desp-sofia { color: oklch(0.82 0.08 240) !important; }
+.despedida:has(.desp-bg) .desp-coluna .desp-antes,
+.despedida:has(.desp-bg) .desp-coluna .desp-frase { color: oklch(0.97 0 0); }
+.despedida:has(.desp-bg) .desp-coluna .desp-acao,
+.despedida:has(.desp-bg) .desp-coluna .desp-inst { color: oklch(0.86 0 0); }
+.despedida:has(.desp-bg) .desp-coluna .desp-tarefa { color: oklch(0.78 0.11 152); }
+.despedida:has(.desp-bg) .desp-coluna .desp-frase > .lme-inst-marcas { border-top-color: oklch(0.70 0 0 / .5); }
 /* /ICONES-LME */
 </style>
 </head>
