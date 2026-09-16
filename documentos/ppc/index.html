@@ -84,18 +84,111 @@ pre { background: #f6f6f6; border-color: #999; }
 table, pre, figure { page-break-inside: avoid; }
 .rodape { color: #444; }
 }
+/* ICONES-LME */
+.lme-cab-marcas { display: flex; gap: 10px; align-items: center; justify-content: flex-start;
+  flex-shrink: 0; }
+.lme-cab-marcas svg { width: 52px; height: 52px; display: block; }
+.lme-inst-marcas { display: flex; gap: 14px; align-items: center; justify-content: center;
+  width: 100%; margin: 0 auto 12px; }
+.lme-inst-marcas a { display: flex; }
+.lme-agr-marca { display: flex; justify-content: center; width: 100%; margin: 0 auto 8px; }
+.lme-agr-marca a { display: flex; }
+.lme-agr-marca svg { width: 30px; height: 30px; display: block; }
+/* com o icone de Agradecimentos abaixo, o bloco fica mais justo para nao
+   invadir a linha institucional do slide (medido a 1280x720) */
+.desp-frase > .lme-agr-marca { margin: 0 auto 8px; }
+.desp-frase > .lme-agr-marca svg { width: 28px; height: 28px; }
+@media print { .lme-agr-marca { display: none !important; } }
+.lme-inst-marcas svg { width: 30px; height: 30px; display: block; }
+/* RODAPE PADRAO (fig 2, PRE-outro-padronizacao-cabecalho-rodape-lme-2026-09-15) */
+.lme-rodape { text-align: center; padding: 22px 16px 26px; font-size: .82rem; line-height: 1.6;
+  color: var(--cinza, #8a8f98); }
+.lme-rodape .lme-inst-marcas { margin: 0 auto 10px; }
+.lme-rodape .lme-agr-marca { margin: 0 auto 10px; }
+.lme-rodape-texto { max-width: 960px; margin: 0 auto; }
+.lme-rodape-selo { margin-top: 6px; font-size: .78rem; }
+@media print { .lme-rodape-selo { display: none !important; } }
+/* CABECALHO PADRAO no RB (fig 1): codigo em verde, mensagem abaixo */
+.header h1 .trilha-code { color: #3E8E5A; }
+.lme-header-sub { font-size: .82rem; color: var(--cinza, #8a8f98); margin: 2px 0 10px; }
+.rodape-info .lme-selo-ap { margin-left: 12px; font-size: .75rem; color: var(--cinza, #8a8f98); }
+/* AP 1280x720: texto institucional numa linha so, sem invadir a frase (.7rem transbordava 88 px) */
+.despedida .desp-inst { font-size: .6rem; letter-spacing: 0; white-space: nowrap; }
+/* EXCECAO TT: capa centrada -> icones de curso e disciplina centralizados */
+.capa-marca > .lme-cab-marcas { justify-content: center; }
+/* EXCECAO AP slide 1 (1280x720): icones centralizados acima da disciplina; o nome da
+   disciplina numa linha so, para o slide caber (antes quebrava em 2 e passava 12 px) */
+.capa-conteudo > .lme-cab-marcas { justify-content: center; margin: 0 0 14px; }
+.capa-conteudo > .lme-cab-marcas svg { width: 56px; height: 56px; }
+.capa-slide .capa-disciplina { white-space: nowrap; font-size: 1.85rem; }
+/* AP slide 13 (Despedida): IFMG + NIDEC legiveis e com folga acima da frase */
+.desp-frase > .lme-inst-marcas { justify-content: center; margin: 0 0 6px; }
+.desp-frase > .lme-inst-marcas svg { width: 32px; height: 32px; }
+/* RB impresso */
+.header > .lme-cab-marcas svg { width: 34px; height: 34px; }
+.header > .lme-cab-marcas + .header-left { margin-right: auto; }
+.pagina > .lme-rodape { padding: 6px 0 2px; font-size: .72rem; line-height: 1.4; }
+.pagina > .lme-rodape .lme-inst-marcas { margin: 0 auto 4px; }
+@media print {
+  .header > .lme-cab-marcas svg { width: 24px; height: 24px; }
+  .pagina > .lme-rodape { padding: 2px 0 0; font-size: 6.5pt; color: #555 !important; }
+  .pagina > .lme-rodape .lme-inst-marcas svg { width: 20px; height: 20px; }
+  .lme-header-sub { font-size: 7.5pt; margin: 0 0 6px; color: #555 !important; }
+}
+/* AP · DESPEDIDA EM UMA COLUNA (regra 7 do CLAUDE.md da LME, autor 2026-09-15).
+   Ordem: frase -> Provinha/RM -> proxima aula -> fecho -> IFMG+NIDEC -> Agradecimentos
+   -> texto institucional; tudo centrado e ancorado na base (abaixo do pescoco).
+   Cores por papel, so com variaveis do deck (valem no tema claro e no escuro):
+   frase = azul-aco (--ouro) · chamada = texto · "proxima aula" = cinza ·
+   trilha seguinte = verde-quadro (--azul) · fecho = branco · institucional = cinza. */
+.despedida { justify-content: flex-end; }
+.despedida .desp-body.desp-coluna {
+  display: flex !important; flex-direction: column; align-items: center; text-align: center;
+  gap: 9px; max-width: 1100px; width: 100%; margin: 0 auto; padding-bottom: 4px; }
+.despedida .desp-coluna > * { grid-column: auto !important; grid-row: auto !important; margin: 0; }
+.despedida .desp-coluna .desp-sofia { font-family: var(--serif); font-style: italic;
+  font-size: 1.15rem; line-height: 1.35; color: var(--ouro) !important; }
+.despedida .desp-coluna .desp-antes { font-size: .95rem; font-weight: 700; color: var(--texto);
+  padding: 2px 14px; border-left: 3px solid var(--azul); border-right: 3px solid var(--azul); }
+.despedida .desp-coluna .desp-proxima { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.despedida .desp-coluna .desp-acao { font-size: .95rem; line-height: 1.35; color: var(--cinza); }
+.despedida .desp-coluna .desp-tarefa { background: none; padding: 0; font-size: 1.05rem;
+  letter-spacing: 0; text-transform: none; font-weight: 800; color: var(--azul); }
+.despedida .desp-coluna .desp-frase { display: flex; flex-direction: column; align-items: center;
+  font-family: var(--serif); font-weight: 700; font-size: 1.2rem; line-height: 1.3;
+  color: var(--branco); margin-top: 4px; width: 100%; align-self: stretch; padding: 0 !important; }
+.despedida .desp-coluna .desp-frase > .lme-inst-marcas { order: 1; width: 100%; justify-content: center;
+  margin: 8px 0 4px; padding-top: 8px; border-top: 1px solid var(--cinza-borda);
+  max-width: 360px; align-self: center; }
+.despedida .desp-coluna .desp-frase > .lme-agr-marca { order: 2; width: 100%; justify-content: center; margin: 0; }
+.despedida .desp-coluna .desp-inst { position: static !important; white-space: normal !important;
+  font-size: .72rem !important; line-height: 1.45; letter-spacing: 0; max-width: 900px;
+  margin-top: 2px; color: var(--cinza); }
+/* com foto ao fundo (.desp-bg, sempre escurecida) o texto fica CLARO nos dois temas:
+   no tema claro as variaveis viram tinta escura e sumiriam sobre a foto */
+.despedida:has(.desp-bg) .desp-coluna .desp-sofia { color: oklch(0.82 0.08 240) !important; }
+.despedida:has(.desp-bg) .desp-coluna .desp-antes,
+.despedida:has(.desp-bg) .desp-coluna .desp-frase { color: oklch(0.97 0 0); }
+.despedida:has(.desp-bg) .desp-coluna .desp-acao,
+.despedida:has(.desp-bg) .desp-coluna .desp-inst { color: oklch(0.86 0 0); }
+.despedida:has(.desp-bg) .desp-coluna .desp-tarefa { color: oklch(0.78 0.11 152); }
+.despedida:has(.desp-bg) .desp-coluna .desp-frase > .lme-inst-marcas { border-top-color: oklch(0.70 0 0 / .5); }
+
+/* PAGINAS FIXAS: cabecalho e rodape padrao */
+.capa > .lme-cab-marcas, .wrap > .lme-cab-marcas.lme-centro { justify-content: center; }
+.wrap > .lme-cab-marcas, header > .lme-cab-marcas { margin-bottom: 14px; }
+.lme-rodape { border-top: 1px solid var(--fio, #333); margin-top: 40px; }
+.lme-rodape a { color: inherit; }
+/* /ICONES-LME */
 </style>
 </head>
-<body>
+<body data-pagina="documentos:ppc">
 <div class="wrap">
 
 
 
 <div class="capa">
-<p>
-<img role="img" aria-label src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLQogIGljb25lLWxpY2VuY2lhdHVyYS1maXNpY2Euc3ZnCiAgSWNvbmUgZG8gY3Vyc28gZGUgTGljZW5jaWF0dXJhIGVtIEZpc2ljYSDigJQgSUZNRyBDYW1wdXMgT3VybyBQcmV0by4KCiAgQnJpZWZpbmc6IF9wbGFuZWphbWVudG8vX3ByZS9QUkUtaWRlbnRpZGFkZS12aXN1YWwtaWxiLTIwMjYtMDktMDcubWQsIGFwcm92YWRvIDIwMjYtMDktMDguCiAgRGVjaXNhbyAxMDogbyBJQ09ORSBETyBDVVJTTyBlIHBlY2EgZGlzdGludGEgZGEgTUFSQ0EgREEgRElTQ0lQTElOQS4gQSBtYXJjYSAoYXRvbW8gZGUgdHJlcwogIGVsaXBzZXMgc29icmUgcmVndWEgZ3JhZHVhZGEpIGlkZW50aWZpY2EgYSBJTEI7IGVzdGUgaWNvbmUgaWRlbnRpZmljYSBhIExpY2VuY2lhdHVyYSwgZSB2YWxlCiAgcGFyYSB0b2RhcyBhcyBkaXNjaXBsaW5hcyBkbyBjdXJzbyAoZGVjaXNhbyA3KS4KCiAgRGVyaXZhZG8gZGEgbWFyY2EgKGRlY2lzYW8gNCk6IG1hbnRlbSBvIGF0b21vIGUgYSByZWd1YSwgZW0gY29tcG9zaWNhbyBxdWFkcmFkYSwgZmVjaGFkYSBwb3IKICBtb2xkdXJhIOKAlCBmb3JtYXRvIHF1ZSBmdW5jaW9uYSBjb21vIGljb25lIGRlIGFwbGljYXRpdm8gKFBXQSAxOTIgZSA1MTIgcHgpIGUgY29tbyBzZWxvIGVtCiAgZG9jdW1lbnRvLgoKICBDb3JlczogdmVyZGUtcXVhZHJvICMzRThFNUEgKHByaW1hcmlhIGRhIExpY2VuY2lhdHVyYSkgZSBhenVsLWFjbyAjN0ZCMkQ2IChhY2VudG8pLgogIE5hIGNhcGEgZG8gbGl2cmV0byBlbSBMYVRlWCBvIGljb25lIGVudHJhIGVtIHZlcnNhbyBtb25vY3JvbWF0aWNhIOKAlCBvIG1pb2xvIGltcHJlc3NvIHNlZ3VlCiAgbyBhenVsIGluc3RpdHVjaW9uYWwgZG8gSUZNRyAoZGVjaXNhbyA5KS4KLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiCiAgICAgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJMaWNlbmNpYXR1cmEgZW0gRsOtc2ljYSDigJQgSUZNRyBDYW1wdXMgT3VybyBQcmV0byI+CiAgPHRpdGxlPkxpY2VuY2lhdHVyYSBlbSBGw61zaWNhIOKAlCBJRk1HIENhbXB1cyBPdXJvIFByZXRvPC90aXRsZT4KCiAgPCEtLSBmdW5kbzogcXVhZHJvLW5lZ3JvIGVzY29sYXIsIGRlIG9uZGUgdmVtIG8gdmVyZGUgLS0+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI3MiIgZmlsbD0iIzE0MjUxQyIvPgogIDxyZWN0IHg9IjE4IiB5PSIxOCIgd2lkdGg9IjQ3NiIgaGVpZ2h0PSI0NzYiIHJ4PSI1NiIgZmlsbD0ibm9uZSIKICAgICAgICBzdHJva2U9IiMzRThFNUEiIHN0cm9rZS13aWR0aD0iNiIgb3BhY2l0eT0iMC41NSIvPgoKICA8IS0tIGF0b21vOiB0cmVzIG9yYml0YXMgLS0+CiAgPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjM0U4RTVBIiBzdHJva2Utd2lkdGg9IjEzIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgPGVsbGlwc2UgY3g9IjI1NiIgY3k9IjIyMiIgcng9IjE3NiIgcnk9IjY5Ii8+CiAgICA8ZWxsaXBzZSBjeD0iMjU2IiBjeT0iMjIyIiByeD0iMTc2IiByeT0iNjkiIHRyYW5zZm9ybT0icm90YXRlKDYwIDI1NiAyMjIpIi8+CiAgICA8ZWxsaXBzZSBjeD0iMjU2IiBjeT0iMjIyIiByeD0iMTc2IiByeT0iNjkiIHRyYW5zZm9ybT0icm90YXRlKDEyMCAyNTYgMjIyKSIvPgogIDwvZz4KCiAgPCEtLSBudWNsZW86IGNsdXN0ZXIgY29tcGFjdG8gZGUgdHJlcyBwYXJ0aWN1bGFzLCBzb2JyZXBvc3RhcyAtLT4KICA8ZyBmaWxsPSIjM0U4RTVBIj4KICAgIDxjaXJjbGUgY3g9IjIzOCIgY3k9IjIxMSIgcj0iMzAiLz4KICAgIDxjaXJjbGUgY3g9IjI3NCIgY3k9IjIxMSIgcj0iMzAiLz4KICAgIDxjaXJjbGUgY3g9IjI1NiIgY3k9IjI0MCIgcj0iMzAiLz4KICA8L2c+CgogIDwhLS0gcmVndWEgZ3JhZHVhZGE6IGEgZGlzY2lwbGluYSBlIHNvYnJlIG1lZGlyIC0tPgogIDxnIHN0cm9rZT0iIzdGQjJENiIgc3Ryb2tlLXdpZHRoPSIxMyIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSI+CiAgICA8bGluZSB4MT0iODYiIHkxPSI0MzAiIHgyPSI0MjYiIHkyPSI0MzAiLz4KICAgIDxsaW5lIHgxPSIxMDYiIHkxPSI0MzAiIHgyPSIxMDYiIHkyPSI0MDAiLz4KICAgIDxsaW5lIHgxPSIxNTYiIHkxPSI0MzAiIHgyPSIxNTYiIHkyPSI0MDAiLz4KICAgIDxsaW5lIHgxPSIyMDYiIHkxPSI0MzAiIHgyPSIyMDYiIHkyPSI0MDAiLz4KICAgIDxsaW5lIHgxPSIyNTYiIHkxPSI0MzAiIHgyPSIyNTYiIHkyPSIzNzIiLz4KICAgIDxsaW5lIHgxPSIzMDYiIHkxPSI0MzAiIHgyPSIzMDYiIHkyPSI0MDAiLz4KICAgIDxsaW5lIHgxPSIzNTYiIHkxPSI0MzAiIHgyPSIzNTYiIHkyPSI0MDAiLz4KICAgIDxsaW5lIHgxPSI0MDYiIHkxPSI0MzAiIHgyPSI0MDYiIHkyPSI0MDAiLz4KICA8L2c+Cjwvc3ZnPgo=" alt style="width:120px;max-width:120px;border:none;margin:0 auto 18px">
-</p>
-<p>
+<div class="lme-cab-marcas"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física"> <title>Prisma decompondo a luz — Licenciatura em Física</title> <defs> <radialGradient id="cab-prisma-fundo" cx="50%" cy="42%" r="60%"> <stop offset="0" stop-color="#26302B"/> <stop offset="1" stop-color="#0E1411"/> </radialGradient> <linearGradient id="cab-prisma-vidro" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/> <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/> </linearGradient> <clipPath id="cab-prisma-dentro"><circle cx="100" cy="100" r="86"/></clipPath> </defs> <circle cx="100" cy="100" r="96" fill="url(#cab-prisma-fundo)"/> <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/> <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1" stroke-dasharray="1.5 3" opacity="0.8"/> <g clip-path="url(#cab-prisma-dentro)"> <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/> <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/> <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/> <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/> <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/> <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/> <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/> <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/> <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/> </g> <polygon points="100,50 56,130 144,130" fill="url(#cab-prisma-vidro)" stroke="#DDEBF3" stroke-width="2.5" stroke-linejoin="round"/> <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/> <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/> <g fill="#FFFFFF" opacity="0.55"> <circle cx="46" cy="62" r="1.2"/> <circle cx="150" cy="56" r="1"/> <circle cx="70" cy="160" r="1"/> <circle cx="140" cy="164" r="1.2"/> </g> </svg><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica"> <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none"> <line x1="36" y1="10" x2="84" y2="10"/> <line x1="60" y1="10" x2="81.9" y2="70.1"/> </g> <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/> <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/> <circle cx="60" cy="10" r="4" fill="#3E8E5A"/> <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/> <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square"> <line x1="26" y1="110" x2="94" y2="110"/> <line x1="30" y1="110" x2="30" y2="104"/> <line x1="40" y1="110" x2="40" y2="104"/> <line x1="50" y1="110" x2="50" y2="104"/> <line x1="60" y1="110" x2="60" y2="98"/> <line x1="70" y1="110" x2="70" y2="104"/> <line x1="80" y1="110" x2="80" y2="104"/> <line x1="90" y1="110" x2="90" y2="104"/> </g> </svg></div><p>
 <strong>Licenciatura em Física · Laboratório de Mecânica</strong>
 </p>
 <p>
@@ -587,10 +680,12 @@ PDF.</em></p>
   <a class="destaque" href="../../">Voltar ao índice das Trilhas</a>
 </div>
 
-<div class="rodape">
-  IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) · Primeira edição · 2026
-</div>
+<!-- RODAPE-LME:INICIO --><div class="lme-rodape"><div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div><div class="lme-rodape-texto">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; Primeira edição &middot; 2026</div><div class="lme-rodape-selo"><span id="seloAcessos" data-escopo="pagina" style="display:none;"></span></div></div><!-- RODAPE-LME:FIM -->
 
 </div>
+<!-- CONTADOR:INICIO -->
+<script src="../../contador-config.js"></script>
+<script src="../../acessos.js"></script>
+<!-- CONTADOR:FIM -->
 </body>
 </html>
