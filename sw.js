@@ -13,7 +13,7 @@
  * ficavam ali para sempre e voltavam a ser servidas em qualquer falha
  * de rede. Foi o bug de 2026-09-14: a pagina abria com as 7 abas novas
  * e, num tropeco de rede, voltava para a copia velha de 6. */
-var CACHE = 'lme-oa-20260916-225137';
+var CACHE = 'lme-oa-20260917-102635';
 
 self.addEventListener('install', function (e) {
   self.skipWaiting();
