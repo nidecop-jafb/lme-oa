@@ -13,7 +13,7 @@
  * ficavam ali para sempre e voltavam a ser servidas em qualquer falha
  * de rede. Foi o bug de 2026-09-14: a pagina abria com as 7 abas novas
  * e, num tropeco de rede, voltava para a copia velha de 6. */
-var CACHE = 'lme-oa-20260916-173104';
+var CACHE = 'lme-oa-20260916-225137';
 
 self.addEventListener('install', function (e) {
   self.skipWaiting();
@@ -32,8 +32,16 @@ self.addEventListener('activate', function (e) {
 
 self.addEventListener('fetch', function (e) {
   if (e.request.method !== 'GET') { return; }
+  // O GitHub Pages manda Cache-Control: max-age=600 no HTML: um fetch()
+  // "normal" dentro dos 10 min devolve a copia do CACHE DO NAVEGADOR, sem
+  // nunca chegar na rede — quebrando a promessa acima ("nunca serve pagina
+  // velha"). Descoberto 2026-09-16 (mesmo defeito reportado na ILB) com o
+  // app instalado mostrando o site de antes do ultimo push. Corrige-se com
+  // um parametro de URL sempre novo: o navegador so tem cache por URL
+  // exata, entao isso forca ida a rede.
+  var furar = e.request.url + (e.request.url.indexOf('?') < 0 ? '?' : '&') + '_sw=' + Date.now();
   e.respondWith(
-    fetch(e.request).then(function (resp) {
+    fetch(furar, { cache: 'no-store' }).then(function (resp) {
       /* So entra no cache resposta boa e do proprio site: guardar um 404 ou um
          502 faria o modo offline servir a pagina de erro para sempre. */
       if (resp && resp.ok && resp.type === 'basic') {
