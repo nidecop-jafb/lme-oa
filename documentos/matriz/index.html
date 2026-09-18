@@ -274,6 +274,7 @@ h1, h2, h3, .acoes a, .rodape, #TOC a { font-family: var(--mono); }
     .acoes a { background: none; }
   }
 
+
   /* ===== navegacao: barra fixa, painel do Sumario e cartao do contador =====
      (autor, 2026-09-17, briefing PRE-site-navegacao-paginas-documentos) */
   .doc-barra {
@@ -286,8 +287,18 @@ h1, h2, h3, .acoes a, .rodape, #TOC a { font-family: var(--mono); }
     max-width: 780px; margin: 0 auto; padding: 8px 20px;
     display: flex; align-items: center; gap: 12px;
   }
-  .doc-barra-marca { display: flex; gap: 6px; flex: 0 0 auto; }
-  .doc-barra-marca svg { width: 26px; height: 26px; display: block; }
+  .doc-barra-marca { display: flex; gap: 6px; flex: 0 0 auto; align-items: center; }
+  /* as marcas podem vir embrulhadas num <p> (capa do Projeto Executivo, onde o
+     pandoc junta as duas imagens num paragrafo so): sem isto elas empilham na
+     barra em vez de ficarem lado a lado (autor, 2026-09-17) */
+  .doc-barra-marca > p, .doc-barra-marca > div, .doc-barra-marca > span {
+    display: flex; gap: 6px; align-items: center; margin: 0; padding: 0;
+    max-width: none; flex: 0 0 auto;
+  }
+  /* marcas um pouco maiores na barra (autor, 2026-09-17) */
+  .doc-barra-marca svg, .doc-barra-marca img {
+    width: 32px; height: 32px; display: block; flex: 0 0 auto;
+  }
   .doc-barra-nome {
     flex: 1 1 auto; min-width: 0; color: var(--cor); font-size: .82rem;
     letter-spacing: .04em; text-transform: uppercase;
@@ -334,6 +345,7 @@ h1, h2, h3, .acoes a, .rodape, #TOC a { font-family: var(--mono); }
     .doc-bt span { display: none; }              /* no celular, so os icones */
     .doc-bt { padding: 7px 9px; }
     .doc-barra-nome { font-size: .72rem; }
+    .doc-barra-marca svg, .doc-barra-marca img { width: 30px; height: 30px; }
     .doc-toc-painel { padding: 0 14px 14px; }
     h1 { scroll-margin-top: 56px; }
   }
@@ -363,11 +375,18 @@ h1, h2, h3, .acoes a, .rodape, #TOC a { font-family: var(--mono); }
   }
 
   function barra() {
-    var capa = document.querySelector('.capa');
+    // `.capa` nas paginas de documento e no Projeto Executivo; `[data-barra]` em
+    // paginas com cabecalho proprio, como a de instalar o site
+    var capa = document.querySelector('.capa, [data-barra]');
     if (!capa) { return; }
 
-    var nome = capa.querySelector('p:nth-of-type(2) strong');
-    var marcas = capa.querySelector('[class$="-cab-marcas"]');
+    // `.capa-doc` e `.capa-marcas`: capa do Projeto Executivo da ILB, que nao usa
+    // os mesmos ganchos das paginas de documento
+    var nome = capa.querySelector('p:nth-of-type(2) strong, .capa-doc');
+    var rotulo = capa.getAttribute('data-barra-nome');
+    // as marcas podem estar fora da ancora (pagina de instalar: cabecalho proprio)
+    var marcas = capa.querySelector('[class$="-cab-marcas"], .capa-marcas')
+               || document.querySelector('[class$="-cab-marcas"], .capa-marcas');
     var toc = document.querySelector('#TOC ul');
 
     var el = document.createElement('div');
@@ -384,7 +403,7 @@ h1, h2, h3, .acoes a, .rodape, #TOC a { font-family: var(--mono); }
 
     var tit = document.createElement('span');
     tit.className = 'doc-barra-nome';
-    tit.textContent = nome ? nome.textContent : (document.title || '');
+    tit.textContent = rotulo || (nome ? nome.textContent : (document.title || ''));
     linha.appendChild(tit);
 
     var acoes = document.createElement('nav');
@@ -413,13 +432,18 @@ h1, h2, h3, .acoes a, .rodape, #TOC a { font-family: var(--mono); }
       acoes.appendChild(bt);
     }
 
-    // os dois "voltar" ja existem no bloco de acoes do fim da pagina
+    // os dois "voltar" ja existem no fim da pagina: no bloco `.acoes` das paginas de
+    // documento, ou como links soltos em paginas de cabecalho proprio
     var links = document.querySelectorAll('.acoes a');
+    if (!links.length) { links = document.querySelectorAll('.wrap a'); }
+    var temDocs = false, temCasa = false;
     for (var i = 0; i < links.length; i++) {
       var a = links[i], txt = (a.textContent || '').trim();
-      if (txt.indexOf('Todos os documentos') === 0) {
+      if (/^(Todos os documentos|Os documentos)/.test(txt) && !temDocs) {
+        temDocs = true;
         var d = botao('a', IC.docs, 'Documentos'); d.href = a.getAttribute('href'); acoes.appendChild(d);
-      } else if (txt.indexOf('Voltar ao índice') === 0) {
+      } else if (/voltar/i.test(txt) && !temCasa) {
+        temCasa = true;
         var c = botao('a', IC.casa, 'Trilhas'); c.href = a.getAttribute('href'); acoes.appendChild(c);
       }
     }
