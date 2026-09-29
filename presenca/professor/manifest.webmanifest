@@ -1,0 +1,21 @@
+{
+  "name": "Chamada — Professor · LME",
+  "short_name": "Chamada LME",
+  "start_url": "/lme-oa/presenca/professor/",
+  "scope": "/lme-oa/presenca/professor/",
+  "display": "standalone",
+  "background_color": "#131110",
+  "theme_color": "#131110",
+  "icons": [
+    {
+      "src": "/lme-oa/_icones/app-professor-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/lme-oa/_icones/app-professor-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
