@@ -491,6 +491,11 @@ function fecharChamada() {
 }
 
 (function () {
+  /* 1.o acesso pelo instalador do pen drive: #chave=... (o fragmento nao vai ao servidor); limpa o endereco */
+  var hc = (location.hash.match(/[#&]chave=([^&]+)/) || [])[1];
+  if (hc) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    try { chave = decodeURIComponent(hc).trim(); } catch (e) { chave = null; }
+    if (chave) { consultarAdmin(true); return; } }
   var c = null;
   /* mesma chave da ILB e mesma origem (github.io): reaproveita a ja salva */
   try { c = localStorage.getItem(CHAVE_KEY) || localStorage.getItem('ifmg_ilb_presenca_chave'); } catch (e) {}
