@@ -56,8 +56,11 @@
 #abaSiteT { top: 56px; }
 #abaMetodoT { top: 120px; }
 #abaMusicaT { top: 208px; }
-#abaDocumentosT { top: 296px; }
-#abaCreditosT { top: 432px; }
+#abaEtapa1T { top: 296px; }
+#abaEtapa2T { top: 396px; }
+#abaEtapa3T { top: 496px; }
+#abaDocumentosT { top: 596px; }
+#abaCreditosT { top: 732px; }
 .aba-painel { position: fixed; top: 0; left: 0; z-index: 997; width: 380px; max-width: 88vw; height: 100vh; overflow-y: auto; background: #1a1b1f; border-right: 1px solid #444; padding: 24px 22px 24px 42px; transform: translateX(-100%); transition: transform .25s; font-size: .92rem; color: #c4c4c4; line-height: 1.6; }
 .aba-painel.open { transform: translateX(0); }
 .aba-painel h3 { font-family: 'Courier New', monospace; font-size: .8rem; text-transform: uppercase; letter-spacing: 2px; color: #3E8E5A; border-bottom: 1px solid #444; padding-bottom: 8px; margin-bottom: 14px; }
@@ -388,7 +391,7 @@ html[data-tema="claro"] .lme-estilo a.est-btn-2 { background: #fff; color: #1F5F
 #lmeCronoMenu { right: auto; left: 0; }
 @media print { .lme-topo, .lme-estilo { display: none !important; } }
 </style>
-<div class="lme-topo"><a class="tb" href="index.html" aria-label="Início" title="Início"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg></a><button class="tb" id="lmeLetraMenos" type="button" aria-label="Diminuir a letra" title="Diminuir a letra">A&minus;</button><button class="tb" id="lmeLetraMais" type="button" aria-label="Aumentar a letra" title="Aumentar a letra">A+</button><button class="tb" id="lmeTemaBtn" type="button" aria-label="Mudar o tema"><svg class="sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M1.5 12h2.5M20 12h2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg><svg class="lua" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button><a class="tb" href="instalar/" aria-label="Instalar" title="Instalar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 7v7"/><path d="M9 11l3 3 3-3"/><path d="M10 18h4"/></svg></a><button class="tb" id="lmeEstiloBtn" type="button" aria-controls="lmeEstilo" aria-expanded="false" aria-label="Estilo de aprendizagem" title="Estilo de aprendizagem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1.1 1.3 1.1 2.2h5c0-.9.5-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></button></div>
+<div class="lme-topo"><a class="tb" href="index.html" aria-label="Início" title="Início"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg></a><button class="tb" id="lmeLetraMenos" type="button" aria-label="Diminuir a letra" title="Diminuir a letra">A&minus;</button><button class="tb" id="lmeLetraMais" type="button" aria-label="Aumentar a letra" title="Aumentar a letra">A+</button><button class="tb" id="lmeTemaBtn" type="button" aria-label="Mudar o tema"><svg class="sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M1.5 12h2.5M20 12h2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg><svg class="lua" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></button><a class="tb" href="instalar/" aria-label="Instalar" title="Instalar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M12 7v7"/><path d="M9 11l3 3 3-3"/><path d="M10 18h4"/></svg></a><button class="tb" id="lmeEstiloBtn" type="button" aria-controls="lmeEstilo" aria-expanded="false" aria-label="Estilo de aprendizagem" title="Estilo de aprendizagem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1.1 1.3 1.1 2.2h5c0-.9.5-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></button><div class="lme-caixa"><button class="tb" id="lmeAvaBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lmeAvaMenu" aria-label="Avaliação das Etapas" title="Avaliação das Etapas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 13l2.5 2.5 4.5-5"/></svg></button><nav class="lme-menu" id="lmeAvaMenu" hidden><span class="tit">Avaliação das Etapas</span><span class="off" aria-disabled="true">Avaliação da Etapa 1 · Metrologia<small>em breve</small></span><span class="off" aria-disabled="true">Avaliação da Etapa 2 · Estática<small>em breve</small></span><span class="off" aria-disabled="true">Avaliação da Etapa 3 · Cinemática e Dinâmica<small>em breve</small></span><a href="sugestoes/">Enviar uma sugestão</a><a href="agradecimentos/">Agradecimentos</a></nav></div></div>
 <aside class="lme-estilo" id="lmeEstilo" hidden aria-label="Estilo de aprendizagem"><h3>Estilo de aprendizagem</h3><button class="fechar" id="lmeEstiloFechar" type="button" aria-label="Fechar">&times;</button>
   <p class="est-lead">Conhecer o seu estilo de aprendizagem é descobrir como você prefere receber, processar e organizar o
   que aprende — diante do modelo e diante do dado. O Índice de Estilos de Aprendizagem de Felder e Soloman olha para
@@ -526,6 +529,38 @@ html[data-tema="claro"] .lme-estilo a.est-btn-2 { background: #fff; color: #1F5F
   <p class="aba-nota">Bach, Mozart, Beethoven e Marco Antônio Araújo: playlists em preparação.</p>
 </aside>
 
+<button class="aba-toggle" id="abaEtapa1T">Etapa 1</button>
+<aside class="aba-painel" id="abaEtapa1">
+  <h3>Etapa 1 &middot; Metrologia</h3>
+  <p>As trilhas desta etapa, na ordem em que você vai fazê-las: em cada uma, um modelo da Mecânica posto à prova na bancada.</p>
+  <div class="etapa-tr"><a class="aba-btn" href="#t0a">T0A &middot; Primeiros Passos no Laboratório<em>vale nota</em></a></div>
+  <div class="etapa-tr"><a class="aba-btn" href="#t0b">T0B &middot; A Régua do Mundo<em>vale nota</em></a></div>
+  <div class="etapa-tr"><a class="aba-btn" href="#t0c">T0C &middot; A matemática da medida<em>vale nota</em></a></div>
+</aside>
+
+<button class="aba-toggle" id="abaEtapa2T">Etapa 2</button>
+<aside class="aba-painel" id="abaEtapa2">
+  <h3>Etapa 2 &middot; Estática</h3>
+  <p>As trilhas desta etapa, na ordem em que você vai fazê-las: em cada uma, um modelo da Mecânica posto à prova na bancada.</p>
+  <div class="etapa-tr"><span class="prep">T01 &middot; Como Medir as Coisas<em>em preparação</em></span></div>
+  <div class="etapa-tr"><span class="prep">T02 &middot; Lidando com a Incerteza<em>em preparação</em></span></div>
+  <div class="etapa-tr"><span class="prep">T03 &middot; Achando o Padrão na Bagunça<em>em preparação</em></span></div>
+  <div class="etapa-tr"><span class="prep">T04 &middot; Interpretando Linhas Retas<em>em preparação</em></span></div>
+  <div class="etapa-tr"><span class="prep">T05 &middot; Analisando Linhas Tortas<em>em preparação</em></span></div>
+</aside>
+
+<button class="aba-toggle" id="abaEtapa3T">Etapa 3</button>
+<aside class="aba-painel" id="abaEtapa3">
+  <h3>Etapa 3 &middot; Cinemática e Dinâmica</h3>
+  <p>As trilhas desta etapa, na ordem em que você vai fazê-las: em cada uma, um modelo da Mecânica posto à prova na bancada.</p>
+  <div class="etapa-tr"><span class="prep">T06 &middot; Leis de Newton<em>em preparação</em></span></div>
+  <div class="etapa-tr"><span class="prep">T07 &middot; Pesando, Puxando, Empurrando e Esticando<em>em preparação</em></span></div>
+  <div class="etapa-tr"><span class="prep">T08 &middot; Lixando e Voando: Atrito e Arrasto<em>em preparação</em></span></div>
+  <div class="etapa-tr"><span class="prep">T09 &middot; Subindo e Descendo em Rampas e Ladeiras<em>em preparação</em></span></div>
+  <div class="etapa-tr"><span class="prep">T10 &middot; Trombadas e Batidas<em>em preparação</em></span></div>
+  <div class="etapa-tr"><span class="prep">T11 &middot; A Física da Água Parada: Pressão e Empuxo<em>em preparação</em></span></div>
+</aside>
+
 <button class="aba-toggle" id="abaDocumentosT">Documentos</button>
 <aside class="aba-painel" id="abaDocumentos">
   <h3>Documentos</h3>
@@ -623,16 +658,28 @@ html[data-tema="claro"] .lme-estilo a.est-btn-2 { background: #fff; color: #1F5F
     <section>
       <h2 class="intro-t">Trilhas de Aprendizagem</h2>
       <p>Trilhas de Aprendizagem são percursos de estudo construídos para orientar, apoiar e avaliar a sua caminhada pelo mundo da Física.</p>
-      <p>Nas <strong>abas da lateral esquerda</strong> estão, nesta ordem: o site (endereço, QR code, projeto e ineditismo), o método de estudo, a música para estudar, os documentos do curso e da disciplina — com as referências usadas na construção do site — e os créditos.</p>
+      <p>Nas <strong>abas da lateral esquerda</strong> estão, nesta ordem: o site (endereço, QR code, projeto e ineditismo), o método de estudo, a música para estudar, as três etapas com as suas trilhas, os documentos do curso e da disciplina — com as referências usadas na construção do site — e os créditos.</p>
       <p>Escolha uma trilha e explore os objetos de aprendizagem <strong>na ordem numerada</strong>, sem pular nenhum — a ordem segue como o cérebro aprende. Se pulou, volte.</p>
       <p class="sucesso">Sucesso no seu estudo.</p>
     </section>
   </div>
 
   <!-- TRILHAS:INICIO -->
+  <style>
+  .etapa-t { font-family: 'Courier New', monospace; font-size: 1.05rem; letter-spacing: .08em; text-transform: uppercase; color: #7FB2D6; border-bottom: 2px solid #3E8E5A; padding-bottom: 8px; margin: 34px 0 14px; scroll-margin-top: 64px; }
+  .trilha-prep { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; border: 1px dashed #444; padding: 12px 14px; margin-bottom: 12px; color: #9a9a9a; scroll-margin-top: 64px; }
+  .trilha-prep .tag { font-family: 'Courier New', monospace; font-size: .8rem; color: #7f7f7f; white-space: nowrap; }
+  .selo-nota { display: inline-block; margin-left: 8px; padding: 1px 8px; border: 1px solid #3E8E5A; color: #3E8E5A; font-family: 'Courier New', monospace; font-size: .74rem; font-weight: 400; letter-spacing: .04em; vertical-align: middle; white-space: nowrap; }
+  .aba-painel .etapa-tr { margin: 0 0 12px; }
+  .aba-painel .etapa-tr a.aba-btn { margin: 0; }
+  .aba-painel .etapa-tr .prep { display: block; padding: 11px 14px; border: 1px dashed oklch(0.40 0.02 260); color: #9a9a9a; font-size: .88rem; }
+  .aba-painel .etapa-tr .prep em, .aba-painel .etapa-tr a.aba-btn em { display: block; font-size: .78rem; color: #7f7f7f; margin-top: 4px; font-style: normal; }
+</style>
+
+  <h2 class="etapa-t" id="etapa1">Etapa 1 &middot; Metrologia</h2>
 
   <details class="trilha" id="t0a">
-  <summary>T0A &middot; Primeiros Passos no Laboratório</summary>
+  <summary>T0A &middot; Primeiros Passos no Laboratório <span class="selo-nota">vale nota</span></summary>
   <div class="trilha-corpo">
   <p class="parada">Pré-Lab <span>&middot; fazer em casa, antes do encontro</span></p>
   <ul>
@@ -649,7 +696,7 @@ html[data-tema="claro"] .lme-estilo a.est-btn-2 { background: #fff; color: #1F5F
   </details>
 
   <details class="trilha" id="t0b">
-  <summary>T0B &middot; A Régua do Mundo</summary>
+  <summary>T0B &middot; A Régua do Mundo <span class="selo-nota">vale nota</span></summary>
   <div class="trilha-corpo">
   <p class="parada">Pré-Lab <span>&middot; fazer em casa, antes do encontro</span></p>
   <ul>
@@ -658,33 +705,48 @@ html[data-tema="claro"] .lme-estilo a.est-btn-2 { background: #fff; color: #1F5F
     <li><a class="oa" href="t0b/tt/">Texto Temático (TT)<span class="tag">ler · a disciplina explicada</span></a></li>
     <li><a class="oa" href="t0b/fa/">Folha de Atividades (FA)<span class="tag">praticar · QGU, partes 1 a 4 · sem nota</span></a><span class="tag"><a href="t0b/fa/LME-T0B-FA-v5-estudante.pdf" target="_blank" rel="noopener">Abrir o PDF para imprimir</a></span></li>
     <li><a class="oa" href="t0b/fa2/">Folha de Atividades 2 (FA2)<span class="tag">praticar · a Tabela Geral · sem nota</span></a><span class="tag"><a href="t0b/fa2/LME-T0B-FA2-v5-estudante.pdf" target="_blank" rel="noopener">Abrir o PDF para imprimir</a></span></li>
-    <li><a class="oa" href="t0b/tn/">Testinho (TN)<span class="tag">verificar · 10 min · sem nota</span></a></li>
+    <li><a class="oa" href="t0b/tn/">Testinho (TN)<span class="tag">verificar · 10 min · vale nota</span></a></li>
   </ul>
   <p class="parada">Lab <span>&middot; na bancada, com o professor · 100 min</span></p>
   <ul>
     <li><a class="oa" href="t0b/rb/">Roteiro de Bancada (RB)<span class="tag">execução · registrar os dados</span></a></li>
     <li><a class="oa" href="t0b/ap/">Apresentação do Lab (AP)<span class="tag">projetar · o encontro conduzido</span></a></li>
-    <li><a class="oa" href="t0b/pr/">Provinha (PR)<span class="tag">fechar o Lab · 15 min · sem nota</span></a></li>
+    <li><a class="oa" href="t0b/pr/">Provinha (PR)<span class="tag">fechar o Lab · 15 min · vale nota</span></a></li>
   </ul>
   <p class="parada">Pós-Lab <span>&middot; a partir do mesmo dia da prática</span></p>
   <ul>
-    <li><a class="oa" href="t0b/rm/">Relatório Mínimo (RM)<span class="tag">relatar · até 1 dia · sem nota</span></a></li>
-    <li><a class="oa" href="t0b/rc/">Relatório Completo (RC)<span class="tag">relatar · até 6 dias · sem nota</span></a></li>
+    <li><a class="oa" href="t0b/rm/">Relatório Mínimo (RM)<span class="tag">relatar · até 1 dia · vale nota</span></a></li>
+    <li><a class="oa" href="t0b/rc/">Relatório Completo (RC)<span class="tag">relatar · até 6 dias · vale nota</span></a></li>
   </ul>
   </div>
   </details>
 
   <details class="trilha" id="t0c">
-  <summary>T0C &middot; A matemática da medida</summary>
+  <summary>T0C &middot; A matemática da medida <span class="selo-nota">vale nota</span></summary>
   <div class="trilha-corpo">
   <p class="parada">Pré-Lab <span>&middot; fazer em casa, antes do encontro</span></p>
   <ul>
     <li><a class="oa" href="t0c/tt/">Texto Temático (TT)<span class="tag">ler · a disciplina explicada</span></a></li>
     <li><a class="oa" href="t0c/fa/">Folha de Atividades (FA)<span class="tag">praticar · no aparelho ou impressa</span></a><span class="tag"><a href="t0c/fa/LME-T0C-FA-v4-estudante.pdf" target="_blank" rel="noopener">Abrir o PDF para imprimir</a></span></li>
-    <li><a class="oa" href="t0c/tn/">Testinho (TN)<span class="tag">verificar · 10 min · sem nota</span></a></li>
+    <li><a class="oa" href="t0c/tn/">Testinho (TN)<span class="tag">verificar · 10 min · vale nota</span></a></li>
   </ul>
   </div>
   </details>
+
+  <h2 class="etapa-t" id="etapa2">Etapa 2 &middot; Estática</h2>
+  <div class="trilha-prep" id="t01"><span>T01 &middot; Como Medir as Coisas</span><span class="tag">em preparação</span></div>
+  <div class="trilha-prep" id="t02"><span>T02 &middot; Lidando com a Incerteza</span><span class="tag">em preparação</span></div>
+  <div class="trilha-prep" id="t03"><span>T03 &middot; Achando o Padrão na Bagunça</span><span class="tag">em preparação</span></div>
+  <div class="trilha-prep" id="t04"><span>T04 &middot; Interpretando Linhas Retas</span><span class="tag">em preparação</span></div>
+  <div class="trilha-prep" id="t05"><span>T05 &middot; Analisando Linhas Tortas</span><span class="tag">em preparação</span></div>
+
+  <h2 class="etapa-t" id="etapa3">Etapa 3 &middot; Cinemática e Dinâmica</h2>
+  <div class="trilha-prep" id="t06"><span>T06 &middot; Leis de Newton</span><span class="tag">em preparação</span></div>
+  <div class="trilha-prep" id="t07"><span>T07 &middot; Pesando, Puxando, Empurrando e Esticando</span><span class="tag">em preparação</span></div>
+  <div class="trilha-prep" id="t08"><span>T08 &middot; Lixando e Voando: Atrito e Arrasto</span><span class="tag">em preparação</span></div>
+  <div class="trilha-prep" id="t09"><span>T09 &middot; Subindo e Descendo em Rampas e Ladeiras</span><span class="tag">em preparação</span></div>
+  <div class="trilha-prep" id="t10"><span>T10 &middot; Trombadas e Batidas</span><span class="tag">em preparação</span></div>
+  <div class="trilha-prep" id="t11"><span>T11 &middot; A Física da Água Parada: Pressão e Empuxo</span><span class="tag">em preparação</span></div>
   <script>
 /* Atalho #t{nn} abre a trilha na sanfona; sem JS o toque no titulo ainda abre. */
 (function () {
@@ -694,6 +756,14 @@ html[data-tema="claro"] .lme-estilo a.est-btn-2 { background: #fff; color: #1F5F
   }
   window.addEventListener('hashchange', abrir);
   abrir();
+  /* link de trilha na aba Etapa: fecha o painel e abre a sanfona no centro */
+  [].slice.call(document.querySelectorAll('.etapa-tr a[href^="#"]')).forEach(function (a) {
+    a.addEventListener('click', function () {
+      var p = a.closest('.aba-painel'); if (p) { p.classList.remove('open'); }
+      var d = document.getElementById(a.getAttribute('href').slice(1));
+      if (d && d.tagName === 'DETAILS') { d.open = true; }
+    });
+  });
 })();
 </script>
 
@@ -747,6 +817,9 @@ if (location.protocol === 'file:') {
   var pares = [['abaSiteT', 'abaSite'],
                ['abaMetodoT', 'abaMetodo'],
                ['abaMusicaT', 'abaMusica'],
+               ['abaEtapa1T', 'abaEtapa1'],
+               ['abaEtapa2T', 'abaEtapa2'],
+               ['abaEtapa3T', 'abaEtapa3'],
                ['abaDocumentosT', 'abaDocumentos'],
                ['abaCreditosT', 'abaCreditos']];
   /* Espacamento UNIFORME entre as linguetas: o rotulo e vertical e a altura
