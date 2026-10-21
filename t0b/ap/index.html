@@ -1186,7 +1186,7 @@ html, body {
           <div class="tl"><span class="tl-t">30&ndash;55 min</span><span class="tl-d"><strong>Estações</strong> &mdash; metade da turma em A, metade em B</span></div>
           <div class="tl"><span class="tl-t">55&ndash;80 min</span><span class="tl-d"><strong>Rodízio</strong> &mdash; troca de estação</span></div>
           <div class="tl"><span class="tl-t">80&ndash;90 min</span><span class="tl-d"><strong>Fecho do Lab</strong> &mdash; as razões medida ÷ estimativa na lousa</span></div>
-          <div class="tl"><span class="tl-t">90&ndash;100 min</span><span class="tl-d"><strong>Do grão à cava</strong> &mdash; o B3 contra o número publicado; a T01</span></div>
+          <div class="tl"><span class="tl-t">90&ndash;100 min</span><span class="tl-d"><strong>Do grão à cava</strong> &mdash; o B3 contra o número publicado; a T0C</span></div>
         </div>
         <div class="col-img">
           <div style="border:2px dashed var(--azul);border-radius:6px;padding:60px 18px;text-align:center;color:var(--azul);font-family:var(--mono);">Figura 4 em produção</div>
@@ -1562,7 +1562,7 @@ html, body {
 
 <script>
 (function() {
-  var STORAGE_KEY = 'LME-T0B-AP-v3';
+  var STORAGE_KEY = 'LME-T0B-AP-v4';
   var slides = document.querySelectorAll('.slide');
   var total = slides.length;
   var atual = 1;
@@ -1929,7 +1929,7 @@ html, body {
 (function () {
   'use strict';
 
-  var KEY = 'LME-T0B-AP-v3-crono';
+  var KEY = 'LME-T0B-AP-v4-crono';
 
 
   var slides = document.querySelectorAll('.slide');
@@ -1950,7 +1950,7 @@ html, body {
   window.__AP_PREVISTO_ORIGINAL = previstoOriginal;
 
   try {
-    var tcust = JSON.parse(localStorage.getItem('LME-T0B-AP-v3-tempos-custom') || '{}');
+    var tcust = JSON.parse(localStorage.getItem('LME-T0B-AP-v4-tempos-custom') || '{}');
     for (var kc in tcust) { if (tcust.hasOwnProperty(kc)) previsto[parseInt(kc, 10)] = tcust[kc]; }
   } catch(e) {}
 
@@ -2232,7 +2232,7 @@ html, body {
 <script>
 (function() {
   'use strict';
-  var STORAGE_KEY = 'LME-T0B-AP-v3';
+  var STORAGE_KEY = 'LME-T0B-AP-v4';
   var KEY_TEMPOS = STORAGE_KEY + '-tempos-custom';
   var allSlides = document.querySelectorAll('.slide');
   var configSlideNum = allSlides.length;

@@ -228,9 +228,9 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
 <div class="player" id="player">
   <div class="player-topo">
     <span class="player-titulo">&Aacute;udio da trilha</span>
-    <button class="faixa-btn ativa" data-src="LME-T0B-MD-v2-padrao.m4a">Vers&atilde;o padr&atilde;o</button><button class="faixa-btn" data-src="LME-T0B-MD-v2-curto.m4a">Vers&atilde;o curta</button>
+    <button class="faixa-btn ativa" data-src="LME-T0B-MD-v3-padrao.m4a">Vers&atilde;o padr&atilde;o</button><button class="faixa-btn" data-src="LME-T0B-MD-v3-curto.m4a">Vers&atilde;o curta</button>
   </div>
-  <audio id="audio" controls preload="none" src="LME-T0B-MD-v2-padrao.m4a"></audio>
+  <audio id="audio" controls preload="none" src="LME-T0B-MD-v3-padrao.m4a"></audio>
   <div class="sem-audio">O arquivo de &aacute;udio ainda n&atilde;o foi publicado nesta pasta. O texto abaixo &eacute; o roteiro completo &mdash; d&aacute; para ler enquanto isso.</div>
 </div>
 
@@ -298,7 +298,7 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
   <div class="secao-body"><div class="secao-texto">
 <p>Seis linhas no Roteiro de Bancada: o que voc&ecirc; esperava, o que mediu e a raz&atilde;o. A linha fora de 1/3 a 3, com a hip&oacute;tese que falhou ao lado, &eacute; a mais valiosa do roteiro.</p>
 <p><strong>Pascal</strong> viu o homem suspenso entre dois infinitos; <strong>Fermi</strong> mediu uma explos&atilde;o com peda&ccedil;os de papel e uma ordem de grandeza; <strong>Charles e Ray Eames</strong>, em <em>Powers of Ten</em>, foram de um piquenique &agrave;s gal&aacute;xias, dez vezes mais longe a cada dez segundos.</p>
-<p><strong>Na T01</strong>, a medida ganha incerteza. A r&eacute;gua de hoje &eacute; o que impede a conta mais cuidadosa de sair seis ordens errada.</p></div></div>
+<p><strong>Na T0C</strong>, as unidades ganham padr&atilde;o; <strong>na T0D</strong>, a medida ganha algarismos significativos. A r&eacute;gua de hoje &eacute; o que impede a conta mais cuidadosa de sair seis ordens errada.</p></div></div>
 </div>
 <div class="secao" data-idx="7">
   <div class="secao-header" data-idx="7">
@@ -373,7 +373,7 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
 
 <script>
 (function () {
-  var CHAVE = 'LME-T0B-MD-v2';
+  var CHAVE = 'LME-T0B-MD-v3';
   var estado = {};
   try { estado = JSON.parse(localStorage.getItem(CHAVE) || '{}'); } catch (e) { estado = {}; }
   function grava() { try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {} }
