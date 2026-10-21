@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LME · T0A · Primeiros Passos no Laboratório — Texto Temático v1</title>
+<title>LME · T0A · Boas-vindas à Física Experimental — Texto Temático v2</title>
 <style>
   input, button, select, textarea { font-family: inherit; }
 /* ═══ DESIGN SYSTEM: BRUTALISMO CIENTIFICO ═══ */
@@ -13,7 +13,7 @@
   --azul-bg: oklch(0.28 0.05 45);
   --ouro: oklch(0.72 0.13 152);
   --ouro-claro: oklch(0.25 0.04 152);
-  /* Verde realinhado com a identidade dos sites da Licenciatura (2026-09-13): o tom
+  /* Verde realinhado com a identidade do site lme-oa (2026-09-13): o tom
      anterior (oklch hue 95, amarelo-esverdeado) nao batia com o verde real
      do site (#3E8E5A) e vibrava demais sobre o fundo escuro. */
   --verde: #3E8E5A;
@@ -85,45 +85,14 @@ body {
 .toolbar button.active { color: var(--ouro); border-color: var(--ouro); }
 
 /* ═══ TOC SIDEBAR ═══ */
-.toc-toggle {
-  position: fixed; top: 275px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.toc-toggle:hover { color: var(--ouro); }
-
-.toc-sidebar {
-  position: fixed; top: 60px; left: 0; z-index: 997;
-  width: 280px; max-height: calc(100vh - 80px); overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 20px 16px 20px 40px; transform: translateX(-100%); transition: transform 0.25s;
-}
-.toc-sidebar.open { transform: translateX(0); }
-.toc-sidebar h3 {
-  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
-  color: var(--cinza); margin-bottom: 12px;
-}
-.toc-sidebar a {
-  display: block; padding: 6px 0; font-size: 0.85rem; color: oklch(0.75 0 0);
-  text-decoration: none; border-bottom: 1px solid oklch(0.22 0.02 260);
-  transition: color 0.15s;
-}
-[data-theme="light"] .toc-sidebar a { border-bottom-color: oklch(0.90 0.02 260); }
-.toc-sidebar a:hover { color: var(--ouro); }
-.toc-sidebar a.toc-ato { font-weight: 700; color: var(--azul); font-size: 0.9rem; }
-.toc-sidebar a.toc-topico { padding-left: 16px; font-size: 0.8rem; }
-.toc-sidebar a.toc-extra { font-style: italic; color: var(--cinza); font-size: 0.8rem; }
 
 /* ═══ HEADER ═══ */
 .header {
-  background: linear-gradient(180deg, oklch(0.14 0.03 240) 0%, var(--fundo) 100%);
+  background: linear-gradient(180deg, oklch(0.14 0.03 45) 0%, var(--fundo) 100%);
   padding: 48px 20px 24px; text-align: center;
 }
 [data-theme="light"] .header {
-  background: linear-gradient(180deg, oklch(0.95 0.02 240) 0%, var(--fundo) 100%);
+  background: linear-gradient(180deg, oklch(0.95 0.02 45) 0%, var(--fundo) 100%);
 }
 .header-inner { max-width: 720px; margin: 0 auto; }
 .header h1 {
@@ -279,6 +248,19 @@ p strong { color: var(--branco); }
 .figura-num {
   font-weight: 700; color: var(--ouro); text-transform: uppercase; letter-spacing: 0.5px;
 }
+/* Figura em destaque (2026-09-14, mesma ideia da LME): quando a
+   citacao da epigrafe fica so na imagem (sem repetir o texto ao
+   lado), a figura ganha mais espaco do que uma figura comum. */
+.figura-destaque .figura-img { max-width: 880px; border-width: 2px; border-color: var(--ouro);
+  box-shadow: 0 10px 32px rgba(0,0,0,.28); }
+/* Biografia do autor da epigrafe: abaixo da legenda da figura, com
+   espaco de respiro para nao prender o olhar junto da imagem —
+   funciona como uma nota de rodape, nao como legenda extra. */
+.figura-bio {
+  font-size: 0.8rem; color: var(--cinza); font-style: normal;
+  max-width: 480px; margin: 40px auto 0; text-align: center;
+  padding-top: 20px; border-top: 1px solid var(--cinza-borda);
+}
 
 /* ═══ COVER / CAPA (padrao FE-T04-TT-v5-digital) ═══ */
 .capa { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; background: linear-gradient(180deg, oklch(0.14 0.03 95) 0%, oklch(0.12 0.02 260) 100%); }
@@ -300,126 +282,12 @@ p strong { color: var(--branco); }
 [data-theme="light"] .audio-hint { background: oklch(0.94 0.03 95); color: oklch(0.30 0 0); }
 
 /* ═══ CREDITOS / CIP SIDEBAR ═══ */
-.creditos-toggle {
-  position: fixed; top: 365px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.creditos-toggle:hover { color: var(--ouro); }
 
 /* ═══ MUSICA TOGGLE + SIDEBAR ═══ */
-.musica-toggle {
-  position: fixed; top: 60px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.musica-toggle:hover { color: var(--ouro); }
-.musica-sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 340px; height: 100vh; overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.95rem; line-height: 1.7;
-  color: var(--texto);
-}
-.musica-sidebar.open { transform: translateX(0); }
-.musica-sidebar .musica-titulo {
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
-  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
-}
-.musica-sidebar .musica-ref { font-style: italic; color: var(--cinza); margin-bottom: 16px; display: block; }
-.musica-sidebar .musica-tags { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-.musica-sidebar .musica-tag {
-  background: var(--ouro); color: oklch(0.12 0 0); font-weight: 700;
-  font-size: 0.75rem; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px;
-}
-.musica-sidebar .musica-album { font-weight: 700; color: var(--branco); margin-bottom: 8px; }
-.musica-sidebar .musica-detail { color: var(--cinza); font-size: 0.85rem; margin-bottom: 16px; }
-.musica-sidebar .musica-link {
-  display: inline-block; padding: 8px 16px; background: var(--erro);
-  color: oklch(0.98 0 0); font-weight: 700; font-size: 0.8rem;
-  text-decoration: none; letter-spacing: 0.5px; transition: opacity 0.15s;
-}
-.musica-sidebar .musica-link:hover { opacity: 0.85; }
 
 /* ═══ INEDITISMO TOGGLE + SIDEBAR ═══ */
-.ineditismo-toggle {
-  position: fixed; top: 145px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.ineditismo-toggle:hover { color: var(--ouro); }
-.ineditismo-sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 340px; height: 100vh; overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.95rem; line-height: 1.7;
-  color: var(--texto);
-}
-.ineditismo-sidebar.open { transform: translateX(0); }
-.ineditismo-sidebar .ineditismo-titulo {
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
-  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
-}
-.ineditismo-sidebar p {
-  font-size: 0.95rem; color: oklch(0.65 0 0); line-height: 1.7; margin-bottom: 10px;
-}
-[data-theme="light"] .ineditismo-sidebar p { color: oklch(0.40 0 0); }
 
 /* ═══ FIGURAS TOGGLE + SIDEBAR ═══ */
-.figuras-toggle {
-  position: fixed; top: 460px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.figuras-toggle:hover { color: var(--ouro); }
-.figuras-sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 380px; height: 100vh; overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.88rem; line-height: 1.7;
-  color: var(--texto);
-}
-.figuras-sidebar.open { transform: translateX(0); }
-.figuras-sidebar .figuras-titulo {
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
-  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
-}
-.figuras-sidebar p {
-  font-size: 0.85rem; color: var(--texto); margin-bottom: 8px; line-height: 1.5;
-}
-.figuras-sidebar .figura-num { color: var(--azul); font-weight: 700; }
-
-.creditos-sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 340px; height: 100vh; overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.85rem; line-height: 1.7;
-  color: var(--texto);
-}
-.creditos-sidebar.open { transform: translateX(0); }
-.creditos-sidebar p {
-  font-family: var(--font); font-size: 0.85rem; color: var(--texto);
-  line-height: 1.6; margin-bottom: 4px;
-}
 .creditos-titulo, .cip-titulo {
   font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
@@ -467,12 +335,12 @@ p strong { color: var(--branco); }
 
 /* ═══ DESTAQUE ═══ */
 .destaque {
-  background: oklch(0.16 0.04 240); padding: 14px 20px; margin: 16px 0;
+  background: oklch(0.16 0.04 45); padding: 14px 20px; margin: 16px 0;
   font-family: var(--serif); font-size: 1.2rem; font-style: italic;
   color: var(--azul-claro); border-left: 3px solid var(--azul);
 }
 [data-theme="light"] .destaque {
-  background: oklch(0.95 0.03 240); color: oklch(0.40 0.10 240);
+  background: oklch(0.95 0.03 45); color: oklch(0.40 0.15 45);
 }
 
 /* ═══ BLOCKQUOTE ═══ */
@@ -635,8 +503,6 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   /* Gutter para as abas laterais: sem ele, as abas fixas da borda esquerda
      cobrem o texto durante a rolagem em tela estreita. */
   .conteudo { padding: 0 14px 0 46px; }
-  .toc-toggle, .musica-toggle, .ineditismo-toggle, .creditos-toggle, .figuras-toggle { font-size: 0.6rem; padding: 6px 6px; }
-  .toc-sidebar, .musica-sidebar, .ineditismo-sidebar, .creditos-sidebar, .figuras-sidebar { width: 82vw; }
   .toolbar { padding: 4px 8px; }
   .ato-titulo { font-size: 1rem; letter-spacing: 2px; }
   .topico-titulo { font-size: 1.2rem; }
@@ -652,8 +518,7 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 
 /* ═══ PRINT ═══ */
 @media print {
-  body { background: white !important; color: #1A1A1A !important; padding-bottom: 0 !important; }
-  .progress-top, .toolbar, .toc-toggle, .toc-sidebar, .creditos-toggle, .creditos-sidebar, .musica-toggle, .musica-sidebar, .ineditismo-toggle, .ineditismo-sidebar, .figuras-toggle, .figuras-sidebar, .capa-scroll, .audio-hint { display: none !important; }
+  body { background: white !important; color: #1A1A1A !important; padding-bottom: 0 !important; }.progress-top, .toolbar, .capa-scroll, .audio-hint{ display: none !important; }
   .capa { min-height: auto !important; background: none !important; padding: 30px 20px !important; }
   .header { background: none !important; }
   .ato-titulo { color: #1F3864 !important; border-top-color: #CCC !important; }
@@ -668,38 +533,12 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 /* PADRAO-ABAS-CREDITOS (decisao do autor 2026-09-02): cargos dos Creditos na secundaria (verde), caixa normal. */
 .creditos-cargo { color: var(--verde); text-transform: none; }
 /* PADRAO-ABAS-MUSICA (decisao do autor 2026-09-02): album e artistas na cor primaria (ouro). */
-.musica-sidebar .musica-album { color: var(--ouro); }
-.musica-sidebar .musica-detail strong { color: var(--ouro); }
 
-/* ── lista numerada das cinco perguntas do Ato I ── */
+/* ── LME: lista numerada das cinco perguntas do Ato I ── */
 .lista-perguntas { margin: 18px 0 18px 0; padding-left: 22px; }
 .lista-perguntas li { margin-bottom: 8px; }
-/* o Explore nao tem figura; o link fica visivel nos dois temas */
+/* o Explore da LME nao tem figura; o link fica visivel nos dois temas */
 .explore a { color: var(--accent); }
-
-/* ── LME: paleta da Licenciatura (verde-quadro #3E8E5A + azul-aco #7FB2D6) ── */
-:root { --azul: #7FB2D6; --azul-claro: #A5CBE5; --azul-bg: oklch(0.28 0.04 240); --accent: var(--azul); }
-[data-theme="light"] { --azul: #3F7AA3; --azul-claro: #4F8BB5; --azul-bg: oklch(0.92 0.03 240); }
-.capa-subtitulo { font-family: var(--serif); font-style: italic; font-size: 1.4rem; color: var(--azul); margin: -6px 0 18px; }
-.eixo-destino { border-left-color: var(--azul); }
-.eixo-destino { background: var(--azul-bg); padding: 10px 14px; }
-.eixo-destino .eixo-label { color: var(--texto); }
-.figura-pendente .figura-aviso { border: 2px dashed var(--azul); padding: 48px 20px; text-align: center;
-  font-family: var(--mono); font-size: .95rem; color: var(--azul); max-width: 560px; margin: 0 auto; }
-@media print { .figura-pendente .figura-aviso { color: #555 !important; border-color: #999 !important; } }
-/* Figura em destaque (2026-09-14): a epigrafe de abertura nao repete a
-   citacao em texto — ela ja esta na propria imagem — entao a imagem
-   ganha mais espaco do que uma figura comum. */
-.figura-destaque .figura-img { max-width: 880px; border-width: 2px; border-color: var(--azul);
-  box-shadow: 0 10px 32px rgba(0,0,0,.28); }
-/* Biografia do autor da epigrafe: abaixo da legenda da figura, com
-   espaco de respiro (2026-09-14) para nao prender o olhar junto da
-   imagem — funciona como uma nota de rodape, nao como legenda extra. */
-.figura-bio {
-  font-size: 0.8rem; color: var(--cinza); font-style: normal;
-  max-width: 480px; margin: 40px auto 0; text-align: center;
-  padding-top: 20px; border-top: 1px solid var(--cinza-borda);
-}
 /* ICONES-LME */
 .lme-cab-marcas { display: flex; gap: 10px; align-items: center; justify-content: flex-start;
   flex-shrink: 0; }
@@ -818,6 +657,26 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   <button id="btnTheme" title="Alternar tema claro/escuro">Tema</button>
 </div>
 
+<!-- TOC TOGGLE -->
+
+<!-- CREDITOS TOGGLE -->
+
+<!-- MUSICA TOGGLE -->
+
+<!-- INEDITISMO TOGGLE -->
+
+<!-- INEDITISMO SIDEBAR -->
+
+<!-- FIGURAS TOGGLE -->
+
+<!-- FIGURAS SIDEBAR -->
+
+<!-- MUSICA SIDEBAR -->
+
+<!-- CREDITOS / CIP SIDEBAR -->
+
+<!-- TOC SIDEBAR -->
+
 <!-- ═══════════════════ CAPA ═══════════════════ -->
 <div class="capa" id="capa">
   <div class="capa-marca"><div class="lme-cab-marcas"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física"> <title>Prisma decompondo a luz — Licenciatura em Física</title> <defs> <radialGradient id="cab-prisma-fundo" cx="50%" cy="42%" r="60%"> <stop offset="0" stop-color="#26302B"/> <stop offset="1" stop-color="#0E1411"/> </radialGradient> <linearGradient id="cab-prisma-vidro" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/> <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/> </linearGradient> <clipPath id="cab-prisma-dentro"><circle cx="100" cy="100" r="86"/></clipPath> </defs> <circle cx="100" cy="100" r="96" fill="url(#cab-prisma-fundo)"/> <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/> <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1" stroke-dasharray="1.5 3" opacity="0.8"/> <g clip-path="url(#cab-prisma-dentro)"> <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/> <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/> <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/> <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/> <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/> <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/> <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/> <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/> <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/> </g> <polygon points="100,50 56,130 144,130" fill="url(#cab-prisma-vidro)" stroke="#DDEBF3" stroke-width="2.5" stroke-linejoin="round"/> <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/> <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/> <g fill="#FFFFFF" opacity="0.55"> <circle cx="46" cy="62" r="1.2"/> <circle cx="150" cy="56" r="1"/> <circle cx="70" cy="160" r="1"/> <circle cx="140" cy="164" r="1.2"/> </g> </svg><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica"> <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none"> <line x1="36" y1="10" x2="84" y2="10"/> <line x1="60" y1="10" x2="81.9" y2="70.1"/> </g> <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/> <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/> <circle cx="60" cy="10" r="4" fill="#3E8E5A"/> <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/> <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square"> <line x1="26" y1="110" x2="94" y2="110"/> <line x1="30" y1="110" x2="30" y2="104"/> <line x1="40" y1="110" x2="40" y2="104"/> <line x1="50" y1="110" x2="50" y2="104"/> <line x1="60" y1="110" x2="60" y2="98"/> <line x1="70" y1="110" x2="70" y2="104"/> <line x1="80" y1="110" x2="80" y2="104"/> <line x1="90" y1="110" x2="90" y2="104"/> </g> </svg></div></div>
@@ -825,10 +684,9 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   <div class="capa-curso">Licenciatura em Física &mdash; IFMG campus Ouro Preto</div>
   <div class="capa-img"><img src="../_imagens/_web/LME-T0A-Figura-01-v1-web.jpg" alt="O Pavilhão de Física do IFMG campus Ouro Preto ao anoitecer, com as janelas do laboratório acesas e a serra ao fundo"></div>
   <div class="capa-trilha">Trilha de Aprendizagem T0A</div>
-  <div class="capa-titulo">Primeiros Passos no Laboratório</div>
-  <div class="capa-subtitulo">onde o dado nasce</div>
+  <div class="capa-titulo">Boas-vindas à Física Experimental</div>
   <div class="capa-autores"><strong>Júlio Azevedo</strong> &middot; <strong>Felipe Beato</strong></div>
-  <div class="capa-inst">IFMG campus Ouro Preto - Coordenadoria da Área de Física - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; LME &middot; T0A &middot; Primeira edição &middot; 2026</div>
+  <div class="capa-inst">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; LME &middot; T0A &middot; Primeira edição &middot; 2026</div>
   <div class="capa-scroll">&#x25BC; role para ler</div>
 </div>
 
@@ -837,37 +695,35 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 <div class="conteudo">
 
 <!-- ═══════════════════ EPIGRAFE ═══════════════════ -->
-<!-- A citacao em si fica so na imagem (Figura 2, atualizada em
-     2026-09-14) — texto removido daqui para nao duplicar a
-     informacao; a figura, sem repetir a frase ao lado, ganha destaque
-     (maior). A biografia do autor vem DEPOIS da legenda da figura
-     (2026-09-14, 2a rodada), com espaco acima para nao competir pela
-     atencao de quem acabou de olhar a imagem. -->
+<!-- A citacao em si fica so na imagem (Figura 2, ja desenhada com a
+     frase de Freire) — texto removido daqui para nao duplicar a
+     informacao (mesma ideia da LME, 2026-09-14); a figura ganha
+     destaque (maior). A biografia do autor vem DEPOIS da legenda da
+     figura, com espaco acima para nao competir pela atencao de quem
+     acabou de olhar a imagem. -->
 <figure class="figura figura-destaque" id="epigrafe">
-  <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-02-v1-web.jpg" alt="Caderno de laboratório aberto sobre a bancada: à esquerda a frase de Francis Bacon, à direita a palavra Previsão e uma tabela ainda vazia" loading="lazy">
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 2</span> &mdash; A frase de Bacon escrita na página de um caderno de laboratório; na página ao lado, ainda em branco, o registro que vai nascer na bancada.</figcaption>
+  <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-02-v1-web.jpg" alt="Caderno de laboratório aberto: na página esquerda, a frase de Paulo Freire; na direita, uma folha, um seixo e uma pena" loading="lazy">
+  <figcaption class="figura-legenda"><span class="figura-num">Figura 2</span> &mdash; A frase de Freire escrita na página esquerda de um caderno de laboratório; na direita, ainda em branco, três objetos do mundo &mdash; e, em volta, o mundo de onde eles vieram.</figcaption>
 </figure>
 
-<div class="figura-bio"><strong>Francis Bacon</strong> (Londres, 1561 &mdash; Londres, 1626). Filósofo e estadista inglês. A frase é o primeiro aforismo do <em>Novum Organum</em> (1620), o livro em que ele propõe que o conhecimento da natureza se construa a partir do que se observa e se registra, e não do que se supõe. Numa disciplina em que você vai pôr à prova os modelos que já estudou, ela diz o limite de todo o trabalho: o modelo só vale até onde o dado constatado o sustenta.</div>
+<div class="figura-bio"><strong>Paulo Freire</strong> (Recife, 1921 &mdash; São Paulo, 1997). Educador brasileiro, patrono da educação nacional. A frase abre <em>A importância do ato de ler</em> (São Paulo: Cortez, 1982), ensaio em que ele descreve a própria infância: antes de decifrar as letras, já lia o quintal, o vento e os bichos. Numa disciplina que começa sem medir nada, ela diz exatamente o que se pede de você na primeira noite &mdash; olhar o laboratório antes de operá-lo.</div>
 
 <!-- ═══════════════════ ATO I ═══════════════════ -->
 <div class="ato" id="ato-i">
   <div class="ato-titulo">Ato I &mdash; O Gancho</div>
 
-  <p>Há um ano você entrou neste laboratório para aprender a medir. Voltou sabendo Mecânica. Esta noite a pergunta muda: não mais <em>quanto deu?</em>, mas <em>o modelo que você estudou aguenta o que a bancada vai dizer?</em> E, se não aguentar, você vai saber dizer por quê?</p>
+  <p>Em dois anos, alguém vai perguntar a você, na frente de uma turma, por que a régua marca 1,6 cm e não 2 cm. Você vai estar do outro lado da bancada. Esta disciplina começa hoje, deste lado.</p>
 
   <figure class="figura">
-  <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-03-v1-web.jpg" alt="No Laboratório de Mecânica, o professor de um lado da bancada aponta a menor divisão de uma régua graduada; do outro lado, os licenciandos de jaleco olham o mesmo ponto" loading="lazy">
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 3</span> &mdash; A mesma bancada, a mesma régua: o espaço você já conhece. O que muda a partir de agora é o que você pergunta a ela.</figcaption>
-</figure>
+    <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-03-v1-web.jpg" alt="No Laboratório de Mecânica, o professor de um lado da bancada aponta a menor divisão de uma régua graduada; do outro lado, quatro licenciandos de jaleco olham o mesmo ponto" loading="lazy">
+    <figcaption class="figura-legenda"><span class="figura-num">Figura 3</span> &mdash; A primeira régua da disciplina: de um lado da bancada o professor aponta a menor divisão da escala, do outro a turma olha o mesmo ponto &mdash; o que muda a partir de agora não é o espaço, é o que você vai aprender a fazer nele.</figcaption>
+  </figure>
 
-  <p>O Laboratório de Mecânica (LME) tem dois pré-requisitos, e os dois contam. Da Introdução ao Laboratório (ILB) você traz o ofício de medir: ler a menor divisão, estimar a incerteza, montar a tabela, traçar o gráfico. De Mecânica I você traz os modelos: as leis de Newton, as forças peso, elástica e de atrito. Até aqui eles andaram separados. Nesta disciplina eles se encontram &mdash; e o encontro nem sempre é pacífico.</p>
+  <p>O Laboratório de Mecânica (LME) é o segundo laboratório do curso de Licenciatura em Física, e é diferente de tudo o que você cursou até aqui. Nela, você não vai aprender um conceito novo de física &mdash; os modelos vêm de Mecânica I e II, e aqui são postos à prova. Você vai aprender <strong>a medir</strong>, e a fazer isso com rigor suficiente para, um dia, ensinar a fazer o mesmo.</p>
 
-  <p>Na ILB o experimento era <strong>veículo</strong>: media-se para aprender a medir. Aqui ele é <strong>objeto</strong>: mede-se para pôr o modelo à prova. Antes de cada coleta você vai escrever o que a Mecânica prevê; depois dela, vai decidir, com base na incerteza, se o dado confirma a previsão &mdash; ou qual hipótese do modelo falhou. Errar a previsão não é fracasso. Deixar de decidir, é.</p>
+  <p>Essa é a dobra própria de uma licenciatura: aprender a medir e, ao mesmo tempo, aprender a ensinar a medir. As dez trilhas que vêm depois desta &mdash; cada uma com um experimento diferente de Mecânica &mdash; vão repetir sempre o mesmo protocolo de medida, que a pergunta 2 detalha. Esta trilha de abertura não mede nada ainda &mdash; ela instala o vocabulário e o comportamento que as outras dez vão exigir prontos.</p>
 
-  <p>E há a dobra de toda licenciatura. Um dia você vai estar do outro lado desta bancada, diante de uma turma de ensino médio, e a pergunta que vai importar não é só <em>como se mede</em>, mas <em>como eu mostro a essa turma que um modelo pode falhar</em>. Sofia e Pedro, quando aparecerem nas próximas trilhas, são essa turma imaginada.</p>
-
-  <p><strong>Este texto responde cinco perguntas.</strong> São as mesmas que você fez na primeira noite da ILB &mdash; e é de propósito. Os documentos agora são outros, as trilhas são outras e o critério da nota é outro; a forma da pergunta continua servindo. Isso também é matéria de licenciatura: um bom desenho de aula atravessa disciplinas, e o que muda de uma para outra é a resposta.</p>
+  <p><strong>Este texto responde cinco perguntas.</strong> Não são cinco assuntos escolhidos por quem ensina: são as cinco perguntas que quem chega a uma disciplina nova traz na cabeça, na ordem em que elas aparecem.</p>
 
   <ol class="lista-perguntas">
     <li>O que os documentos oficiais revelam?</li>
@@ -877,14 +733,16 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
     <li>Como posso carregar os materiais e o método de estudo com segurança na minha mão?</li>
   </ol>
 
+  <p>Repare na forma antes do conteúdo: um plano de ensino apresentado pela dúvida de quem estuda, e não pela lista de quem ensina. Isso também é matéria de licenciatura &mdash; é uma decisão didática que você vai poder tomar, um dia, na sua própria turma.</p>
+
   <div class="explore" id="explore">
     <div class="explore-titulo">Explore este lugar no Google Maps</div>
 
     <p><strong>IFMG &mdash; Campus Ouro Preto, Pavilhão de Física</strong></p>
 
-    <p>Você já atravessou esta porta. O Pavilhão de Física, inaugurado em 1985, faz <strong>41 anos</strong> em 2026, e o Laboratório de Mecânica é o mesmo em que você cursou a Introdução ao Laboratório &mdash; a LME ocupa a bancada logo depois dela, na mesma terça-feira. Por isso esta volta começa pelo prédio: o lugar é conhecido, a pergunta é nova.</p>
+    <p>O prédio retangular da capa deste texto é o Pavilhão de Física; ao lado dele, gêmeo, está o de Química. Os dois começaram a ser erguidos em 1982 e foram inaugurados em 1985 &mdash; fazem <strong>41 anos</strong> em 2026. Os laboratórios de Física ficam no primeiro deles, e é ali que as treze trilhas desta disciplina vão acontecer.</p>
 
-    <p>Ele liga você a uma tradição que começou na Praça Tiradentes. Em 1876, Claude-Henri Gorceix fundou a Escola de Minas e trouxe para Ouro Preto uma ciência que confrontava a teoria com o que o terreno mostrava. São <strong>150 anos</strong> de <em>prever e conferir</em> &mdash; e é exatamente isso que o semestre vai lhe pedir.</p>
+    <p>Milhares de pessoas já atravessaram essas portas antes de você. E elas ligam este prédio a uma tradição que começou lá na Praça Tiradentes: em 1876, Claude-Henri Gorceix fundou a Escola de Minas e trouxe para Ouro Preto uma ciência que não aceitava afirmação sem medida. São <strong>150 anos</strong> de <em>medir antes de afirmar</em> &mdash; e é exatamente isso que você vem aprender a fazer.</p>
 
     <p><a href="https://maps.app.goo.gl/FJvMDyaXYF1iRzU7A" target="_blank" rel="noopener">Ver no Google Maps</a></p>
   </div>
@@ -895,58 +753,48 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   <div class="ato-titulo">Ato II &mdash; O Desenvolvimento</div>
   <div class="ato-subtitulo">Cinco perguntas, cinco respostas</div>
 
-  <p>Passar de novo pela porta foi o gancho. Agora vêm as cinco respostas, na ordem das perguntas. Nenhuma delas pede uma medição ainda: a primeira previsão escrita e a primeira coleta são da T01, em 13/10. O que se instala aqui é o comportamento que o semestre inteiro vai supor pronto.</p>
+  <p>Passar pela porta foi o gancho. Agora vêm as cinco respostas, na ordem das perguntas. Nenhuma delas pede uma medição feita por você ainda: ao final, você terá o vocabulário e o comportamento que vai usar &mdash; e vai um dia ensinar &mdash; pelo resto do curso.</p>
 
   <!-- TOPICO 1 -->
   <div class="topico" id="topico-1">
     <div class="topico-titulo">Tópico 1 &mdash; O que os documentos oficiais revelam?</div>
 
-    <p>Toda disciplina existe primeiro no papel, e esta tem uma particularidade: um dos seus documentos está mudando enquanto você a cursa. Vale ler os quatro com atenção &mdash; estão no site da disciplina, na aba <a href="https://nidecop-jafb.github.io/lme-oa/documentos/"><strong>Documentos</strong></a>.</p>
+    <p>Toda disciplina existe primeiro no papel. Antes de olhar um instrumento, vale ler o que quatro documentos dizem sobre esta &mdash; porque é neles que estão as regras que ninguém pode mudar no meio do semestre. Os quatro estão no site da disciplina, na aba <a href="https://nidecop-jafb.github.io/lme-oa/documentos/"><strong>Documentos</strong></a>, em versão de tela e com PDF.</p>
 
-    <p><strong>O Projeto Pedagógico do Curso (PPC) e a matriz curricular.</strong> O PPC descreve o que a Licenciatura em Física do IFMG-OP se compromete a formar: um professor de Física para a educação básica. Na matriz, o Laboratório de Mecânica está no 4.<sup>o</sup> período, com 30 horas, todas de prática de laboratório, e tem <strong>dois</strong> pré-requisitos: a Introdução ao Laboratório e Mecânica I. Os dois juntos dizem o que se espera de quem chega aqui: saber medir <em>e</em> saber o modelo. <a href="https://nidecop-jafb.github.io/lme-oa/documentos/ppc/">Guia de leitura e PDF integral do PPC</a>.</p>
+    <p><strong>O Projeto Pedagógico do Curso (PPC).</strong> É o documento que descreve o que a Licenciatura em Física do IFMG-OP se compromete a formar: um professor de Física para a educação básica, e não um pesquisador de bancada. Toda decisão desta disciplina &mdash; inclusive a de você aprender a medir antes de estudar Mecânica &mdash; se justifica ali. <a href="https://nidecop-jafb.github.io/lme-oa/documentos/ppc/">Guia de leitura e PDF integral do PPC</a>.</p>
 
-    <p><strong>A ementa &mdash; a vigente e a proposta.</strong> A ementa em vigor no PPC tem duas frases: <em>&ldquo;Realização de experimentos em congruência com as disciplinas Mecânica I e II. Análise e apresentação de resultados.&rdquo;</em> Uma proposta de nova ementa está em análise pela Coordenação do Curso. Ela preserva esse núcleo e nomeia o que ele deixava implícito: o modelo teórico <strong>confrontado</strong> com o dado experimental, a propagação de incertezas, o ajuste linear e não linear de curvas, e os experimentos &mdash; leis de Newton, forças, empuxo e arrasto, plano inclinado, colisões, hidrostática. Ler as duas lado a lado é o primeiro exercício desta trilha. <a href="https://nidecop-jafb.github.io/lme-oa/documentos/ementa/">A ementa vigente e a proposta</a>.</p>
+    <p><strong>A matriz curricular.</strong> A LME ocupa uma posição própria: é um laboratório em congruência com Mecânica I e II, no 4.<sup>o</sup> período. Ela tem dois pré-requisitos &mdash; a Introdução ao Laboratório (6086) e Mecânica I (6018). Essa ordem é proposital. Quem chega aqui já sabe reconhecer uma incerteza e já estudou os modelos da Mecânica; e o que se aprendeu na Introdução ao Laboratório &mdash; medição, incerteza, tabela, gráfico e ajuste &mdash; é o que esta disciplina supõe pronto.</p>
 
-    <p><strong>O Plano de Ensino 2026.2.</strong> Desdobra a ementa em 3 temas, 13 trilhas e 15 encontros, com datas, pesos e prazos. Ele explica também uma escolha que pode surpreender: o Tema 1 retoma o tratamento de dados antes da Mecânica. Parte da turma cursou a Introdução ao Laboratório antes da sua reformulação, quando propagação de incertezas e ajuste de curvas não eram tratados de modo sistemático &mdash; e sem esse instrumental não há confronto possível entre modelo e dado. Não é repetir a ILB; é garantir a todos o mesmo ponto de partida. <a href="https://nidecop-jafb.github.io/lme-oa/documentos/plano/">O Plano de Ensino</a>.</p>
+    <p><strong>A ementa e o plano de ensino.</strong> São 30 horas em treze trilhas, ao longo de quinze encontros. A ementa nomeia, em vocabulário formal, as três competências que a disciplina se compromete a instalar &mdash; são as da pergunta 2 &mdash; e o plano de ensino as desdobra em datas, pesos e prazos.</p>
 
-    <p><strong>O Regulamento de Ensino</strong> (Resolução n.<sup>o</sup> 01/2026 do IFMG). Vale para todas as disciplinas e fixa os números que não se negociam: <strong>frequência mínima de 75%</strong> das horas do componente curricular, <strong>rendimento mínimo de 60%</strong> para aprovação e nenhum instrumento de avaliação acima de 40%.</p>
+    <p><strong>O Regulamento de Ensino</strong> (Resolução n.<sup>o</sup> 01/2026 do IFMG). Vale para todas as disciplinas do curso, e fixa dois números que não se negociam: <strong>frequência mínima de 75%</strong> das horas do componente curricular e <strong>rendimento mínimo de 60%</strong> para aprovação.</p>
 
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>Comparar uma ementa vigente com uma proposta é o que um professor faz quando a escola reforma o currículo: descobrir o que a redação nova passa a obrigar e o que ela apenas torna explícito. Você vai viver isso em alguma escola &mdash; e está vivendo agora, como estudante, na disciplina que cursa.</p>
-</div>
-
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>A Escola de Minas de Ouro Preto nasceu, em 1876, com um currículo escrito para formar quem soubesse ler o Quadrilátero Ferrífero com instrumento e cálculo. O documento oficial como ferramenta de formação tem, nesta cidade, 150 anos de história.</p>
-</div>
-
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>A proposta de ementa troca &ldquo;análise de resultados&rdquo; por propagação de incertezas e ajuste linear e não linear. O contrato da disciplina passa a ser metrológico por escrito: o que se cobra não é um número certo, é um número com a sua incerteza e um modelo julgado por ela.</p>
-</div>
-
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>Na mina, o documento que obriga quem entra é a Norma Regulamentadora n.<sup>o</sup> 22 (NR-22), de segurança e saúde ocupacional na mineração. Como a ementa, ela diz por escrito o que se exige antes de qualquer trabalho começar &mdash; e é o tipo de exemplo que você pode levar a uma turma de uma escola da região.</p>
-</div>
+    <div class="eixo eixo-tecnico">
+      <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
+      <p>Ler um documento oficial de formação é um gesto profissional, não burocrático. Na primeira semana de trabalho numa escola, alguém vai lhe entregar um Projeto Político-Pedagógico e esperar que você saiba extrair dele o que a sua disciplina deve fazer. Esta é a primeira vez que você faz isso &mdash; e é por isso que a leitura começa aqui, e não numa reunião daqui a três anos.</p>
+    </div>
   </div>
 
   <!-- TOPICO 2 -->
   <div class="topico" id="topico-2">
     <div class="topico-titulo">Tópico 2 &mdash; O que são as Trilhas de Aprendizagem, quantas paradas estratégicas e quantos Objetos de Aprendizagem cada parada contém?</div>
 
-    <p>A disciplina não é dada em aulas soltas: é dada em <strong>trilhas</strong>. São treze, em três temas, ao longo de quinze encontros. O <strong>Tema 0 &mdash; Boas-vindas</strong> tem esta trilha e a T0B, sobre unidades e ordens de grandeza. O <strong>Tema 1 &mdash; Entendendo as medidas</strong> vai da T01 à T05, um capítulo de Lima e Zappa por trilha, do algarismo significativo ao ajuste não linear. O <strong>Tema 2 &mdash; Brincando com Forças e Movimentos</strong> vai da T06 à T11, na sequência de Mecânica I e II: leis de Newton, forças, atrito e arrasto, plano inclinado, colisões, pressão e empuxo. Dois encontros de fechamento devolvem os relatórios de cada tema.</p>
+    <p>A disciplina não é dada em aulas soltas: é dada em <strong>trilhas</strong>. São treze &mdash; esta abertura, mais as outras quatro da Metrologia e as oito de Estática, Dinâmica, Energia e Fluidos, cada uma com um experimento diferente de Mecânica Clássica.</p>
+
+    <figure class="figura">
+      <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-04-v1-web.jpg" alt="Diagrama das três etapas do método: medição e incerteza, tabela e gráfico, ajuste de curva" loading="lazy">
+      <figcaption class="figura-legenda"><span class="figura-num">Figura 4</span> &mdash; As três etapas do método, em diagrama &mdash; o que muda é o experimento; o que se repete é o percurso.</figcaption>
+    </figure>
 
     <p><strong>As três paradas estratégicas.</strong> Cada trilha tem sempre as mesmas três, e elas não trocam de ordem:</p>
 
     <ul>
-      <li><strong>Pré-Lab &mdash; 20 minutos, em casa, antes do encontro.</strong> Você chega com a previsão do modelo escrita e sabendo o que vai medir.</li>
-      <li><strong>Lab &mdash; 100 minutos, na bancada, terça-feira, das 20:50 às 22:30.</strong> A medição acontece aqui, e só aqui.</li>
-      <li><strong>Pós-Lab &mdash; 40 minutos, em casa, depois do encontro.</strong> Tratamento, ajuste e o confronto com o modelo.</li>
+      <li><strong>Pré-Lab &mdash; 20 minutos, em casa, antes do encontro.</strong> Você chega sabendo o que vai medir e o que espera obter.</li>
+      <li><strong>Lab &mdash; 100 minutos, na bancada.</strong> A medição acontece aqui, e só aqui.</li>
+      <li><strong>Pós-Lab &mdash; 40 minutos, em casa, depois do encontro.</strong> O tratamento dos dados: incertezas, tabelas, gráficos, ajuste.</li>
     </ul>
 
-    <p><strong>Os Objetos de Aprendizagem (OAs) de cada parada.</strong> Um Objeto de Aprendizagem é uma peça de material com função única. A disciplina tem <strong>dezesseis</strong>, os mesmos da Introdução ao Laboratório, distribuídos pelas três paradas:</p>
+    <p><strong>Os Objetos de Aprendizagem (OAs) de cada parada.</strong> Um Objeto de Aprendizagem é uma peça de material com função única. A disciplina tem <strong>dezesseis</strong>, distribuídos pelas três paradas:</p>
 
     <ul>
       <li><strong>Pré-Lab:</strong> o Ponto de Partida (PP), o Resumo em Áudio (MD), o Texto Temático (TT), as Simulações (SM) e o Testinho (TN). De apoio, fora do caminho numerado: os Cartões Didáticos (CD), o Mapa Conceitual (MC), o Inventário de Equipamento (IE) e o Checklist de Segurança (CS).</li>
@@ -954,181 +802,127 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
       <li><strong>Pós-Lab:</strong> o Relatório Mínimo (RM) e o Relatório Completo (RC). De apoio, o Desafio Pedagógico (DX), opcional.</li>
     </ul>
 
-    <p><strong>Esta trilha é a exceção.</strong> A T0A não mede nada, e por isso entrega <strong>cinco</strong> dos dezesseis: no Pré-Lab, o Resumo em Áudio, este Texto Temático e os Cartões Didáticos; no Lab, o Roteiro de Bancada de reconhecimento &mdash; com o Inventário de Equipamento e o Checklist de Segurança dentro dele &mdash; e a Apresentação do Lab. Sem dado coletado, não há Pós-Lab. Os outros onze entram a partir da T01, e você os encontra, na ordem, na aba <em>Método</em> do site.</p>
+    <p><strong>Esta trilha é a exceção.</strong> A T0A não mede nada, e por isso entrega <strong>cinco</strong> dos dezesseis: no Pré-Lab, o Resumo em Áudio, este Texto Temático e os Cartões Didáticos; no Lab, o Roteiro de Bancada de reconhecimento &mdash; que aqui traz dentro dele o Inventário de Equipamento e o Checklist de Segurança &mdash; e a Apresentação do Lab. Sem dado coletado não há Pós-Lab. Os outros onze entram a partir da T0B, e você encontra todos eles, na ordem, na aba <em>Método</em> do site da disciplina.</p>
 
-    <p><strong>O que se repete em toda trilha de bancada &mdash; e o que muda em relação à ILB.</strong> Na Introdução ao Laboratório, o percurso repetido tinha três etapas: avaliar e expressar a medição com sua incerteza, apresentar tabelas e gráficos, ajustar uma curva. Essas três etapas não somem. Elas passam a ser o <strong>instrumental</strong> de uma sequência maior, que é a desta disciplina:</p>
+    <p><strong>Por que não o formato tradicional.</strong> No laboratório de roteiro-receita, o estudante executa passos numerados e confere o resultado com um gabarito; se o número bate, a prática &ldquo;deu certo&rdquo;. Aqui não. O experimento é <strong>veículo</strong>: mede-se para aprender a avaliar incerteza, tabelar, graficar e ajustar. Muda o experimento dez vezes; <strong>não muda o protocolo de medida</strong>. Ao longo do semestre, a forma da tabela e o produto do tratamento crescem &mdash; de uma coluna repetida, na T01, até uma decisão sobre conservação de uma grandeza, na T07 &mdash;, mas a sequência das três etapas nunca muda.</p>
 
-    <ol class="lista-perguntas">
-      <li><strong>Previsão do modelo</strong> &mdash; o que a Mecânica diz que deve acontecer, escrito antes da coleta.</li>
-      <li><strong>Medição com incerteza</strong> &mdash; tabelas e gráficos na nomenclatura da bibliografia básica.</li>
-      <li><strong>Ajuste e decisão</strong> &mdash; o modelo é compatível com os dados, dentro da incerteza? Se não, qual hipótese falhou?</li>
-    </ol>
+    <div class="eixo eixo-tecnico">
+      <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
+      <p>Três paradas com produtos próprios é um desenho de aula que se transporta para uma escola sem laboratório nenhum: leitura antes, atividade no tempo de aula, registro depois. O equipamento é o que menos viaja; o desenho viaja inteiro.</p>
+    </div>
 
-    <figure class="figura">
-  <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-04-v1-web.jpg" alt="Diagrama das três etapas do tratamento de dados: medição e incerteza, tabela e gráfico, ajuste de curva" loading="lazy">
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 4</span> &mdash; As três etapas que a Introdução ao Laboratório instalou &mdash; medição e incerteza, tabela e gráfico, curva ajustada &mdash; são, aqui, o instrumental da medição e da decisão sobre o modelo.</figcaption>
-</figure>
-
-    <p>Um exemplo, só contado. Mecânica I diz que um carrinho puxado por um peso que cai sobre uma roldana deve ter aceleração constante, com valor que se calcula pelas massas. Se a reta de velocidade contra tempo sair com inclinação menor do que a prevista, e a diferença for maior que a incerteza, o modelo &mdash; do jeito que foi escrito &mdash; não explica o dado. A pergunta seguinte é a que interessa: que hipótese foi deixada de fora? Quase sempre, o atrito. É assim que a T06 vai trabalhar.</p>
-
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>A sequência previsão, medição e decisão cabe numa sala sem laboratório: basta a turma escrever a previsão antes de ver o vídeo do experimento ou de rodar a simulação. O equipamento é o que menos viaja; o hábito de prever antes de olhar viaja inteiro.</p>
-</div>
-
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>A mineração colonial desta região funcionava pela prática de quem já sabia: o mineiro experiente dizia onde estava o ouro, e o acerto confirmava a autoridade. A Escola de Minas trouxe outro hábito &mdash; o de prever com um modelo, conferir no terreno e revisar o modelo quando o terreno discordava.</p>
-</div>
-
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>Dizer que um modelo é &ldquo;compatível dentro da incerteza&rdquo; só tem sentido se a incerteza foi estimada. É por isso que o Tema 1 vem antes do Tema 2: sem o instrumental de medição, a decisão sobre o modelo vira opinião.</p>
-</div>
-
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>Uma usina de beneficiamento também prevê e confere. A vazão que a correia transportadora deveria entregar é comparada com a massa pesada na balança da correia; se a diferença passa da incerteza da balança, alguma hipótese do processo falhou &mdash; e alguém precisa dizer qual.</p>
-</div>
+    <div class="eixo eixo-historico">
+      <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
+      <p>O roteiro-receita que esta metodologia recusa não é invenção recente: é herança do laboratório demonstrativo do século XIX, o mesmo modelo das primeiras escolas técnicas desta região, em que o estudante assistia à experiência do professor e a copiava no caderno.</p>
+    </div>
   </div>
 
   <!-- TOPICO 3 -->
   <div class="topico" id="topico-3">
     <div class="topico-titulo">Tópico 3 &mdash; Existe uma sequência para estudar que funciona bem, ou cada estudante escolhe por onde começar e como caminhar?</div>
 
-    <p>A resposta honesta é a mesma da ILB, com um passo a mais: a sequência é uma só, e é curta &mdash; mas o ritmo é seu. Você escolhe a hora e o lugar; não escolhe a ordem das paradas, porque cada uma prepara a seguinte. E, nesta disciplina, nenhuma delas funciona sem a previsão escrita.</p>
+    <p>A resposta honesta é: a sequência é uma só, e é curta &mdash; mas o ritmo é seu. Você escolhe a hora e o lugar; não escolhe a ordem das paradas, porque cada uma prepara a seguinte.</p>
 
-    <p><strong>Antes da aula (Pré-Lab, 20 min).</strong> Ouça o Resumo em Áudio (MD), leia o Texto Temático e <strong>escreva o que o modelo prevê</strong> para o experimento da trilha. Confira o Inventário de Equipamento (IE) e o Checklist de Segurança (CS). Quando a trilha indicar, prepare a montagem num laboratório virtual &mdash; o da Universidade Federal do Ceará, as animações de V. Vaščák ou as simulações PhET. A previsão não precisa estar certa: ela precisa existir. Quem chega sem ela não tem o que testar.</p>
-
-    <figure class="figura">
-  <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-05-v1-web.jpg" alt="O extintor de incêndio e o kit de primeiros socorros na sala de permanência dos professores" loading="lazy">
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 5</span> &mdash; O extintor de incêndio e o kit de primeiros socorros ficam na sala de permanência dos professores &mdash; fora do laboratório, e sempre no mesmo lugar.</figcaption>
-</figure>
-
-    <p><strong>Durante a aula &mdash; segurança primeiro.</strong> Você já conhece as regras da ILB, e elas continuam valendo: a saída de emergência, o extintor e o kit de primeiros socorros na sala de permanência dos professores, o calçado fechado, cada instrumento devolvido ao seu lugar. A Mecânica acrescenta riscos que a ILB quase não tinha: massas suspensas em roldanas, molas tensionadas, carrinhos correndo em trilhos, colisões, fluido sobre a bancada. Por isso o Equipamento de Proteção Individual (EPI) cresce com as trilhas &mdash; óculos de proteção onde houver mola, lançamento ou colisão, cabelo preso e nada pendurado perto de roldanas e trilhos. Ao final deste bloco, a turma propõe e o professor consolida as regras de uso do laboratório. Você assina o termo de segurança no Roteiro de Bancada desta trilha: é pré-requisito para entrar na bancada na T01. Quem faltar hoje assina antes do encontro de 13/10, com a monitoria.</p>
+    <p><strong>Antes da aula (Pré-Lab, 20 min).</strong> Ouça o Resumo em Áudio (MD), leia este Texto Temático, preveja o resultado do que vai medir e confira duas listas: o Inventário de Equipamento (IE) e o Checklist de Segurança (CS). A previsão não precisa estar certa &mdash; ela precisa existir. Chegar sem previsão é chegar sem pergunta.</p>
 
     <figure class="figura">
-  <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-06-v1-web.jpg" alt="Detalhe macro de uma régua graduada, com o foco na menor divisão da escala" loading="lazy">
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 6</span> &mdash; Uma escala graduada em detalhe &mdash; a menor divisão é o que separa o que o instrumento sabe dizer do que ele não sabe, e é ela que decide se o modelo pode ser julgado.</figcaption>
-</figure>
+      <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-05-v1-web.jpg" alt="O extintor de incêndio e o kit de primeiros socorros na sala de permanência dos professores" loading="lazy">
+      <figcaption class="figura-legenda"><span class="figura-num">Figura 5</span> &mdash; O extintor de incêndio e o kit de primeiros socorros ficam na sala de permanência dos professores &mdash; fora do laboratório, e sempre no mesmo lugar.</figcaption>
+    </figure>
 
-    <p><strong>Durante a aula &mdash; o acervo compartilhado.</strong> O Laboratório de Mecânica ocupa a bancada logo depois da Introdução ao Laboratório, na mesma noite. Isso tem duas consequências. A primeira: réguas, paquímetros, balanças e cronômetros são velhos conhecidos, e você os revê só para conferir a menor divisão. A segunda: entram instrumentos novos, próprios da Mecânica &mdash; trilho com sensores fotoelétricos, máquina de Atwood, dinamômetros e molas, plano inclinado com transferidor, manômetro. A lista é proposta e é conferida no acervo antes de cada trilha, porque vale uma regra sem exceção: <strong>sem inventário, sem aula</strong>. E, como o laboratório é de duas disciplinas, toda montagem da LME é conferida no início do encontro e desmontada ao final.</p>
+    <p><strong>Durante a aula &mdash; segurança primeiro.</strong> Um laboratório de ensino de física tem riscos menores que uma planta industrial, mas não riscos nulos. Você vai localizar a saída de emergência e saber onde ficam o extintor de incêndio e o kit de primeiros socorros &mdash; os dois na sala de permanência dos professores, e não dentro do laboratório: é para lá que se corre, e é por isso que o caminho até ela se aprende hoje, e não no dia em que for preciso. Você vai conhecer também o Equipamento de Proteção Individual (EPI) exigido em bancada &mdash; calçado fechado, e óculos de proteção nas trilhas em que houver mola ou lançamento &mdash; e a norma de organização ao final de cada aula: cada instrumento devolvido ao seu lugar. Ao final deste bloco, a turma propõe e o professor consolida uma lista mínima de regras de uso. Você assina o termo de segurança no Roteiro de Bancada desta trilha: é pré-requisito para entrar na bancada na T0B. Quem faltar hoje assina antes do encontro de 13/10, com a monitoria.</p>
 
     <figure class="figura">
-  <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-07-v1-web.jpg" alt="Close da mão de um estudante escrevendo a primeira entrada do Roteiro de Bancada com caneta azul" loading="lazy">
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 7</span> &mdash; A mão escrevendo a primeira entrada do Roteiro de Bancada, de perto &mdash; é aqui que o dado nasce, e é aqui que a previsão fica escrita antes dele.</figcaption>
-</figure>
+      <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-06-v1-web.jpg" alt="Detalhe macro de uma régua graduada, com o foco na menor divisão da escala" loading="lazy">
+      <figcaption class="figura-legenda"><span class="figura-num">Figura 6</span> &mdash; Uma escala graduada em detalhe &mdash; a menor divisão é o que separa o que o instrumento sabe dizer do que ele não sabe.</figcaption>
+    </figure>
 
-    <p><strong>Durante a aula &mdash; o registro, onde o dado nasce.</strong> No Roteiro de Bancada (RB) a ordem é fixa: a <strong>previsão</strong> vem antes, datada; o <strong>dado bruto</strong> vem durante, com as condições em que foi obtido; a <strong>decisão</strong> vem depois. E a regra que você já conhece ganha peso novo: <strong>o dado bruto não se apaga e não se corrige</strong>. Mudou de ideia? Anota-se ao lado, sem rasurar. Na ILB, isso protegia a medida; aqui, protege o julgamento. Um dado corrigido para caber no modelo não testa o modelo &mdash; confirma a sua vontade. O registro precisa ser tal que outra pessoa reproduza o procedimento sem você presente.</p>
+    <p><strong>Durante a aula &mdash; o acervo.</strong> Todo instrumento tem um limite: a <strong>menor divisão</strong>, a menor distância que a sua escala consegue distinguir. Nesta trilha você percorre a bancada e conhece o acervo do Laboratório de Mecânica &mdash; réguas, trenas, paquímetros, cronômetros, dinamômetros e balanças, entre outros. Para cada um, duas perguntas bastam por enquanto: <em>para que serve</em> e <em>qual é a sua menor divisão</em>. Você não vai medir nada com eles hoje: vai vê-los, nomeá-los e anotar onde ficam.</p>
 
-    <p><strong>Depois da aula (Pós-Lab, 40 min).</strong> Tratamento dos dados, ajuste e confronto com o modelo, em dois relatórios: o <strong>Relatório Mínimo (RM)</strong>, de uma página, em até 1 dia; e o <strong>Relatório Completo (RC)</strong>, em até 6 dias. Nesta trilha não há nenhum dos dois &mdash; sem dado coletado, não há o que relatar.</p>
+    <figure class="figura">
+      <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-07-v1-web.jpg" alt="Close da mão de um estudante escrevendo a primeira entrada do Roteiro de Bancada com caneta azul" loading="lazy">
+      <figcaption class="figura-legenda"><span class="figura-num">Figura 7</span> &mdash; A mão escrevendo a primeira entrada do Roteiro de Bancada, de perto &mdash; é aqui que a memória do laboratório começa a existir fora da sua cabeça.</figcaption>
+    </figure>
 
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>Que risco da Mecânica se leva a uma escola, e com que cuidado? Uma massa pendurada num barbante e um carrinho de brinquedo numa rampa de papelão já bastam para pôr a segunda lei de Newton à prova numa sala comum &mdash; desde que a turma escreva a previsão antes e ninguém fique embaixo da massa.</p>
-</div>
+    <p><strong>Durante a aula &mdash; o registro.</strong> O <strong>Roteiro de Bancada (RB)</strong> é onde o dado bruto é registrado, datado, com as condições em que foi obtido. E há uma regra que vale para o semestre inteiro: <strong>o dado bruto não se apaga e não se corrige</strong>. Mudou de ideia? Anota-se ao lado, sem rasurar o que veio antes &mdash; porque o que parecia erro na bancada às vezes é o único registro de que alguma coisa mudou na sala. Esta é a única competência do Tema 0 que se pratica sem medir nada.</p>
 
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>Antes do Sistema Internacional de Unidades, o ouro desta região era pesado em oitavas e quilates. Parte dos instrumentos de quem pesava, ensaiava e ensinava está no Museu de Ciência e Técnica da Escola de Minas, na Praça Tiradentes &mdash; acervo que já foi de bancada, como o seu.</p>
-</div>
+    <p><strong>Depois da aula (Pós-Lab, 40 min).</strong> Dois relatórios, com prazos diferentes: o <strong>Relatório Mínimo (RM)</strong>, de uma página, em até 1 dia; e o <strong>Relatório Completo (RC)</strong>, em até 6 dias. Nesta trilha de abertura não há nenhum dos dois &mdash; sem dado coletado, não há o que relatar. O primeiro relatório é o da T0B.</p>
 
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>Um instrumento sem manutenção perde a rastreabilidade da sua medida, e um laboratório compartilhado desgasta mais depressa. Conferir o inventário no início do encontro é segurança física e é também segurança metrológica: o modelo só pode ser julgado por um instrumento em que se confia.</p>
-</div>
+    <div class="eixo eixo-tecnico">
+      <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
+      <p>Que norma de segurança cabe numa escola que não tem laboratório dedicado? E que montagem deste acervo se improvisa numa sala comum? Uma régua escolar, um cronômetro de celular e um pouco de método já bastam para uma primeira aula de medição &mdash; o que se perde em precisão, ganha-se em ineditismo, se a turma nunca tiver visto isso antes.</p>
+    </div>
 
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>A NR-22 e a segurança da mina seguem a mesma lógica de risco da bancada: identificar o perigo antes de começar, registrar as condições do trabalho e nunca alterar o registro depois de um incidente. O checklist que você assina hoje é, em pequena escala, o mesmo gesto.</p>
-</div>
+    <div class="eixo eixo-historico">
+      <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
+      <p>Antes do Sistema Internacional de Unidades, o ouro extraído nesta região tinha a massa medida em oitavas e a pureza em quilates, com instrumentos de precisão muito diferente dos que estão na bancada hoje; parte desse acervo histórico está no Museu de Ciência e Técnica da Escola de Minas, na Praça Tiradentes.</p>
+    </div>
+
+    <div class="eixo eixo-cotidiano">
+      <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
+      <p>A mesma exigência atravessa os dois séculos: menor divisão, resolução e rastreabilidade são vocabulário da Metrologia, a área da ciência que trata das medidas comerciais, industriais e científicas. Um instrumento sem manutenção perde a rastreabilidade da sua medida &mdash; por isso a segurança do acervo é também segurança metrológica, e não apenas física.</p>
+    </div>
   </div>
 
   <!-- TOPICO 4 -->
   <div class="topico" id="topico-4">
     <div class="topico-titulo">Tópico 4 &mdash; Como funciona o sistema de avaliação?</div>
 
-    <p>A avaliação desta disciplina é <strong>processual</strong>: acompanha as três paradas, e os pesos espelham a estrutura da trilha. Os números são os mesmos da Introdução ao Laboratório. O que muda é o critério de uma das partes &mdash; e é a parte que mais importa.</p>
+    <p>A avaliação desta disciplina é <strong>processual</strong>: ela acompanha as três paradas, e os pesos espelham a estrutura da trilha. Quem mede bem na bancada e quem relata bem pesam igual.</p>
 
-    <p><strong>Os quatro instrumentos e seus pesos</strong> (válidos das trilhas T01 a T11):</p>
+    <p><strong>Os quatro instrumentos e seus pesos</strong> (válidos das trilhas T01 a T08):</p>
 
     <ul>
-      <li><strong>Pré-Lab &mdash; 20%.</strong> A ficha de preparação do Texto Temático, com a previsão do modelo e a conferência do Inventário de Equipamento e do Checklist de Segurança. Entregue no início do encontro, avalia <strong>preparo, não acerto da previsão</strong>.</li>
-      <li><strong>Lab &mdash; 40%.</strong> O Roteiro de Bancada preenchido, com os dados brutos e o registro do procedimento. Conduta de segurança, montagem, registro completo, reprodutibilidade.</li>
-      <li><strong>Pós-Lab: Relatório Mínimo (RM) &mdash; 15%.</strong> Uma página, digital, em até 1 dia após a prática. Dado bruto completo, cálculo visível e resultado expresso como ( valor &plusmn; incerteza ) unidade.</li>
-      <li><strong>Pós-Lab: Relatório Completo (RC) &mdash; 25%.</strong> Digital, em até 6 dias. Incertezas e sua propagação, tabelas e gráficos, ajuste linear ou não linear e &mdash; o critério novo &mdash; a <strong>decisão sobre o modelo</strong>: o ajuste é compatível com a previsão teórica dentro da incerteza? Se não, qual hipótese do modelo falhou?</li>
+      <li><strong>Pré-Lab &mdash; 20%.</strong> Os Objetos de Aprendizagem da preparação pesam 20% da sua nota. A ficha de preparação do Texto Temático é entregue no início do encontro, e avalia preparo, não acerto da previsão.</li>
+      <li><strong>Lab &mdash; 40%.</strong> O Roteiro de Bancada preenchido, com a tabela de dados brutos e o registro do procedimento. Conduta de segurança, qualidade da montagem, registro completo e legível, reprodutibilidade.</li>
+      <li><strong>Pós-Lab: Relatório Mínimo (RM) &mdash; 15%.</strong> Uma página, digital, em até 1 dia após a prática. Cobra o dado bruto completo, o cálculo visível e o resultado expresso como ( valor &plusmn; incerteza ) unidade.</li>
+      <li><strong>Pós-Lab: Relatório Completo (RC) &mdash; 25%.</strong> Digital, em até 6 dias. Tratamento de incertezas, tabelas e gráficos, linearização, ajuste de curva e análise crítica do resultado.</li>
     </ul>
 
-    <p><strong>Errar a previsão não tira nota; deixar de decidir, sim.</strong> Um relatório que chega a um valor bem medido e para ali está incompleto nesta disciplina. Um relatório que conclui, com a incerteza na mão, que o modelo sem atrito não explica o dado &mdash; e diz por quê &mdash; está completo, mesmo que a previsão tenha falhado.</p>
+    <p><strong>Esta trilha é a exceção.</strong> A T0A não vale nota de conteúdo. Cobra-se <strong>presença</strong> e o <strong>termo de segurança assinado</strong> &mdash; que é o pré-requisito para entrar na bancada na T0B.</p>
 
-    <p><strong>Quando cada coisa acontece.</strong> A ficha e o Roteiro de Bancada são devolvidos no próprio encontro; o Relatório Mínimo, no encontro seguinte; o Relatório Completo, nos fechamentos de cada tema &mdash; <strong>17/11</strong>, para o Tema 1, e <strong>26/01/2027</strong>, para o Tema 2 &mdash;, com a possibilidade de reapresentar a análise corrigida até o fechamento seguinte.</p>
+    <p><strong>Aprovação.</strong> Frequência mínima de 75% e rendimento mínimo de 60%, pelo Regulamento de Ensino.</p>
 
-    <p><strong>Esta trilha é a exceção.</strong> A T0A e a T0B não valem nota. Na T0A cobra-se <strong>presença</strong> e o <strong>termo de segurança assinado</strong>, pré-requisito para a bancada da T01.</p>
+    <p><strong>A estratégia de estudo que decorre disso.</strong> Repare onde está o peso: 60% da nota se decide antes de você sair do laboratório, entre a preparação e a bancada. Quem chega preparado mede melhor; quem registra bem escreve o Relatório Mínimo no mesmo dia, enquanto o dado ainda está quente &mdash; e é exatamente para isso que o RM existe, para impedir o dado de esfriar. Feito isso, o Relatório Completo dos 25% vira revisão, e não reconstrução de uma noite que você já não lembra direito.</p>
 
-    <p><strong>Aprovação.</strong> Frequência mínima de 75% e rendimento mínimo de 60%, pelo Regulamento de Ensino. Quem não atingir os 60%, com a frequência mínima, faz o exame final em 24 e 25/02/2027.</p>
+    <div class="eixo eixo-tecnico">
+      <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
+      <p>Pesos que premiam o processo, e não uma prova final, são uma decisão didática, não uma formalidade administrativa. É uma decisão que você vai ter de tomar na sua própria turma &mdash; e vale reparar, agora, no efeito que ela produz sobre o seu comportamento de estudante.</p>
+    </div>
 
-    <p><strong>A estratégia de estudo que decorre disso.</strong> Quem prevê antes, pelos 20%, sabe o que procurar na bancada, onde estão os 40%. Quem registra bem escreve o Relatório Mínimo no mesmo dia, enquanto o dado está quente &mdash; e é para isso que o RM existe: impedir o dado de esfriar. Feito isso, o Relatório Completo dos 25% vira decisão, e não reconstrução de uma noite que você já não lembra.</p>
-
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>Não punir a previsão errada é uma decisão didática, e não uma gentileza. Uma turma que perde nota por errar a previsão aprende a prever o que já sabe, e o experimento deixa de testar qualquer coisa. Você vai tomar essa decisão, um dia, na sua própria turma.</p>
-</div>
-
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>Os engenheiros formados pela Escola de Minas eram avaliados por memoriais de campo &mdash; relatórios em que o terreno tinha a última palavra sobre a teoria. Avaliar por relatório é a forma como a comunidade científica sempre julgou o trabalho experimental.</p>
-</div>
-
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>O critério do Relatório Completo é, literalmente, o critério metrológico de compatibilidade: dois valores só se dizem iguais, ou diferentes, quando se comparam as suas incertezas. Sem incerteza declarada, não há decisão a avaliar.</p>
-</div>
-
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>Um laudo técnico de mina não é aprovado por ter acertado: é aprovado por declarar a incerteza das medidas e sustentar a decisão com o dado. É a mesma exigência do seu Relatório Completo.</p>
-</div>
+    <div class="eixo eixo-cotidiano">
+      <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
+      <p>O critério de nota do Relatório Mínimo é, literalmente, o critério metrológico: resultado como ( valor &plusmn; incerteza ) unidade, com algarismos significativos coerentes com a menor divisão do instrumento. Não se avalia aqui a beleza do texto; avalia-se se a medida foi expressa como a Metrologia exige que ela seja.</p>
+    </div>
   </div>
 
   <!-- TOPICO 5 -->
   <div class="topico" id="topico-5">
     <div class="topico-titulo">Tópico 5 &mdash; Como posso carregar os materiais e o método de estudo com segurança na minha mão?</div>
 
-    <p>Nenhum material desta disciplina depende de você estar no campus. Tudo o que você precisa cabe no telefone &mdash; e, na LME, a mão carrega também um laboratório inteiro, em simulação.</p>
+    <p>Nenhum material desta disciplina depende de você estar no campus, e nenhum depende de papel. Tudo o que você precisa cabe no telefone &mdash; e essa foi uma decisão de projeto, não uma conveniência.</p>
 
-    <p><strong>O site da disciplina.</strong> <a href="https://nidecop-jafb.github.io/lme-oa/">nidecop-jafb.github.io/lme-oa</a> é a porta de entrada: os materiais de todas as trilhas, a aba Documentos, a entrega dos relatórios e o canal da monitoria. Abre no celular e pode ser instalado como atalho na tela inicial.</p>
+    <p><strong>O site da disciplina.</strong> É a porta de entrada: distribuição dos materiais de todas as trilhas, entrega dos relatórios e canal da monitoria. Abre no celular, e o endereço está no código <em>QR</em> da primeira página deste texto impresso.</p>
 
-    <p><strong>O Resumo em Áudio (MD).</strong> De três a cinco minutos, um por trilha. Monta o esqueleto do assunto antes da leitura, e cabe no trajeto até o campus.</p>
+    <p><strong>O Resumo em Áudio (MD).</strong> De três a cinco minutos, um por trilha. O resumo curto monta o esqueleto do assunto e abre o caminho para o Texto Temático &mdash; e cabe no trajeto até o campus.</p>
 
-    <p><strong>Os Cartões Didáticos (CD).</strong> Revisão ativa do vocabulário da disciplina e dos instrumentos do acervo: você responde antes de virar o cartão.</p>
+    <p><strong>Os Cartões Didáticos (CD).</strong> Revisão ativa do vocabulário da disciplina e dos instrumentos do acervo: você responde antes de virar o cartão. Cinco minutos de fila valem uma revisão.</p>
 
-    <p><strong>Este Texto Temático, na tela.</strong> A versão digital tem sumário, índice de figuras, tema claro ou escuro e a marca de quanto você já leu. A versão impressa sai na mesma versão, quando for publicada: se uma mudar, a outra muda junto.</p>
+    <p><strong>Este Texto Temático, em duas formas.</strong> O PDF, para imprimir e anotar à mão; e a versão de tela, para o telefone. As duas têm sempre a mesma versão &mdash; se uma mudar, a outra muda junto.</p>
 
-    <p><strong>Os laboratórios virtuais.</strong> O Laboratório Virtual de Física da Universidade Federal do Ceará, as animações de V. Vaščák e as simulações PhET, da University of Colorado Boulder, são gratuitos e não pedem cadastro. Você os usa no Pré-Lab, para preparar a montagem, e no Pós-Lab, para repetir ou estender a coleta. E eles servem a você duas vezes: como estudante agora, e como professor de uma escola sem laboratório depois.</p>
+    <p><strong>O ajuste de curva assistido por inteligência artificial.</strong> A partir da T01, você pode usar uma ferramenta de inteligência artificial para ajustar a curva aos seus dados. Com duas condições, que não são negociáveis: o resultado é <strong>sempre conferido por você</strong> &mdash; coerência dimensional, ordem de grandeza, resíduos &mdash; e o uso é <strong>declarado no relatório</strong>, com a indicação do que foi conferido. Uma resposta que chega pronta é uma hipótese, não um resultado.</p>
 
-    <p><strong>A planilha e o ajuste assistido por inteligência artificial.</strong> A partir da T01, você pode usar uma ferramenta de inteligência artificial para ajustar a curva aos seus dados, com duas condições que não se negociam. O resultado é <strong>sempre conferido por você</strong>: coerência dimensional, ordem de grandeza, resíduos &mdash; e se o parâmetro ajustado tem o significado físico que o modelo diz que ele tem. E o uso é <strong>declarado no relatório</strong>, com a indicação do que foi conferido. Um ajuste que chega pronto é uma hipótese, não uma decisão.</p>
+    <p><strong>A monitoria.</strong> O atendimento é digital &mdash; tratamento de dados, construção de gráficos e redação de relatório. Dúvidas presenciais também podem ser agendadas pelo site da disciplina.</p>
 
-    <p><strong>A monitoria.</strong> Atendimento para tratamento de dados, gráficos e relatório, com canal divulgado no site desde esta trilha. É também com a monitoria que se repõe a coleta de um encontro de bancada perdido por motivo justificado.</p>
+    <div class="eixo eixo-tecnico">
+      <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
+      <p>Áudio, cartões e site são recursos que você pode reproduzir numa escola pública sem laboratório: o método viaja mesmo quando o equipamento não viaja. Olhe para estes materiais também como quem vai fabricá-los um dia, e não apenas como quem os consome agora.</p>
+    </div>
 
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>Laboratórios virtuais, áudio e cartões são recursos que você pode reproduzir numa escola pública sem laboratório. Olhe para eles também como quem vai usá-los, um dia, para mostrar a uma turma que um modelo pode falhar: numa simulação, basta ligar o atrito.</p>
-</div>
-
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>Levar o material no bolso inverte a lógica da formação técnica de outrora, em que o acesso ao texto e ao instrumento ficava trancado na biblioteca e no gabinete da escola.</p>
-</div>
-
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>A conferência exigida sobre o ajuste da inteligência artificial é o mesmo crivo que a Metrologia aplica a qualquer resultado. Delegar o cálculo é permitido; delegar o julgamento sobre o modelo, não.</p>
-</div>
-
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>O monitoramento de uma barragem de rejeitos compara continuamente a leitura dos instrumentos com o que o modelo da estrutura prevê. O software sinaliza a discrepância; quem decide se ela é um alerta é a pessoa que confere &mdash; exatamente a divisão de trabalho que se pede de você diante do ajuste pronto.</p>
-</div>
+    <div class="eixo eixo-cotidiano">
+      <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
+      <p>A conferência exigida sobre o ajuste da inteligência artificial é o mesmo crivo que a Metrologia aplica a qualquer resultado: uma medida sem verificação não é uma medida, é uma afirmação. Delegar o cálculo é permitido; delegar o julgamento, não.</p>
+    </div>
   </div>
 </div>
 
@@ -1136,16 +930,14 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 <div class="ato" id="ato-iii">
   <div class="ato-titulo">Ato III &mdash; O Fechamento</div>
 
-  <p>Você sai deste primeiro encontro com três coisas: o termo de segurança assinado, o Roteiro de Bancada com a primeira entrada &mdash; a regra de uso que você propôs e os instrumentos novos do acervo, cada um com a sua menor divisão ao lado &mdash; e uma pergunta para a T01: <em>que previsão eu vou levar escrita?</em></p>
-
   <figure class="figura">
-  <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-08-v1-web.jpg" alt="Os licenciandos caminham de frente para a câmera pelo corredor do Pavilhão de Física, no fim da aula" loading="lazy">
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 8</span> &mdash; O corredor do Pavilhão, no fim da aula &mdash; quem sai carrega um termo assinado e uma previsão por escrever.</figcaption>
-</figure>
+    <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-08-v1-web.jpg" alt="Os quatro licenciandos caminham de frente para a câmera pelo corredor do Pavilhão de Física, no fim da aula" loading="lazy">
+    <figcaption class="figura-legenda"><span class="figura-num">Figura 8</span> &mdash; O corredor do Pavilhão, no fim da aula &mdash; quem sai carrega um roteiro preenchido e um termo assinado.</figcaption>
+  </figure>
 
-  <p>E sai com as cinco respostas: o que os documentos obrigam, e o que a proposta de ementa passa a obrigar; como a disciplina é feita, e por que a sequência começa no modelo; como se estuda nela; como ela avalia, e por que decidir vale mais do que acertar; e como ela cabe na sua mão. Se em algum momento do semestre você não souber o que fazer em seguida, a resposta provavelmente está numa dessas cinco &mdash; volte a este texto antes de perguntar.</p>
+  <p>Você sai deste primeiro encontro com três coisas: o termo de segurança assinado, o Roteiro de Bancada com a primeira entrada feita e a lista dos instrumentos do acervo, cada um com a sua menor divisão anotada ao lado. Nenhuma delas é uma medida &mdash; e é justamente por isso que, quando a primeira medição chegar, na T0B, você vai chegar a ela sabendo o que fazer com o número que sair da régua.</p>
 
-  <p>Na próxima terça-feira, a T0B trata das unidades e das ordens de grandeza. Repare que ela já é uma forma de previsão: estimar, antes de medir, o tamanho do que vai aparecer.</p>
+  <p>E você sai também com as cinco respostas: o que os documentos obrigam, como a disciplina é feita, como se estuda nela, como ela avalia e como ela cabe na sua mão. Se em algum momento do semestre você não souber o que fazer em seguida, é provável que a resposta esteja em uma dessas cinco &mdash; volte a este texto antes de perguntar.</p>
 </div>
 
 <div class="separador"></div>
@@ -1153,57 +945,55 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 <!-- ═══════════════════ CIÊNCIA E ARTE ═══════════════════ -->
 <div class="ciencia-arte" id="ciencia-arte">
   <div class="ciencia-arte-titulo">Ciência e Arte</div>
-  <div class="ciencia-arte-obra"><strong>Cadernetas de viagem:</strong> <em>A Boiada</em>, 1952 &mdash; João Guimarães Rosa (1908&ndash;1967)</div>
+  <div class="ciencia-arte-obra"><strong>Caderno de anotações:</strong> <em>Codice Forster III</em>, c. 1493&ndash;1496 &mdash; Leonardo da Vinci (1452&ndash;1519)</div>
 
-  <p>Em 1952, Guimarães Rosa acompanhou uma boiada pelo sertão de Minas Gerais, a cavalo, junto com os vaqueiros, por cerca de 220 quilômetros. Levava cadernetas presas por um cordão ao botão da camisa, e foi enchendo sete delas: nomes de plantas e de bichos, falas dos vaqueiros, a cor do céu, o jeito de tocar o gado. As cadernetas estão hoje no Instituto de Estudos Brasileiros da Universidade de São Paulo, e foram publicadas em fac-símile com o título <em>A Boiada</em>. Só anos depois veio o <em>Grande Sertão: Veredas</em>.</p>
+  <p>Num caderno de bolso, entre desenhos de máquinas e estudos de água corrente, Leonardo escreveu que a sabedoria é filha da experiência &mdash; <em>la sapienza è figliola della sperienzia</em>. A frase não estava num tratado nem numa aula: estava num caderno de trabalho, escrito enquanto a mão ainda media. Leonardo não separava o gesto de olhar do gesto de registrar, e os seus cadernos são, ao mesmo tempo, obra de arte e caderno de bancada &mdash; exatamente o que se pede de você a partir de hoje.</p>
 
-  <p>A ordem é o que interessa aqui. O romancista não escreveu o sertão que imaginava para depois conferi-lo: anotou o sertão que via, e só então escreveu. A ficção veio <strong>depois</strong> do registro, e não o substituiu. É o gesto desta trilha &mdash; o dado nasce no registro, e o registro vem antes da interpretação.</p>
+  <p>Vale reparar no que a frase inverte. Para Leonardo, a sabedoria não vem antes da experiência para depois ser aplicada a ela: nasce dela, como filha. Numa disciplina em que o experimento é objeto, essa ordem deixa de ser poesia e vira método &mdash; é a bancada que julga o modelo da Mecânica, e não o contrário.</p>
+
+  <p>E há um limite que também é conteúdo de formação. Nem tudo o que um professor faz numa sala cabe em número: o interesse que desperta, a dúvida que acolhe, a confiança que constrói. Quem vai ensinar física precisa saber a diferença entre exigir rigor onde ele é possível e exigir número onde ele não diz nada. A experiência de que Leonardo fala é maior do que a medição &mdash; e a medição é a parte dela que esta disciplina consegue ensinar.</p>
 
   <figure class="figura">
-  <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-09-v1-web.jpg" alt="Cadernetas de capa escura amarradas por um cordão sobre uma sela de couro, uma delas aberta com anotações e o esboço de um boi; ao fundo, buritis e uma boiada no sertão" loading="lazy">
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 9</span> &mdash; As cadernetas de Guimarães Rosa, amarradas por um cordão sobre a sela &mdash; o sertão anotado antes de virar romance.</figcaption>
-</figure>
+    <img class="figura-img" src="../_imagens/_web/LME-T0A-Figura-09-v1-web.jpg" alt="Pintura a óleo de um gabinete renascentista: cadernos abertos com desenhos técnicos, instrumentos de medida, pena e tinteiro" loading="lazy">
+    <figcaption class="figura-legenda"><span class="figura-num">Figura 9</span> &mdash; O gabinete de quem mede e desenha ao mesmo tempo &mdash; o mesmo cuidado que ainda hoje cabe numa bancada de ensino.</figcaption>
+  </figure>
 
-  <p>Na Mecânica há uma dobra a mais. Aqui a <strong>previsão</strong> também se anota antes, e por uma razão simples: se ela ficar só na cabeça, a memória a ajusta ao dado, e o modelo nunca perde. Anotar antes é aceitar, por escrito, que o dado pode desmentir a previsão. E há uma consequência que é conteúdo de formação: ensinar uma turma a anotar antes de concluir é ensiná-la a aceitar que o dado pode desmentir qualquer previsão &mdash; inclusive a do professor.</p>
+  <blockquote>&ldquo;A sabedoria é filha da experiência.&rdquo;</blockquote>
+  <div class="ca-autor">&mdash; Leonardo da Vinci (1452&ndash;1519)</div>
 
-  <blockquote>Sete cadernetas presas ao botão da camisa: 220 km de sertão mineiro anotados em 1952, antes do <em>Grande Sertão</em>.</blockquote>
-  <div class="ca-autor">&mdash; <em>A Boiada</em>, Guimarães Rosa, 1952</div>
+  <div class="footnote"><strong>Leonardo da Vinci</strong> (Vinci, 1452 &mdash; Amboise, 1519). Pintor, engenheiro e anatomista italiano. Deixou cerca de seis mil páginas de cadernos manuscritos: anotar o que se vê, antes de concluir &mdash; o que o Roteiro de Bancada pede de você.</div>
 
-  <div class="footnote"><strong>João Guimarães Rosa</strong> (Cordisburgo, 1908 &mdash; Rio de Janeiro, 1967). Médico, diplomata e escritor mineiro. A frase acima não é dele: é a legenda da obra, e por isso entra sem aspas e assinada pela obra, não pelo autor.</div>
-
-  <p style="margin-top:22px;"><em>Bacon viu que só se entende o que se constata; Marie Curie constatou e anotou, e o caderno guarda até hoje a radiação da bancada; Guimarães Rosa encheu sete cadernetas no sertão antes de escrever uma linha do romance. Três cérebros, o mesmo gesto.</em></p>
+  <p style="margin-top:22px;"><em>Paulo Freire viu que se lê o mundo antes de ler a palavra; Galileu disse que esse mundo está escrito em língua matemática e ensinou a soletrá-la; Leonardo chamou a sabedoria de filha da experiência, e escreveu isso num caderno, enquanto media. Três cérebros, o mesmo gesto.</em></p>
 </div>
 
 <!-- ═══════════════════ REFERÊNCIAS ═══════════════════ -->
 <div class="refs" id="referencias">
   <div class="refs-titulo">Referências &mdash; Bibliografia Básica</div>
-  <p>LIMA, C. R. A.; ZAPPA, F. <em>Análise de dados para laboratório de física</em>. Juiz de Fora: UFJF, 2014. 57 p. Disponível em: https://www2.ufjf.br/carlos_lima/wp-content/uploads/sites/520/2019/01/analisedados.pdf. Acesso em: 13 set. 2026.</p>
   <p>CAMPOS, A. A.; ALVES, E. S.; SPEZIALI, N. L. <em>Física experimental básica na universidade</em>. 2. ed. Belo Horizonte: Editora UFMG, 2008.</p>
+  <p>PIACENTINI, J. J. et al. <em>Introdução ao laboratório de física</em>. 2. ed. Florianópolis: Editora da UFSC, 2018.</p>
   <p>SANTORO, A. et al. <em>Estimativas e erros em experimentos de física</em>. 2. ed. Rio de Janeiro: EdUERJ, 2013.</p>
 
   <div class="refs-titulo" style="margin-top:24px;">Referências &mdash; Bibliografia Complementar</div>
-  <p>VUOLO, J. H. <em>Fundamentos da teoria de erros</em>. 2. ed. São Paulo: Edgard Blücher, 1996.</p>
-  <p>UNIVERSIDADE FEDERAL DO CEARÁ. <em>Laboratório virtual de física</em>: mecânica. Fortaleza: UFC, 2020. Disponível em: https://www.laboratoriovirtual.fisica.ufc.br/. Acesso em: 13 set. 2026.</p>
-  <p>VAŠČÁK, V. <em>Physics at school</em>: I. Mechanics. Morávia: Vladimír Vaščák, [20--]. Disponível em: https://www.vascak.cz/?id=1&amp;language=it#kapitola3. Acesso em: 13 set. 2026.</p>
-  <p>UNIVERSITY OF COLORADO BOULDER. <em>PhET Interactive Simulations</em>. Boulder: University of Colorado Boulder, 2002-. Disponível em: https://phet.colorado.edu/pt_BR/. Acesso em: 13 set. 2026.</p>
+  <p>HEWITT, P. G. <em>Física conceitual</em>. 12. ed. Porto Alegre: Bookman, 2015.</p>
+  <p>FEYNMAN, R. P.; LEIGHTON, R. B.; SANDS, M. L. <em>Feynman: lições de física</em>. Porto Alegre: Bookman, 2008. v. 1, 2 e 3.</p>
+  <p>HALLIDAY, D.; RESNICK, R.; WALKER, J. <em>Fundamentos de física</em>: mecânica. 10. ed. Rio de Janeiro: LTC, 2016. v. 1.</p>
 
-  <div class="refs-titulo" style="margin-top:24px;">Documentos e normas</div>
-  <p>INSTITUTO FEDERAL DE MINAS GERAIS. Campus Ouro Preto. <em>Legislação e normas de ensino</em>. Ouro Preto: IFMG, [202-?]. Disponível em: https://ouropreto.ifmg.edu.br/ouropreto/ensino/legislacao-e-normas-de-ensino. Acesso em: 14 set. 2026.</p>
-  <p>INSTITUTO FEDERAL DE MINAS GERAIS. Campus Ouro Preto. <em>Calendário acadêmico 2026</em>. Ouro Preto: IFMG, 2026. Disponível em: https://ouropreto.ifmg.edu.br/ouropreto/ensino/calendario-escolar/2026/. Acesso em: 14 set. 2026.</p>
-  <p>INSTITUTO FEDERAL DE MINAS GERAIS. Campus Ouro Preto. <em>Curso de Licenciatura em Física</em>. Ouro Preto: IFMG, [202-?]. Disponível em: https://ouropreto.ifmg.edu.br/ouropreto/cursos/graduacao/licenciatura-em-fisica. Acesso em: 14 set. 2026.</p>
-  <p>INSTITUTO FEDERAL DE MINAS GERAIS. Campus Ouro Preto. <em>Projeto Pedagógico do Curso de Licenciatura em Física</em>. Ouro Preto: IFMG, 2026. Disponível em: https://ouropreto.ifmg.edu.br/ouropreto/cursos/graduacao/licenciatura-em-fisica. Acesso em: 14 set. 2026.</p>
+  <div class="refs-titulo" style="margin-top:24px;">Referências &mdash; Bibliografia Pedagógica Científica</div>
+  <p>BLOOM, Benjamin S. (org.). <em>O desenvolvimento de talentos na juventude</em>. Porto Alegre: Globo, 1988.</p>
+  <p>HEWITT, Paul G. <em>Física conceitual</em>. 12. ed. Porto Alegre: Bookman, 2015.</p>
+  <p>NICOLELIS, Miguel. <em>O verdadeiro criador de tudo: como o cérebro humano esculpiu o universo que conhecemos</em>. São Paulo: Planeta, 2020.</p>
+  <p>PIAZZI, Pierluigi. <em>Aprendendo inteligência: manual de instruções do cérebro para estudantes em geral</em>. São Paulo: Aleph, 2008.</p>
 
   <div class="refs-titulo" style="margin-top:24px;">Epígrafes desta trilha</div>
-  <p>BACON, Francis. <em>Novum Organum</em>. Londres, 1620. Livro I, aforismo 1. Tradução brasileira (coleção Os Pensadores) a fixar.</p>
-  <p>CURIE, Marie; CURIE, Pierre. <em>Cadernos de laboratório</em>, 1899&ndash;1902. Paris: Bibliothèque nationale de France. (usada no Roteiro de Bancada desta trilha)</p>
-  <p>ROSA, João Guimarães. <em>A Boiada</em>. Rio de Janeiro: Nova Fronteira, 2011. Edição fac-similar.</p>
+  <p>FREIRE, Paulo. <em>A importância do ato de ler</em>. São Paulo: Cortez, 1982.</p>
+  <p>GALILEI, Galileo. <em>Il Saggiatore</em>. Roma, 1623. (usada no Roteiro de Bancada desta trilha)</p>
+  <p>LEONARDO DA VINCI. <em>Codice Forster III</em>, c. 1493&ndash;1496. Londres: Victoria and Albert Museum.</p>
 
   <div class="refs-titulo" style="margin-top:24px;">Declaração de autoria</div>
-  <p>Estas Trilhas de Aprendizagem são concebidas, dirigidas e revisadas por uma equipe humana &mdash; autor, colaborador, monitores e a equipe do Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) e da Coordenadoria da Área de Física.</p>
+  <p>Estas Trilhas de Aprendizagem são concebidas, dirigidas e revisadas por uma equipe humana &mdash; autor, colaborador, monitores e a equipe do Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) e da Coordenadoria da Área de Física (CODAFIS).</p>
   <p>A inteligência artificial entra no processo como ferramenta, nunca como autora: é usada sob curadoria humana, com princípios claros, diretrizes pedagógicas explícitas e honestidade intelectual.</p>
   <p>Assim, declaramos abertamente o uso de IA como assistente de redação e diagramação de todos os Objetos de Aprendizagem (Claude Opus 5 e Claude Cowork, Anthropic, 2026; Gemini Notebook, Google, 2026), do mesmo modo que se declara o uso de qualquer ferramenta de autoria.</p>
 </div>
-
 
 </div><!-- fim .conteudo -->
 
@@ -1211,6 +1001,7 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 <div class="encerramento">
   <div class="fecho-frase">Terminamos por aqui, um abraço, e até o próximo encontro.</div>
   <div class="fecho-links">
+    <a class="fecho-btn" href="../rb/">Roteiro de Bancada</a>
     <a class="fecho-btn secundario" href="../../index.html#t0a">Todas as trilhas</a>
   </div>
 </div>
@@ -1231,7 +1022,7 @@ window.addEventListener('scroll', function() {
 // Restauracao de scroll REMOVIDA (2026-09-13): computador de laboratorio e
 // compartilhado entre turmas — o scroll salvo por um estudante reabria a
 // pagina de todo o proximo estudante ja no final do TT.
-var STORAGE_KEY = 'LME-T0A-TT-v1';
+var STORAGE_KEY = 'LME-T0A-TT-v2';
 window.scrollTo(0, 0);
 
 // ─── FONT SIZE ───
@@ -1273,8 +1064,15 @@ document.getElementById('btnTheme').addEventListener('click', function() {
   var current = document.documentElement.getAttribute('data-theme');
   setTheme(current === 'dark' ? 'light' : 'dark');
 });
-
-
+// O atalho de audio abre o painel Musica do trilho de 7 abas (abas_oa_ilb.py).
+var audioHint = document.getElementById('audioHint');
+if (audioHint) {
+  audioHint.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var b = document.querySelector('.lme-aba-toggle[data-aba="musica"]');
+    if (b) { b.click(); }
+  });
+}
 </script>
 <!-- ABAS-OA-LME (trilho de 6 abas — abas_oa.py) -->
 

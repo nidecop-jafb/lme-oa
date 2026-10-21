@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LME-T0A · Primeiros Passos no Laboratório — Apresentação (modo palco)</title>
+<title>LME-T0A · Boas-vindas à Física Experimental — Apresentação (modo palco)</title>
 <style>
   input, button, select, textarea { font-family: inherit; }
 /* ═══ DESIGN SYSTEM: BRUTALISMO CIENTIFICO — MODO PALCO ═══ */
@@ -91,24 +91,6 @@ html, body {
 .toolbar button.active { color: var(--ouro); border-color: var(--ouro); }
 
 /* ═══ SIDEBARS (6 abas laterais — flex container) ═══ */
-.sb-toggles {
-  position: fixed; left: 0; top: 50%; transform: translateY(-50%);
-  z-index: 998; display: flex; flex-direction: column; gap: 2px;
-}
-.sb-toggle {
-  background: var(--superficie);
-  border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem;
-  padding: 6px 8px; cursor: pointer;
-  font-family: var(--font);
-  writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 0.5px; text-transform: uppercase; font-weight: 600;
-  border-radius: 0; transition: color 0.15s;
-}
-.sb-toggle:hover { color: var(--ouro); }
-@media (max-height: 780px) {
-  .sb-toggle { font-size: 0.65rem; padding: 5px 6px; }
-}
 
 /* Blocos internos de créditos e imagens */
 .cred-grupo { margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--cinza-borda); }
@@ -121,61 +103,6 @@ html, body {
 .cred-footer { font-size: 0.7rem; color: var(--cinza); font-style: italic; text-align: center; margin-top: 12px; letter-spacing: 0.5px; }
 .imagens-nota { font-size: 0.8rem; color: var(--cinza); font-style: italic; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--cinza-borda); line-height: 1.5; }
 .figura-num { font-weight: 700; color: var(--azul); }
-
-.sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 340px; height: 100vh; overflow-y: auto;
-  background: var(--superficie);
-  border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 46px;
-  transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.95rem;
-}
-.sidebar.open { transform: translateX(0); }
-.sidebar h3 {
-  font-size: 0.75rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 2px;
-  color: var(--ouro); margin-bottom: 16px;
-  border-bottom: 1px solid var(--cinza-borda);
-  padding-bottom: 8px;
-}
-.sidebar .toc-item {
-  display: block; padding: 8px 0; font-size: 0.85rem;
-  color: oklch(0.75 0 0); text-decoration: none;
-  border-bottom: 1px solid var(--cinza-claro);
-  transition: color 0.15s; cursor: pointer;
-}
-[data-theme="light"] .sidebar .toc-item { color: oklch(0.28 0 0); }
-.sidebar .toc-item:hover { color: var(--ouro); }
-.sidebar .toc-item .toc-num {
-  font-family: var(--mono); color: var(--azul);
-  font-size: 0.75rem; margin-right: 10px; min-width: 30px; display: inline-block;
-}
-.sidebar .toc-item.ativo .toc-num { color: var(--ouro); font-weight: 700; }
-.sidebar .toc-item.ato-titulo {
-  color: var(--azul); font-weight: 700;
-  border-bottom: 2px solid var(--azul);
-  margin-top: 12px; padding-top: 12px;
-}
-.sidebar p { font-size: 0.9rem; margin-bottom: 12px; color: oklch(0.80 0 0); line-height: 1.6; }
-[data-theme="light"] .sidebar p { color: oklch(0.25 0 0); }
-.sidebar .link-yt {
-  display: inline-block; margin-top: 8px; padding: 8px 14px;
-  background: var(--erro); color: white; text-decoration: none;
-  font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
-  text-transform: uppercase;
-}
-.sidebar .link-yt:hover { background: oklch(0.72 0.24 25); }
-.sidebar .refs-grupo { margin-bottom: 18px; }
-.sidebar .refs-label {
-  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1px; color: var(--cinza); margin-bottom: 6px;
-}
-.sidebar .refs-item {
-  font-size: 0.8rem; color: oklch(0.78 0 0);
-  margin-bottom: 4px; line-height: 1.4;
-}
-[data-theme="light"] .sidebar .refs-item { color: oklch(0.28 0 0); }
 
 /* ═══ DECK / SLIDES ═══ */
 .deck { width: 100%; height: 100%; position: relative; }
@@ -218,7 +145,7 @@ html, body {
 
 /* ── SLIDE 1: CAPA ── */
 .capa-slide {
-  padding: 0; justify-content: center; align-items: center;
+  padding: 0; justify-content: flex-end; align-items: center;
   text-align: center;
   /* NAO redefinir position aqui: o .slide e position:absolute com inset:0.
      Com position:relative a capa saia do posicionamento absoluto, encolhia
@@ -233,10 +160,16 @@ html, body {
   z-index: 0; min-height: 100%;
 }
 [data-theme="light"] .capa-bg { filter: brightness(0.65) saturate(1.1); }
+/* Veu so na base: o texto desce para nao cobrir rosto/corpo do protagonista,
+   que fica enquadrado no centro/alto da foto. */
+.capa-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 42%, rgba(0,0,0,0.72) 100%);
+}
 .capa-conteudo {
   position: relative; z-index: 1;
   display: flex; flex-direction: column; align-items: center; gap: 0;
-  padding: 5vh 6vw;
+  padding: 0 6vw 6vh;
 }
 .capa-disciplina {
   font-size: 3.4rem; font-weight: 800;
@@ -690,8 +623,10 @@ html, body {
 [data-theme="light"] .ca-provinha p { color: oklch(0.18 0 0); }
 
 /* ── DESPEDIDA ── */
+/* Texto descia na altura do pescoco da Sofia (bloco centralizado na vertical);
+   movido para perto do joelho — bloco ancorado embaixo (2026-09-13). */
 .despedida {
-  padding: 0; justify-content: center; align-items: center;
+  padding: 0 0 5vh; justify-content: flex-end; align-items: center;
   text-align: center;
 }
 /* ── Slide 16 em duas colunas, sobre imagem de fundo ──
@@ -708,7 +643,9 @@ html, body {
 /* Veu que protege o lado do texto sem apagar a cena do lado direito. */
 .desp-bg::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.64) 0%, rgba(0,0,0,0.48) 52%, rgba(0,0,0,0.20) 100%);
+  background:
+    linear-gradient(0deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 40%),
+    linear-gradient(90deg, rgba(0,0,0,0.64) 0%, rgba(0,0,0,0.48) 52%, rgba(0,0,0,0.20) 100%);
 }
 .despedida .desp-body {
   position: relative; z-index: 1;
@@ -804,15 +741,20 @@ html, body {
 .rodape-nav {
   display: flex; gap: 6px; align-items: center;
 }
-.rodape-nav button {
+.rodape-nav button, .rodape-nav a {
   background: var(--superficie);
   border: 1px solid var(--cinza-borda);
   color: var(--cinza); width: 32px; height: 32px;
   display: flex; align-items: center; justify-content: center;
-  cursor: pointer; font-size: 0.9rem;
+  cursor: pointer; font-size: 0.9rem; text-decoration: none;
   transition: color 0.15s, border-color 0.15s;
 }
-.rodape-nav button:hover { color: var(--ouro); border-color: var(--ouro); }
+.rodape-nav button:hover, .rodape-nav a:hover { color: var(--ouro); border-color: var(--ouro); }
+.rodape-nav-oa {
+  width: auto !important; padding: 0 12px; font-family: var(--mono);
+  font-size: .78rem; font-weight: 700; white-space: nowrap;
+}
+@media (max-width: 700px) { .rodape-nav-oa { display: none; } }
 .rodape-nav .contador {
   font-family: var(--mono); font-size: 0.85rem;
   color: var(--cinza); min-width: 60px; text-align: center; font-weight: 700;
@@ -952,14 +894,12 @@ html, body {
   .tbl { font-size: 0.95rem; }
   .desp-frase { font-size: 1.6rem; }
   .rodape { padding: 4px 10px; }
-  .sidebar { width: 90vw; }
   .toolbar button { padding: 4px 8px; font-size: 0.68rem; }
 }
 
 /* ═══ PRINT ═══ */
-@media print {
-  .progress-top, .toolbar, .sb-toggles, .sidebar,
-  .rodape, .overview, .overview-fechar { display: none !important; }
+@media print {.progress-top, .toolbar,
+  .rodape, .overview, .overview-fechar{ display: none !important; }
   .slide {
     position: relative !important; opacity: 1 !important;
     pointer-events: auto !important; page-break-after: always;
@@ -997,45 +937,19 @@ html, body {
 .chk-t { font-size: 1rem; line-height: 1.4; }
 
 
-/* figuras inteiras — cartaz (s3), reguas (s4) e simbolo (s10): cover cortava 16-37% */
+/* figuras inteiras (corrigido 2026-09-13): a lista de seletores abaixo tinha
+   ficado sem chave de declaracao — os comentarios entre ela e .cred-cargo
+   faziam as duas regras se fundirem, e as figuras 2-9 continuavam cortadas
+   pelo object-fit:cover da regra-base. Cortava 16-57% das fotos. */
 .slide[data-slide="2"] .col-img img,
 .slide[data-slide="3"] .col-img img,
 .slide[data-slide="4"] .col-img img,
-.slide[data-slide="9"] .col-img img,
-
-/* ajuste de transbordo — slides 4 e 11 (com botao de revelacao) */
-
-/* ajuste de transbordo — slide 10 (Normas) em 1366x768 */
-/* PADRAO-ABAS-CREDITOS (decisao do autor 2026-09-02): cargos na secundaria (aco --azul), caixa normal. */
-.cred-cargo { color: var(--azul); text-transform: none; }
-
-/* ── Despedida: texto abaixo do pescoco (SKILL.md apresentacao-trilha-digital,
-   Camada 4, "Texto sobre imagem de fundo — nunca sobre o rosto") ──
-   A Figura 8 traz os quatro licenciandos de frente: os rostos vao ate y~500 de
-   1200 e a linha de ombros fica em y~600. O corpo do slide vinha centrado na
-   vertical e comecava em y~454 — cortava o rosto de tres dos quatro.
-
-   Duas medidas, juntas, porque so ancorar nao bastava: o corpo inteiro tem
-   ~473px e a faixa livre abaixo dos ombros tem ~400px.
-   1) O corpo ancora na BASE. Ancorar, e nao descer um valor fixo em px, e o que
-      mantem a regra de pe em qualquer proporcao de tela: o recorte `cover` da
-      foto muda com o formato. O .slide e flex-column, entao quem alinha na
-      vertical e o justify-content.
-   2) O corpo encolhe o suficiente para caber na faixa livre: sem o respiro de
-      baixo, com as calhas menores e com a linha institucional fora do fluxo,
-      no rodape do proprio corpo. Nenhum tamanho de fonte muda — e deck de
-      projecao, o texto nao pode encolher. */
-.despedida { justify-content: flex-end; }
-.despedida .desp-body { padding-bottom: 0; row-gap: 12px; }
-.despedida .desp-inst {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  grid-row: auto; margin-top: 0;
+.slide[data-slide="5"] .col-img img,
+.slide[data-slide="6"] .col-img img,
+.slide[data-slide="9"] .col-img img {
+  object-fit: contain;
+  background: var(--input-bg);
 }
-/* 3) O enquadramento tambem ajuda, e sem tocar na imagem: `cover` recorta a
-      foto quadrada e o ponto de ancoragem decide o que fica de fora. Ancorando
-      mais abaixo, o grupo sobe no quadro e a faixa livre abaixo dos ombros
-      cresce, sem cortar o alto das cabecas (o cabelo comeca em y~365). */
-.despedida .desp-bg { background-position: center 70%; }
 /* ICONES-LME */
 .lme-cab-marcas { display: flex; gap: 10px; align-items: center; justify-content: flex-start;
   flex-shrink: 0; }
@@ -1149,7 +1063,7 @@ html, body {
 <!-- ═══ TOOLBAR ═══ -->
 <div class="toolbar">
   <a href="../../index.html" title="Voltar aos OAs da trilha" style="display:flex;align-items:center;text-decoration:none;">
-    <button style="background:none;border:1px solid var(--cinza-borda);color:var(--cinza);font-size:0.9rem;padding:6px 10px;cursor:pointer;border-radius:0;transition:color 0.15s,border-color 0.15s;letter-spacing:0.5px;font-weight:600;" title="Ver todos os OAs da trilha">&#x1f3e0;</button>
+    <button style="background:none;border:1px solid var(--cinza-borda);color:var(--cinza);font-size:0.9rem;padding:6px 10px;cursor:pointer;border-radius:0;transition:color 0.15s,border-color 0.15s;letter-spacing:0.5px;font-weight:600;" title="Home">&#x1f3e0;</button>
   </a>
   <button id="btn-overview" title="Overview grid (tecla O)">&#9638; O</button>
   <button id="btn-tema" title="Alternar tema (T)">Tema</button>
@@ -1157,19 +1071,31 @@ html, body {
   <button id="btn-config" title="Configurar tempos (G)">&#9881; G</button>
 </div>
 
+<!-- ═══ SIDEBAR TOGGLES ═══ --><!-- ═══ SIDEBAR: SUMÁRIO ═══ -->
+
+<!-- ═══ SIDEBAR: MÚSICA ═══ -->
+
+<!-- ═══ SIDEBAR: INEDITISMO ═══ -->
+
+<!-- ═══ SIDEBAR: IMAGENS ═══ -->
+
+<!-- ═══ SIDEBAR: CRÉDITOS ═══ -->
+
+<!-- ═══ SIDEBAR: REFERÊNCIAS ═══ -->
+
 <!-- ═══ DECK ═══ -->
 <div class="deck" id="deck">
 
   <!-- SLIDE 1 - CAPA -->
   <section class="slide capa-slide ativo" data-slide="1" data-titulo="Capa">
-    <div class="capa-bg" style="background-image: url('../_imagens/_web/LME-T0A-Figura-01-v1-web.jpg');"></div>
+    <div class="capa-bg" style="background-image: url('../_imagens/_web/LME-T0A-Figura-01-v1-web-claro.jpg');"></div>
     <div class="capa-conteudo"><div class="lme-cab-marcas"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física"> <title>Prisma decompondo a luz — Licenciatura em Física</title> <defs> <radialGradient id="cab-prisma-fundo" cx="50%" cy="42%" r="60%"> <stop offset="0" stop-color="#26302B"/> <stop offset="1" stop-color="#0E1411"/> </radialGradient> <linearGradient id="cab-prisma-vidro" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/> <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/> </linearGradient> <clipPath id="cab-prisma-dentro"><circle cx="100" cy="100" r="86"/></clipPath> </defs> <circle cx="100" cy="100" r="96" fill="url(#cab-prisma-fundo)"/> <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/> <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1" stroke-dasharray="1.5 3" opacity="0.8"/> <g clip-path="url(#cab-prisma-dentro)"> <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/> <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/> <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/> <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/> <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/> <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/> <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/> <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/> <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/> </g> <polygon points="100,50 56,130 144,130" fill="url(#cab-prisma-vidro)" stroke="#DDEBF3" stroke-width="2.5" stroke-linejoin="round"/> <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/> <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/> <g fill="#FFFFFF" opacity="0.55"> <circle cx="46" cy="62" r="1.2"/> <circle cx="150" cy="56" r="1"/> <circle cx="70" cy="160" r="1"/> <circle cx="140" cy="164" r="1.2"/> </g> </svg><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica"> <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none"> <line x1="36" y1="10" x2="84" y2="10"/> <line x1="60" y1="10" x2="81.9" y2="70.1"/> </g> <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/> <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/> <circle cx="60" cy="10" r="4" fill="#3E8E5A"/> <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/> <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square"> <line x1="26" y1="110" x2="94" y2="110"/> <line x1="30" y1="110" x2="30" y2="104"/> <line x1="40" y1="110" x2="40" y2="104"/> <line x1="50" y1="110" x2="50" y2="104"/> <line x1="60" y1="110" x2="60" y2="98"/> <line x1="70" y1="110" x2="70" y2="104"/> <line x1="80" y1="110" x2="80" y2="104"/> <line x1="90" y1="110" x2="90" y2="104"/> </g> </svg></div>
       <div class="capa-disciplina">Laboratório de Mecânica</div>
       <div class="capa-curso">Licenciatura em Física &middot; 4.º período</div>
       <div class="capa-trilha">Trilha T0A</div>
-      <div class="capa-titulo">Primeiros Passos no Laboratório</div>
-      <div class="capa-epigrafe">&ldquo;O homem, ministro e intérprete da natureza, faz e entende tanto quanto constata.&rdquo;</div>
-      <div class="capa-epigrafe-autor">&mdash; Francis Bacon, <em>Novum Organum</em> (1620)</div>
+      <div class="capa-titulo">Boas-vindas à Física Experimental</div>
+      <div class="capa-epigrafe">&ldquo;A leitura do mundo precede a leitura da palavra.&rdquo;</div>
+      <div class="capa-epigrafe-autor">&mdash; Paulo Freire (1921&ndash;1997)</div>
       <div class="capa-inst" style="margin-top:40px;">IFMG &mdash; Campus Ouro Preto &middot; 2026</div>
     </div>
   </section>
@@ -1190,11 +1116,11 @@ html, body {
           <div class="tl"><span class="tl-t">75&ndash;83 min</span><span class="tl-d"><strong>O registro</strong> &mdash; a primeira entrada do Roteiro</span></div>
           <div class="tl"><span class="tl-t">83&ndash;90 min</span><span class="tl-d"><strong>Pergunta 4</strong> &mdash; avaliação, pesos e prazos</span></div>
           <div class="tl"><span class="tl-t">90&ndash;96 min</span><span class="tl-d"><strong>Pergunta 5</strong> &mdash; o método na mão, e as regras da turma</span></div>
-          <div class="tl"><span class="tl-t">96&ndash;100 min</span><span class="tl-d"><strong>Fechamento</strong> &mdash; termo assinado e o que vem na T0B</span></div>
+          <div class="tl"><span class="tl-t">96&ndash;100 min</span><span class="tl-d"><strong>Fechamento</strong> &mdash; termo assinado e o que vem na T01</span></div>
         </div>
         <div class="col-img">
           <img src="../_imagens/_web/LME-T0A-Figura-02-v1-web.jpg" alt="Figura 2">
-          <div class="col-img-legenda"><span class="fig-num">Figura 2</span>A frase de Bacon no caderno de laboratório: ao lado, a página em branco onde o registro vai nascer</div>
+          <div class="col-img-legenda"><span class="fig-num">Figura 2</span>A epígrafe de Freire escrita no caderno: ler o mundo antes de ler a palavra</div>
         </div>
       </div>
     </div>
@@ -1209,8 +1135,8 @@ html, body {
         <div class="col-text">
           <div class="passos">
             <div class="passo"><span class="passo-n">&#x25B8;</span><span class="passo-t"><strong>PPC</strong> &mdash; forma <em>professor de Física para a educação básica</em>, não pesquisador de bancada.</span></div>
-            <div class="passo"><span class="passo-n">&#x25B8;</span><span class="passo-t"><strong>Matriz curricular</strong> (2654) &mdash; laboratório <em>sem</em> teórica vinculada, no 4.º período; pré-requisitos: Introdução ao Laboratório (6086) e Mecânica I (6018).</span></div>
-            <div class="passo"><span class="passo-n">&#x25B8;</span><span class="passo-t"><strong>Ementa e plano de ensino</strong> &mdash; 30 h, 13 trilhas, 15 encontros; as competências, as datas e os pesos.</span></div>
+            <div class="passo"><span class="passo-n">&#x25B8;</span><span class="passo-t"><strong>Matriz curricular</strong> &mdash; laboratório em congruência com Mecânica I e II, no 4.º período; pré-requisitos: Introdução ao Laboratório (6086) e Mecânica I (6018).</span></div>
+            <div class="passo"><span class="passo-n">&#x25B8;</span><span class="passo-t"><strong>Ementa e plano de ensino</strong> &mdash; 30 h, treze trilhas, quinze encontros; as competências, as datas e os pesos.</span></div>
             <div class="passo"><span class="passo-n">&#x25B8;</span><span class="passo-t"><strong>Regulamento de Ensino</strong> (Res. n.º 01/2026) &mdash; os dois números que não se negociam.</span></div>
             <div class="passo"><span class="passo-n">&#x25B8;</span><span class="passo-t">Os quatro primeiros, em versão de tela e com PDF: aba <a href="https://nidecop-jafb.github.io/lme-oa/documentos/" target="_blank" rel="noopener" style="color:inherit"><strong>Documentos</strong></a> do site &mdash; <em>nidecop-jafb.github.io/lme-oa/documentos</em>.</span></div>
           </div>
@@ -1232,7 +1158,7 @@ html, body {
   <section class="slide" data-slide="4" data-titulo="2. Trilhas, paradas e os dezesseis OAs">
     <div class="slide-titulo">Pergunta 2 &mdash; trilhas, paradas e Objetos de Aprendizagem</div>
     <div class="slide-body">
-      <div class="slide-subtitulo-fe">Treze trilhas &middot; três paradas que não trocam de ordem</div>
+      <div class="slide-subtitulo-fe">Doze trilhas &middot; três paradas que não trocam de ordem</div>
       <div class="cols img-r">
         <div class="col-text">
           <div class="passos">
@@ -1362,7 +1288,7 @@ html, body {
   <section class="slide" data-slide="9" data-titulo="4. Como funciona a avaliação">
     <div class="slide-titulo">Pergunta 4 &mdash; como funciona a avaliação</div>
     <div class="slide-body">
-      <div class="slide-subtitulo-fe">Processual: acompanha as três paradas, das trilhas T01 a T11</div>
+      <div class="slide-subtitulo-fe">Processual: acompanha as três paradas, das trilhas T01 a T08</div>
       <table class="tbl">
         <thead><tr><th>Instrumento</th><th>Parada</th><th>Peso</th><th>Prazo</th></tr></thead>
         <tbody>
@@ -1382,7 +1308,7 @@ html, body {
         <div class="col-text">
           <div class="def" style="border-left-color:var(--erro);">
             <div class="termo" style="color:var(--erro)">Esta trilha é a exceção</div>
-            <p>A T0A <strong>não vale nota de conteúdo</strong>: cobra presença e o termo de segurança assinado &mdash; que é pré-requisito para entrar na bancada na T01.</p>
+            <p>A T0A <strong>não vale nota de conteúdo</strong>: cobra presença e o termo de segurança assinado &mdash; que é pré-requisito para entrar na bancada na T0B.</p>
           </div>
         </div>
       </div>
@@ -1418,20 +1344,19 @@ html, body {
   </section>
 
   <!-- SLIDE 11 -->
-  <section class="slide" data-slide="11" data-titulo="Ciência e Arte — Guimarães Rosa">
+  <section class="slide" data-slide="11" data-titulo="Ciência e Arte — Leonardo">
     <div class="slide-titulo">Ciência e Arte &mdash; três cérebros, o mesmo gesto</div>
     <div class="slide-body">
       <div class="cols img-l">
         <div class="col-img">
           <img src="../_imagens/_web/LME-T0A-Figura-09-v1-web-claro.jpg" alt="Figura 9">
-          <div class="col-img-legenda"><span class="fig-num">Figura 9</span>As cadernetas amarradas sobre a sela: o sertão anotado antes de virar romance</div>
+          <div class="col-img-legenda"><span class="fig-num">Figura 9</span>O gabinete de quem mede e desenha ao mesmo tempo</div>
         </div>
         <div class="col-text">
-          <div class="ca-obra"><strong>Cadernetas:</strong> <em>A Boiada</em><br>João Guimarães Rosa &middot; sertão de Minas, 1952</div>
-          <div class="ca-versos">&ldquo;Sete cadernetas presas ao botão da camisa: 220 km de sertão mineiro anotados em 1952, antes do <em>Grande Sertão</em>.&rdquo; &mdash; o romancista não escreveu o sertão que imaginava para depois conferi-lo: anotou o que via, e <em>só então</em> escreveu.</div>
+          <div class="ca-obra"><strong>Caderno:</strong> <em>Codice Forster III</em><br>Leonardo da Vinci &middot; c. 1493&ndash;1496</div>
+          <div class="ca-versos">&ldquo;A sabedoria é filha da experiência.&rdquo; &mdash; e a experiência, em Leonardo, é o caderno: cerca de <strong>seis mil páginas</strong> de anotação do que se vê, <em>antes</em> de concluir.</div>
           <div class="ca-versos">É exatamente o que o Roteiro de Bancada pede de você: registrar primeiro, concluir depois.</div>
-          <div class="ca-versos">As três epígrafes desta trilha dizem a mesma coisa em três vozes: <strong>Bacon</strong> abre o Texto Temático &mdash; só se entende o que se constata; <strong>Marie e Pierre Curie</strong> abrem o Roteiro &mdash; o caderno guarda até hoje a radiação da bancada; <strong>Guimarães Rosa</strong> fecha aqui &mdash; sete cadernetas antes de uma linha de romance.</div>
-          <div class="ca-versos">Na Mecânica há uma dobra a mais: aqui a <strong>previsão</strong> também se anota antes. Se ela ficar só na cabeça, a memória a ajusta ao dado &mdash; e o modelo nunca perde.</div>
+          <div class="ca-versos">As três epígrafes desta trilha dizem a mesma coisa em três vozes: <strong>Freire</strong> abre o Texto Temático &mdash; ler o mundo antes da palavra; <strong>Galileu</strong> abre o Roteiro &mdash; o universo é um livro escrito em língua matemática; <strong>Leonardo</strong> fecha aqui &mdash; a sabedoria é filha da experiência.</div>
           <div class="ca-versos" style="font-family: var(--serif); font-style: italic; margin-top: 10px; font-size: 1rem;">Ciência e arte são duas criações do mesmo cérebro.</div>
         </div>
       </div>
@@ -1451,8 +1376,8 @@ html, body {
           <div class="chk"><div class="chk-box"></div><div class="chk-t"><span class="hi">Regras mínimas</span> da turma registradas na seção 4.</div></div>
           <div class="chk"><div class="chk-box"></div><div class="chk-t">Cada instrumento <span class="hi">devolvido ao seu lugar</span>.</div></div>
           <div class="def" style="border-left-color:var(--verde);">
-            <div class="termo" style="color:var(--verde)">Antes da T0B &middot; 06/10</div>
-            <p>Ouvir o Resumo em Áudio, ler o Texto Temático e chegar com a <strong>estimativa de ordem de grandeza</strong> feita. Quem faltou hoje assina o termo antes de <strong>13/10</strong>, com a monitoria.</p>
+            <div class="termo" style="color:var(--verde)">Antes da T01</div>
+            <p>Ouvir o Resumo em Áudio, ler o Texto Temático e chegar com a <strong>previsão</strong> feita. Quem faltou hoje assina o termo antes de <strong>13/10</strong>, com a monitoria.</p>
           </div>
         </div>
         <div class="col-img">
@@ -1466,13 +1391,11 @@ html, body {
   <!-- SLIDE 13 - DESPEDIDA -->
   <section class="slide despedida" data-slide="13" data-titulo="Despedida">
     <div class="desp-bg" style="background-image: url('../_imagens/_web/LME-T0A-Figura-08-v1-web.jpg');"></div>
-    <!-- Despedida em uma coluna: regra 7 do CLAUDE.md da LME (CSS em icones_lme.py). -->
     <div class="desp-body desp-coluna">
       <div class="desp-sofia">&ldquo;Hoje eu não medi nada &mdash; e é exatamente essa a intenção.&rdquo;</div>
-      <div class="desp-antes">Pré-Lab: o Resumo em Áudio, o Texto Temático &mdash; e a sua estimativa de ordem de grandeza.</div>
-      <!-- Proxima aula conforme o Plano de Ensino 2026.2 v3 (cronograma): E2, 06/10/2026, T0B (ambientacao). -->
+      <div class="desp-antes">Pré-Lab: o Resumo em Áudio, o Texto Temático &mdash; e a sua previsão.</div>
       <div class="desp-proxima">
-        <div class="desp-acao">Na próxima aula &middot; do grão de minério à cava da mina:</div>
+        <div class="desp-acao">Na pr&oacute;xima aula &middot; você mede pela primeira vez:</div>
         <div class="desp-tarefa">T0B &middot; Noções sobre Estimativas e Medidas</div>
       </div>
       <div class="desp-frase"><div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>Terminamos por aqui, um abraço, e até o próximo encontro.</div>
@@ -1511,19 +1434,21 @@ html, body {
 <div class="rodape">
   <div class="rodape-info">
     <em>LME &middot; T0A</em>
-    <span>Primeiros Passos no Laboratório</span>
+    <span>Boas-vindas à Física Experimental</span>
     <span class="tag">100 min</span><span class="lme-selo-ap"><span id="seloAcessos" data-escopo="pagina" style="display:none;"></span></span>
   </div>
   <div class="rodape-nav">
+    <a href="../../index.html#t0a" title="Todas as Trilhas">&#8962;</a>
     <button id="btn-anterior" title="Slide anterior (←)">&#9664;</button>
     <div class="contador"><span id="num-atual">1</span> / <span id="num-total">18</span></div>
     <button id="btn-proximo" title="Próximo slide (→)">&#9654;</button>
+    <a class="rodape-nav-oa" href="../../t0b/pp/">OA seguinte: Ponto de Partida (T0B) &#8594;</a>
   </div>
 </div>
 
 <script>
 (function() {
-  var STORAGE_KEY = 'LME-T0A-AP-v2';
+  var STORAGE_KEY = 'LME-T0A-AP-v3';
   var slides = document.querySelectorAll('.slide');
   var total = slides.length;
   var atual = 1;
@@ -1588,26 +1513,10 @@ html, body {
     document.documentElement.setAttribute('data-theme', atual);
     try { localStorage.setItem(STORAGE_KEY + '-theme', atual); } catch(e) {}
   }
+  /* As sidebars do deck sairam (trilho de 7 abas, abas_oa_ilb.py):
+     a lista fica vazia e quem fecha o painel e o clique global do trilho. */
+  var sidebars = [];
 
-  var toggles = document.querySelectorAll('.sb-toggle');
-  var sidebars = document.querySelectorAll('.sidebar');
-  toggles.forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var alvoId = btn.dataset.sb;
-      var alvo = document.getElementById(alvoId);
-      var estaAberta = alvo.classList.contains('open');
-      sidebars.forEach(function(sb) { sb.classList.remove('open'); });
-      if (!estaAberta) alvo.classList.add('open');
-    });
-  });
-  document.addEventListener('click', function(e) {
-    var dentroSb = e.target.closest('.sidebar');
-    var noToggle = e.target.closest('.sb-toggle');
-    if (!dentroSb && !noToggle) {
-      sidebars.forEach(function(sb) { sb.classList.remove('open'); });
-    }
-  });
 
   document.querySelectorAll('#toc-lista .toc-item').forEach(function(a) {
     a.addEventListener('click', function(e) {
@@ -1890,7 +1799,7 @@ html, body {
 (function () {
   'use strict';
 
-  var KEY = 'LME-T0A-AP-v2-crono';
+  var KEY = 'LME-T0A-AP-v3-crono';
 
 
   var slides = document.querySelectorAll('.slide');
@@ -1912,7 +1821,7 @@ html, body {
   window.__AP_PREVISTO_ORIGINAL = previstoOriginal;
 
   try {
-    var tcust = JSON.parse(localStorage.getItem('LME-T0A-AP-v2-tempos-custom') || '{}');
+    var tcust = JSON.parse(localStorage.getItem('LME-T0A-AP-v3-tempos-custom') || '{}');
     for (var kc in tcust) { if (tcust.hasOwnProperty(kc)) previsto[parseInt(kc, 10)] = tcust[kc]; }
   } catch(e) {}
 
@@ -2194,7 +2103,7 @@ html, body {
 <script>
 (function() {
   'use strict';
-  var STORAGE_KEY = 'LME-T0A-AP-v2';
+  var STORAGE_KEY = 'LME-T0A-AP-v3';
   var KEY_TEMPOS = STORAGE_KEY + '-tempos-custom';
   var allSlides = document.querySelectorAll('.slide');
   var configSlideNum = allSlides.length;

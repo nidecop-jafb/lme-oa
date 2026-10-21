@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LME · T0B · Noções sobre Estimativas e Medidas — Texto Temático v3</title>
+<title>LME · T0B · Noções sobre Estimativas e Medidas — Texto Temático v4</title>
 <style>
   input, button, select, textarea { font-family: inherit; }
 /* ═══ DESIGN SYSTEM: BRUTALISMO CIENTIFICO ═══ */
@@ -13,7 +13,7 @@
   --azul-bg: oklch(0.28 0.05 45);
   --ouro: oklch(0.72 0.13 152);
   --ouro-claro: oklch(0.25 0.04 152);
-  /* Verde realinhado com a identidade dos sites da Licenciatura (2026-09-13): o tom
+  /* Verde realinhado com a identidade do site lme-oa (2026-09-13): o tom
      anterior (oklch hue 95, amarelo-esverdeado) nao batia com o verde real
      do site (#3E8E5A) e vibrava demais sobre o fundo escuro. */
   --verde: #3E8E5A;
@@ -85,45 +85,14 @@ body {
 .toolbar button.active { color: var(--ouro); border-color: var(--ouro); }
 
 /* ═══ TOC SIDEBAR ═══ */
-.toc-toggle {
-  position: fixed; top: 275px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.toc-toggle:hover { color: var(--ouro); }
-
-.toc-sidebar {
-  position: fixed; top: 60px; left: 0; z-index: 997;
-  width: 280px; max-height: calc(100vh - 80px); overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 20px 16px 20px 40px; transform: translateX(-100%); transition: transform 0.25s;
-}
-.toc-sidebar.open { transform: translateX(0); }
-.toc-sidebar h3 {
-  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
-  color: var(--cinza); margin-bottom: 12px;
-}
-.toc-sidebar a {
-  display: block; padding: 6px 0; font-size: 0.85rem; color: oklch(0.75 0 0);
-  text-decoration: none; border-bottom: 1px solid oklch(0.22 0.02 260);
-  transition: color 0.15s;
-}
-[data-theme="light"] .toc-sidebar a { border-bottom-color: oklch(0.90 0.02 260); }
-.toc-sidebar a:hover { color: var(--ouro); }
-.toc-sidebar a.toc-ato { font-weight: 700; color: var(--azul); font-size: 0.9rem; }
-.toc-sidebar a.toc-topico { padding-left: 16px; font-size: 0.8rem; }
-.toc-sidebar a.toc-extra { font-style: italic; color: var(--cinza); font-size: 0.8rem; }
 
 /* ═══ HEADER ═══ */
 .header {
-  background: linear-gradient(180deg, oklch(0.14 0.03 240) 0%, var(--fundo) 100%);
+  background: linear-gradient(180deg, oklch(0.14 0.03 45) 0%, var(--fundo) 100%);
   padding: 48px 20px 24px; text-align: center;
 }
 [data-theme="light"] .header {
-  background: linear-gradient(180deg, oklch(0.95 0.02 240) 0%, var(--fundo) 100%);
+  background: linear-gradient(180deg, oklch(0.95 0.02 45) 0%, var(--fundo) 100%);
 }
 .header-inner { max-width: 720px; margin: 0 auto; }
 .header h1 {
@@ -300,126 +269,12 @@ p strong { color: var(--branco); }
 [data-theme="light"] .audio-hint { background: oklch(0.94 0.03 95); color: oklch(0.30 0 0); }
 
 /* ═══ CREDITOS / CIP SIDEBAR ═══ */
-.creditos-toggle {
-  position: fixed; top: 365px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.creditos-toggle:hover { color: var(--ouro); }
 
 /* ═══ MUSICA TOGGLE + SIDEBAR ═══ */
-.musica-toggle {
-  position: fixed; top: 60px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.musica-toggle:hover { color: var(--ouro); }
-.musica-sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 340px; height: 100vh; overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.95rem; line-height: 1.7;
-  color: var(--texto);
-}
-.musica-sidebar.open { transform: translateX(0); }
-.musica-sidebar .musica-titulo {
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
-  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
-}
-.musica-sidebar .musica-ref { font-style: italic; color: var(--cinza); margin-bottom: 16px; display: block; }
-.musica-sidebar .musica-tags { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-.musica-sidebar .musica-tag {
-  background: var(--ouro); color: oklch(0.12 0 0); font-weight: 700;
-  font-size: 0.75rem; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px;
-}
-.musica-sidebar .musica-album { font-weight: 700; color: var(--branco); margin-bottom: 8px; }
-.musica-sidebar .musica-detail { color: var(--cinza); font-size: 0.85rem; margin-bottom: 16px; }
-.musica-sidebar .musica-link {
-  display: inline-block; padding: 8px 16px; background: var(--erro);
-  color: oklch(0.98 0 0); font-weight: 700; font-size: 0.8rem;
-  text-decoration: none; letter-spacing: 0.5px; transition: opacity 0.15s;
-}
-.musica-sidebar .musica-link:hover { opacity: 0.85; }
 
 /* ═══ INEDITISMO TOGGLE + SIDEBAR ═══ */
-.ineditismo-toggle {
-  position: fixed; top: 145px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.ineditismo-toggle:hover { color: var(--ouro); }
-.ineditismo-sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 340px; height: 100vh; overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.95rem; line-height: 1.7;
-  color: var(--texto);
-}
-.ineditismo-sidebar.open { transform: translateX(0); }
-.ineditismo-sidebar .ineditismo-titulo {
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
-  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
-}
-.ineditismo-sidebar p {
-  font-size: 0.95rem; color: oklch(0.65 0 0); line-height: 1.7; margin-bottom: 10px;
-}
-[data-theme="light"] .ineditismo-sidebar p { color: oklch(0.40 0 0); }
 
 /* ═══ FIGURAS TOGGLE + SIDEBAR ═══ */
-.figuras-toggle {
-  position: fixed; top: 460px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.figuras-toggle:hover { color: var(--ouro); }
-.figuras-sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 380px; height: 100vh; overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.88rem; line-height: 1.7;
-  color: var(--texto);
-}
-.figuras-sidebar.open { transform: translateX(0); }
-.figuras-sidebar .figuras-titulo {
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
-  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
-}
-.figuras-sidebar p {
-  font-size: 0.85rem; color: var(--texto); margin-bottom: 8px; line-height: 1.5;
-}
-.figuras-sidebar .figura-num { color: var(--azul); font-weight: 700; }
-
-.creditos-sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 340px; height: 100vh; overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.85rem; line-height: 1.7;
-  color: var(--texto);
-}
-.creditos-sidebar.open { transform: translateX(0); }
-.creditos-sidebar p {
-  font-family: var(--font); font-size: 0.85rem; color: var(--texto);
-  line-height: 1.6; margin-bottom: 4px;
-}
 .creditos-titulo, .cip-titulo {
   font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
@@ -467,12 +322,12 @@ p strong { color: var(--branco); }
 
 /* ═══ DESTAQUE ═══ */
 .destaque {
-  background: oklch(0.16 0.04 240); padding: 14px 20px; margin: 16px 0;
+  background: oklch(0.16 0.04 45); padding: 14px 20px; margin: 16px 0;
   font-family: var(--serif); font-size: 1.2rem; font-style: italic;
   color: var(--azul-claro); border-left: 3px solid var(--azul);
 }
 [data-theme="light"] .destaque {
-  background: oklch(0.95 0.03 240); color: oklch(0.40 0.10 240);
+  background: oklch(0.95 0.03 45); color: oklch(0.40 0.15 45);
 }
 
 /* ═══ BLOCKQUOTE ═══ */
@@ -635,8 +490,6 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   /* Gutter para as abas laterais: sem ele, as abas fixas da borda esquerda
      cobrem o texto durante a rolagem em tela estreita. */
   .conteudo { padding: 0 14px 0 46px; }
-  .toc-toggle, .musica-toggle, .ineditismo-toggle, .creditos-toggle, .figuras-toggle { font-size: 0.6rem; padding: 6px 6px; }
-  .toc-sidebar, .musica-sidebar, .ineditismo-sidebar, .creditos-sidebar, .figuras-sidebar { width: 82vw; }
   .toolbar { padding: 4px 8px; }
   .ato-titulo { font-size: 1rem; letter-spacing: 2px; }
   .topico-titulo { font-size: 1.2rem; }
@@ -652,8 +505,7 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 
 /* ═══ PRINT ═══ */
 @media print {
-  body { background: white !important; color: #1A1A1A !important; padding-bottom: 0 !important; }
-  .progress-top, .toolbar, .toc-toggle, .toc-sidebar, .creditos-toggle, .creditos-sidebar, .musica-toggle, .musica-sidebar, .ineditismo-toggle, .ineditismo-sidebar, .figuras-toggle, .figuras-sidebar, .capa-scroll, .audio-hint { display: none !important; }
+  body { background: white !important; color: #1A1A1A !important; padding-bottom: 0 !important; }.progress-top, .toolbar, .capa-scroll, .audio-hint{ display: none !important; }
   .capa { min-height: auto !important; background: none !important; padding: 30px 20px !important; }
   .header { background: none !important; }
   .ato-titulo { color: #1F3864 !important; border-top-color: #CCC !important; }
@@ -668,38 +520,12 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 /* PADRAO-ABAS-CREDITOS (decisao do autor 2026-09-02): cargos dos Creditos na secundaria (verde), caixa normal. */
 .creditos-cargo { color: var(--verde); text-transform: none; }
 /* PADRAO-ABAS-MUSICA (decisao do autor 2026-09-02): album e artistas na cor primaria (ouro). */
-.musica-sidebar .musica-album { color: var(--ouro); }
-.musica-sidebar .musica-detail strong { color: var(--ouro); }
 
-/* ── lista numerada das cinco perguntas do Ato I ── */
+/* ── LME: lista numerada das cinco perguntas do Ato I ── */
 .lista-perguntas { margin: 18px 0 18px 0; padding-left: 22px; }
 .lista-perguntas li { margin-bottom: 8px; }
-/* o Explore nao tem figura; o link fica visivel nos dois temas */
+/* o Explore da LME nao tem figura; o link fica visivel nos dois temas */
 .explore a { color: var(--accent); }
-
-/* ── LME: paleta da Licenciatura (verde-quadro #3E8E5A + azul-aco #7FB2D6) ── */
-:root { --azul: #7FB2D6; --azul-claro: #A5CBE5; --azul-bg: oklch(0.28 0.04 240); --accent: var(--azul); }
-[data-theme="light"] { --azul: #3F7AA3; --azul-claro: #4F8BB5; --azul-bg: oklch(0.92 0.03 240); }
-.capa-subtitulo { font-family: var(--serif); font-style: italic; font-size: 1.4rem; color: var(--azul); margin: -6px 0 18px; }
-.eixo-destino { border-left-color: var(--azul); }
-.eixo-destino { background: var(--azul-bg); padding: 10px 14px; }
-.eixo-destino .eixo-label { color: var(--texto); }
-.figura-pendente .figura-aviso { border: 2px dashed var(--azul); padding: 48px 20px; text-align: center;
-  font-family: var(--mono); font-size: .95rem; color: var(--azul); max-width: 560px; margin: 0 auto; }
-@media print { .figura-pendente .figura-aviso { color: #555 !important; border-color: #999 !important; } }
-/* Figura em destaque (2026-09-14): a epigrafe de abertura nao repete a
-   citacao em texto — ela ja esta na propria imagem — entao a imagem
-   ganha mais espaco do que uma figura comum. */
-.figura-destaque .figura-img { max-width: 880px; border-width: 2px; border-color: var(--azul);
-  box-shadow: 0 10px 32px rgba(0,0,0,.28); }
-/* Biografia do autor da epigrafe: abaixo da legenda da figura, com
-   espaco de respiro (2026-09-14) para nao prender o olhar junto da
-   imagem — funciona como uma nota de rodape, nao como legenda extra. */
-.figura-bio {
-  font-size: 0.8rem; color: var(--cinza); font-style: normal;
-  max-width: 480px; margin: 40px auto 0; text-align: center;
-  padding-top: 20px; border-top: 1px solid var(--cinza-borda);
-}
 /* ICONES-LME */
 .lme-cab-marcas { display: flex; gap: 10px; align-items: center; justify-content: flex-start;
   flex-shrink: 0; }
@@ -791,6 +617,24 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 .despedida:has(.desp-bg) .desp-coluna .desp-frase > .lme-inst-marcas { border-top-color: oklch(0.70 0 0 / .5); }
 /* /ICONES-LME */
 </style>
+<style>
+/* FIGURAS-LME (figuras_ilb.py) */
+.figura-lme { display: flex; flex-direction: column; align-items: stretch;
+  max-width: 680px; margin: 26px auto; border: 1px solid var(--cinza-borda, #b8c2bb);
+  border-radius: 6px; overflow: hidden; background: var(--superficie, #fff); }
+.figura-lme img { display: block; width: 100%; height: auto; margin: 0; }
+.figura-lme figcaption { border-top: 2px solid var(--verde, #3E8E5A);
+  background: var(--fundo-legenda, rgba(62,142,90,.10)); padding: 9px 14px;
+  font-size: .95rem; line-height: 1.45; text-align: left; }
+.figura-lme .figura-lme-num { font-weight: 700; color: var(--verde, #3E8E5A); }
+.figura-lme.figura-lme-p { max-width: 420px; }
+@media print {
+  .figura-lme { break-inside: avoid; page-break-inside: avoid; }
+  .figura-lme img { filter: grayscale(1); }
+  .figura-lme figcaption { background: #eeeeee; color: #222; }
+  .figura-lme .figura-lme-num { color: #222; }
+}
+</style>
 <!-- CELULAR:INICIO --><style>
 @media (max-width: 560px) {
   table { table-layout: fixed; width: 100% !important; max-width: 100%; min-width: 0 !important; }
@@ -818,16 +662,36 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   <button id="btnTheme" title="Alternar tema claro/escuro">Tema</button>
 </div>
 
+<!-- TOC TOGGLE -->
+
+<!-- CREDITOS TOGGLE -->
+
+<!-- MUSICA TOGGLE -->
+
+<!-- INEDITISMO TOGGLE -->
+
+<!-- INEDITISMO SIDEBAR -->
+
+<!-- FIGURAS TOGGLE -->
+
+<!-- FIGURAS SIDEBAR -->
+
+<!-- MUSICA SIDEBAR -->
+
+<!-- CREDITOS / CIP SIDEBAR -->
+
+<!-- TOC SIDEBAR -->
+
 <!-- ═══════════════════ CAPA ═══════════════════ -->
 <div class="capa" id="capa">
   <div class="capa-marca"><div class="lme-cab-marcas"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física"> <title>Prisma decompondo a luz — Licenciatura em Física</title> <defs> <radialGradient id="cab-prisma-fundo" cx="50%" cy="42%" r="60%"> <stop offset="0" stop-color="#26302B"/> <stop offset="1" stop-color="#0E1411"/> </radialGradient> <linearGradient id="cab-prisma-vidro" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/> <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/> </linearGradient> <clipPath id="cab-prisma-dentro"><circle cx="100" cy="100" r="86"/></clipPath> </defs> <circle cx="100" cy="100" r="96" fill="url(#cab-prisma-fundo)"/> <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/> <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1" stroke-dasharray="1.5 3" opacity="0.8"/> <g clip-path="url(#cab-prisma-dentro)"> <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/> <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/> <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/> <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/> <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/> <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/> <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/> <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/> <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/> </g> <polygon points="100,50 56,130 144,130" fill="url(#cab-prisma-vidro)" stroke="#DDEBF3" stroke-width="2.5" stroke-linejoin="round"/> <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/> <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/> <g fill="#FFFFFF" opacity="0.55"> <circle cx="46" cy="62" r="1.2"/> <circle cx="150" cy="56" r="1"/> <circle cx="70" cy="160" r="1"/> <circle cx="140" cy="164" r="1.2"/> </g> </svg><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica"> <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none"> <line x1="36" y1="10" x2="84" y2="10"/> <line x1="60" y1="10" x2="81.9" y2="70.1"/> </g> <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/> <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/> <circle cx="60" cy="10" r="4" fill="#3E8E5A"/> <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/> <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square"> <line x1="26" y1="110" x2="94" y2="110"/> <line x1="30" y1="110" x2="30" y2="104"/> <line x1="40" y1="110" x2="40" y2="104"/> <line x1="50" y1="110" x2="50" y2="104"/> <line x1="60" y1="110" x2="60" y2="98"/> <line x1="70" y1="110" x2="70" y2="104"/> <line x1="80" y1="110" x2="80" y2="104"/> <line x1="90" y1="110" x2="90" y2="104"/> </g> </svg></div></div>
   <div class="capa-disciplina">Laboratório de Mecânica</div>
   <div class="capa-curso">Licenciatura em Física &mdash; IFMG campus Ouro Preto</div>
-  <div class="capa-img figura-pendente"><div class="figura-aviso">Capa em produção &mdash; um grão de minério sobre a régua, com a cava ao fundo.</div></div>
+  <div class="capa-img"><img src="../_imagens/_web/LME-T0B-Figura-01-v2-web.jpg" alt="A caneta sobre a linha 1 do Roteiro de Bancada, antes de qualquer instrumento"></div>
   <div class="capa-trilha">Trilha de Aprendizagem T0B</div>
   <div class="capa-titulo">Noções sobre Estimativas e Medidas</div>
-  <div class="capa-autores"><strong>Júlio Azevedo</strong> &middot; <strong>Felipe Beato</strong></div>
-  <div class="capa-inst">IFMG campus Ouro Preto - Coordenadoria da Área de Física - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; LME &middot; T0B &middot; Primeira edição &middot; 2026</div>
+  <div class="capa-autores"><strong>Júlio Azevedo</strong></div>
+  <div class="capa-inst">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; LME &middot; T0B &middot; Primeira edição &middot; 2026</div>
   <div class="capa-scroll">&#x25BC; role para ler</div>
 </div>
 
@@ -836,388 +700,380 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 <div class="conteudo">
 
 <!-- ═══════════════════ EPIGRAFE ═══════════════════ -->
-<!-- Enquanto a Figura 2 nao existe, a legenda de obra entra em texto; quando a
-     figura for aprovada, o texto sai e a imagem fica em destaque, como na T0A. -->
-<div id="epigrafe">
-<figure class="figura figura-pendente">
-  <div class="figura-aviso">Figura 2 em produção &mdash; a imagem entra aqui assim que for gerada e aprovada.</div>
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 2</span> &mdash; A legenda de Pascal no caderno; sobre a página, um grão e a régua que vai medi-lo.</figcaption>
-</figure>
-<blockquote>O homem suspenso entre dois infinitos: pequeno demais para o todo, vasto demais para o nada.</blockquote>
-<div class="ca-autor">&mdash; <em>Pensamentos</em>, Blaise Pascal, 1670</div>
+<div class="epigrafe" id="epigrafe">
+  <blockquote>&ldquo;O conhecimento é a navegação em um oceano de incertezas, através de arquipélagos de certezas.&rdquo;</blockquote>
+  <div class="autor">&mdash; Edgar Morin (n. 1921)</div>
+  <div class="nota"><strong>Edgar Morin</strong> (Paris, 1921). Pensador e educador francês, autor da teoria da complexidade. <em>Os sete saberes necessários à educação do futuro</em>, 1999. A frase serve de porta para esta trilha: nenhuma medida é um continente firme; cada uma é uma ilha de certeza, e a incerteza é o mar que se aprende a atravessar.</div>
 </div>
 
-<div class="figura-bio"><strong>Blaise Pascal</strong> (1623&ndash;1662). Matemático, físico e filósofo francês &mdash; o nome da unidade de pressão do SI é dele. A frase acima não é citação: é a legenda do fragmento dos <em>Pensamentos</em> sobre a &ldquo;desproporção do homem&rdquo;, e por isso entra sem aspas e assinada pela obra. Pascal olhava para o infinitamente grande e para o infinitamente pequeno e perguntava onde o ser humano fica entre os dois. Esta trilha faz a pergunta com uma régua: entre o grão e a cava, onde fica cada coisa que você vai medir?</div>
+    <figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-02-v2-web.jpg" alt="Figura 2 &mdash; Um mar de incertezas e um arquipélago de certezas: a navegação de Morin." loading="lazy"><figcaption><span class="figura-lme-num">Figura 2</span> &mdash; Um mar de incertezas e um arquipélago de certezas: a navegação de Morin.</figcaption></figure>
 
-<!-- ═══════════════════ ATO I ═══════════════════ -->
 <div class="ato" id="ato-i">
   <div class="ato-titulo">Ato I &mdash; O Gancho</div>
 
-  <p>Antes de ler o próximo parágrafo, responda de cabeça: quanto pesa a terra retirada de uma cava de minério de ferro do Quadrilátero Ferrífero? Não precisa acertar o número. Basta dizer se é mais perto de mil toneladas, de um milhão ou de um bilhão.</p>
+    <p>Em 1720, Vila Rica se levantou contra uma balança. A Coroa portuguesa mandara instalar em Minas as <strong>Casas de Fundição</strong>: todo o ouro em pó tirado dos ribeirões teria de ser levado até lá, ter a massa medida na balança, ser fundido em barras e marcado — e, nessa medição, a Coroa ficaria com o <strong>quinto</strong>, a quinta parte. Até então o ouro corria em pó, de mão em mão, com a massa medida em <strong>oitavas</strong> na balancinha de cada um. Os mineradores e comerciantes de Vila Rica pegaram em armas. A revolta durou poucas semanas; o governador, o Conde de Assumar, a sufocou, e Filipe dos Santos, um dos líderes, foi executado. A Casa de Fundição acabou funcionando alguns anos depois (Figura 3).</p>
 
-  <p>Se você hesitou, está em boa companhia. A maior parte das pessoas não tem régua para essa pergunta: mil, um milhão e um bilhão soam todos como &ldquo;muito&rdquo;. Mas entre o primeiro e o último há seis potências de dez &mdash; a mesma distância que separa um grão de areia de uma quadra de futebol. Errar por seis ordens não é errar o número; é errar o mundo em que a pergunta está.</p>
+    <figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-03-v2-web.jpg" alt="Figura 3 &mdash; Vila Rica, 1720: o minerador diante da balança da Coroa, na Casa de Fundição." loading="lazy"><figcaption><span class="figura-lme-num">Figura 3</span> &mdash; Vila Rica, 1720: o minerador diante da balança da Coroa, na Casa de Fundição.</figcaption></figure>
 
-  <p>Na T0A você ouviu que, no Laboratório de Mecânica (LME), a previsão vem antes do dado. Esta noite você faz a primeira &mdash; com o modelo mais simples que existe: a <strong>ordem de grandeza</strong>. Antes de encostar em qualquer instrumento, você vai escrever &ldquo;espero algo da ordem de 10<sup>n</sup>, porque&hellip;&rdquo;. Depois vai medir. E o dado vai dizer se a sua estimativa aguentou. Se não aguentar, você escreve qual hipótese falhou. É o gesto de todo o semestre, em miniatura e ainda sem Mecânica: <strong>o experimento já é objeto</strong>, e o que vai à prova é o seu raciocínio.</p>
+    <p>Na visita ao Museu de Ciência e Técnica da Escola de Minas, na Praça Tiradentes — o mesmo largo em que tudo isso aconteceu —, o professor Julio parou a turma diante da balança de ouro. Sofia leu a placa, olhou para o prato vazio (Figura 4) e fez uma pergunta que ninguém esperava:</p>
 
-  <p>O Sistema Internacional de Unidades (SI) você já conhece da Introdução ao Laboratório (ILB): as sete unidades de base, os prefixos, a grafia. Aqui ele volta como ferramenta. Um prefixo é uma ordem de grandeza com nome, e é assim que ele vai ser usado.</p>
+    <ul>
+      <li><em>Quanto ouro o minerador achava que tinha, antes de pôr o ouro na balança?</em></li>
+    </ul>
 
-  <p><strong>Este texto tem cinco tópicos.</strong> O primeiro é a bancada &mdash; porque o que você faz com as mãos organiza o resto. Depois vêm as potências de dez, a estimativa como modelo, o SI revisto como régua de escala e, por fim, a volta à pergunta do primeiro parágrafo: do grão à cava.</p>
+    <figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-04-v2-web.jpg" alt="Figura 4 &mdash; No museu, Sofia aponta o prato vazio: quanto o minerador achava que tinha?" loading="lazy"><figcaption><span class="figura-lme-num">Figura 4</span> &mdash; No museu, Sofia aponta o prato vazio: quanto o minerador achava que tinha?</figcaption></figure>
 
-  <div class="explore" id="explore">
-    <div class="explore-titulo">Explore este lugar no Google Maps</div>
+    <p>Pedro riu: "achava não é medir". Bárbara discordou: quem passou a vida peneirando cascalho sabia, com o pó na palma da mão, se ali havia meia oitava ou três. Lucas lembrou o que estava por trás da revolta: o minerador tinha um número na cabeça; a Coroa ia pôr outro número na balança; e quando os dois números não batiam, cada lado chamava o outro de ladrão.</p>
 
-    <p><strong>Mina de Timbopeba &mdash; distrito de Antônio Pereira, Ouro Preto</strong></p>
+    <p>O professor Julio deixou a discussão correr e depois escreveu na lousa, já no laboratório, as perguntas desta trilha:</p>
 
-    <p>Abra a vista de satélite e afaste o zoom devagar. Primeiro aparecem as bancadas da cava, degraus de algumas dezenas de metros. Depois a cava inteira, da ordem de um kilometro. Mais um passo e surge o Quadrilátero Ferrífero, com a cidade de Ouro Preto a poucos kilometros. Cada vez que a imagem fica dez vezes maior, o que era paisagem vira detalhe.</p>
+    <ul>
+      <li>Dá para <strong>estimar</strong> uma medida antes de pegar o instrumento — e como se sabe se a estimativa foi boa?</li>
+      <li>O que é, exatamente, <strong>medir</strong>: o que entra numa medida além do número?</li>
+      <li>Até onde um instrumento <strong>sabe</strong> — e como se lê o último traço da escala?</li>
+      <li>Se o minerador e a Coroa discordavam, quem <strong>errou</strong>? E errar é o mesmo que ter <strong>incerteza</strong>?</li>
+      <li>Como se <strong>escreve</strong> uma medida de modo que os dois lados aceitem o resultado?</li>
+    </ul>
 
-    <p>Faça o exercício que a trilha pede: <strong>antes de usar a ferramenta de medir distância do mapa</strong>, escreva a sua estimativa para o comprimento da cava. Só então meça. Anote as duas &mdash; elas são o seu primeiro par estimativa e medida.</p>
+    <p>A resposta a todas tem a mesma raiz, e ela dá nome a esta trilha: <strong>toda medida é um número e uma dúvida</strong>. O número sozinho é o que o minerador e a Coroa tinham — e por isso brigaram.</p>
 
-    <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Mina+de+Timbopeba+Ouro+Preto" target="_blank" rel="noopener">Ver no Google Maps</a></p>
-  </div>
+    <p><strong>Como estudar.</strong> Antes do encontro, no Pré-Laboratório, dedique 30 minutos: ouça o Resumo em Áudio (MD), leia este Texto Temático (TT) tópico a tópico, faça a Folha de Atividades (FA) e o Testinho (TN). No Laboratório, 100 minutos: o Roteiro de Bancada (RB) traz seis tarefas, e em cada uma você estima antes de medir. No Pós-Laboratório, até 20 minutos para elaborar o Relatório Mínimo (RM), no prazo de 1 dia após o Laboratório, e até 30 minutos para fazer o Relatório Completo (RC), no prazo de 6 dias após a aula presencial no Laboratório. A T0B — Noções sobre Estimativas e Medidas — vale nota.</p>
+
 </div>
 
-<!-- ═══════════════════ ATO II ═══════════════════ -->
 <div class="ato" id="ato-ii">
   <div class="ato-titulo">Ato II &mdash; O Desenvolvimento</div>
-  <div class="ato-subtitulo">Estimar, medir, comparar</div>
 
-  <p>A pergunta sobre a cava foi o gancho. Ela volta no último tópico, respondida com o que você tiver medido na bancada. Até lá, o caminho passa por cinco tópicos, e o primeiro é o que você vai fazer com as mãos.</p>
+    <p>Cinco tópicos, na ordem em que a bancada os pede: primeiro a estimativa, feita com o cérebro e com os instrumentos que se levam no corpo; depois o que é uma medida e com que instrumento se faz; depois a leitura da escala, até o último traço; depois a diferença entre errar e duvidar; e, por fim, a forma de escrever o resultado com a sua dúvida.</p>
 
-  <!-- TOPICO 1 -->
   <div class="topico" id="topico-1">
-    <div class="topico-titulo">Tópico 1 &mdash; A bancada primeiro: estimar antes de medir</div>
+    <div class="topico-titulo">Tópico 1 &mdash; Estimar antes de medir</div>
 
-    <p>A bancada desta noite é a mesma que a turma da Introdução ao Laboratório usou duas horas antes. Os instrumentos continuam no lugar &mdash; régua milimetrada, paquímetro, trena, balança de 0,1 g, a massa aferida de 100 g. O que muda são os objetos: sobre as bancadas estão grãos de areia de rejeito, grânulos de minério, uma amostra de rocha e a planta impressa de uma cava, com escala gráfica.</p>
+    <p>Na Estação A do Roteiro de Bancada (RB), a primeira linha de cada tarefa não pede a medida com um instrumento: pede uma estimativa, feita com o cérebro e escrita a caneta. Quantas folhas do livro cabem em 1,0 mm? Quantos graus tem a rampa? A pergunta parece fora de lugar num laboratório. Não é: é por ela que toda medida começa.</p>
 
-    <figure class="figura figura-pendente">
-  <div class="figura-aviso">Figura 4 em produção &mdash; a imagem entra aqui assim que for gerada e aprovada.</div>
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 4</span> &mdash; As duas estações da noite: os instrumentos da tarde, os objetos da mineração.</figcaption>
-</figure>
+    <p><strong>Estimar é medir com o cérebro.</strong> A estimativa não é chute. É uma medida feita com os instrumentos que você leva consigo: o olho, que compara tamanhos; o palmo e o passo; a mão, que sente o peso; e a memória de uma medida conhecida. O RB dá a você, em cada tarefa, uma dessas memórias: 1 mm na régua, 10° no transferidor, 10,0 g de clipes na palma (Figura 5), 100 g de massa que pesam perto de 1,0 N. Estimar é comparar o tamanho da grandeza desconhecida com essa referência — exatamente o que o instrumento faz, só que com resolução menor que a dele.</p>
 
-    <p>A turma se divide em duas estações, e na metade do tempo os grupos trocam. Cada tarefa tem três linhas no Roteiro de Bancada (RB), sempre nesta ordem: <strong>a estimativa</strong>, escrita e justificada antes de tocar no instrumento; <strong>a medida</strong>; e <strong>a razão</strong> entre as duas.</p>
+    <figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-05-v2-web.jpg" alt="Figura 5 &mdash; Estação B, tarefa B1: o padrão de 10,0 g numa mão, os clipes na outra." loading="lazy"><figcaption><span class="figura-lme-num">Figura 5</span> &mdash; Estação B, tarefa B1: o padrão de 10,0 g numa mão, os clipes na outra.</figcaption></figure>
 
-    <p><strong>Estação A &mdash; comprimento, do grão à cava.</strong></p>
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
-      <tr><th style="text-align:left;">Tarefa</th><th style="text-align:left;">Você escreve antes</th><th style="text-align:left;">Você mede</th></tr>
-      <tr><td><strong>A1</strong> &middot; o diâmetro de um grão de areia de rejeito</td><td>a ordem do diâmetro, em m</td><td>quantos grãos enfileirados cabem em 1 cm da régua</td></tr>
-      <tr><td><strong>A2</strong> &middot; o volume da amostra de rocha</td><td>a ordem do volume, em m³</td><td>as três arestas, com paquímetro e régua</td></tr>
-      <tr><td><strong>A3</strong> &middot; o comprimento da cava</td><td>a ordem do comprimento real, em m</td><td>o comprimento na planta, convertido pela escala gráfica</td></tr>
-    </table>
+    <p><strong>Ordem de grandeza.</strong> Uma estimativa boa acerta, no mínimo, a <strong>ordem de grandeza</strong>: a potência de 10 mais próxima do valor. A espessura de uma folha é da ordem de 0,1 mm, não de 1 mm nem de 0,01 mm. Um clipe tem massa da ordem de 1 g, não de 10 g. Errar a ordem de grandeza é errar o modelo mental que se tem do tamanho da grandeza, e é isso que a bancada quer analisar.</p>
 
-    <p><strong>Estação B &mdash; massa, da réplica ao minério.</strong> Ela começa por uma tarefa sem estimativa: pôr a massa aferida na balança e conferir a leitura. Se a balança não disser 100 g, nenhuma massa da noite vale &mdash; e você descobre isso antes, não depois.</p>
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
-      <tr><th style="text-align:left;">Tarefa</th><th style="text-align:left;">Você escreve antes</th><th style="text-align:left;">Você mede</th></tr>
-      <tr><td><strong>B0</strong> &middot; a balança conferida</td><td>&mdash;</td><td>a leitura da massa aferida de 100 g</td></tr>
-      <tr><td><strong>B1</strong> &middot; a massa de um grânulo de minério</td><td>a ordem da massa, em kg</td><td>a massa de 20 grânulos, dividida por 20</td></tr>
-      <tr><td><strong>B2</strong> &middot; a densidade da amostra de rocha</td><td>a ordem da densidade, em kg/m³</td><td>a massa da amostra, dividida pelo volume de A2</td></tr>
-      <tr><td><strong>B3</strong> &middot; a massa retirada da cava</td><td>a ordem da massa, em kg e em t</td><td>nada: calcula-se com A3 e B2, mais duas hipóteses declaradas</td></tr>
-    </table>
+    <p><strong>Revisão rápida: a potência de 10.</strong> Uma potência de 10 tem dois termos: a <strong>base</strong>, que é sempre 10 e não muda, e o <strong>expoente</strong>, o número pequeno no alto, que conta quantas vezes o 10 entra como fator:</p>
 
-    <p><strong>A regra do registro.</strong> A estimativa é escrita a caneta, com a justificativa ao lado, e não se apaga. Se a medida mostrar que ela estava longe, a estimativa fica lá, e a explicação se escreve embaixo. É o que a T0A chamou de dado bruto, aplicado à previsão: se a estimativa pudesse ser corrigida depois, ela nunca erraria &mdash; e uma previsão que não pode errar não ensina nada.</p>
+    <p>10<sup>2</sup> = 100  10<sup>1</sup> = 10  10<sup>0</sup> = 1  10<sup>&minus;1</sup> = 0,1  10<sup>&minus;2</sup> = 0,01</p>
 
-    <p><strong>O critério de decisão.</strong> Para cada tarefa, divida a medida pela estimativa. Se a razão ficar <strong>entre 1/3 e 3</strong>, a estimativa acertou a ordem de grandeza. Fora dessa faixa, escreva qual hipótese falhou: o grão era menor do que você imaginava? a rocha era mais densa? a escala da planta foi lida ao contrário? Errar a ordem não é erro de conduta. Deixar de dizer por que errou, é.</p>
+    <p>Subir 1 no expoente é multiplicar por 10; descer 1 é dividir por 10. O expoente é, portanto, a régua da ordem de grandeza: 0,1 mm, 1 mm e 10 mm estão em três ordens diferentes porque têm expoentes -1, 0 e 1. Uma regra a mais, que se usa logo adiante: multiplicar potências de 10 é <strong>somar</strong> os expoentes, 10<sup>a</sup> × 10<sup>b</sup> = 10<sup>a+b</sup>. E o expoente não precisa ser inteiro. Quanto vale 10<sup>0,5</sup>? A mesma regra responde, passo a passo:</p>
 
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>Pedir a estimativa escrita antes da medida é a atividade mais barata que um professor tem: não custa equipamento, cabe em qualquer sala e transforma a turma em dona da previsão. Quando o dado chega, cada estudante tem um motivo pessoal para olhar para ele.</p>
-</div>
+    <ul>
+      <li>Multiplique 10<sup>0,5</sup> por ele mesmo: 10<sup>0,5</sup> × 10<sup>0,5</sup>.</li>
+      <li>Multiplicar potências de 10 é somar os expoentes: 10<sup>0,5</sup> × 10<sup>0,5</sup> = 10<sup>0,5+0,5</sup>.</li>
+      <li>Some os expoentes: 0,5 + 0,5 = 1. Então 10<sup>0,5+0,5</sup> = 10<sup>1</sup> = 10.</li>
+      <li>Leia o resultado: 10<sup>0,5</sup> é o número que, multiplicado por ele mesmo, dá 10. Esse número tem nome: é a <strong>raiz quadrada</strong> de 10. Logo, 10<sup>0,5</sup> = √(10).</li>
+      <li>Ache o valor: 3 × 3 = 9, um pouco menos que 10; 4 × 4 = 16, bem mais. A raiz fica entre 3 e 4, perto do 3. Teste: 3,16 × 3,16 ≈ 9,99. Logo, √(10) ≈ 3,16 — e a tecla de raiz quadrada da calculadora confirma.</li>
+      <li>Do outro lado, o expoente negativo divide: 10<sup>&minus;0,5</sup> = 1 / 10<sup>0,5</sup> = 1 / 3,16 ≈ 0,316.</li>
+    </ul>
 
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>A Escola de Minas de Ouro Preto, fundada em 1876, formou engenheiros que precisavam dizer o tamanho de uma jazida antes de abri-la. A estimativa escrita antes da escavação é, nesta cidade, uma prática com 150 anos.</p>
-</div>
+    <p><strong>O que varia na análise: o expoente.</strong> O RB analisa cada estimativa pela <strong>razão</strong></p>
 
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>A estimativa datada, registrada antes da medida e nunca apagada, é a forma mais simples de rastreabilidade de uma previsão: qualquer pessoa pode conferir depois o que foi dito antes, sem depender da memória de quem disse.</p>
-</div>
+    <p>razão = medido / estimado,</p>
 
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>O planejamento de lavra estima o volume de minério de cada bloco antes da detonação. Depois, a balança da britagem pesa o que realmente saiu. A comparação entre o previsto e o pesado é o que diz se o modelo da jazida está de pé.</p>
-</div>
+    <p>com a estimativa e a medida escritas <strong>na mesma unidade</strong>. A unidade se cancela, e a razão é um número puro: diz quantas vezes o valor medido é maior (ou menor) que o estimado. Escreva essa razão como uma potência de 10, razão = 10<sup>x</sup>. A base 10 fica parada; o termo que varia é o <strong>expoente x</strong>. Estimativa perfeita dá razão = 1 = 10<sup>0</sup>, isto é, x = 0. Quanto mais x se afasta de zero, para mais ou para menos, mais longe a estimativa ficou do valor medido. O critério da bancada é que <strong>x fique entre -0,5 e +0,5</strong>: meia ordem de grandeza para cada lado. Como 10<sup>&minus;0,5</sup> ≈ 0,3 e 10<sup>+0,5</sup> ≈ 3, isso é o mesmo que a razão ficar entre 0,3 e 3. Na prática, nem é preciso calcular x: basta comparar a razão com 0,3 e 3.</p>
+
+    <p><strong>Passo a passo.</strong></p>
+
+    <ul>
+      <li>Escreva a estimativa e a medida na mesma unidade (0,033 mm e 0,083 mm, e não 33 µm e 0,083 mm).</li>
+      <li>Divida o medido pelo estimado: 0,083 / 0,033 ≈ 2,5.</li>
+      <li>Compare a razão com os limites: 0,3 ≤ 2,5 ≤ 3.</li>
+      <li>Entre 0,3 e 3, a estimativa acertou a ordem de grandeza; fora dessa faixa, falhou — e a linha 5 do RB pede o porquê.</li>
+      <li>Se quiser ver o expoente, a tecla <strong>log</strong> da calculadora o dá: log 2,5 ≈ 0,40, entre -0,5 e +0,5.</li>
+    </ul>
+
+    <p><strong>Por que 0,3 e 3: a média geométrica.</strong> Qual número fica no meio do caminho entre 10<sup>0</sup> = 1 e 10<sup>1</sup> = 10? A <strong>média aritmética</strong>, (1 + 10)/2 = 5,5, acha o meio pela <em>diferença</em>: soma e subtrai. Mas a ordem de grandeza anda por <em>fatores</em>: multiplica e divide por 10. O meio por fatores é a <strong>média geométrica</strong>, a raiz quadrada do produto:</p>
+
+    <p>√(1 × 10) = √(10) ≈ 3,16 = 10<sup>0,5</sup>.</p>
+
+    <p>Confira: de 1 a 3,16 multiplica-se por 3,16; de 3,16 a 10, multiplica-se outra vez por 3,16. São dois passos iguais, de meio expoente cada um (Figura 6). A média aritmética não passa nesse teste: de 1 a 5,5 o fator é 5,5, mas de 5,5 a 10 é só 1,8. Do outro lado do 1, a média geométrica entre 10<sup>&minus;1</sup> = 0,1 e 10<sup>0</sup> = 1 é √(0,1 × 1) ≈ 0,316 = 10<sup>&minus;0,5</sup>, o inverso de 3,16. Arredondados, os dois limites viram 0,3 e 3. A faixa é simétrica nos fatores: errar 3 vezes para mais ou 3 vezes para menos é a mesma falha. É também a regra que dá a ordem de grandeza de qualquer número: escrito como N × 10<sup>n</sup>, com 1 ≤ N &lt; 10, ele é da ordem de 10<sup>n</sup> se N &lt; 3,16, e de 10<sup>n+1</sup> se N ≥ 3,16. Errar por um fator 2 é estimar bem; errar por um fator 10 é não saber de que tamanho é a coisa.</p>
+
+    <figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-06-v2-web.jpg" alt="Figura 6 &mdash; A régua das potências de 10: de 1 a 10 em dois passos iguais de 3,16." loading="lazy"><figcaption><span class="figura-lme-num">Figura 6</span> &mdash; A régua das potências de 10: de 1 a 10 em dois passos iguais de 3,16.</figcaption></figure>
+
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 1 — Uma estimativa julgada pela razão</div>
+      <table class="tabela">
+        <thead><tr><th>Tarefa</th><th>Estimado</th><th>Medido</th><th>Razão</th><th>x</th><th>Julgamento</th></tr></thead>
+        <tbody>
+          <tr><td>A1 · folha</td><td>0,033 mm</td><td>0,083 mm</td><td>2,5</td><td>+0,40</td><td>acertou</td></tr>
+          <tr><td>A3 · rampa</td><td>20°</td><td>15°</td><td>0,75</td><td>-0,12</td><td>acertou</td></tr>
+          <tr><td>B1 · clipe</td><td>3 g</td><td>0,44 g</td><td>0,15</td><td>-0,82</td><td><strong>falhou</strong></td></tr>
+          <tr><td>B2 · bloco</td><td>2 N</td><td>1,6 N</td><td>0,80</td><td>-0,10</td><td>acertou</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>A regra da caneta.</strong> A estimativa se escreve a caneta e não se apaga. Se ela pudesse ser corrigida depois da medida, deixaria de ser estimativa e viraria cópia. O RB diz: <em>errar na estimativa não é erro de conduta; deixar de dizer por quê, é</em>. No Quadro 1, o clipe falhou. A linha 5 do RB pede o porquê: quem estimou 3 g imaginou o clipe "do tamanho de uma moeda", e a moeda é que tem alguns gramas. É essa frase — e não a razão — o dado mais valioso da tarefa.</p>
+
+    <p><strong>Estimativa de Fermi.</strong> Às vezes o tamanho da grandeza não se compara de uma vez com nada conhecido: ninguém traz na memória o tamanho da energia de uma explosão, nem o de um ano inteiro de trabalho na bateia. Então a grandeza se quebra em partes que se sabem estimar, cada parte é estimada com uma referência que se tem, e as partes se juntam numa conta. É uma <strong>estimativa indireta</strong>: não se compara o todo com uma referência; compara-se cada pedaço, e o todo sai da conta. Em 16 de julho de 1945, no primeiro teste de uma bomba atômica, no deserto do Novo México, nos Estados Unidos, o físico Enrico Fermi estava a uns 16 km da explosão. Quando a onda de choque — o empurrão de ar que a explosão espalha em todas as direções — passou por ele, Fermi soltou pedacinhos de papel da altura do ombro e viu quanto o ar os arrastou: uns 2,5 m (Figura 7). Ele não mediu a energia, que não cabia em nenhum instrumento à mão; mediu o deslocamento dos papéis, que cabia, e encadeou o resto em estimativas que sabia fazer. Chegou a uma energia equivalente a cerca de 10 mil toneladas de trinitrotolueno (TNT), o explosivo que serve de padrão para a energia de explosões. O valor calculado depois, com os instrumentos, ficou perto de 20 mil: razão ≈ 2, dentro da faixa de 0,3 a 3. A técnica leva o nome dele: <strong>dividir o problema até cada parte caber na mão</strong>. O Quadro 2 aplica a técnica a uma pergunta de Vila Rica: quantas bateias um minerador lavava num ano?</p>
+
+    <figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-07-v2-web.jpg" alt="Figura 7 &mdash; Deserto do Novo México, 1945: os papéis soltos ao vento da onda de choque." loading="lazy"><figcaption><span class="figura-lme-num">Figura 7</span> &mdash; Deserto do Novo México, 1945: os papéis soltos ao vento da onda de choque.</figcaption></figure>
+
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 2 — Fermi na bateia: quantas por ano?</div>
+      <table class="tabela">
+        <thead><tr><th>Parte</th><th>Estimativa</th><th>Referência que cabe na mão</th></tr></thead>
+        <tbody>
+          <tr><td>Bateias por hora</td><td>6</td><td>uma bateia leva uns 10 minutos para ser lavada</td></tr>
+          <tr><td>Horas por dia</td><td>8</td><td>um dia de trabalho, de sol a sol, com pausa</td></tr>
+          <tr><td>Dias por ano</td><td>250</td><td>tirados domingos, dias santos e chuvas fortes</td></tr>
+          <tr><td><strong>Total</strong></td><td><strong>12 000</strong></td><td>6 × 8 × 250 = 1,2 × 10<sup>4</sup>: como 1,2 &lt; 3,16, ordem de grandeza 10<sup>4</sup></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Nenhuma das três partes é exata, mas cada uma dificilmente erra por um fator 3; e os erros, para mais numa parte e para menos noutra, tendem a se compensar. Por isso a estimativa de Fermi costuma acertar a ordem de grandeza mesmo quando nenhuma parte é medida.</p>
+
+    <p><strong>Aplicação — história.</strong> O minerador de Vila Rica fazia estimativa de ordem de grandeza todos os dias. Sabia, pela cor e pelo peso do pó na palma, se a bateia daquela manhã valia uma fração de oitava ou várias. A estimativa dele raramente era absurda; o que faltava era uma forma de dizer <em>quanto</em> ela podia estar errada. É o que esta trilha constrói.</p>
+
+    <p><strong>Aplicação — metrologia.</strong> A estimativa prévia é uma prática de laboratório, não um passatempo: ela protege contra o <em>erro grosseiro</em> (Tópico 4). Quem estimou 0,1 mm e leu 1,0 mm desconfia na hora de ter contado a pilha errado; quem não estimou, copia o número.</p>
+
+    <p><strong>Aplicação — prática docente.</strong> Peça à turma a estimativa antes de qualquer medida, por escrito e sem nota (Figura 8). A razão medido/estimado vira autoavaliação: o aluno vê, em números, o quanto o seu modelo da grandeza estava certo. E a pergunta "por que falhou?" ensina mais do que "qual é a resposta?", porque obriga a reconstruir o raciocínio.</p>
+
+    <figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-08-v2-web.jpg" alt="Figura 8 &mdash; Numa sala de ensino médio, a turma escreve o palpite antes da medida." loading="lazy"><figcaption><span class="figura-lme-num">Figura 8</span> &mdash; Numa sala de ensino médio, a turma escreve o palpite antes da medida.</figcaption></figure>
+
   </div>
 
-  <!-- TOPICO 2 -->
   <div class="topico" id="topico-2">
-    <div class="topico-titulo">Tópico 2 &mdash; Potências de dez e ordem de grandeza</div>
+    <div class="topico-titulo">Tópico 2 &mdash; Grandeza, unidade e instrumento</div>
 
-    <p>Uma grandeza muito grande ou muito pequena se escreve em <strong>notação científica</strong>: um número entre 1 e 10, multiplicado por uma potência de dez. A cava de 1 200 m é 1,2 &times; 10<sup>3</sup> m; o grão de areia de 0,000 3 m é 3 &times; 10<sup>&minus;4</sup> m. A notação não é enfeite: ela separa o que o número <em>é</em> (o 1,2 e o 3) de <em>onde ele mora</em> na escala (o 10<sup>3</sup> e o 10<sup>&minus;4</sup>).</p>
+    <p>Na tarefa A1, a régua tem divisão de 1 mm, e a folha tem uns 0,1 mm. Uma folha sozinha cabe dez vezes no menor traço da régua. Mesmo assim, ao fim da tarefa, você terá a espessura da folha. Para entender como, é preciso dizer com cuidado o que é medir.</p>
 
-    <p><strong>A ordem de grandeza</strong> é a potência de dez mais próxima do valor. Para decidir o que é &ldquo;mais próxima&rdquo;, é preciso um critério, e os livros não usam todos o mesmo. Aqui vale este: escrito o número como <em>a</em> &times; 10<sup>n</sup>, se <em>a</em> for menor que &radic;10 &asymp; 3,16, a ordem é 10<sup>n</sup>; se for maior ou igual, a ordem é 10<sup>n+1</sup>. A fronteira fica em &radic;10 porque é o ponto do meio entre 1 e 10 na escala de potências: 3,16 está tão longe de 1 quanto de 10, em fator.</p>
+    <p><strong>Grandeza, mensurando, valor.</strong> O Vocabulário Internacional de Metrologia (VIM) chama de <strong>grandeza</strong> a propriedade de um corpo ou fenômeno que pode ser expressa por um número e uma referência (VIM 1.1): comprimento, massa, ângulo, força, tempo. A grandeza que se quer medir numa tarefa é o <strong>mensurando</strong> (VIM 2.3): <em>a espessura de uma folha do livro</em>, <em>o tempo de reação de Lucas</em>. O resultado é um <strong>valor</strong> (VIM 1.19), sempre na forma <strong>número × unidade</strong>: 0,083 mm. Sem a unidade, o número não diz nada; a próxima trilha (T0C) é inteira sobre elas.</p>
 
-    <div class="equacao" style="text-align:center;font-family:var(--mono);margin:14px 0;">1,2 &times; 10<sup>3</sup> m &nbsp;&rarr;&nbsp; ordem 10<sup>3</sup> m &nbsp;&nbsp;&nbsp;&nbsp; 5,3 &times; 10<sup>3</sup> kg/m³ &nbsp;&rarr;&nbsp; ordem 10<sup>4</sup> kg/m³</div>
+    <p><strong>Medir é comparar.</strong> Medir uma grandeza é compará-la com outra da mesma espécie, tomada como unidade, por meio de um <strong>instrumento</strong>. Cada instrumento compara <strong>uma</strong> grandeza, numa <strong>faixa</strong>: a régua de 30 cm não mede a altura do prédio da Escola de Minas, e a balança de cozinha não mede a massa de um caminhão de minério.</p>
 
-    <p>Repare no segundo exemplo: pelo critério, a densidade da hematita está mais perto de 10<sup>4</sup> do que de 10<sup>3</sup>. É o tipo de resultado que surpreende, e é por isso que o critério precisa estar escrito &mdash; o mesmo critério do Tópico 1, lido de outro jeito: a razão entre 1/3 e 3 é a faixa de &radic;10 para cada lado.</p>
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 3 — As seis tarefas: grandeza, instrumento e tipo de medida</div>
+      <table class="tabela">
+        <thead><tr><th>Mensurando</th><th>Instrumento</th><th>Como se obtém</th></tr></thead>
+        <tbody>
+          <tr><td>A1 · espessura da folha</td><td>régua milimetrada</td><td><strong>indireta</strong>: pilha de 1,0 mm  número de folhas</td></tr>
+          <tr><td>A2 · espessura e diâmetro da moeda</td><td>paquímetro digital</td><td>direta</td></tr>
+          <tr><td>A3 · inclinação da rampa</td><td>transferidor</td><td>direta</td></tr>
+          <tr><td>B1 · massa de um clipe</td><td>balança digital</td><td><strong>indireta</strong>: massa do conjunto  número de clipes</td></tr>
+          <tr><td>B2 · peso do bloco</td><td>dinamômetro</td><td>direta</td></tr>
+          <tr><td>B3 · tempo de reação</td><td>régua de 30 cm</td><td><strong>indireta</strong>: mede-se a queda h; t = √(2h/g)</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <p><strong>A régua da mineração.</strong> Escritas em ordens de grandeza, as coisas desta trilha ocupam sete degraus:</p>
+    <p><strong>Massa não é peso.</strong> No Quadro 3, o B1 mede uma <strong>massa</strong> e o B2 mede um <strong>peso</strong>, e a troca de nome não é capricho: na Mecânica Clássica, são grandezas distintas. A <strong>massa</strong> m mede a inércia do corpo, a resistência que ele opõe a mudar de velocidade; é grandeza de base, medida em quilograma (kg), e não muda se o corpo for levado à Lua. O <strong>peso</strong> P é uma <strong>força</strong>, um vetor: a atração gravitacional da Terra sobre o corpo, de módulo P = m g, medida em newton (N), com direção vertical e sentido para baixo. Na Lua, onde g é cerca de seis vezes menor, o mesmo corpo tem a mesma massa e um peso seis vezes menor. Na bancada, a balança indica massa, em gramas (a balança digital sente uma força, mas vem calibrada para mostrar massa); o dinamômetro indica peso, em newtons (Figura 9). Os 100 g de massa do Roteiro de Bancada (RB) pesam 0,100 kg × 9,8 m/s<sup>2</sup> ≈ 0,98 N, perto de 1,0 N. Na fala do dia a dia, "pesar" e "peso" servem para as duas coisas; no laboratório, quem lê gramas mede massa, e quem lê newtons mede peso.</p>
 
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
-      <tr><th style="text-align:left;">O que</th><th style="text-align:left;">Ordem de grandeza</th></tr>
-      <tr><td>grão de areia de rejeito</td><td>10<sup>&minus;4</sup> m</td></tr>
-      <tr><td>grânulo de minério</td><td>10<sup>&minus;3</sup> m a 10<sup>&minus;2</sup> m</td></tr>
-      <tr><td>amostra de rocha na bancada</td><td>10<sup>&minus;1</sup> m</td></tr>
-      <tr><td>altura de uma pessoa</td><td>10<sup>0</sup> m</td></tr>
-      <tr><td>bancada (degrau) da cava</td><td>10<sup>1</sup> m</td></tr>
-      <tr><td>profundidade da cava</td><td>10<sup>2</sup> m</td></tr>
-      <tr><td>comprimento da cava</td><td>10<sup>3</sup> m</td></tr>
-    </table>
+    <figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-09-v2-web.jpg" alt="Figura 9 &mdash; O mesmo bloco duas vezes: na balança, a massa em kg; no dinamômetro, o peso em N." loading="lazy"><figcaption><span class="figura-lme-num">Figura 9</span> &mdash; O mesmo bloco duas vezes: na balança, a massa em kg; no dinamômetro, o peso em N.</figcaption></figure>
 
-    <p>Sete ordens separam o grão da cava. É isto que o título da trilha chama de régua do mundo: não uma régua com milímetros, mas uma régua em que cada traço vale dez vezes o anterior.</p>
+    <p><strong>Direta e indireta.</strong> Na medida <strong>direta</strong>, o instrumento compara o próprio mensurando com a unidade: o paquímetro abraça a moeda e mostra o diâmetro. Na <strong>indireta</strong>, mede-se outra grandeza e o mensurando sai de uma conta. No B3, a régua não mede tempo nenhum: mede a distância h que ela caiu até ser segurada; o tempo vem da fórmula da queda livre, t = √(2h/g), com g = 9,8 m/s<sup>2</sup>. Uma régua que cai 18,0 cm dá t ≈ 0,19 s.</p>
 
-    <p><strong>Operar com ordens.</strong> Multiplicar potências de dez é somar os expoentes; dividir é subtrair. Por isso a ordem de um produto sai sem calculadora. Uma amostra de rocha de arestas da ordem de 10<sup>&minus;1</sup> m tem volume da ordem de 10<sup>&minus;1</sup> &times; 10<sup>&minus;1</sup> &times; 10<sup>&minus;1</sup> = 10<sup>&minus;3</sup> m³. Uma consequência que vai aparecer na bancada: se um grão tem diâmetro dez vezes menor que outro, o volume &mdash; e a massa, para o mesmo material &mdash; é <strong>mil</strong> vezes menor. Diâmetro sobe ao cubo; ordens sobem multiplicadas por três.</p>
+    <p><strong>Medir muitas juntas e dividir.</strong> Quando o mensurando é menor do que a menor divisão do instrumento, mede-se um conjunto de cópias iguais e divide-se pelo número delas. Doze folhas preenchem 1,0 mm na régua: cada uma tem 1,0 / 12 ≈ 0,083 mm. A contagem (12) é exata; a dúvida inteira está no 1,0 mm. Dividir por 12 divide também essa dúvida por 12 — é por isso que o método funciona (Tópico 5). No B1, o mesmo gesto: a balança mede a massa de um punhado de clipes, e a de um clipe sai da divisão.</p>
 
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>A tabela dos sete degraus cabe numa parede de qualquer escola sem laboratório. Pedir que a turma pendure nela objetos do próprio bairro &mdash; o grão de feijão, a casa, a serra &mdash; ensina ordem de grandeza sem uma única conta.</p>
-</div>
+    <p><strong>Aplicação — história.</strong> A oitava de Vila Rica era uma unidade de massa, e a balancinha de dois pratos era o instrumento que comparava o ouro com ela. A briga de 1720 não era sobre física; era sobre <em>qual</em> instrumento e <em>de quem</em> faria a comparação. A Escola de Minas, fundada em 1876, trouxe para Ouro Preto a exigência oposta: o instrumento aferido, que qualquer um pode conferir.</p>
 
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>O ouro de Ouro Preto era pesado em oitavas, perto de 3,6 g cada. A cava moderna do mesmo Quadrilátero se mede em kilometros e a produção em milhões de toneladas. Entre a oitava e a tonelada da mineração de hoje, a região atravessou nove ordens de grandeza.</p>
-</div>
+    <p><strong>Aplicação — metrologia.</strong> A distinção entre direta e indireta é o primeiro passo da propagação de incertezas: a dúvida de uma grandeza medida passa, pela conta, para a grandeza calculada. A T0E faz essa propagação pela primeira vez, com o número π.</p>
 
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>A ordem de grandeza é a incerteza mais grosseira que existe: diz o valor com um fator de &radic;10 para cada lado. Ela vem antes da incerteza das bancadas da Etapa 2, e não a substitui &mdash; mas uma medida que erra a ordem denuncia um erro que nenhum algarismo significativo conserta.</p>
-</div>
+    <p><strong>Aplicação — prática docente.</strong> O tempo de reação com a régua é uma das montagens mais baratas e mais ricas da escola: cabe em qualquer sala, envolve todos os alunos e faz aparecer, sem aviso, a medida indireta. Pergunte à turma "o que a régua mediu?" antes de mostrar a fórmula. A resposta errada mais comum — "o tempo" — é a porta para a conversa.</p>
 
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>Na britagem, o minério entra em blocos da ordem do metro e sai em grãos da ordem do milímetro. Cada etapa do circuito reduz o tamanho por um fator conhecido, e o engenheiro de processo pensa o circuito em ordens de grandeza antes de pensá-lo em números.</p>
-</div>
   </div>
 
-  <!-- TOPICO 3 -->
   <div class="topico" id="topico-3">
-    <div class="topico-titulo">Tópico 3 &mdash; A estimativa como primeiro modelo</div>
+    <div class="topico-titulo">Tópico 3 &mdash; Leitura de escala e menor divisão</div>
 
-    <p>Algumas perguntas parecem impossíveis de responder sem dado: quanto minério sai de uma cava, quantos grãos de areia há numa barragem de rejeitos, quantos caminhões passam numa estrada de mina por dia. O físico italiano Enrico Fermi ficou conhecido por pedir a seus alunos respostas a perguntas assim &mdash; não o número exato, mas a ordem de grandeza, obtida com raciocínio. Por isso elas se chamam <strong>estimativas de Fermi</strong>.</p>
+    <p>Toda tarefa do Roteiro de Bancada (RB) tem uma linha que parece burocrática: <em>Menor divisão</em>. Ela é a fronteira do que o instrumento sabe. Antes de ler um número, é preciso saber até onde aquele instrumento consegue ir.</p>
 
-    <p>O método tem quatro passos, e você já conhece todos, com outro nome. Eles são a versão de bolso do <strong>Protocolo C5</strong> de resolução de problemas:</p>
+    <p><strong>Resolução.</strong> O Vocabulário Internacional de Metrologia (VIM) chama de <strong>resolução</strong> a menor variação da grandeza que causa uma variação perceptível na indicação (VIM 4.14). Na prática da bancada, ela se lê no próprio instrumento: é a <strong>menor divisão</strong> da escala, ou o último dígito do mostrador.</p>
 
-    <ol class="lista-perguntas">
-      <li><strong>Interpretar e decompor.</strong> Trocar a pergunta intratável por fatores que se estimam um a um. &ldquo;Massa retirada da cava&rdquo; vira &ldquo;comprimento &times; largura &times; profundidade &times; densidade&rdquo;.</li>
-      <li><strong>Declarar as hipóteses.</strong> Cada fator ganha um valor e uma frase que o justifica: &ldquo;a cava tem forma aproximada de caixa&rdquo;, &ldquo;a largura é metade do comprimento&rdquo;.</li>
-      <li><strong>Calcular com unidades, em ordens.</strong> Somar expoentes, conferir que a unidade final é a pedida.</li>
-      <li><strong>Julgar a plausibilidade.</strong> O resultado faz sentido diante de algo que se conhece? Se não faz, qual hipótese é a suspeita?</li>
-    </ol>
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 4 — Os instrumentos das seis tarefas e o que cada um mostra</div>
+      <table class="tabela">
+        <thead><tr><th>Instrumento</th><th>Escala</th><th>Menor divisão</th><th>Cuidado na leitura</th></tr></thead>
+        <tbody>
+          <tr><td>régua milimetrada</td><td>analógica</td><td>1 mm</td><td>olho perpendicular; começar no zero, não na ponta gasta</td></tr>
+          <tr><td>paquímetro digital</td><td>digital</td><td>0,01 mm</td><td>zerar com as garras fechadas antes de medir</td></tr>
+          <tr><td>transferidor</td><td>analógica</td><td>1°</td><td>centro do transferidor no vértice do ângulo</td></tr>
+          <tr><td>balança digital</td><td>digital</td><td>0,1 g ou 0,01 g</td><td>tarar antes de pôr os clipes</td></tr>
+          <tr><td>dinamômetro</td><td>analógica</td><td>a da mola (ver no corpo)</td><td>conferir o zero antes de pendurar o bloco</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <p><strong>Por que funciona.</strong> Cada fator estimado pode errar para mais ou para menos. Quando há vários fatores independentes, os erros tendem a se compensar em parte, e o produto final costuma errar menos do que o pior fator. Tendem &mdash; não é garantia. Se todas as hipóteses erram para o mesmo lado (a cava imaginada é mais funda, mais larga e mais comprida do que a real), os erros se somam, e a estimativa pode sair uma ordem acima. É por isso que o passo 4 existe.</p>
+    <p><strong>Escala analógica.</strong> Na régua, no transferidor e no dinamômetro, a indicação é a posição de uma borda ou de um ponteiro entre traços. Quando ela cai entre dois traços, o último algarismo <strong>se estima</strong>: a borda da moeda entre 26 e 27 mm, "mais perto do 27, uns 26,8". Esse último algarismo é duvidoso — e é honesto escrevê-lo. A T0D dará nome a ele: o primeiro algarismo duvidoso, que ainda é significativo.</p>
 
-    <p><strong>Estimar é o crivo do número pronto.</strong> Hoje o número chega pronto da calculadora, da planilha, da ferramenta de inteligência artificial (IA). Nenhuma delas erra a conta; todas podem receber o dado errado. Um prefixo trocado &mdash; milímetro por metro &mdash; muda o resultado em três ordens de grandeza, e passa despercebido por quem não tem uma estimativa na cabeça. Quem estimou antes olha para o resultado e diz, em um segundo: &ldquo;isto não pode estar certo&rdquo;.</p>
+    <p><strong>Paralaxe.</strong> Se o olho não está na perpendicular da escala, a borda parece cair num traço vizinho (Figura 10). É o mesmo cuidado que o B3 pede quando manda alinhar o zero da régua a uma linha imaginária perpendicular ao olho. A paralaxe é sempre do mesmo lado para o mesmo observador na mesma posição — guarde isso para o Tópico 4.</p>
 
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>A estimativa de Fermi é a melhor defesa que um professor pode ensinar contra o número que chega pronto. Uma turma que aprendeu a perguntar &ldquo;qual é a ordem que eu espero?&rdquo; antes de aceitar a resposta da calculadora ou da IA leva essa pergunta para qualquer disciplina.</p>
-</div>
+    <figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-10-v2-web.jpg" alt="Figura 10 &mdash; O olho na perpendicular lê o traço certo; o olho de lado lê o vizinho." loading="lazy"><figcaption><span class="figura-lme-num">Figura 10</span> &mdash; O olho na perpendicular lê o traço certo; o olho de lado lê o vizinho.</figcaption></figure>
 
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>Antes da sondagem sistemática, a reserva de uma jazida era avaliada por estimativa: a extensão do afloramento, a espessura provável da camada, a densidade do minério. A engenharia de minas brasileira nasceu fazendo contas de Fermi sobre o Quadrilátero Ferrífero.</p>
-</div>
+    <p><strong>Mostrador digital.</strong> No paquímetro digital e na balança, não há traço para estimar: o último dígito do visor faz o papel de duvidoso. O visor não mostra a dúvida, mas ela está lá. Um paquímetro de 0,01 mm que mostra 26,98 mm não garante que a moeda tem 26,98 e não 26,99.</p>
 
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>O passo 4, a plausibilidade, é a última etapa do Protocolo C5 e a primeira defesa contra o erro grosseiro. Uma estimativa não mede nada; ela diz em que faixa a medida precisa cair para não ser suspeita.</p>
-</div>
+    <p><strong>O zero.</strong> A leitura começa antes da medida. O dinamômetro que marca 0,1 N sem nada pendurado vai somar 0,1 N a todo peso; a balança sem tara soma o prato. Conferir o zero é parte da leitura, e não um passo opcional.</p>
 
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>Quanto tempo dura uma mina? A pergunta se decompõe em reserva (massa) dividida por produção anual (massa por ano). As duas se estimam, e a ordem de grandeza da vida útil &mdash; anos, décadas ou séculos &mdash; sai antes de qualquer planilha.</p>
-</div>
+    <p><strong>Aplicação — história.</strong> As balanças de ouro do século XVIII tinham massas-padrão — os "pesos" da fala do dia a dia — em frações de oitava, e a menor delas fixava a resolução da medição. Abaixo da menor massa-padrão, a balança não decidia; o fiel oscilava, e o resultado ficava por conta de quem olhava. A dúvida estava lá, sem nome.</p>
+
+    <p><strong>Aplicação — metrologia.</strong> A resolução é um limite inferior da dúvida: nenhuma medida sabe mais do que a menor divisão do instrumento que a fez. Medir muitas juntas (Tópico 2) não melhora o instrumento; espalha a mesma dúvida por muitas cópias.</p>
+
+    <p><strong>Aplicação — prática docente.</strong> Peça a três alunos que leiam a mesma borda na mesma régua, sem mostrar a leitura uns aos outros. Eles vão concordar nos milímetros e discordar no décimo. O ponto em que discordam é o algarismo duvidoso — e a discordância deixa de ser erro de alguém para virar propriedade da medida.</p>
+
   </div>
 
-  <!-- TOPICO 4 -->
   <div class="topico" id="topico-4">
-    <div class="topico-titulo">Tópico 4 &mdash; O SI, revisto como régua de escala</div>
+    <div class="topico-titulo">Tópico 4 &mdash; Erro e incerteza</div>
 
-    <p>Na Introdução ao Laboratório o Sistema Internacional de Unidades foi conteúdo. Aqui ele é ferramenta, e três de suas partes servem diretamente à estimativa.</p>
+    <p>No B3, Lucas segurou a régua depois de 18,0 cm (Figura 11). Na segunda vez, 15,5 cm. Na terceira, 20,5 cm. Nenhuma das três leituras está errada, e nenhuma é "o" tempo de reação dele. Para falar disso sem confusão, a Metrologia separa duas palavras que a escola costuma usar como sinônimas.</p>
 
-    <p><strong>As sete unidades de base e a revolução de 2019.</strong> Metro, kilograma, segundo, ampere, kelvin, mol e candela. Desde 20 de maio de 2019, todas são definidas a partir de constantes da natureza com valor fixado. O kilograma, que por 130 anos foi um cilindro de platina e irídio guardado em Sèvres, na França, passou a ser definido pela constante de Planck. Na bancada desta noite, a mecânica usa três: m, kg e s.</p>
+    <figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-11-v2-web.jpg" alt="Figura 11 &mdash; Estação B, tarefa B3: a régua cai, e a mão a segura depois de alguns centímetros." loading="lazy"><figcaption><span class="figura-lme-num">Figura 11</span> &mdash; Estação B, tarefa B3: a régua cai, e a mão a segura depois de alguns centímetros.</figcaption></figure>
 
-    <figure class="figura">
-  <img class="figura-img" src="../_imagens/_web/LME-T0B-Figura-05-v1-web.jpg" alt="Diagrama circular das sete unidades de base do SI, com kilograma, metro e segundo em destaque" loading="lazy">
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 5</span> &mdash; As sete unidades de base do SI. Três delas &mdash; kg, m e s &mdash; sustentam toda a Mecânica deste semestre.</figcaption>
-</figure>
+    <p><strong>Erro de medição</strong> (Vocabulário Internacional de Metrologia — VIM 2.16) é a diferença entre o valor medido e um valor de referência. Para calcular o erro, é preciso conhecer o valor de referência — e, na bancada, quase nunca se conhece. Ninguém sabe a espessura "verdadeira" da folha.</p>
 
-    <p><strong>As derivadas da Mecânica.</strong> Área em m², volume em m³, densidade em kg/m³, força em newton (N = kg&middot;m/s²), energia em joule (J = N&middot;m), pressão em pascal (Pa = N/m²). Toda derivada é produto de bases, e por isso a ordem de grandeza de uma derivada sai da soma das ordens das bases &mdash; o que você fez com o volume da amostra no Tópico 2.</p>
+    <p><strong>Incerteza de medição</strong> (VIM 2.26) é o parâmetro que caracteriza a dispersão dos valores que podem ser atribuídos ao mensurando. Em palavras simples: a <strong>dúvida que quem mediu declara</strong> sobre o próprio resultado. O erro quase nunca se conhece; a incerteza sempre se declara.</p>
 
-    <p><strong>Os prefixos são ordens de grandeza com nome.</strong> Esta é a leitura que interessa aqui:</p>
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 5 — Três famílias de erro, com exemplo da bancada</div>
+      <table class="tabela">
+        <thead><tr><th>Família</th><th>Como se reconhece</th><th>Na bancada</th></tr></thead>
+        <tbody>
+          <tr><td>grosseiro</td><td>um valor absurdo, fora de qualquer padrão; vem de engano</td><td>contar 20 folhas onde havia 12; ler 15° no lado errado do transferidor</td></tr>
+          <tr><td>sistemático (VIM 2.17)</td><td>desloca todas as leituras para o mesmo lado; repetir não o revela</td><td>dinamômetro que não marca zero; paralaxe sempre do mesmo lado</td></tr>
+          <tr><td>aleatório (VIM 2.19)</td><td>varia de uma repetição para outra, ora para mais, ora para menos</td><td>as três quedas da régua de Lucas: 18,0, 15,5 e 20,5 cm</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
-      <tr><th style="text-align:left;">Prefixo</th><th style="text-align:left;">Símbolo</th><th style="text-align:left;">Fator</th><th style="text-align:left;">Onde aparece na trilha</th></tr>
-      <tr><td>micro</td><td>µ</td><td>10<sup>&minus;6</sup></td><td>o grão de areia medido em µm</td></tr>
-      <tr><td>mili</td><td>m</td><td>10<sup>&minus;3</sup></td><td>o grânulo em mm; a massa do grão em mg</td></tr>
-      <tr><td>centi</td><td>c</td><td>10<sup>&minus;2</sup></td><td>as arestas da amostra em cm</td></tr>
-      <tr><td>kilo</td><td>k</td><td>10<sup>3</sup></td><td>o comprimento da cava em km; o kg</td></tr>
-      <tr><td>mega</td><td>M</td><td>10<sup>6</sup></td><td>a massa da cava em Mt (megatonelada)</td></tr>
-      <tr><td>giga</td><td>G</td><td>10<sup>9</sup></td><td>a mesma massa em kg, com seis ordens a mais</td></tr>
-    </table>
+    <p><strong>O que cada família pede.</strong> O erro <strong>grosseiro</strong> se elimina: refaz-se a medida, e a estimativa prévia (Tópico 1) ajuda a flagrá-lo. O <strong>sistemático</strong> se corrige quando se descobre a causa — zerar o dinamômetro, mudar a posição do olho. O <strong>aleatório</strong> não se elimina; repete-se a medida e trata-se o conjunto. O VIM não usa a expressão "erro grosseiro": ela vem dos livros de laboratório, como o de Santoro, e designa o engano, não a natureza da medida.</p>
 
-    <p><strong>As unidades fora do SI que a mineração usa.</strong> A <strong>tonelada</strong> (1 t = 10<sup>3</sup> kg) é aceita para uso com o SI e é a unidade da produção mineral. O <strong>quilate</strong> (1 ct = 2 &times; 10<sup>&minus;4</sup> kg) ainda mede pedras preciosas. A <strong>oitava</strong> pesou o ouro colonial desta região. E o km/h está em toda estrada de mina. Converter uma delas para o SI é multiplicar por uma potência de dez e por um número entre 1 e 10 &mdash; ou seja, mudar de degrau na régua.</p>
+    <p><strong>Discrepância.</strong> Quando duas medidas da mesma grandeza dão valores diferentes, a diferença entre elas é a <strong>discrepância</strong> (TAYLOR, cap. 2). Ela só tem sentido ao lado das incertezas: 0,2 mm de discrepância é enorme numa folha e desprezível na largura da mesa. O Tópico 5 dá a regra.</p>
 
-    <p><strong>Padrões e réplicas.</strong> A massa aferida de 100 g da Estação B não é um peso qualquer. Ela foi comparada com um padrão de maior exatidão, que foi comparado com outro, numa cadeia que sobe até o Instituto Nacional de Metrologia, Qualidade e Tecnologia (Inmetro) e, dele, ao Bureau Internacional de Pesos e Medidas (BIPM) &mdash; onde o kilograma é realizado a partir da constante de Planck. Essa cadeia se chama <strong>rastreabilidade</strong>. Quando você confere a balança com a massa aferida, na tarefa B0, você pendura a massa de cada grão da noite nessa corrente.</p>
+    <p><strong>A estimativa que falhou não é erro de medição.</strong> A razão fora da faixa do Tópico 1 não mede erro de instrumento nenhum: ela mostra que o <em>modelo</em> que você tinha da grandeza estava errado. Por isso a linha 5 do Roteiro de Bancada (RB) pergunta "por quê?" e não "quanto?".</p>
 
-    <figure class="figura">
-  <img class="figura-img" src="../_imagens/_web/LME-T0B-Figura-03-v1-web.jpg" alt="Quatro jovens observam, através de uma vitrine de madeira e vidro, uma balança antiga de dois pratos com seus pesos de latão, num museu" loading="lazy">
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 3</span> &mdash; A balança de pesar ouro do Museu de Ciência e Técnica da Escola de Minas: um padrão de outro tempo, antes da constante de Planck.</figcaption>
-</figure>
+    <p><strong>Aplicação — história.</strong> Na disputa de 1720, o minerador e a Coroa falavam em erro — e em roubo. Sem incerteza declarada, qualquer diferença entre o número da cabeça e o da balança virava acusação. Com ela, a pergunta muda: a diferença é maior do que as dúvidas das duas medições? Se não for, ninguém roubou ninguém.</p>
 
-    <p><strong>A grafia, em uma tabela.</strong> A regra que você aprendeu na Introdução ao Laboratório vale para todos os textos desta disciplina: a grafia do SI prevalece sobre o hábito.</p>
+    <p><strong>Aplicação — metrologia.</strong> A separação entre erro e incerteza é a mudança central do VIM em relação aos manuais antigos: o resultado de uma medição deixa de ser "o valor verdadeiro com um erro" e passa a ser "um valor com uma incerteza", que qualquer outro laboratório pode comparar com o seu.</p>
 
-    <figure class="figura">
-  <img class="figura-img" src="../_imagens/_web/LME-T0B-Figura-06-v1-web.jpg" alt="Seis medidas escritas duas vezes: à esquerda, com erros de grafia riscados em vermelho; à direita, na grafia correta do SI" loading="lazy">
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 6</span> &mdash; A mesma medida, escrita como se costuma e como o SI exige.</figcaption>
-</figure>
+    <p><strong>Aplicação — prática docente.</strong> "Errei a medida" é a frase que mais se ouve num laboratório escolar, e quase sempre está errada. Ensine a turma a perguntar qual das três famílias apareceu. A maior parte do que o aluno chama de erro é aleatório e não é culpa de ninguém; tratar como culpa ensina a esconder dado.</p>
 
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
-      <tr><th style="text-align:left;">Escreve-se</th><th style="text-align:left;">E não</th><th style="text-align:left;">Por quê</th></tr>
-      <tr><td>5 kg &middot; 1,2 km &middot; 12 s</td><td>5 kgs &middot; 1,2 KM &middot; 12 seg.</td><td>símbolo não é abreviação: sem plural, sem ponto, sem maiúscula trocada</td></tr>
-      <tr><td>3 &times; 10<sup>&minus;4</sup> m</td><td>3x10-4m</td><td>espaço entre número e unidade; o sinal de multiplicação é &times;</td></tr>
-      <tr><td>1,2</td><td>1.2</td><td>vírgula decimal, em português</td></tr>
-      <tr><td>kilograma &middot; kilometro &middot; micrometro</td><td>quilograma &middot; quilômetro &middot; micrômetro</td><td>prefixo + unidade, sem acento, como no SI</td></tr>
-    </table>
-
-    <p>Se quiser rever o SI com calma, os dois vídeos da T0B da Introdução ao Laboratório continuam valendo, como revisão opcional: <a href="https://www.youtube.com/watch?v=MUJX1Yyx6TI" target="_blank" rel="noopener">a evolução e a revolução das medidas</a> e <a href="https://www.youtube.com/watch?v=NAlMU6hqLak" target="_blank" rel="noopener">medidas produzem conhecimento</a>.</p>
-
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>Ensinar prefixo como tabela para decorar produz estudante que sabe que &ldquo;mili&rdquo; é 10<sup>&minus;3</sup> e não sabe se um grão de areia tem um milímetro ou um micrometro. Ensinar prefixo como degrau da régua de escala produz estudante que sabe onde o grão mora.</p>
-</div>
-
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>A oitava e o quilate pesaram o ouro e as pedras de Minas Gerais por mais de um século. O Museu de Ciência e Técnica da Escola de Minas guarda balanças desse tempo &mdash; padrões locais que só valiam enquanto todos concordavam com eles.</p>
-</div>
-
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>A redefinição de 2019 fechou uma fragilidade antiga: um padrão feito de objeto pode mudar, e ninguém percebe, porque não há com o que compará-lo. Uma constante da natureza não muda. A massa aferida da bancada é a ponta local de uma cadeia que termina nela.</p>
-</div>
-
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>A balança rodoviária de uma mina pesa caminhões de dezenas de toneladas e é aferida pela mesma cadeia de rastreabilidade da massa de 100 g da bancada. É dessa balança que sai o número da produção que você vai usar no Tópico 5.</p>
-</div>
   </div>
 
-  <!-- TOPICO 5 -->
   <div class="topico" id="topico-5">
-    <div class="topico-titulo">Tópico 5 &mdash; Do grão à cava: a mineração em ordens de grandeza</div>
+    <div class="topico-titulo">Tópico 5 &mdash; Valor ± incerteza</div>
 
-    <p>Volte à pergunta do Ato I. Agora você tem o que precisa para respondê-la com método, e boa parte dos números sai da bancada.</p>
+    <p>Agora a dúvida já tem nome. Falta escrevê-la. O resultado de uma medida não é um número; é um número com a sua incerteza e a sua unidade, numa forma que qualquer pessoa leia do mesmo jeito.</p>
 
-    <p><strong>A tarefa B3, passo a passo.</strong> Os valores abaixo são um exemplo, para mostrar o caminho; na bancada você usa os seus.</p>
+    <p><strong>A forma do resultado.</strong> Taylor escreve o resultado como</p>
 
-    <ol class="lista-perguntas">
-      <li><strong>Decompor.</strong> Massa retirada = comprimento &times; largura &times; profundidade &times; densidade.</li>
-      <li><strong>Hipóteses.</strong> Comprimento medido na planta (A3): 1,2 &times; 10<sup>3</sup> m. Largura: metade do comprimento, 6 &times; 10<sup>2</sup> m. Profundidade média: 10<sup>2</sup> m. Forma de caixa &mdash; o que superestima, porque a cava real se estreita no fundo. Densidade da amostra (B2): 3,5 &times; 10<sup>3</sup> kg/m³.</li>
-      <li><strong>Calcular em ordens.</strong> Volume: 1,2 &times; 10<sup>3</sup> &times; 6 &times; 10<sup>2</sup> &times; 10<sup>2</sup> &asymp; 7 &times; 10<sup>7</sup> m³. Massa: 7 &times; 10<sup>7</sup> m³ &times; 3,5 &times; 10<sup>3</sup> kg/m³ &asymp; 2,5 &times; 10<sup>11</sup> kg = 2,5 &times; 10<sup>8</sup> t.</li>
-      <li><strong>Plausibilidade.</strong> Da ordem de centenas de milhões de toneladas. Compare com a produção anual publicada da mina escolhida pelo professor. Se ela produz algumas dezenas de milhões de toneladas por ano, a cava levou algo como uma década para ser aberta &mdash; plausível? Se a sua conta desse 10<sup>5</sup> t, a mina teria sido escavada em um dia.</li>
-    </ol>
+    <p>(valor medido) = <em>x</em><sub>melhor</sub> ± δx    (unidade),</p>
 
-    <p>Repare no que o exemplo não fez. Ele não precisou de uma casa decimal certa em nenhum fator. Precisou de hipóteses declaradas e de uma comparação no fim. Se a razão entre a sua estimativa e o número publicado ficar fora de 1/3 a 3, a pergunta é a mesma da bancada: <em>qual hipótese falhou?</em> A forma de caixa? A profundidade? A densidade de uma amostra que talvez não represente a cava inteira?</p>
+    <p>em que <em>x</em><sub>melhor</sub> é a <strong>melhor estimativa</strong> do mensurando e δx a <strong>incerteza</strong>. Quer dizer: o mensurando está, provavelmente, entre <em>x</em><sub>melhor</sub> - δx e <em>x</em><sub>melhor</sub> + δx. A moeda medida com a régua: d = (26,8 ± 0,5) mm.</p>
 
-    <p><strong>A ponte dos grãos.</strong> A mesma ideia serve para descer a escala. Na tarefa B1 você pesou grânulos de alguns milímetros e achou uma massa da ordem de 10<sup>&minus;5</sup> kg. O grão de areia de A1 tem diâmetro cerca de dez vezes menor. Pelo Tópico 2, a massa dele deve ser cerca de mil vezes menor &mdash; da ordem de 10<sup>&minus;8</sup> kg, uma massa que a balança da bancada não lê. Você acabou de medir, com raciocínio, o que o instrumento não alcança.</p>
+    <p><strong>A incerteza de leitura.</strong> Nesta trilha, a incerteza é a do instrumento, e o Laboratório de Mecânica (LME) adota uma <strong>convenção</strong> — que é convenção, e não lei da natureza:</p>
 
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>Confrontar a estimativa da turma com um número publicado ensina a desconfiar com método: nem a estimativa nem a fonte são aceitas sem pergunta. Se as duas discordam, a turma precisa dizer onde está a discordância &mdash; e isso é argumentação científica, não opinião.</p>
+    <ul>
+      <li><strong>escala analógica</strong>: metade da menor divisão (régua de 1 mm → 0,5 mm; transferidor de 1° → 0,5°);</li>
+      <li><strong>mostrador digital</strong>: uma unidade do último dígito, ou o que o fabricante declarar (paquímetro de 0,01 mm → 0,01 mm).</li>
+    </ul>
+
+    <p>Quando a medida se repete e as leituras se espalham mais do que isso — como as quedas da régua de Lucas —, a dispersão é que manda, e o tratamento estatístico (média e desvio) entra nas trilhas seguintes.</p>
+
+    <p><strong>Quantos algarismos.</strong> A incerteza se escreve com <strong>um</strong> algarismo significativo — dois, se o primeiro for 1 — e o valor termina na mesma casa decimal da incerteza (TAYLOR, cap. 2). Não se escreve (26,812 ± 0,5) mm: o 0,5 diz que o décimo já é duvidoso, e o 1 e o 2 depois dele são ruído.</p>
+
+    <p><strong>Incerteza relativa.</strong> A razão δx / <em>x</em><sub>melhor</sub> é a <strong>incerteza relativa</strong>. Uma folha medida sozinha na régua teria (0,1 ± 0,5) mm: incerteza relativa de 500 %, medida inútil. A pilha de 1,0 mm tem 0,5 mm de incerteza, mas, dividida por 12 folhas, dá e = (0,08 ± 0,04) mm — 50 %, ainda grande, mas agora uma medida. Com 100 folhas, a incerteza relativa cairia para perto de 5 %. É a matemática do Tópico 2.</p>
+
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 6 — A tabela de coleta da T0B: uma linha por tarefa</div>
+      <table class="tabela">
+        <thead><tr><th>Tarefa</th><th>Estimado</th><th>Medido ± incerteza</th><th>Razão · faixa</th></tr></thead>
+        <tbody>
+          <tr><td>A1 · folha</td><td>0,033 mm</td><td>(0,08 ± 0,04) mm</td><td>2,5 · dentro</td></tr>
+          <tr><td>A2 · moeda, d</td><td>2 cm</td><td>(26,98 ± 0,01) mm</td><td>1,3 · dentro</td></tr>
+          <tr><td>A3 · rampa</td><td>20°</td><td>(15,0 ± 0,5)°</td><td>0,75 · dentro</td></tr>
+          <tr><td>B1 · clipe</td><td>3 g</td><td>(0,436 ± 0,005) g</td><td>0,15 · <strong>falhou</strong></td></tr>
+          <tr><td>B2 · bloco</td><td>2 N</td><td>(1,60 ± 0,05) N</td><td>0,80 · dentro</td></tr>
+          <tr><td>B3 · reação</td><td>0,14 s</td><td>(0,19 ± 0,01) s</td><td>1,4 · dentro</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Dentro da incerteza.</strong> Duas medidas da mesma grandeza <strong>concordam</strong> quando os seus intervalos se sobrepõem — quando a discrepância (Tópico 4) não é maior que as incertezas. Se Pedro mede a moeda e obtém (26,98 ± 0,01) mm e Bárbara, com a régua, (26,8 ± 0,5) mm, os dois concordam: o intervalo de Bárbara contém o de Pedro. Essa regra vai julgar o equilíbrio de forças na Etapa 2.</p>
+
+    <p><strong>O eixo metodológico nesta trilha.</strong> As três etapas que se repetem em toda trilha da LME começam aqui, no tamanho certo para a T0B. A <strong>expressão da medida e da sua incerteza</strong> é este tópico inteiro. A <strong>tabela</strong> é o Quadro 6: uma linha por tarefa, com a unidade em cada célula, que o Relatório Mínimo (RM) e o Relatório Completo (RC) pedem. O <strong>ajuste de curva</strong> ainda não tem dado para trabalhar: ele chega na T0E, quando a circunferência e o diâmetro dos cilindros formarem um par e a primeira reta for ajustada. Uma pista, porém, já aparece: num eixo em escala de potências de 10, a faixa de 0,3 a 3 é simétrica em torno de 1 — o primeiro gráfico em que a escala conta.</p>
+
+    <p><strong>Aplicação — história.</strong> Se a Casa de Fundição de Vila Rica tivesse escrito "3,0 oitavas, com a dúvida da balança", e o minerador "umas 3 oitavas, com a dúvida da mão", os dois intervalos se sobreporiam, e a diferença deixaria de ser acusação. A incerteza declarada é também um acordo entre pessoas.</p>
+
+    <p><strong>Aplicação — metrologia.</strong> A forma "valor ± incerteza, com unidade" é o que permite comparar medidas de laboratórios diferentes, em países diferentes, com instrumentos diferentes. É a base da rastreabilidade, que a T0C apresenta com o Sistema Internacional de Unidades (SI).</p>
+
+    <p><strong>Aplicação — prática docente.</strong> Na escola, a resposta certa costuma ser um número só. Experimente aceitar, numa atividade, apenas respostas com incerteza. Os alunos vão discutir quanto vale a dúvida — e essa discussão é a física da medida acontecendo na sala.</p>
+
 </div>
 
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>O Quadrilátero Ferrífero, que já foi a região do ouro pesado em oitavas, é hoje uma das maiores províncias de minério de ferro do mundo, e sua produção se mede em centenas de milhões de toneladas por ano. As cavas vistas do satélite no Explore são o registro físico dessa escala.</p>
 </div>
 
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>A razão entre estimativa e medida, com o critério de 1/3 a 3, é a primeira regra de decisão da disciplina. Nas bancadas da Etapa 2 ela ganha incerteza e vira a pergunta sobre o modelo: o dado é compatível com a previsão, dentro da incerteza?</p>
-</div>
-
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>Estimar a massa de minério removida de uma cava a partir de uma planta e de uma amostra é exatamente o que se faz, com mais dados e mais cuidado, no planejamento de lavra e na avaliação do volume de uma barragem de rejeitos.</p>
-</div>
-  </div>
-</div>
-
-<!-- ═══════════════════ ATO III ═══════════════════ -->
 <div class="ato" id="ato-iii">
   <div class="ato-titulo">Ato III &mdash; O Fechamento</div>
 
-  <p>Você sai desta noite com o Roteiro de Bancada preenchido em seis linhas, cada uma com três colunas: o que você esperava, o que mediu e a razão entre os dois. Algumas razões ficaram entre 1/3 e 3; talvez alguma tenha ficado fora, e ao lado dela está escrita a hipótese que falhou. Essa linha é a mais valiosa do roteiro.</p>
+    <p><strong>De volta a Vila Rica.</strong> A pergunta de Sofia — <em>quanto o minerador achava que tinha, antes de pôr o ouro na balança?</em> — agora tem resposta em cinco partes. Ele tinha uma <strong>estimativa</strong>, feita com a mão, que provavelmente acertava a ordem de grandeza (Tópico 1). A Coroa tinha uma <strong>medida</strong>, feita com um instrumento, de uma grandeza com unidade, a oitava (Tópico 2). A balança tinha uma <strong>resolução</strong>, a da menor massa-padrão, e abaixo dela não decidia (Tópico 3). A diferença entre os dois números podia ser engano, erro sistemático de uma balança viciada ou simples dispersão — <strong>erro</strong> não é o mesmo que <strong>incerteza</strong> (Tópico 4). E nenhum dos lados escreveu a sua dúvida: tinham só números, e números sozinhos não se comparam (Tópico 5).</p>
 
-  <figure class="figura figura-pendente">
-  <div class="figura-aviso">Figura 7 em produção &mdash; a imagem entra aqui assim que for gerada e aprovada.</div>
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 7</span> &mdash; A saída do laboratório: na lousa, as razões de todos os grupos &mdash; quem superestimou, quem subestimou, e em que grandeza.</figcaption>
-</figure>
+    <p>É o que você vai fazer na bancada, seis vezes: o número da cabeça, a caneta; o número do instrumento, com a menor divisão; a razão entre eles; e, quando a razão sair da faixa, a frase que diz por quê (Figura 12). <strong>Toda medida é um número e uma dúvida</strong> — e a dúvida, declarada, é o que deixa duas pessoas concordarem.</p>
 
-  <p>Sai também com uma régua nova, que não tem milímetros: sete degraus entre o grão e a cava, e o hábito de perguntar em qual deles uma coisa mora antes de medi-la. Os prefixos do SI deixaram de ser tabela e passaram a ser degraus com nome.</p>
+    <figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-12-v2-web.jpg" alt="Figura 12 &mdash; O laboratório depois da aula: seis tarefas, seis roteiros preenchidos sobre as bancadas." loading="lazy"><figcaption><span class="figura-lme-num">Figura 12</span> &mdash; O laboratório depois da aula: seis tarefas, seis roteiros preenchidos sobre as bancadas.</figcaption></figure>
 
-  <p>Na T0C, em 13/10, as unidades ganham padrão; na T0D, a medida ganha algarismos significativos; e, nas bancadas da Etapa 2, a estimativa ganha companhia: a incerteza. A pergunta vai ficar mais fina &mdash; não só <em>acertei a ordem?</em>, mas <em>quanto posso confiar neste algarismo?</em> A régua de hoje continua servindo. Ela é o que impede a conta mais cuidadosa de sair seis ordens errada.</p>
+    <p><strong>Agora a Folha de Atividades e o Testinho.</strong> A Folha de Atividades (FA) pratica os cinco tópicos, do reconhecer ao criar. O Testinho (TN) fecha o Pré-Lab. No encontro de 20/10, o Roteiro de Bancada (RB) espera por você com a caneta na mão.</p>
+
 </div>
 
 <div class="separador"></div>
 
-<!-- ═══════════════════ CIÊNCIA E ARTE ═══════════════════ -->
 <div class="ciencia-arte" id="ciencia-arte">
   <div class="ciencia-arte-titulo">Ciência e Arte</div>
-  <div class="ciencia-arte-obra"><strong>Filme:</strong> <em>Powers of Ten</em>, 1977 &mdash; Charles Eames (1907&ndash;1978) e Ray Eames (1912&ndash;1988)</div>
+  <div class="ciencia-arte-obra"><strong>Romance:</strong> <em>Grande Sertão: Veredas</em>, 1956 &mdash; João Guimarães Rosa</div>
 
-  <p>O filme começa com um casal fazendo piquenique num gramado de Chicago, visto de cima, num quadrado de um metro de lado. A cada dez segundos, a câmera se afasta e o quadrado fica dez vezes maior: o parque, a cidade, o continente, a Terra, o Sistema Solar, a galáxia, até o limite do universo observável. Então a viagem volta, entra na mão de um dos personagens e desce, de dez em dez, até o interior de um átomo. São cerca de nove minutos, e cada potência de dez é um enquadramento.</p>
+    <p>Em 1956, o escritor mineiro <strong>João Guimarães Rosa</strong> (1908–1967), nascido em Cordisburgo, publicou <em>Grande Sertão: Veredas</em>. Riobaldo, o narrador, atravessa o sertão de Minas, da Bahia e de Goiás, e tenta dizer o tamanho dele (Figura 13). Não tem trena nem mapa que sirva. Tem a frase:</p>
 
-  <p>Charles e Ray Eames eram designers, não físicos, e partiram de um livro de 1957, <em>Cosmic View</em>, do educador holandês Kees Boeke. O que eles fizeram foi dar à ordem de grandeza uma forma que se vê: a escala logarítmica, que no papel é uma abstração, virou movimento contínuo. Nenhum quadro do filme é mais importante que o outro. A galáxia e o núcleo atômico ocupam o mesmo tempo de tela &mdash; dez segundos por degrau.</p>
+    <p><em>"O sertão é do tamanho do mundo."</em></p>
 
-  <figure class="figura figura-pendente">
-  <div class="figura-aviso">Figura 8 em produção &mdash; a imagem entra aqui assim que for gerada e aprovada.</div>
-  <figcaption class="figura-legenda"><span class="figura-num">Figura 8</span> &mdash; A régua do filme: cada quadrado dez vezes maior que o anterior.</figcaption>
-</figure>
+    <figure class="figura-lme figura-lme-p"><img src="../_imagens/_web/LME-T0B-Figura-13-v2-web.jpg" alt="Figura 13 &mdash; O sertão de Guimarães Rosa: veredas, buritis e um vaqueiro do tamanho de um ponto." loading="lazy"><figcaption><span class="figura-lme-num">Figura 13</span> &mdash; O sertão de Guimarães Rosa: veredas, buritis e um vaqueiro do tamanho de um ponto.</figcaption></figure>
 
-  <p>É o gesto desta trilha: <strong>situar uma coisa numa escala antes de medi-la</strong>. Duas perguntas ao futuro professor. Primeira: o que a escala logarítmica mostra que a régua linear esconde? Numa régua comum, o grão e a cava não cabem no mesmo desenho; na régua de potências, cabem os dois, a sete degraus de distância. Segunda: como se leva uma turma a errar a ordem de grandeza de propósito, e a aprender com o erro? O filme sugere uma resposta &mdash; pedir a previsão do próximo enquadramento antes dos dez segundos acabarem.</p>
+    <p>É uma estimativa. Riobaldo não mediu o sertão; comparou-o com a maior coisa que conhecia, e acertou a ordem de grandeza do que ele significava. Faz o mesmo que você na linha 1 de cada tarefa do Roteiro de Bancada (RB): pega uma referência que traz consigo e diz "é desse tamanho". A literatura não declara a incerteza — e é justamente por isso que a frase abre o pensamento em vez de fechá-lo. Na bancada, a dúvida se escreve; no romance, ela é o próprio assunto. Riobaldo passa o livro inteiro dizendo que não sabe, que desconfia, que "viver é muito perigoso".</p>
 
-  <blockquote>De um piquenique em Chicago ao limite do universo e de volta ao núcleo de um átomo, dez vezes mais longe a cada dez segundos.</blockquote>
-  <div class="ca-autor">&mdash; <em>Powers of Ten</em>, Charles e Ray Eames, 1977</div>
+    <p><strong>Três cérebros, o mesmo gesto.</strong> Edgar Morin viu que conhecer é navegar num oceano de incertezas, de arquipélago em arquipélago; Lord Kelvin, que abre o seu Roteiro de Bancada, pediu que a medida se dissesse em números, para que se soubesse algo sobre ela; e Guimarães Rosa estimou o sertão do tamanho do mundo. Duvidar, medir, estimar — três criações do mesmo cérebro, como escreveu Miguel Nicolelis.</p>
 
-  <div class="footnote"><strong>Charles e Ray Eames</strong>. Casal norte-americano de designers e cineastas, autores de móveis, exposições e mais de cem filmes. A frase acima não é deles: é a legenda da obra, e por isso entra sem aspas e assinada pelo filme.</div>
-
-  <p style="margin-top:22px;"><em>Pascal viu o homem suspenso entre dois infinitos; Fermi mediu uma explosão com pedaços de papel e uma ordem de grandeza; Charles e Ray Eames foram de um piquenique às galáxias, dez vezes mais longe a cada dez segundos. Três cérebros, o mesmo gesto.</em></p>
 </div>
 
-<!-- ═══════════════════ REFERÊNCIAS ═══════════════════ -->
 <div class="refs" id="referencias">
-  <div class="refs-titulo">Referências &mdash; Fontes desta trilha</div>
-  <p>BUREAU INTERNATIONAL DES POIDS ET MESURES. <em>The International System of Units (SI)</em>. 9. ed. Sèvres: BIPM, 2019. Disponível em: https://www.bipm.org/en/publications/si-brochure. Acesso em: 15 set. 2026.</p>
-  <p>AZEVEDO, J. <em>O Sistema Internacional de Unidades (SI)</em>. Ouro Preto: NIDEC &mdash; IFMG campus Ouro Preto, 2026. Tabelas 1 a 9. (dados de edição a fixar)</p>
 
-  <div class="refs-titulo" style="margin-top:24px;">Referências &mdash; Bibliografia Básica</div>
-  <p>LIMA, C. R. A.; ZAPPA, F. <em>Análise de dados para laboratório de física</em>. Juiz de Fora: UFJF, 2014. 57 p. Disponível em: https://www2.ufjf.br/carlos_lima/wp-content/uploads/sites/520/2019/01/analisedados.pdf. Acesso em: 13 set. 2026.</p>
+  <div class="refs-titulo" style="margin-top:20px;">Básica</div>
+
   <p>CAMPOS, A. A.; ALVES, E. S.; SPEZIALI, N. L. <em>Física experimental básica na universidade</em>. 2. ed. Belo Horizonte: Editora UFMG, 2008.</p>
+  <p>PIACENTINI, J. J. et al. <em>Introdução ao laboratório de física</em>. 2. ed. Florianópolis: Editora da UFSC, 2018.</p>
   <p>SANTORO, A. et al. <em>Estimativas e erros em experimentos de física</em>. 2. ed. Rio de Janeiro: EdUERJ, 2013.</p>
 
-  <div class="refs-titulo" style="margin-top:24px;">Referências &mdash; Bibliografia Complementar</div>
-  <p>VUOLO, J. H. <em>Fundamentos da teoria de erros</em>. 2. ed. São Paulo: Edgard Blücher, 1996.</p>
-  <p>BOEKE, K. <em>Cosmic View</em>: the universe in 40 jumps. New York: John Day, 1957.</p>
+  <div class="refs-titulo" style="margin-top:20px;">Complementar</div>
 
-  <div class="refs-titulo" style="margin-top:24px;">Epígrafes desta trilha</div>
-  <p>PASCAL, Blaise. <em>Pensamentos</em>. 1670. Fragmento &ldquo;Desproporção do homem&rdquo;. Edição brasileira a fixar.</p>
-  <p>FERMI, Enrico. <em>My observations during the explosion at Trinity on July 16, 1945</em>. Los Alamos, 1945. (usada no Roteiro de Bancada desta trilha; referência a conferir)</p>
-  <p>EAMES, Charles; EAMES, Ray. <em>Powers of Ten</em>. Eames Office / IBM, 1977. Filme, 9 min.</p>
+  <p>HEWITT, P. G. <em>Física conceitual</em>. 12. ed. Porto Alegre: Bookman, 2015.</p>
+  <p>FEYNMAN, R. P.; LEIGHTON, R. B.; SANDS, M. L. <em>Feynman: lições de física</em>. Porto Alegre: Bookman, 2008. v. 1, 2 e 3.</p>
+  <p>HALLIDAY, D.; RESNICK, R.; WALKER, J. <em>Fundamentos de física</em>: mecânica. 10. ed. Rio de Janeiro: LTC, 2016. v. 1.</p>
+  <p>TAYLOR, J. R. <em>Introdução à análise de erros</em>: o estudo de incertezas em medições físicas. 2. ed. Porto Alegre: Bookman, 2012.</p>
 
-  <div class="refs-titulo" style="margin-top:24px;">Declaração de autoria</div>
-  <p>Estas Trilhas de Aprendizagem são concebidas, dirigidas e revisadas por uma equipe humana &mdash; autor, colaborador, monitores e a equipe do Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) e da Coordenadoria da Área de Física.</p>
-  <p>A inteligência artificial entra no processo como ferramenta, nunca como autora: é usada sob curadoria humana, com princípios claros, diretrizes pedagógicas explícitas e honestidade intelectual.</p>
-  <p>Assim, declaramos abertamente o uso de IA como assistente de redação e diagramação de todos os Objetos de Aprendizagem (Claude Opus 5 e Claude Cowork, Anthropic, 2026; Gemini Notebook, Google, 2026), do mesmo modo que se declara o uso de qualquer ferramenta de autoria.</p>
+  <div class="refs-titulo" style="margin-top:20px;">Documentos e normas</div>
+
+  <p>INMETRO. <em>Vocabulário Internacional de Metrologia (VIM)</em>: conceitos fundamentais e gerais e termos associados. Duque de Caxias: Inmetro, 2012.</p>
+
+  <div class="refs-titulo" style="margin-top:20px;">Epígrafes e obras citadas</div>
+
+  <p>MORIN, E. <em>Os sete saberes necessários à educação do futuro</em>. Tradução de Catarina Eleonora F. da Silva e Jeanne Sawaya. São Paulo: Cortez; Brasília: UNESCO, 2000.</p>
+  <p>THOMSON, W. (Lord Kelvin). Electrical units of measurement. <em>In</em>: <em>Popular lectures and addresses</em>. Londres: Macmillan, 1889. v. 1. Conferência de 1883. (abre o Roteiro de Bancada desta trilha)</p>
+  <p>ROSA, J. G. <em>Grande sertão</em>: veredas. Rio de Janeiro: José Olympio, 1956.</p>
+
+</div>
+
 </div>
 
 
-</div><!-- fim .conteudo -->
-
-<!-- ═══════════════════ ENCERRAMENTO ═══════════════════ -->
 <div class="encerramento">
   <div class="fecho-frase">Terminamos por aqui, um abraço, e até o próximo encontro.</div>
   <div class="fecho-links">
+    <a class="fecho-btn" href="../fa/">Folha de Atividades</a>
     <a class="fecho-btn secundario" href="../../index.html#t0b">Todas as trilhas</a>
   </div>
 </div>
@@ -1238,7 +1094,7 @@ window.addEventListener('scroll', function() {
 // Restauracao de scroll REMOVIDA (2026-09-13): computador de laboratorio e
 // compartilhado entre turmas — o scroll salvo por um estudante reabria a
 // pagina de todo o proximo estudante ja no final do TT.
-var STORAGE_KEY = 'LME-T0B-TT-v3';
+var STORAGE_KEY = 'LME-T0B-TT-v4';
 window.scrollTo(0, 0);
 
 // ─── FONT SIZE ───
@@ -1280,8 +1136,15 @@ document.getElementById('btnTheme').addEventListener('click', function() {
   var current = document.documentElement.getAttribute('data-theme');
   setTheme(current === 'dark' ? 'light' : 'dark');
 });
-
-
+// O atalho de audio abre o painel Musica do trilho de 7 abas (abas_oa_ilb.py).
+var audioHint = document.getElementById('audioHint');
+if (audioHint) {
+  audioHint.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var b = document.querySelector('.lme-aba-toggle[data-aba="musica"]');
+    if (b) { b.click(); }
+  });
+}
 </script>
 <!-- ABAS-OA-LME (trilho de 6 abas — abas_oa.py) -->
 

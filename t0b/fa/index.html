@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LME-T0B &middot; Noções sobre Estimativas e Medidas &mdash; Folha de Atividades 1</title>
+<title>LME-T0B &middot; Noções sobre Estimativas e Medidas &mdash; Folha de Atividades</title>
 <style>
   input, button, select, textarea { font-family: inherit; }
 :root {
@@ -212,6 +212,15 @@ input.lac.errada { border-color: var(--erro); }
 .assoc-linha { flex-wrap: wrap; }
 .assoc-linha select { min-width: 0; max-width: 100%; }
 @media (max-width: 560px) { .q-bloom { display: inline-block; margin: 4px 0 0; } .tab-fa { font-size: .8rem; } .tab-fa td.cel-pre { display: block; } .assoc-linha .item { flex: 1 1 100%; } .assoc-linha select { width: 100%; } }
+
+.ra-box { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 6px 0 16px; }
+.ra-box input { flex: 1 1 200px; padding: 11px 12px; min-height: 44px; background: var(--superficie); border: 1px solid var(--cinza-borda); color: var(--texto); font-family: var(--mono); font-size: .95rem; }
+.cartao-falta { font-size: .86rem; color: var(--cinza); margin: 10px 0 0; }
+.ja-feito { font-family: var(--mono); font-size: .72rem; color: var(--cinza); margin-left: 8px; }
+
+.esc-fig { margin: 10px 0 4px; max-width: 560px; }
+.esc-fig svg { display: block; width: 100%; height: auto; color: var(--texto, #111); }
+.esc-leg { font-size: .8rem; font-weight: 400; color: var(--cinza, #555); margin-top: 4px; }
 /* ICONES-LME */
 .lme-cab-marcas { display: flex; gap: 10px; align-items: center; justify-content: flex-start;
   flex-shrink: 0; }
@@ -322,301 +331,475 @@ input.lac.errada { border-color: var(--erro); }
 <header class="header">
   <div class="header-inner">
     <div class="lme-cab-marcas"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física"> <title>Prisma decompondo a luz — Licenciatura em Física</title> <defs> <radialGradient id="cab-prisma-fundo" cx="50%" cy="42%" r="60%"> <stop offset="0" stop-color="#26302B"/> <stop offset="1" stop-color="#0E1411"/> </radialGradient> <linearGradient id="cab-prisma-vidro" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/> <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/> </linearGradient> <clipPath id="cab-prisma-dentro"><circle cx="100" cy="100" r="86"/></clipPath> </defs> <circle cx="100" cy="100" r="96" fill="url(#cab-prisma-fundo)"/> <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/> <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1" stroke-dasharray="1.5 3" opacity="0.8"/> <g clip-path="url(#cab-prisma-dentro)"> <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/> <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/> <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/> <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/> <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/> <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/> <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/> <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/> <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/> </g> <polygon points="100,50 56,130 144,130" fill="url(#cab-prisma-vidro)" stroke="#DDEBF3" stroke-width="2.5" stroke-linejoin="round"/> <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/> <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/> <g fill="#FFFFFF" opacity="0.55"> <circle cx="46" cy="62" r="1.2"/> <circle cx="150" cy="56" r="1"/> <circle cx="70" cy="160" r="1"/> <circle cx="140" cy="164" r="1.2"/> </g> </svg><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica"> <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none"> <line x1="36" y1="10" x2="84" y2="10"/> <line x1="60" y1="10" x2="81.9" y2="70.1"/> </g> <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/> <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/> <circle cx="60" cy="10" r="4" fill="#3E8E5A"/> <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/> <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square"> <line x1="26" y1="110" x2="94" y2="110"/> <line x1="30" y1="110" x2="30" y2="104"/> <line x1="40" y1="110" x2="40" y2="104"/> <line x1="50" y1="110" x2="50" y2="104"/> <line x1="60" y1="110" x2="60" y2="98"/> <line x1="70" y1="110" x2="70" y2="104"/> <line x1="80" y1="110" x2="80" y2="104"/> <line x1="90" y1="110" x2="90" y2="104"/> </g> </svg></div><h1><span class="trilha-code">LME-T0B</span> &middot; Noções sobre Estimativas e Medidas</h1>
-    <span class="badge">Folha de Atividades 1 (FA) &middot; QGU, partes 1 a 4</span>
+    <span class="badge">Folha de Atividades (FA)</span>
   </div>
-  <div class="header-sub">QGU, partes 1 a 4 &middot; 25 atividades &middot; sem nota, sem envio &middot; Pré-Lab</div>
+  <div class="header-sub">Pratique tópico a tópico &middot; 40 itens &middot; <b>vale nota</b> &middot; Pré-Lab</div>
 </header>
 
 <main>
 
 <div class="intro-box">
-  <strong>Como usar.</strong> Esta folha segue o Quadro Geral de Unidades de Medida no Brasil (QGU), parte por parte. Preencha as lacunas e as tabelas, toque em <em>conferir</em> e leia o porquê. Símbolos contam a caixa: <b>kg</b> está certo, <b>Kg</b> não. Potências: escreva 10^-34 ou use o sobrescrito. Nada vale nota e nada sai do seu aparelho. Prefere papel? <a href="LME-T0B-FA-v6-estudante.pdf" target="_blank" rel="noopener">Abrir o PDF para imprimir</a>.
+  <strong>Como usar.</strong> Leia um tópico do Texto Temático e faça os oito itens dele aqui, antes de passar ao seguinte. Cada item mostra o nível de Bloom, do lembrar ao criar. Responda, toque em <em>conferir</em> e leia o porquê &mdash; inclusive quando acertar. <strong>A folha vale nota</strong> (40 % do Pré-Lab): cada item se confere uma vez só, e a nota é a fração de itens certos. Nada sai do seu aparelho; no fim, a página monta o <strong>cartão de resultado</strong>, que você mostra ao professor no início do encontro. Prefere papel? <a href="LME-T0B-FA-v7-estudante.pdf" target="_blank" rel="noopener">Abrir o PDF para imprimir</a>.
 </div>
+
+<div class="ra-box">
+  <label for="ra" style="font-size:.9rem;">Seu RA (fica só neste aparelho):</label>
+  <input id="ra" type="text" inputmode="numeric" placeholder="0000000" maxlength="12">
+</div>
+<div class="intro-box" id="aviso-ra"><strong>Digite o seu RA acima</strong> para abrir a Folha de Atividades.</div>
+<div id="conteudo" style="display:none">
 
 <div class="epi-fa">
-  <div class="q-epi">&ldquo;O Quadro Geral de Unidades de Medida, para uso no País, baseia-se na tradução luso-brasileira autorizada da 9ª edição do Sistema Internacional de Unidades.&rdquo;</div>
-  <div class="a-epi">&mdash; Inmetro, <em>Quadro Geral de Unidades de Medida no Brasil</em> (2021)</div>
+  <div class="q-epi">&ldquo;O sertão é do tamanho do mundo.&rdquo;</div>
+  <div class="a-epi">&mdash; João Guimarães Rosa, <em>Grande Sertão: Veredas</em> (1956)</div>
 </div>
 
-<div class="com-fundo"><div class="fundo-ilustra" style="left:0%;width:100%;background-image:url('../_imagens/_web/ILB-T0C-Figura-05-v2-web.jpg')"></div>
-<div class="topico-fa" id="topico-1"><h2>Parte 1 · As sete unidades de base (QGU, Tabela 1)</h2></div>
-<div class="lembrete"><p><b>Modelo — o segundo (s):</b> tomando o valor numérico fixado da frequência do césio, ΔνCs, a frequência da transição hiperfina do estado fundamental não perturbado do átomo de césio 133, igual a 9 192 631 770 quando expressa em Hz, unidade igual a s⁻¹.</p><p><b>Modelo — o metro (m):</b> tomando o valor numérico fixado da velocidade da luz no vácuo, c, igual a 299 792 458 quando expressa em m s⁻¹, o segundo sendo definido em função de ΔνCs.</p><p>Agora complete as outras cinco definições com as palavras e os números do QGU (Tabela 1).</p></div>
-<div class="q" data-id="1.1" data-t="1" data-tipo="lacunas">
+<div class="com-fundo" style="--fundo-min:62mm"><div class="fundo-ilustra" style="left:0%;width:100%;background-image:url('../_imagens/_web/LME-T0B-Figura-05-v2-web.jpg')"></div>
+<div class="topico-fa" id="topico-1"><h2>Tópico 1 · Estimar antes de medir</h2><div class="reler">Dúvida? Releia o <a href="../tt/#topico-1">Tópico 1 do Texto Temático</a>.</div></div>
+<div class="lembrete"><p><b>razão = medido ÷ estimado</b>, na mesma unidade. Entre 0,3 e 3, a estimativa acertou a ordem de grandeza; fora, falhou — e o porquê se escreve.</p></div>
+<div class="q" data-id="1.1" data-t="1" data-tipo="simples">
   <div class="q-topo"><span class="q-num">Item 1.1</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado"><b>O kilograma (kg).</b> Complete a definição.</div>
-  <div class="lac-texto">Tomando o valor numérico fixado da constante de <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:8ch">, h, igual a <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:22ch"> quando expressa em <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2" style="width:6ch">, unidade igual a kg m² s⁻¹, o metro e o segundo sendo definidos em função de c e ΔνCs.</div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
+  <div class="q-enunciado">Na bancada, a razão que julga uma estimativa é:</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i1-1"><span>estimado ÷ medido</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i1-1"><span>medido − estimado</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i1-1"><span>medido ÷ estimado, os dois na mesma unidade</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i1-1"><span>medido ÷ estimado, cada um na unidade em que foi escrito</span></label>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Desde 2019 o kilograma é definido pela <b>constante de Planck</b>, com valor fixado, sem incerteza.</div>
+  <div class="q-porque">A razão é <b>medido / estimado</b>, com os dois na mesma unidade: a unidade se cancela e sobra um número puro, que diz quantas vezes o medido é maior ou menor que o estimado.</div>
 </div>
-<div class="q" data-id="1.2" data-t="1" data-tipo="lacunas">
-  <div class="q-topo"><span class="q-num">Item 1.2</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado"><b>O ampere (A).</b> Complete a definição.</div>
-  <div class="lac-texto">Tomando o valor numérico fixado da <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:17ch">, e, igual a <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:23ch"> quando expressa em <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2" style="width:6ch">, unidade igual a A s, o segundo sendo definido em função de ΔνCs.</div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
+<div class="q" data-id="1.2" data-t="1" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 1.2</span><span class="q-bloom">L2 · Entender</span></div>
+  <div class="q-enunciado">Por que a faixa de aceitação vai de 0,3 a 3?</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i1-2"><span>é meia ordem de grandeza para cada lado: 10<sup>−0,5</sup> ≈ 0,3 e 10<sup>0,5</sup> ≈ 3</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i1-2"><span>é a menor divisão da régua, em centímetros</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i1-2"><span>é a média aritmética entre 1 e 10, arredondada</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i1-2"><span>é a incerteza de leitura da balança</span></label>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">O ampere é definido pela <b>carga elementar</b>, a carga de um próton, em coulomb.</div>
+  <div class="q-porque">A ordem de grandeza anda por fatores de 10. O meio do caminho, por fatores, é a média geométrica: √10 ≈ 3,16 = 10<sup>0,5</sup>. Do outro lado, 10<sup>−0,5</sup> ≈ 0,316. Errar 3 vezes para mais ou 3 vezes para menos é a mesma falha.</div>
 </div>
-<div class="fundo-legenda"><div><span class="figura-num">Figura 1</span> &mdash; As sete unidades de base do SI, cada uma com o seu símbolo &mdash; e as três que a bancada usou, destacadas.</div></div></div>
+<div class="fundo-legenda"><div><span class="figura-num">Figura 5</span> &mdash; Estação B, tarefa B1: o padrão de 10,0 g numa mão, os clipes na outra. <span class="fig-fonte">(Texto Temático)</span></div></div></div>
 
-<div class="q" data-id="1.3" data-t="1" data-tipo="lacunas">
-  <div class="q-topo"><span class="q-num">Item 1.3</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado"><b>O kelvin (K).</b> Complete a definição.</div>
-  <div class="lac-texto">Tomando o valor numérico fixado da constante de <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:11ch">, k, igual a <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:19ch">, quando expressa em <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2" style="width:7ch">, unidade igual a kg m² s⁻² K⁻¹, o kilograma, o metro e o segundo sendo definidos em função de h, c e ΔνCs.</div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
+<div class="q" data-id="1.3" data-t="1" data-tipo="num">
+  <div class="q-topo"><span class="q-num">Item 1.3</span><span class="q-bloom">L3 · Aplicar</span></div>
+  <div class="q-enunciado">A inclinação da rampa foi estimada em 20° e medida em 15°. Calcule a razão medido/estimado (duas casas decimais).</div>
+  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">O kelvin vem da <b>constante de Boltzmann</b>, em joule por kelvin.</div>
-</div>
-
-<div class="q" data-id="1.4" data-t="1" data-tipo="lacunas">
-  <div class="q-topo"><span class="q-num">Item 1.4</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado"><b>O mol (mol).</b> Complete a definição.</div>
-  <div class="lac-texto">Um mol contém exatamente <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:21ch"> entidades elementares. Este número, chamado de “<input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:20ch">”, corresponde ao valor numérico fixado da constante de Avogadro, NA, quando expressa em <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2" style="width:7ch">.</div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">O mol é uma contagem: exatamente 6,022 140 76 × 10²³ entidades, o <b>número de Avogadro</b>.</div>
+  <div class="q-porque">15 ÷ 20 = <b>0,75</b>. Está entre 0,3 e 3: a estimativa acertou a ordem de grandeza.</div>
 </div>
 
-<div class="q" data-id="1.5" data-t="1" data-tipo="lacunas">
-  <div class="q-topo"><span class="q-num">Item 1.5</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado"><b>A candela (cd).</b> Complete a definição.</div>
-  <div class="lac-texto">Tomando o valor numérico fixado da eficácia luminosa de uma radiação monocromática de frequência de <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:12ch"> Hz, Kcd, igual a <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:6ch">, quando expressa em <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2" style="width:8ch">, unidade igual a cd sr W⁻¹ ou cd sr kg⁻¹ m⁻² s³.</div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
+<div class="q" data-id="1.4" data-t="1" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 1.4</span><span class="q-bloom">L3 · Aplicar</span></div>
+  <div class="q-enunciado">A massa de um clipe foi estimada em 3 g e medida em 0,44 g. Julgue a estimativa.</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i1-4"><span>acertou: a diferença é menor que 3 g</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i1-4"><span>falhou: a razão, 0,15, ficou abaixo de 0,3</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i1-4"><span>acertou: toda razão menor que 1 é aceita</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i1-4"><span>não se julga, porque a balança é digital</span></label>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">A candela é definida pela eficácia luminosa da luz verde de 540 × 10¹² Hz: <b>683 lm/W</b>.</div>
+  <div class="q-porque">0,44 ÷ 3 ≈ 0,15, abaixo de 0,3: <b>falhou</b>. A diferença em gramas não julga nada; a razão, sim. E a linha 5 do Roteiro de Bancada (RB) pede o porquê — quem estimou 3 g pensou no clipe "do tamanho de uma moeda".</div>
 </div>
 
-<div class="q" data-id="1.6" data-t="1" data-tipo="assoc">
-  <div class="q-topo"><span class="q-num">Item 1.6</span><span class="q-bloom">L2 · Entender</span></div>
-  <div class="q-enunciado">Associe cada unidade de base à constante que a define:</div>
-  <div class="assoc-linha" data-it="0"><span class="item">segundo (s)</span><select><option value="-1">escolha&hellip;</option><option value="0">h</option><option value="1">ΔνCs</option><option value="2">NA</option><option value="3">c</option><option value="4">Kcd</option><option value="5">e</option><option value="6">k</option></select></div>
-  <div class="assoc-linha" data-it="1"><span class="item">metro (m)</span><select><option value="-1">escolha&hellip;</option><option value="0">h</option><option value="1">ΔνCs</option><option value="2">NA</option><option value="3">c</option><option value="4">Kcd</option><option value="5">e</option><option value="6">k</option></select></div>
-  <div class="assoc-linha" data-it="2"><span class="item">kilograma (kg)</span><select><option value="-1">escolha&hellip;</option><option value="0">h</option><option value="1">ΔνCs</option><option value="2">NA</option><option value="3">c</option><option value="4">Kcd</option><option value="5">e</option><option value="6">k</option></select></div>
-  <div class="assoc-linha" data-it="3"><span class="item">ampere (A)</span><select><option value="-1">escolha&hellip;</option><option value="0">h</option><option value="1">ΔνCs</option><option value="2">NA</option><option value="3">c</option><option value="4">Kcd</option><option value="5">e</option><option value="6">k</option></select></div>
-  <div class="assoc-linha" data-it="4"><span class="item">kelvin (K)</span><select><option value="-1">escolha&hellip;</option><option value="0">h</option><option value="1">ΔνCs</option><option value="2">NA</option><option value="3">c</option><option value="4">Kcd</option><option value="5">e</option><option value="6">k</option></select></div>
-  <div class="assoc-linha" data-it="5"><span class="item">mol (mol)</span><select><option value="-1">escolha&hellip;</option><option value="0">h</option><option value="1">ΔνCs</option><option value="2">NA</option><option value="3">c</option><option value="4">Kcd</option><option value="5">e</option><option value="6">k</option></select></div>
-  <div class="assoc-linha" data-it="6"><span class="item">candela (cd)</span><select><option value="-1">escolha&hellip;</option><option value="0">h</option><option value="1">ΔνCs</option><option value="2">NA</option><option value="3">c</option><option value="4">Kcd</option><option value="5">e</option><option value="6">k</option></select></div>
+<div class="q" data-id="1.5" data-t="1" data-tipo="num">
+  <div class="q-topo"><span class="q-num">Item 1.5</span><span class="q-bloom">L3 · Aplicar</span></div>
+  <div class="q-enunciado">Estimativa de Fermi na bateia: cada bateia leva uns 10 minutos para ser lavada. Quantas bateias um minerador lava em 8 horas de trabalho?</div>
+  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Césio → segundo; luz → metro; Planck → kilograma; carga elementar → ampere; Boltzmann → kelvin; Avogadro → mol; eficácia luminosa → candela. Sete constantes, sete unidades.</div>
+  <div class="q-porque">10 minutos por bateia são 6 bateias por hora; 6 × 8 = <b>48</b>. Cada parte se estima com uma referência que se tem na mão.</div>
 </div>
 
-<div class="com-fundo"><div class="fundo-ilustra" style="left:0%;width:100%;background-image:url('../_imagens/_web/ILB-T0C-Figura-07-v2-web.jpg')"></div>
-<div class="topico-fa" id="topico-2"><h2>Parte 2 · Os prefixos do SI (QGU, Tabela 2)</h2></div>
-<div class="lembrete"><p>Cada prefixo é uma potência de 10 com nome e símbolo. A <b>caixa</b> do símbolo importa: <b>M</b> (mega) é um milhão; <b>m</b> (mili), um milésimo. Os decimais se escrevem com grupos de três algarismos separados por espaço. Deca e deci vêm preenchidos como exemplo.</p></div>
-<div class="q" data-id="2.1" data-t="2" data-tipo="tabela">
+<div class="q" data-id="1.6" data-t="1" data-tipo="vf">
+  <div class="q-topo"><span class="q-num">Item 1.6</span><span class="q-bloom">L4 · Analisar</span></div>
+  <div class="q-enunciado">Analise cada afirmação sobre a estimativa de Fermi:</div>
+  <div class="vf-linha" data-af="0"><span class="txt">Quebra-se a pergunta em partes que se sabem estimar, e as partes se juntam numa conta.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="1"><span class="txt">Os erros das partes, para mais numa e para menos noutra, tendem a se compensar.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="2"><span class="txt">A estimativa de Fermi só vale se cada parte for medida com instrumento.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="3"><span class="txt">1,2 × 10<sup>4</sup> bateias por ano tem ordem de grandeza 10<sup>4</sup>, porque 1,2 &lt; 3,16.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="4"><span class="txt">5 × 10<sup>3</sup> tem ordem de grandeza 10<sup>3</sup>.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">Nenhuma parte precisa ser medida: basta que cada uma dificilmente erre por um fator 3. E a ordem de grandeza de N × 10<sup>n</sup> é 10<sup>n</sup> se N &lt; 3,16; 5 × 10<sup>3</sup> é da ordem de 10<sup>4</sup>.</div>
+</div>
+
+<div class="q" data-id="1.7" data-t="1" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 1.7</span><span class="q-bloom">L5 · Avaliar</span></div>
+  <div class="q-enunciado">A estimativa de um colega falhou (razão 0,15). Antes de entregar o Roteiro de Bancada, ele quer riscá-la e escrever outra, mais perto do medido. Avalie.</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i1-7"><span>Pode: o que importa é o número final certo.</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i1-7"><span>Não pode: a estimativa é a caneta. Errar nela não é erro de conduta; deixar de dizer por quê, é.</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i1-7"><span>Pode, desde que a nova estimativa também fique fora da faixa.</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i1-7"><span>Não pode, porque estimativa que falha tira nota.</span></label>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">Corrigida depois da medida, a estimativa vira cópia e perde o valor. A frase que explica a falha — e não a razão — é o dado mais valioso da tarefa.</div>
+</div>
+
+<div class="q aberta" data-id="1.8" data-t="1">
+  <div class="q-topo"><span class="q-num">Item 1.8</span><span class="q-bloom">L6 · Criar</span></div>
+  <div class="q-enunciado"><b>Crie</b> uma tarefa de estimativa para uma turma de ensino médio: escolha uma grandeza da sala de aula, diga que referência o aluno pode usar e como ele vai julgar a estimativa depois de medir.</div>
+  <textarea placeholder="Escreva aqui (fica só neste aparelho)"></textarea>
+  <button class="btn-conferir" type="button">ver a resposta-modelo</button>
+  <div class="modelo">Modelo: "Sem régua, estime a altura da porta da sala, usando como referência a sua própria altura. Escreva a caneta. Depois meça com a trena, calcule medido ÷ estimado e diga se ficou entre 0,3 e 3. Se ficou fora, escreva por quê." O que conferir na sua: há uma grandeza com unidade, uma referência que o aluno leva consigo, a estimativa registrada antes da medida e o julgamento pela razão — com espaço para o porquê.</div>
+  <div class="autoav"><span style="font-size:.82rem;">A sua resposta:</span><button data-av="2" type="button">cobre o modelo</button><button data-av="1" type="button">cobre em parte</button><button data-av="0" type="button">refazer</button></div>
+</div>
+
+<div class="com-fundo"><div class="fundo-ilustra" style="left:0%;width:100%;background-image:url('../_imagens/_web/LME-T0B-Figura-09-v2-web.jpg')"></div>
+<div class="topico-fa" id="topico-2"><h2>Tópico 2 · Grandeza, unidade e instrumento</h2><div class="reler">Dúvida? Releia o <a href="../tt/#topico-2">Tópico 2 do Texto Temático</a>.</div></div>
+<div class="lembrete"><p>Valor = número × unidade. <b>Direta</b>: o instrumento compara o próprio mensurando. <b>Indireta</b>: mede-se outra grandeza, e o mensurando sai da conta.</p></div>
+<div class="q" data-id="2.1" data-t="2" data-tipo="assoc">
   <div class="q-topo"><span class="q-num">Item 2.1</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado">Os <b>múltiplos</b>: complete o símbolo e a escrita decimal de cada linha.</div>
-  <table class="tab-fa"><thead><tr><th>Nome</th><th>Símbolo</th><th>Fator decimal pelo qual a unidade é multiplicada</th></tr></thead><tbody><tr><td>yotta</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0"></td><td class="cel-pre"><span class="pre">10²⁴ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1"></td></tr><tr><td>zetta</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2"></td><td class="cel-pre"><span class="pre">10²¹ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3"></td></tr><tr><td>exa</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="4"></td><td class="cel-pre"><span class="pre">10¹⁸ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="5"></td></tr><tr><td>peta</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="6"></td><td class="cel-pre"><span class="pre">10¹⁵ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="7"></td></tr><tr><td>tera</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="8"></td><td class="cel-pre"><span class="pre">10¹² =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="9"></td></tr><tr><td>giga</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="10"></td><td class="cel-pre"><span class="pre">10⁹ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="11"></td></tr><tr><td>mega</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="12"></td><td class="cel-pre"><span class="pre">10⁶ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="13"></td></tr><tr><td>kilo</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="14"></td><td class="cel-pre"><span class="pre">10³ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="15"></td></tr><tr><td>hecto</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="16"></td><td class="cel-pre"><span class="pre">10² =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="17"></td></tr><tr class="exemplo"><td>deca</td><td>da</td><td>10¹ = 10</td></tr></tbody></table>
-  <div class="aviso-lac">Preencha todas as células antes de conferir.</div>
+  <div class="q-enunciado">Associe cada instrumento da bancada à grandeza que ele mede:</div>
+  <div class="assoc-linha" data-it="0"><span class="item">régua</span><select><option value="-1">escolha&hellip;</option><option value="0">comprimento</option><option value="1">massa</option><option value="2">força</option><option value="3">ângulo</option></select></div>
+  <div class="assoc-linha" data-it="1"><span class="item">balança</span><select><option value="-1">escolha&hellip;</option><option value="0">comprimento</option><option value="1">massa</option><option value="2">força</option><option value="3">ângulo</option></select></div>
+  <div class="assoc-linha" data-it="2"><span class="item">dinamômetro</span><select><option value="-1">escolha&hellip;</option><option value="0">comprimento</option><option value="1">massa</option><option value="2">força</option><option value="3">ângulo</option></select></div>
+  <div class="assoc-linha" data-it="3"><span class="item">transferidor</span><select><option value="-1">escolha&hellip;</option><option value="0">comprimento</option><option value="1">massa</option><option value="2">força</option><option value="3">ângulo</option></select></div>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Do yotta ao deca, cada degrau de prefixo multiplica por mil (até o kilo); hecto e deca são os degraus de 10 em 10. Atenção: o PDF do QGU traz 10²⁴ com um zero a mais; o certo é 1 seguido de 24 zeros.</div>
+  <div class="q-porque">Cada instrumento compara <b>uma</b> grandeza, numa faixa. A balança indica massa; o dinamômetro, peso — que é força.</div>
 </div>
-<div class="q" data-id="2.2" data-t="2" data-tipo="tabela">
-  <div class="q-topo"><span class="q-num">Item 2.2</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado">Os <b>submúltiplos</b>: complete o símbolo e a escrita decimal de cada linha.</div>
-  <table class="tab-fa"><thead><tr><th>Nome</th><th>Símbolo</th><th>Fator decimal pelo qual a unidade é multiplicada</th></tr></thead><tbody><tr class="exemplo"><td>deci</td><td>d</td><td>10⁻¹ = 0,1</td></tr><tr><td>centi</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0"></td><td class="cel-pre"><span class="pre">10⁻² =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1"></td></tr><tr><td>mili</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2"></td><td class="cel-pre"><span class="pre">10⁻³ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3"></td></tr><tr><td>micro</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="4"></td><td class="cel-pre"><span class="pre">10⁻⁶ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="5"></td></tr><tr><td>nano</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="6"></td><td class="cel-pre"><span class="pre">10⁻⁹ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="7"></td></tr><tr><td>pico</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="8"></td><td class="cel-pre"><span class="pre">10⁻¹² =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="9"></td></tr><tr><td>femto</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="10"></td><td class="cel-pre"><span class="pre">10⁻¹⁵ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="11"></td></tr><tr><td>atto</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="12"></td><td class="cel-pre"><span class="pre">10⁻¹⁸ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="13"></td></tr><tr><td>zepto</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="14"></td><td class="cel-pre"><span class="pre">10⁻²¹ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="15"></td></tr><tr><td>yocto</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="16"></td><td class="cel-pre"><span class="pre">10⁻²⁴ =</span><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="17"></td></tr></tbody></table>
-  <div class="aviso-lac">Preencha todas as células antes de conferir.</div>
+<div class="q" data-id="2.2" data-t="2" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 2.2</span><span class="q-bloom">L2 · Entender</span></div>
+  <div class="q-enunciado">Na tarefa A1, o <b>mensurando</b> (VIM 2.3) é:</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i2-2"><span>a régua milimetrada</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i2-2"><span>a espessura de uma folha do livro</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i2-2"><span>0,083 mm</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i2-2"><span>o milímetro</span></label>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">O expoente negativo conta quantas casas a vírgula anda para a esquerda: 10⁻⁶ = 0,000 001. O símbolo do micro é a letra grega µ.</div>
+  <div class="q-porque">Mensurando é a grandeza que se quer medir: <b>a espessura de uma folha</b>. A régua é o instrumento, 0,083 mm é o valor (número × unidade) e o milímetro é a unidade.</div>
 </div>
-<div class="fundo-legenda"><div><span class="figura-num">Figura 2</span> &mdash; Tarefa A1: Sofia aperta a pilha de 100 folhas no paquímetro e Pedro anota. A espessura de uma folha sai da divisão por 100 &mdash; e só fica legível em micrometros.</div></div></div>
+<div class="fundo-legenda"><div><span class="figura-num">Figura 9</span> &mdash; O mesmo bloco duas vezes: na balança, a massa em kg; no dinamômetro, o peso em N. <span class="fig-fonte">(Texto Temático)</span></div></div></div>
 
 <div class="q" data-id="2.3" data-t="2" data-tipo="num">
   <div class="q-topo"><span class="q-num">Item 2.3</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado">Escreva o diâmetro de um grão de areia de rejeito, <b>200 µm</b>, em metro, na escrita decimal.</div>
+  <div class="q-enunciado">Doze folhas preenchem 1,0 mm na régua. Qual é a espessura de uma folha, em mm (três casas decimais)?</div>
   <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">µ = 10⁻⁶: a vírgula anda seis casas para a esquerda. 200 µm = 0,0002 m.</div>
+  <div class="q-porque">1,0 ÷ 12 ≈ <b>0,083 mm</b>. A contagem (12) é exata; a dúvida inteira está no 1,0 mm, e dividir por 12 divide também essa dúvida.</div>
 </div>
 
-<div class="q" data-id="2.4" data-t="2" data-tipo="simples">
-  <div class="q-topo"><span class="q-num">Item 2.4</span><span class="q-bloom">L4 · Analisar</span></div>
-  <div class="q-enunciado">Alguém escreveu <b>1 mkg</b> para a massa de um grão. Avalie, pelo QGU.</div>
-  <label class="q-op" data-op="0"><input type="radio" name="i2-4"><span>Correto: mili-kilograma.</span></label>
-  <label class="q-op" data-op="1"><input type="radio" name="i2-4"><span>Errado: um prefixo só por unidade, e os prefixos da massa vão no grama — o certo é 1 g.</span></label>
-  <label class="q-op" data-op="2"><input type="radio" name="i2-4"><span>Errado: o certo é 1 Mkg.</span></label>
-  <label class="q-op" data-op="3"><input type="radio" name="i2-4"><span>Errado: o certo é 1 µkg.</span></label>
+<div class="q" data-id="2.4" data-t="2" data-tipo="num">
+  <div class="q-topo"><span class="q-num">Item 2.4</span><span class="q-bloom">L3 · Aplicar</span></div>
+  <div class="q-enunciado">Uma régua cai 18,0 cm antes de ser segurada. Com t = √(2h/g) e g = 9,8 m/s², qual é o tempo de reação, em segundos (duas casas decimais)? Lembre: h em metros.</div>
+  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Dois prefixos juntos são proibidos (3.4.1 c) e, como o kilograma já tem prefixo, os múltiplos e submúltiplos se formam sobre o grama (Tabela 2, obs. a). 10⁻³ kg = 1 g.</div>
+  <div class="q-porque">h = 0,180 m; t = √(2 × 0,180 / 9,8) = √0,0367 ≈ <b>0,19 s</b>. A régua mediu h; o tempo saiu da conta.</div>
 </div>
 
-<div class="com-fundo"><div class="fundo-ilustra" style="left:0%;width:100%;opacity:.13 !important;background-image:url('../_imagens/_web/ILB-T0C-Figura-09-v2-web.jpg')"></div>
-<div class="topico-fa" id="topico-3"><h2>Parte 3 · Regras de escrita e pronúncia (QGU, 3.1 a 3.7)</h2></div>
-<div class="lembrete"><p>A parte 3 do QGU tem sete seções. As atividades seguem a ordem dela: <b>3.1</b> nomes · <b>3.2</b> plural · <b>3.3</b> pronúncia · <b>3.4</b> símbolos · <b>3.5</b> números · <b>3.6</b> espaço · <b>3.7</b> valores relativos.</p></div>
-<div class="q" data-id="3.1" data-t="3" data-tipo="vf">
-  <div class="q-topo"><span class="q-num">Item 3.1</span><span class="q-bloom">L2 · Entender</span></div>
-  <div class="q-enunciado"><b>3.1 Nomes das unidades.</b> Verdadeiro ou falso:</div>
-  <div class="vf-linha" data-af="0"><span class="txt">O nome de unidade que homenageia um cientista começa com maiúscula: "Newton".</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="1"><span class="txt">Em "grau Celsius", grau é minúsculo e Celsius é maiúsculo, por ser nome próprio.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="2"><span class="txt">Prefixo e unidade formam uma palavra só, sem hífen: kilohertz.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="3"><span class="txt">"Milissegundo", com dois s, é a grafia que o QGU pede.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="4"><span class="txt">"Milivolts por mm" mistura nome e símbolo — não é admitido.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+<div class="q" data-id="2.5" data-t="2" data-tipo="num">
+  <div class="q-topo"><span class="q-num">Item 2.5</span><span class="q-bloom">L3 · Aplicar</span></div>
+  <div class="q-enunciado">Vinte clipes juntos têm massa de 8,7 g na balança. Qual é a massa de um clipe, em g?</div>
+  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Nome de unidade sempre em minúscula (3.1.1); prefixo colado, sem dobrar consoante: milisegundo (3.1.2); ou tudo por extenso, ou tudo em símbolo (3.1.3).</div>
+  <div class="q-porque">8,7 ÷ 20 = <b>0,435 g</b> (ou 0,44 g; quantos algarismos guardar é assunto da T0D). Medir muitas juntas e dividir: o mesmo gesto da pilha de folhas.</div>
 </div>
-<div class="q" data-id="3.2" data-t="3" data-tipo="tabela">
-  <div class="q-topo"><span class="q-num">Item 3.2</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado"><b>3.2 Plural — a Tabela 3 do QGU.</b> Complete os dois plurais admitidos para cada nome composto por multiplicação (com hífen ou com espaço).</div>
-  <table class="tab-fa"><thead><tr><th>Singular</th><th>Plural (as duas palavras variam)</th><th>Plural (só a primeira varia)</th></tr></thead><tbody><tr class="exemplo"><td>ampere-hora</td><td>amperes-horas</td><td>amperes-hora</td></tr><tr><td>ohm-metro</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1"></td></tr><tr><td>newton-metro</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3"></td></tr><tr><td>pascal-segundo</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="4"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="5"></td></tr><tr><td>watt-hora</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="6"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="7"></td></tr></tbody></table>
-  <div class="aviso-lac">Preencha todas as células antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Quando os componentes variam independentemente, os dois plurais são admitidos (3.2 b, Tabela 3). E o plural não desfigura o nome: pascals, não "pascais".</div>
-</div>
-<div class="fundo-legenda"><div><span class="figura-num">Figura 3</span> &mdash; As mesmas seis medidas da bancada escritas duas vezes: à esquerda como se costuma escrever, à direita como o SI exige &mdash; e o que mudou em cada linha.</div></div></div>
 
-<div class="q" data-id="3.3" data-t="3" data-tipo="lacunas">
+<div class="q" data-id="2.6" data-t="2" data-tipo="multipla">
+  <div class="q-topo"><span class="q-num">Item 2.6</span><span class="q-bloom">L4 · Analisar</span></div>
+  <div class="q-enunciado">Marque <b>todas</b> as grandezas que, na bancada, saem de uma conta (medida indireta):</div>
+  <label class="q-op" data-op="0"><input type="checkbox" name="i2-6"><span>a espessura de uma folha (pilha ÷ número de folhas)</span></label>
+  <label class="q-op" data-op="1"><input type="checkbox" name="i2-6"><span>o diâmetro da moeda no paquímetro</span></label>
+  <label class="q-op" data-op="2"><input type="checkbox" name="i2-6"><span>o tempo de reação, t = √(2h/g)</span></label>
+  <label class="q-op" data-op="3"><input type="checkbox" name="i2-6"><span>a massa de um clipe (conjunto ÷ número de clipes)</span></label>
+  <label class="q-op" data-op="4"><input type="checkbox" name="i2-6"><span>a inclinação da rampa no transferidor</span></label>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">Na indireta, mede-se outra grandeza e o mensurando sai da conta. Paquímetro na moeda e transferidor na rampa comparam o próprio mensurando com a unidade: são diretas.</div>
+</div>
+
+<div class="q" data-id="2.7" data-t="2" data-tipo="vf">
+  <div class="q-topo"><span class="q-num">Item 2.7</span><span class="q-bloom">L4 · Analisar</span></div>
+  <div class="q-enunciado">Massa não é peso. Analise:</div>
+  <div class="vf-linha" data-af="0"><span class="txt">A balança indica massa, em gramas.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="1"><span class="txt">O dinamômetro indica peso, que é uma força, em newtons.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="2"><span class="txt">100 g de massa pesam cerca de 1 N na Terra.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="3"><span class="txt">Na Lua, o mesmo bloco tem massa seis vezes menor.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="4"><span class="txt">"Pesar o clipe" é a forma de laboratório para "medir a massa do clipe".</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">P = m g: 0,100 kg × 9,8 m/s² ≈ 0,98 N. Na Lua muda o peso (g é cerca de seis vezes menor); a massa não muda. No laboratório, quem lê gramas <b>mede a massa</b>; quem lê newtons mede o peso.</div>
+</div>
+
+<div class="q" data-id="2.8" data-t="2" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 2.8</span><span class="q-bloom">L5 · Avaliar</span></div>
+  <div class="q-enunciado">Para a massa de um clipe numa balança de menor divisão 0,1 g, um colega mede um clipe só (0,4 g); outro mede vinte juntos e divide por 20. Avalie.</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i2-8"><span>Tanto faz: a balança é a mesma.</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i2-8"><span>O segundo é melhor: a dúvida da leitura também se divide por 20.</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i2-8"><span>O primeiro é melhor: dividir multiplica o erro.</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i2-8"><span>O segundo é melhor porque os vinte clipes têm exatamente a mesma massa.</span></label>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">Num clipe só, a dúvida de leitura é comparável à própria massa (0,4 g lida com divisão de 0,1 g). Com vinte, a mesma dúvida se espalha por vinte cópias. Os clipes não precisam ser idênticos: o resultado é a massa média de um clipe.</div>
+</div>
+
+<div class="com-fundo"><div class="fundo-ilustra" style="left:0%;width:100%;background-image:url('../_imagens/_web/LME-T0B-Figura-10-v2-web.jpg')"></div>
+<div class="topico-fa" id="topico-3"><h2>Tópico 3 · Leitura de escala e menor divisão</h2><div class="reler">Dúvida? Releia o <a href="../tt/#topico-3">Tópico 3 do Texto Temático</a>.</div></div>
+<div class="lembrete"><p>Analógica: o último algarismo <b>se estima</b> entre dois traços. Digital: o último dígito é o duvidoso. Antes de tudo, o <b>zero</b>.</p></div>
+<div class="q" data-id="3.1" data-t="3" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 3.1</span><span class="q-bloom">L1 · Lembrar</span></div>
+  <div class="q-enunciado">Na prática da bancada, a <b>resolução</b> (VIM 4.14) de um instrumento se lê como:</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i3-1"><span>o maior valor da escala</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i3-1"><span>a menor divisão da escala, ou o último dígito do mostrador</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i3-1"><span>a incerteza relativa</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i3-1"><span>o zero do instrumento</span></label>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">Resolução é a menor variação que muda a indicação. Na escala, a <b>menor divisão</b>; no mostrador digital, o <b>último dígito</b>.</div>
+</div>
+<div class="q" data-id="3.2" data-t="3" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 3.2</span><span class="q-bloom">L2 · Entender</span></div>
+  <div class="q-enunciado">O que é <b>paralaxe</b>?</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i3-2"><span>a leitura deslocada porque o olho não está na perpendicular da escala</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i3-2"><span>o erro aleatório da mola do dinamômetro</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i3-2"><span>o desgaste da ponta da régua</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i3-2"><span>a diferença entre as leituras de duas pessoas</span></label>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">Com o olho fora da perpendicular, a borda parece cair num traço vizinho. Para o mesmo observador, na mesma posição, a paralaxe é sempre do mesmo lado — é erro sistemático.</div>
+</div>
+<div class="fundo-legenda"><div><span class="figura-num">Figura 10</span> &mdash; O olho na perpendicular lê o traço certo; o olho de lado lê o vizinho. <span class="fig-fonte">(Texto Temático)</span></div></div></div>
+
+<div class="q" data-id="3.3" data-t="3" data-tipo="num">
   <div class="q-topo"><span class="q-num">Item 3.3</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado"><b>3.2 Plural.</b> Complete com o plural do QGU.</div>
-  <div class="lac-texto">Três <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:9ch"> · dois <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:7ch"> · cinco <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2" style="width:6ch"> · dez kilometros por <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3" style="width:6ch"> · quatro <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="4" style="width:6ch"></div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
+  <div class="q-enunciado">Leia a <b>Escala 1</b>: onde termina a borda da moeda, em mm, com o décimo estimado?<div class="esc-fig"><svg viewBox="0 0 560 116" role="img" aria-label="Escala 1 &mdash; A borda da moeda (faixa cinza) sobre a régua milimetrada; a seta marca onde a borda termina." font-family="Century Gothic, Segoe UI, sans-serif" font-size="17"><rect x="18.0" y="56" width="496.0" height="2" fill="currentColor"/><rect x="-6.0" y="22" width="359.1" height="30" fill="currentColor" opacity=".18"/><g stroke="currentColor" stroke-width="1.3"><line x1="24.0" y1="56" x2="24.0" y2="86"/><line x1="72.4" y1="56" x2="72.4" y2="69"/><line x1="120.8" y1="56" x2="120.8" y2="69"/><line x1="169.2" y1="56" x2="169.2" y2="69"/><line x1="217.6" y1="56" x2="217.6" y2="69"/><line x1="266.0" y1="56" x2="266.0" y2="77"/><line x1="314.4" y1="56" x2="314.4" y2="69"/><line x1="362.8" y1="56" x2="362.8" y2="69"/><line x1="411.2" y1="56" x2="411.2" y2="69"/><line x1="459.6" y1="56" x2="459.6" y2="69"/><line x1="508.0" y1="56" x2="508.0" y2="86"/></g><g fill="currentColor"><text x="24.0" y="108" text-anchor="middle">20</text><text x="508.0" y="108" text-anchor="middle">30</text><text x="558" y="108" text-anchor="end" font-style="italic">mm</text></g><line x1="353.1" y1="14" x2="353.1" y2="88" stroke="#7FB2D6" stroke-width="3"/><path d="M353.1 6 l-7 -0 l7 10 l7 -10 z" fill="#7FB2D6"/></svg><div class="esc-leg">Escala 1 &mdash; A borda da moeda (faixa cinza) sobre a régua milimetrada; a seta marca onde a borda termina.</div></div></div>
+  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">O nome ganha s sem se desfigurar (pascals, mols); não mudam os terminados em s, x ou z (hertz, lux) nem o denominador (kilometros por hora).</div>
+  <div class="q-porque">Os milímetros são certos: a borda passou do 26. O décimo se estima entre os traços: <b>26,8 mm</b> (26,7 ou 26,9 também são leituras honestas — o décimo é o algarismo duvidoso).</div>
 </div>
 
-<div class="q" data-id="3.4" data-t="3" data-tipo="simples">
-  <div class="q-topo"><span class="q-num">Item 3.4</span><span class="q-bloom">L2 · Entender</span></div>
-  <div class="q-enunciado"><b>3.3 Pronúncia.</b> Na bancada, "micrometro" e "micrômetro" são:</div>
-  <label class="q-op" data-op="0"><input type="radio" name="i3-4"><span>a mesma palavra</span></label>
-  <label class="q-op" data-op="1"><input type="radio" name="i3-4"><span>a unidade (10⁻⁶ m) e o instrumento de medição</span></label>
-  <label class="q-op" data-op="2"><input type="radio" name="i3-4"><span>dois instrumentos</span></label>
-  <label class="q-op" data-op="3"><input type="radio" name="i3-4"><span>erro de digitação</span></label>
+<div class="q" data-id="3.4" data-t="3" data-tipo="num">
+  <div class="q-topo"><span class="q-num">Item 3.4</span><span class="q-bloom">L3 · Aplicar</span></div>
+  <div class="q-enunciado">Leia a <b>Escala 2</b>: quanto o ponteiro marca, em N, com o algarismo estimado?<div class="esc-fig"><svg viewBox="0 0 560 116" role="img" aria-label="Escala 2 &mdash; A escala do dinamômetro com o bloco pendurado; a seta marca o ponteiro." font-family="Century Gothic, Segoe UI, sans-serif" font-size="17"><rect x="18.0" y="56" width="496.0" height="2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.3"><line x1="24.0" y1="56" x2="24.0" y2="86"/><line x1="48.2" y1="56" x2="48.2" y2="69"/><line x1="72.4" y1="56" x2="72.4" y2="69"/><line x1="96.6" y1="56" x2="96.6" y2="69"/><line x1="120.8" y1="56" x2="120.8" y2="69"/><line x1="145.0" y1="56" x2="145.0" y2="86"/><line x1="169.2" y1="56" x2="169.2" y2="69"/><line x1="193.4" y1="56" x2="193.4" y2="69"/><line x1="217.6" y1="56" x2="217.6" y2="69"/><line x1="241.8" y1="56" x2="241.8" y2="69"/><line x1="266.0" y1="56" x2="266.0" y2="86"/><line x1="290.2" y1="56" x2="290.2" y2="69"/><line x1="314.4" y1="56" x2="314.4" y2="69"/><line x1="338.6" y1="56" x2="338.6" y2="69"/><line x1="362.8" y1="56" x2="362.8" y2="69"/><line x1="387.0" y1="56" x2="387.0" y2="86"/><line x1="411.2" y1="56" x2="411.2" y2="69"/><line x1="435.4" y1="56" x2="435.4" y2="69"/><line x1="459.6" y1="56" x2="459.6" y2="69"/><line x1="483.8" y1="56" x2="483.8" y2="69"/><line x1="508.0" y1="56" x2="508.0" y2="86"/></g><g fill="currentColor"><text x="24.0" y="108" text-anchor="middle">0</text><text x="145.0" y="108" text-anchor="middle">0,5</text><text x="266.0" y="108" text-anchor="middle">1</text><text x="387.0" y="108" text-anchor="middle">1,5</text><text x="508.0" y="108" text-anchor="middle">2</text><text x="558" y="108" text-anchor="end" font-style="italic">N</text></g><line x1="418.5" y1="14" x2="418.5" y2="88" stroke="#7FB2D6" stroke-width="3"/><path d="M418.5 6 l-7 -0 l7 10 l7 -10 z" fill="#7FB2D6"/></svg><div class="esc-leg">Escala 2 &mdash; A escala do dinamômetro com o bloco pendurado; a seta marca o ponteiro.</div></div></div>
+  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Micrometro, com o acento em "me", é a unidade; micrômetro é o instrumento (3.3). No Brasil, quilômetro, centímetro e milímetro admitem também o acento no prefixo.</div>
+  <div class="q-porque">O ponteiro passou de 1,6 N e não chegou a 1,7 N; estimando a fração do intervalo, <b>1,63 N</b> (1,62 ou 1,64 também são leituras honestas).</div>
 </div>
 
-<div class="q" data-id="3.5" data-t="3" data-tipo="multipla">
+<div class="q" data-id="3.5" data-t="3" data-tipo="simples">
   <div class="q-topo"><span class="q-num">Item 3.5</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado"><b>3.4 Símbolos.</b> Marque <b>todas</b> as escritas corretas:</div>
-  <label class="q-op" data-op="0"><input type="checkbox" name="i3-5"><span>5 kg</span></label>
-  <label class="q-op" data-op="1"><input type="checkbox" name="i3-5"><span>5 kgs</span></label>
-  <label class="q-op" data-op="2"><input type="checkbox" name="i3-5"><span>12 s</span></label>
-  <label class="q-op" data-op="3"><input type="checkbox" name="i3-5"><span>12 seg.</span></label>
-  <label class="q-op" data-op="4"><input type="checkbox" name="i3-5"><span>GWh</span></label>
-  <label class="q-op" data-op="5"><input type="checkbox" name="i3-5"><span>MkWh</span></label>
-  <label class="q-op" data-op="6"><input type="checkbox" name="i3-5"><span>1 L</span></label>
-  <label class="q-op" data-op="7"><input type="checkbox" name="i3-5"><span>m·K (metro-kelvin)</span></label>
+  <div class="q-enunciado">Qual é a menor divisão da escala do dinamômetro da <b>Escala 2</b> (item 3.4)?</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i3-5"><span>1 N</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i3-5"><span>0,5 N</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i3-5"><span>0,1 N</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i3-5"><span>0,01 N</span></label>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Símbolo invariável, sem ponto e sem s (3.4.1 b); um prefixo só (c); o litro aceita L ou l; o ponto a meia altura separa metro-kelvin (m·K) de milikelvin (mK).</div>
+  <div class="q-porque">Entre os números (0 · 0,5 · 1 · 1,5 · 2) há cinco intervalos: cada traço vale <b>0,1 N</b>. O número escrito não é a menor divisão; o traço é.</div>
 </div>
 
-<div class="q" data-id="3.6" data-t="3" data-tipo="simples">
-  <div class="q-topo"><span class="q-num">Item 3.6</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado"><b>3.5 Números.</b> Qual escrita segue o QGU num relatório técnico?</div>
-  <label class="q-op" data-op="0"><input type="radio" name="i3-6"><span>9.192.631.770 Hz</span></label>
-  <label class="q-op" data-op="1"><input type="radio" name="i3-6"><span>9 192 631 770 Hz</span></label>
-  <label class="q-op" data-op="2"><input type="radio" name="i3-6"><span>9192631770,0 Hz</span></label>
-  <label class="q-op" data-op="3"><input type="radio" name="i3-6"><span>9,192,631,770 Hz</span></label>
+<div class="q" data-id="3.6" data-t="3" data-tipo="vf">
+  <div class="q-topo"><span class="q-num">Item 3.6</span><span class="q-bloom">L4 · Analisar</span></div>
+  <div class="q-enunciado">Escala analógica e mostrador digital. Analise:</div>
+  <div class="vf-linha" data-af="0"><span class="txt">No mostrador digital, o último dígito faz o papel do algarismo duvidoso.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="1"><span class="txt">Um paquímetro digital que mostra 26,98 mm garante que a moeda tem 26,98 mm, e não 26,99 mm.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="2"><span class="txt">Na escala analógica, o último algarismo se estima entre dois traços.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="3"><span class="txt">Medir muitas folhas juntas melhora a resolução da régua.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="4"><span class="txt">A balança sem tara soma a massa do prato a toda leitura.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Em texto técnico, grupos de três com pequenos espaços (3.5.2); pontos só em documento fiscal ou comercial. E a vírgula é o separador decimal (3.5.1).</div>
+  <div class="q-porque">O visor não mostra a dúvida, mas ela está lá. E medir muitas juntas não melhora o instrumento: espalha a mesma dúvida por muitas cópias.</div>
 </div>
 
 <div class="q" data-id="3.7" data-t="3" data-tipo="simples">
-  <div class="q-topo"><span class="q-num">Item 3.7</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado"><b>3.5 Números.</b> Numa nota fiscal, como o QGU manda escrever mil duzentos e cinquenta reais?</div>
-  <label class="q-op" data-op="0"><input type="radio" name="i3-7"><span>1 250,00</span></label>
-  <label class="q-op" data-op="1"><input type="radio" name="i3-7"><span>1.250,00</span></label>
-  <label class="q-op" data-op="2"><input type="radio" name="i3-7"><span>1,250.00</span></label>
-  <label class="q-op" data-op="3"><input type="radio" name="i3-7"><span>R$1250</span></label>
+  <div class="q-topo"><span class="q-num">Item 3.7</span><span class="q-bloom">L4 · Analisar</span></div>
+  <div class="q-enunciado">Antes de pendurar o bloco, o dinamômetro marca 0,1 N; com o bloco, 1,7 N. Qual é o peso do bloco?</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i3-7"><span>1,8 N</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i3-7"><span>1,6 N</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i3-7"><span>1,7 N</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i3-7"><span>0,1 N</span></label>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Em documento fiscal, os grupos de três se separam por <b>pontos</b> (3.5.2) — e a vírgula continua decimal.</div>
+  <div class="q-porque">O zero fora do lugar soma 0,1 N a toda leitura: 1,7 − 0,1 = <b>1,6 N</b>. Melhor ainda é zerar o dinamômetro antes — conferir o zero é parte da leitura.</div>
 </div>
 
 <div class="q" data-id="3.8" data-t="3" data-tipo="simples">
-  <div class="q-topo"><span class="q-num">Item 3.8</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado"><b>3.6 Espaço.</b> Qual escrita está correta para o comprimento do fio do pêndulo?</div>
-  <label class="q-op" data-op="0"><input type="radio" name="i3-8"><span>0,500m</span></label>
-  <label class="q-op" data-op="1"><input type="radio" name="i3-8"><span>0,500 m</span></label>
-  <label class="q-op" data-op="2"><input type="radio" name="i3-8"><span>0, 500 m</span></label>
-  <label class="q-op" data-op="3"><input type="radio" name="i3-8"><span>0,500m .</span></label>
+  <div class="q-topo"><span class="q-num">Item 3.8</span><span class="q-bloom">L5 · Avaliar</span></div>
+  <div class="q-enunciado">Três colegas leem a mesma borda na mesma régua: 26,7 mm, 26,8 mm e 26,9 mm. Avalie.</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i3-8"><span>Dois deles leram errado.</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i3-8"><span>Os três leram bem: concordam nos milímetros e discordam no décimo, o algarismo duvidoso.</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i3-8"><span>A régua está com defeito.</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i3-8"><span>O certo é anotar 27 mm, que acaba com a discordância.</span></label>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">O valor é o produto de um número por uma unidade, com um espaço entre os dois (3.6).</div>
+  <div class="q-porque">A discordância no último algarismo não é erro de ninguém: é propriedade da medida. Arredondar para 27 mm esconderia o que o olho viu.</div>
 </div>
 
-<div class="q" data-id="3.9" data-t="3" data-tipo="simples">
-  <div class="q-topo"><span class="q-num">Item 3.9</span><span class="q-bloom">L4 · Analisar</span></div>
-  <div class="q-enunciado"><b>3.7 Valores relativos.</b> Se a densidade relativa da hematita em relação à água é cerca de 5,3, qual é a unidade desse número?</div>
-  <label class="q-op" data-op="0"><input type="radio" name="i3-9"><span>kg/m³</span></label>
-  <label class="q-op" data-op="1"><input type="radio" name="i3-9"><span>g/cm³</span></label>
-  <label class="q-op" data-op="2"><input type="radio" name="i3-9"><span>não tem: é adimensional (dimensão 1)</span></label>
-  <label class="q-op" data-op="3"><input type="radio" name="i3-9"><span>%</span></label>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Uma razão entre dois valores da mesma grandeza é adimensional, de dimensão 1 (3.7); no QGU, a densidade relativa aparece com a unidade "um", que não se escreve.</div>
-</div>
-
-<div class="com-fundo"><div class="fundo-ilustra" style="left:0%;width:100%;background-image:url('../_imagens/_web/ILB-T0C-Figura-10-v2-web.jpg')"></div>
-<div class="topico-fa" id="topico-4"><h2>Parte 4 · Unidades fora do SI em uso com o SI (QGU, 4.1)</h2></div>
-<div class="lembrete"><p>A Tabela 4 do QGU lista as unidades que não são do SI mas são aceitas em uso com ele, cada uma com o seu valor em unidades SI. Os prefixos <b>não</b> se usam com minuto, hora e dia. A linha da unidade astronômica vem preenchida como exemplo.</p></div>
-<div class="q" data-id="4.1" data-t="4" data-tipo="tabela">
+<div class="com-fundo"><div class="fundo-ilustra" style="left:0%;width:100%;background-image:url('../_imagens/_web/LME-T0B-Figura-11-v2-web.jpg')"></div>
+<div class="topico-fa" id="topico-4"><h2>Tópico 4 · Erro e incerteza</h2><div class="reler">Dúvida? Releia o <a href="../tt/#topico-4">Tópico 4 do Texto Temático</a>.</div></div>
+<div class="lembrete"><p><b>Erro</b>: medido − referência; quase nunca se conhece. <b>Incerteza</b>: a dúvida que quem mede declara; sempre se declara. Grosseiro · sistemático · aleatório.</p></div>
+<div class="q" data-id="4.1" data-t="4" data-tipo="simples">
   <div class="q-topo"><span class="q-num">Item 4.1</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado">Complete o valor em unidades SI (QGU, Tabela 4).</div>
-  <table class="tab-fa"><thead><tr><th>Grandeza</th><th>Unidade (símbolo)</th><th>Valor em unidades SI</th></tr></thead><tbody><tr class="exemplo"><td>comprimento</td><td>unidade astronômica (ua)</td><td>149 597 870 700 m</td></tr><tr><td>tempo</td><td>minuto (min)</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0"></td></tr><tr><td>tempo</td><td>hora (h)</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1"></td></tr><tr><td>tempo</td><td>dia (d)</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2"></td></tr><tr><td>ângulo plano</td><td>grau (°)</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3"></td></tr><tr><td>área</td><td>hectare (ha)</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="4"></td></tr><tr><td>volume</td><td>litro (L, l)</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="5"></td></tr><tr><td>massa</td><td>tonelada (t)</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="6"></td></tr></tbody></table>
-  <div class="aviso-lac">Preencha todas as células antes de conferir.</div>
+  <div class="q-enunciado">Pelo Vocabulário Internacional de Metrologia (VIM), a dúvida que quem mediu <b>declara</b> sobre o próprio resultado é a:</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i4-1"><span>erro de medição</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i4-1"><span>incerteza de medição</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i4-1"><span>discrepância</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i4-1"><span>resolução</span></label>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Tempo, ângulo, área, volume e massa: as unidades do dia a dia que o SI aceita ao seu lado, sempre com o fator à vista.</div>
+  <div class="q-porque">A <b>incerteza</b> (VIM 2.26) sempre se declara. O erro (VIM 2.16) é a diferença para um valor de referência, que quase nunca se conhece.</div>
 </div>
-<div class="q" data-id="4.2" data-t="4" data-tipo="num">
-  <div class="q-topo"><span class="q-num">Item 4.2</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado">O pêndulo foi solto com amplitude de <b>10°</b>. Converta para radiano, com 2 algarismos significativos.</div>
-  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
+<div class="q" data-id="4.2" data-t="4" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 4.2</span><span class="q-bloom">L2 · Entender</span></div>
+  <div class="q-enunciado">Por que, na bancada, o erro de medição quase nunca se conhece?</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i4-2"><span>porque os instrumentos da escola são ruins</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i4-2"><span>porque ele exige um valor de referência, e ninguém sabe a espessura "verdadeira" da folha</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i4-2"><span>porque o erro é sempre zero quando se mede com cuidado</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i4-2"><span>porque só o professor tem a tabela de erros</span></label>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">1° = (π/180) rad. 10 × π/180 ≈ 0,17 rad.</div>
+  <div class="q-porque">Erro = medido − referência. Sem a referência, não há conta: por isso se trabalha com a incerteza.</div>
 </div>
-<div class="fundo-legenda"><div><span class="figura-num">Figura 4</span> &mdash; Setembro de 1999: a <em>Mars Climate Orbiter</em> entra baixo demais na atmosfera de Marte. Uma equipe mandou libra-força-segundo; a outra leu newton-segundo.</div></div></div>
+<div class="fundo-legenda"><div><span class="figura-num">Figura 11</span> &mdash; Estação B, tarefa B3: a régua cai, e a mão a segura depois de alguns centímetros. <span class="fig-fonte">(Texto Temático)</span></div></div></div>
 
-<div class="q" data-id="4.3" data-t="4" data-tipo="num">
+<div class="q" data-id="4.3" data-t="4" data-tipo="assoc">
   <div class="q-topo"><span class="q-num">Item 4.3</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado">Um turno de carregamento na cava durou <b>1 h 20 min</b>. Quanto é isso em segundos?</div>
-  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
+  <div class="q-enunciado">Associe cada situação da bancada à família de erro:</div>
+  <div class="assoc-linha" data-it="0"><span class="item">contar 20 folhas onde havia 12</span><select><option value="-1">escolha&hellip;</option><option value="0">grosseiro</option><option value="1">sistemático</option><option value="2">aleatório</option></select></div>
+  <div class="assoc-linha" data-it="1"><span class="item">olhar a escala sempre de um lado só</span><select><option value="-1">escolha&hellip;</option><option value="0">grosseiro</option><option value="1">sistemático</option><option value="2">aleatório</option></select></div>
+  <div class="assoc-linha" data-it="2"><span class="item">a régua cai 18,0, 15,5 e 20,5 cm nas três vezes</span><select><option value="-1">escolha&hellip;</option><option value="0">grosseiro</option><option value="1">sistemático</option><option value="2">aleatório</option></select></div>
+  <div class="assoc-linha" data-it="3"><span class="item">dinamômetro que não marca zero</span><select><option value="-1">escolha&hellip;</option><option value="0">grosseiro</option><option value="1">sistemático</option><option value="2">aleatório</option></select></div>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">1 h = 3 600 s e 1 min = 60 s: 3 600 + 20 × 60 = <b>4 800 s</b>.</div>
+  <div class="q-porque">Grosseiro é engano; sistemático desloca todas as leituras para o mesmo lado; aleatório varia de uma repetição para outra.</div>
 </div>
 
-<div class="q" data-id="4.4" data-t="4" data-tipo="num">
+<div class="q" data-id="4.4" data-t="4" data-tipo="simples">
   <div class="q-topo"><span class="q-num">Item 4.4</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado">Um grânulo mergulhado deslocou <b>250 mL</b> de água. Escreva esse volume em m³ (formato a x10^n).</div>
-  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
+  <div class="q-enunciado">Qual família de erro se elimina refazendo a medida — e costuma ser flagrada pela estimativa prévia?</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i4-4"><span>grosseiro</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i4-4"><span>sistemático</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i4-4"><span>aleatório</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i4-4"><span>nenhuma</span></label>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">1 L = 10⁻³ m³, então 1 mL = 10⁻⁶ m³: 250 × 10⁻⁶ = <b>2,5 × 10⁻⁴ m³</b>.</div>
+  <div class="q-porque">Quem estimou 0,1 mm e leu 1,0 mm desconfia na hora de ter contado a pilha errado. O <b>grosseiro</b> se elimina; o sistemático se corrige achando a causa; o aleatório se trata repetindo.</div>
 </div>
 
-<div class="q" data-id="4.5" data-t="4" data-tipo="multipla">
-  <div class="q-topo"><span class="q-num">Item 4.5</span><span class="q-bloom">L4 · Analisar</span></div>
-  <div class="q-enunciado">Marque <b>todas</b> as unidades que estão na Tabela 4 (aceitas em uso com o SI):</div>
-  <label class="q-op" data-op="0"><input type="checkbox" name="i4-5"><span>litro</span></label>
-  <label class="q-op" data-op="1"><input type="checkbox" name="i4-5"><span>kgf</span></label>
-  <label class="q-op" data-op="2"><input type="checkbox" name="i4-5"><span>tonelada</span></label>
-  <label class="q-op" data-op="3"><input type="checkbox" name="i4-5"><span>quilate</span></label>
-  <label class="q-op" data-op="4"><input type="checkbox" name="i4-5"><span>hectare</span></label>
-  <label class="q-op" data-op="5"><input type="checkbox" name="i4-5"><span>dina</span></label>
+<div class="q" data-id="4.5" data-t="4" data-tipo="num">
+  <div class="q-topo"><span class="q-num">Item 4.5</span><span class="q-bloom">L3 · Aplicar</span></div>
+  <div class="q-enunciado">Duas medidas da espessura da folha deram 0,083 mm e 0,079 mm. Qual é a discrepância, em mm?</div>
+  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Litro, tonelada e hectare estão na Tabela 4. O kgf e o quilate não estão no QGU; a dina é do antigo CGS (Tabela 5b).</div>
+  <div class="q-porque">0,083 − 0,079 = <b>0,004 mm</b>. Se é grande ou pequena, só a incerteza diz (Tópico 5).</div>
 </div>
 
 <div class="q" data-id="4.6" data-t="4" data-tipo="simples">
-  <div class="q-topo"><span class="q-num">Item 4.6</span><span class="q-bloom">L5 · Avaliar</span></div>
-  <div class="q-enunciado">Num relatório, um tempo de 3 000 minutos foi escrito como <b>3 kmin</b>. Avalie.</div>
-  <label class="q-op" data-op="0"><input type="radio" name="i4-6"><span>Correto: kilo vale para qualquer unidade.</span></label>
-  <label class="q-op" data-op="1"><input type="radio" name="i4-6"><span>Errado: minuto, hora e dia não aceitam prefixo — escreve-se 3 000 min, ou 50 h.</span></label>
-  <label class="q-op" data-op="2"><input type="radio" name="i4-6"><span>Errado: o certo é 3 Kmin.</span></label>
-  <label class="q-op" data-op="3"><input type="radio" name="i4-6"><span>Errado: o certo é 3 mmin.</span></label>
+  <div class="q-topo"><span class="q-num">Item 4.6</span><span class="q-bloom">L4 · Analisar</span></div>
+  <div class="q-enunciado">A razão de uma estimativa saiu fora da faixa de 0,3 a 3. Isso indica:</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i4-6"><span>um erro sistemático do instrumento</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i4-6"><span>um erro grosseiro de leitura</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i4-6"><span>que o modelo que se tinha do tamanho da grandeza estava errado — não é erro de medição</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i4-6"><span>que a incerteza da medida é grande</span></label>
   <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Tabela 2, observação b: os prefixos não se usam com minuto, hora e dia.</div>
+  <div class="q-porque">A razão compara a cabeça com o instrumento, não o instrumento com a referência. Por isso a linha 5 do Roteiro de Bancada pergunta "por quê?" e não "quanto?".</div>
+</div>
+
+<div class="q" data-id="4.7" data-t="4" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 4.7</span><span class="q-bloom">L5 · Avaliar</span></div>
+  <div class="q-enunciado">Em 1720, um minerador dizia ter 3 oitavas de ouro; a balança da Coroa marcou 2,8 oitavas, e ele foi acusado de mentir. Pelo que você estudou, avalie.</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i4-7"><span>A acusação procede: os dois números são diferentes.</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i4-7"><span>Sem incerteza declarada não se julga: é preciso saber se a diferença é maior que as dúvidas das duas medidas.</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i4-7"><span>O minerador errou, porque estimou na mão.</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i4-7"><span>A balança errou, porque marcou menos.</span></label>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">Uma discrepância só tem sentido ao lado das incertezas. "Umas 3 oitavas, com a dúvida da mão" e "2,8 oitavas, com a dúvida da balança" podem concordar.</div>
+</div>
+
+<div class="q" data-id="4.8" data-t="4" data-tipo="vf">
+  <div class="q-topo"><span class="q-num">Item 4.8</span><span class="q-bloom">L5 · Avaliar</span></div>
+  <div class="q-enunciado">Avalie frases que se ouvem num laboratório escolar:</div>
+  <div class="vf-linha" data-af="0"><span class="txt">"Errei a medida", quando as leituras variam um pouco, quase sempre é erro aleatório, e não culpa.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="1"><span class="txt">Repetir a medida revela o erro sistemático.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="2"><span class="txt">O erro aleatório desaparece se a medida for repetida muitas vezes.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="3"><span class="txt">A estimativa prévia ajuda a flagrar o erro grosseiro.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <div class="vf-linha" data-af="4"><span class="txt">A incerteza sempre se declara, mesmo quando o erro não se conhece.</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">Repetir não revela o sistemático: ele está em todas as leituras, igual. O aleatório não desaparece; repete-se a medida e trata-se o conjunto.</div>
+</div>
+
+<div class="com-fundo"><div class="fundo-ilustra" style="left:0%;width:100%;background-image:url('../_imagens/_web/LME-T0B-Figura-12-v2-web.jpg')"></div>
+<div class="topico-fa" id="topico-5"><h2>Tópico 5 · Valor ± incerteza</h2><div class="reler">Dúvida? Releia o <a href="../tt/#topico-5">Tópico 5 do Texto Temático</a>.</div></div>
+<div class="lembrete"><p><b>(x ± δx) unidade</b>. Incerteza com um algarismo significativo (dois se começa por 1); o valor termina na casa dela. Analógica: metade da menor divisão; digital: o último dígito.</p></div>
+<div class="q" data-id="5.1" data-t="5" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 5.1</span><span class="q-bloom">L1 · Lembrar</span></div>
+  <div class="q-enunciado">Pela convenção da LME, a incerteza de leitura numa escala <b>analógica</b> é:</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i5-1"><span>a menor divisão</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i5-1"><span>metade da menor divisão</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i5-1"><span>o dobro da menor divisão</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i5-1"><span>zero, se o olho estiver bem</span></label>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">Analógica: <b>metade da menor divisão</b> (régua de 1 mm → 0,5 mm). Digital: uma unidade do último dígito, ou o que o fabricante declarar. É convenção, não lei da natureza.</div>
+</div>
+<div class="q" data-id="5.2" data-t="5" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 5.2</span><span class="q-bloom">L2 · Entender</span></div>
+  <div class="q-enunciado">Duas medidas da mesma grandeza <b>concordam</b> quando:</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i5-2"><span>são exatamente iguais</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i5-2"><span>os intervalos valor ± incerteza se sobrepõem</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i5-2"><span>diferem menos de 1 %</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i5-2"><span>foram feitas com o mesmo instrumento</span></label>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">Concordam quando a discrepância não é maior que as incertezas — quando os intervalos se sobrepõem.</div>
+</div>
+<div class="fundo-legenda"><div><span class="figura-num">Figura 12</span> &mdash; O laboratório depois da aula: seis tarefas, seis roteiros preenchidos sobre as bancadas. <span class="fig-fonte">(Texto Temático)</span></div></div></div>
+
+<div class="q" data-id="5.3" data-t="5" data-tipo="num">
+  <div class="q-topo"><span class="q-num">Item 5.3</span><span class="q-bloom">L3 · Aplicar</span></div>
+  <div class="q-enunciado">Régua milimetrada (menor divisão 1 mm): qual é a incerteza de leitura, em mm?</div>
+  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">Metade da menor divisão: <b>0,5 mm</b>.</div>
+</div>
+
+<div class="q" data-id="5.4" data-t="5" data-tipo="num">
+  <div class="q-topo"><span class="q-num">Item 5.4</span><span class="q-bloom">L3 · Aplicar</span></div>
+  <div class="q-enunciado">Paquímetro digital que mostra 26,98 mm: qual é a incerteza de leitura, em mm?</div>
+  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">No mostrador digital, uma unidade do último dígito: <b>0,01 mm</b> (salvo outra declaração do fabricante).</div>
+</div>
+
+<div class="q" data-id="5.5" data-t="5" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 5.5</span><span class="q-bloom">L3 · Aplicar</span></div>
+  <div class="q-enunciado">Qual linha escreve corretamente a massa do clipe?</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i5-5"><span>(0,4361 ± 0,005) g</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i5-5"><span>(0,436 ± 0,005) g</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i5-5"><span>(0,436 ± 0,005)</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i5-5"><span>(0,44 ± 0,005) g</span></label>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">O valor termina na casa da incerteza, e a unidade vem depois do parêntese: <b>(0,436 ± 0,005) g</b>. Em 0,4361 o último 1 é ruído; em 0,44, falta a casa que a incerteza tem.</div>
+</div>
+
+<div class="q" data-id="5.6" data-t="5" data-tipo="num">
+  <div class="q-topo"><span class="q-num">Item 5.6</span><span class="q-bloom">L4 · Analisar</span></div>
+  <div class="q-enunciado">Qual é a incerteza relativa de (26,8 ± 0,5) mm, em porcentagem, arredondada ao inteiro (só o número)?</div>
+  <div class="num-linha"><input type="text" inputmode="text" autocomplete="off" placeholder="sua resposta"></div>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">0,5 ÷ 26,8 ≈ 0,019 ≈ <b>2 %</b>. A mesma régua numa folha só daria (0,1 ± 0,5) mm: 500 %, medida inútil. Por isso a pilha.</div>
+</div>
+
+<div class="q" data-id="5.7" data-t="5" data-tipo="simples">
+  <div class="q-topo"><span class="q-num">Item 5.7</span><span class="q-bloom">L5 · Avaliar</span></div>
+  <div class="q-enunciado">Pedro mediu a moeda com o paquímetro: (26,98 ± 0,01) mm. Bárbara, com a régua: (26,8 ± 0,5) mm. Avalie.</div>
+  <label class="q-op" data-op="0"><input type="radio" name="i5-7"><span>Discordam: os valores diferem 0,18 mm.</span></label>
+  <label class="q-op" data-op="1"><input type="radio" name="i5-7"><span>Concordam: o intervalo de Bárbara, de 26,3 mm a 27,3 mm, contém o de Pedro.</span></label>
+  <label class="q-op" data-op="2"><input type="radio" name="i5-7"><span>Pedro acertou e Bárbara errou, porque o paquímetro é melhor.</span></label>
+  <label class="q-op" data-op="3"><input type="radio" name="i5-7"><span>Não se comparam medidas feitas com instrumentos diferentes.</span></label>
+  <button class="btn-conferir" type="button">conferir</button>
+  <div class="q-porque">A discrepância (0,18 mm) é menor que a incerteza de Bárbara: os intervalos se sobrepõem. Essa regra vai julgar o equilíbrio de forças na Etapa 2.</div>
+</div>
+
+<div class="q aberta" data-id="5.8" data-t="5">
+  <div class="q-topo"><span class="q-num">Item 5.8</span><span class="q-bloom">L6 · Criar</span></div>
+  <div class="q-enunciado"><b>Crie</b> uma atividade para o ensino médio em que dois grupos medem a mesma coisa com instrumentos diferentes e descobrem, pela incerteza, se os resultados concordam. Escreva o enunciado e o que você espera que a turma conclua.</div>
+  <textarea placeholder="Escreva aqui (fica só neste aparelho)"></textarea>
+  <button class="btn-conferir" type="button">ver a resposta-modelo</button>
+  <div class="modelo">Modelo: "O grupo 1 mede a largura do caderno com a régua; o grupo 2, com a trena de 1 cm. Cada grupo escreve o resultado como valor ± metade da menor divisão. Os resultados concordam?" Esperado: (21,00 ± 0,05) cm e (21,0 ± 0,5) cm se sobrepõem — concordam, mesmo com números diferentes. O que conferir na sua: dois instrumentos de resoluções diferentes, a incerteza de leitura de cada um, o resultado com unidade e o julgamento pela sobreposição dos intervalos.</div>
+  <div class="autoav"><span style="font-size:.82rem;">A sua resposta:</span><button data-av="2" type="button">cobre o modelo</button><button data-av="1" type="button">cobre em parte</button><button data-av="0" type="button">refazer</button></div>
 </div>
 
 <div class="placar-fa" id="placar">
   <h2>Placar</h2>
-  <div class="placar-linha" data-t="1"><span>Parte 1 · As sete unidades de base (QGU, Tabela 1)</span><span class="pl-n">&mdash;</span></div>
-<div class="placar-linha" data-t="2"><span>Parte 2 · Os prefixos do SI (QGU, Tabela 2)</span><span class="pl-n">&mdash;</span></div>
-<div class="placar-linha" data-t="3"><span>Parte 3 · Regras de escrita e pronúncia (QGU, 3.1 a 3.7)</span><span class="pl-n">&mdash;</span></div>
-<div class="placar-linha" data-t="4"><span>Parte 4 · Unidades fora do SI em uso com o SI (QGU, 4.1)</span><span class="pl-n">&mdash;</span></div>
-  <div class="placar-dica">Só contam os itens de correção automática. Uma parte fica marcada em vermelho quando você errou mais de um item dela: volte à regra e refaça antes da Folha de Atividades 2.</div>
+  <div class="placar-linha" data-t="1"><span>Tópico 1 · Estimar antes de medir</span><span class="pl-n">&mdash;</span></div>
+<div class="placar-linha" data-t="2"><span>Tópico 2 · Grandeza, unidade e instrumento</span><span class="pl-n">&mdash;</span></div>
+<div class="placar-linha" data-t="3"><span>Tópico 3 · Leitura de escala e menor divisão</span><span class="pl-n">&mdash;</span></div>
+<div class="placar-linha" data-t="4"><span>Tópico 4 · Erro e incerteza</span><span class="pl-n">&mdash;</span></div>
+<div class="placar-linha" data-t="5"><span>Tópico 5 · Valor ± incerteza</span><span class="pl-n">&mdash;</span></div>
+  <div class="placar-dica">Só contam os itens de correção automática (os de "criar" você mesmo avalia, e não entram na nota). Um tópico fica marcado em vermelho quando você errou mais de um item dele: volte ao Texto Temático antes do Testinho.</div>
 </div>
 
+<div class="cartao" id="cartao">
+  <div class="cartao-nota">&mdash;</div>
+  <div class="cartao-txt">Copie o cartão e mostre ao professor no início do encontro.</div>
+  <div class="cartao-copia"></div>
+  <button class="cartao-btn" type="button">copiar o cartão</button>
+</div>
+<div class="cartao-falta" id="cartao-falta"></div>
+</div>
 <div class="encerramento">
-  <div class="fecho-frase">As regras do Quadro estão na mão.<br>Agora a Tabela Geral.</div>
-  <div class="fecho-acao">Siga para a Folha de Atividades 2</div>
+  <div class="fecho-frase">A regra lida virou procedimento.<br>Agora o Testinho mostra se ela ficou.</div>
+  <div class="fecho-acao">Feche a trilha com o Testinho</div>
   <div class="fecho-links">
-    <a class="fecho-btn" href="../fa2/">Folha de Atividades 2</a>
+    <a class="fecho-btn" href="../tn/">Testinho</a>
     <a class="fecho-btn secundario" href="../../index.html#t0b">Todas as trilhas</a>
   </div>
 </div>
@@ -624,11 +807,11 @@ input.lac.errada { border-color: var(--erro); }
 <!-- RODAPE-LME:INICIO --><div class="lme-rodape"><div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div><div class="lme-rodape-texto">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; Primeira edição &middot; 2026</div><div class="lme-rodape-selo"><span id="seloAcessos" data-escopo="pagina" style="display:none;"></span></div></div><!-- RODAPE-LME:FIM -->
 
 </main>
-<script>var GAB = {"1.1": {"t": "lac", "c": [{"a": ["planck"], "cs": 0, "d": "Planck"}, {"a": ["6,62607015x10^-34"], "cs": 0, "d": "6,626 070 15 × 10⁻³⁴"}, {"a": ["Js"], "cs": 1, "d": "J s"}]}, "1.2": {"t": "lac", "c": [{"a": ["cargaelementar"], "cs": 0, "d": "carga elementar"}, {"a": ["1,602176634x10^-19"], "cs": 0, "d": "1,602 176 634 × 10⁻¹⁹"}, {"a": ["C"], "cs": 1, "d": "C"}]}, "1.3": {"t": "lac", "c": [{"a": ["boltzmann"], "cs": 0, "d": "Boltzmann"}, {"a": ["1,380649x10^-23"], "cs": 0, "d": "1,380 649 × 10⁻²³"}, {"a": ["J/K", "JK^-1"], "cs": 1, "d": "J K⁻¹"}]}, "1.4": {"t": "lac", "c": [{"a": ["6,02214076x10^23"], "cs": 0, "d": "6,022 140 76 × 10²³"}, {"a": ["númerodeavogadro"], "cs": 0, "d": "número de Avogadro"}, {"a": ["1/mol", "mol^-1"], "cs": 1, "d": "mol⁻¹"}]}, "1.5": {"t": "lac", "c": [{"a": ["540x10^12"], "cs": 0, "d": "540 × 10¹²"}, {"a": ["683"], "cs": 0, "d": "683"}, {"a": ["lm/W", "lmW^-1"], "cs": 1, "d": "lm W⁻¹"}]}, "1.6": {"t": "assoc", "c": [1, 3, 0, 5, 6, 2, 4]}, "2.1": {"t": "lac", "c": [{"a": ["Y"], "cs": 1, "d": "Y"}, {"a": ["1000000000000000000000000"], "cs": 0, "d": "1 000 000 000 000 000 000 000 000"}, {"a": ["Z"], "cs": 1, "d": "Z"}, {"a": ["1000000000000000000000"], "cs": 0, "d": "1 000 000 000 000 000 000 000"}, {"a": ["E"], "cs": 1, "d": "E"}, {"a": ["1000000000000000000"], "cs": 0, "d": "1 000 000 000 000 000 000"}, {"a": ["P"], "cs": 1, "d": "P"}, {"a": ["1000000000000000"], "cs": 0, "d": "1 000 000 000 000 000"}, {"a": ["T"], "cs": 1, "d": "T"}, {"a": ["1000000000000"], "cs": 0, "d": "1 000 000 000 000"}, {"a": ["G"], "cs": 1, "d": "G"}, {"a": ["1000000000"], "cs": 0, "d": "1 000 000 000"}, {"a": ["M"], "cs": 1, "d": "M"}, {"a": ["1000000"], "cs": 0, "d": "1 000 000"}, {"a": ["k"], "cs": 1, "d": "k"}, {"a": ["1000"], "cs": 0, "d": "1 000"}, {"a": ["h"], "cs": 1, "d": "h"}, {"a": ["100"], "cs": 0, "d": "100"}]}, "2.2": {"t": "lac", "c": [{"a": ["c"], "cs": 1, "d": "c"}, {"a": ["0,01"], "cs": 0, "d": "0,01"}, {"a": ["m"], "cs": 1, "d": "m"}, {"a": ["0,001"], "cs": 0, "d": "0,001"}, {"a": ["µ"], "cs": 1, "d": "µ"}, {"a": ["0,000001"], "cs": 0, "d": "0,000 001"}, {"a": ["n"], "cs": 1, "d": "n"}, {"a": ["0,000000001"], "cs": 0, "d": "0,000 000 001"}, {"a": ["p"], "cs": 1, "d": "p"}, {"a": ["0,000000000001"], "cs": 0, "d": "0,000 000 000 001"}, {"a": ["f"], "cs": 1, "d": "f"}, {"a": ["0,000000000000001"], "cs": 0, "d": "0,000 000 000 000 001"}, {"a": ["a"], "cs": 1, "d": "a"}, {"a": ["0,000000000000000001"], "cs": 0, "d": "0,000 000 000 000 000 001"}, {"a": ["z"], "cs": 1, "d": "z"}, {"a": ["0,000000000000000000001"], "cs": 0, "d": "0,000 000 000 000 000 000 001"}, {"a": ["y"], "cs": 1, "d": "y"}, {"a": ["0,000000000000000000000001"], "cs": 0, "d": "0,000 000 000 000 000 000 000 001"}]}, "2.3": {"t": "num", "c": ["0,0002"]}, "2.4": {"t": "simples", "c": 1}, "3.1": {"t": "vf", "c": [false, true, true, false, true]}, "3.2": {"t": "lac", "c": [{"a": ["ohms-metros", "ohmsmetros"], "cs": 0, "d": "ohms-metros"}, {"a": ["ohms-metro", "ohmsmetro"], "cs": 0, "d": "ohms-metro"}, {"a": ["newtons-metros", "newtonsmetros"], "cs": 0, "d": "newtons-metros"}, {"a": ["newtons-metro", "newtonsmetro"], "cs": 0, "d": "newtons-metro"}, {"a": ["pascals-segundos", "pascalssegundos"], "cs": 0, "d": "pascals-segundos"}, {"a": ["pascals-segundo", "pascalssegundo"], "cs": 0, "d": "pascals-segundo"}, {"a": ["watts-horas", "wattshoras"], "cs": 0, "d": "watts-horas"}, {"a": ["watts-hora", "wattshora"], "cs": 0, "d": "watts-hora"}]}, "3.3": {"t": "lac", "c": [{"a": ["pascals"], "cs": 0, "d": "pascals"}, {"a": ["hertz"], "cs": 0, "d": "hertz"}, {"a": ["mols"], "cs": 0, "d": "mols"}, {"a": ["hora"], "cs": 0, "d": "hora"}, {"a": ["lux"], "cs": 0, "d": "lux"}]}, "3.4": {"t": "simples", "c": 1}, "3.5": {"t": "multipla", "c": [0, 2, 4, 6, 7]}, "3.6": {"t": "simples", "c": 1}, "3.7": {"t": "simples", "c": 1}, "3.8": {"t": "simples", "c": 1}, "3.9": {"t": "simples", "c": 2}, "4.1": {"t": "lac", "c": [{"a": ["60s"], "cs": 0, "d": "60 s"}, {"a": ["3600s"], "cs": 0, "d": "3 600 s"}, {"a": ["86400s"], "cs": 0, "d": "86 400 s"}, {"a": ["(pi/180)rad", "(π/180)rad", "pi/180rad", "π/180rad"], "cs": 0, "d": "(π/180) rad"}, {"a": ["10000m2", "10000m^2", "10^4m2", "10^4m^2"], "cs": 0, "d": "10⁴ m²"}, {"a": ["0,001m3", "0,001m^3", "10^-3m3", "10^-3m^3", "1dm^3"], "cs": 0, "d": "10⁻³ m³"}, {"a": ["1000kg", "10^3kg"], "cs": 0, "d": "10³ kg"}]}, "4.2": {"t": "num", "c": ["0,17"]}, "4.3": {"t": "num", "c": ["4800", "4,8x10^3"]}, "4.4": {"t": "num", "c": ["2,5x10^-4", "0,00025"]}, "4.5": {"t": "multipla", "c": [0, 2, 4]}, "4.6": {"t": "simples", "c": 1}};</script>
+<script>var GAB = {"1.1": {"t": "simples", "c": 2}, "1.2": {"t": "simples", "c": 0}, "1.3": {"t": "num", "c": ["0,75", "0.75"]}, "1.4": {"t": "simples", "c": 1}, "1.5": {"t": "num", "c": ["48"]}, "1.6": {"t": "vf", "c": [true, true, false, true, false]}, "1.7": {"t": "simples", "c": 1}, "2.1": {"t": "assoc", "c": [0, 1, 2, 3]}, "2.2": {"t": "simples", "c": 1}, "2.3": {"t": "num", "c": ["0,083", "0.083"]}, "2.4": {"t": "num", "c": ["0,19", "0.19"]}, "2.5": {"t": "num", "c": ["0,435", "0.435", "0,44", "0.44"]}, "2.6": {"t": "multipla", "c": [0, 2, 3]}, "2.7": {"t": "vf", "c": [true, true, true, false, false]}, "2.8": {"t": "simples", "c": 1}, "3.1": {"t": "simples", "c": 1}, "3.2": {"t": "simples", "c": 0}, "3.3": {"t": "num", "c": ["26,8", "26.8", "26,7", "26.7", "26,9", "26.9"]}, "3.4": {"t": "num", "c": ["1,63", "1.63", "1,62", "1.62", "1,64", "1.64"]}, "3.5": {"t": "simples", "c": 2}, "3.6": {"t": "vf", "c": [true, false, true, false, true]}, "3.7": {"t": "simples", "c": 1}, "3.8": {"t": "simples", "c": 1}, "4.1": {"t": "simples", "c": 1}, "4.2": {"t": "simples", "c": 1}, "4.3": {"t": "assoc", "c": [0, 1, 2, 1]}, "4.4": {"t": "simples", "c": 0}, "4.5": {"t": "num", "c": ["0,004", "0.004"]}, "4.6": {"t": "simples", "c": 2}, "4.7": {"t": "simples", "c": 1}, "4.8": {"t": "vf", "c": [true, false, false, true, true]}, "5.1": {"t": "simples", "c": 1}, "5.2": {"t": "simples", "c": 1}, "5.3": {"t": "num", "c": ["0,5", "0.5"]}, "5.4": {"t": "num", "c": ["0,01", "0.01"]}, "5.5": {"t": "simples", "c": 1}, "5.6": {"t": "num", "c": ["2", "2%", "1,9", "1.9"]}, "5.7": {"t": "simples", "c": 1}};</script>
 
 <script>
 (function () {
-  var CHAVE = 'LME-T0B-FA-v6';
+  var CHAVE = 'LME-T0B-FA-v1';   /* a da v1: so entrou figura */
   var estado = {};
   try { estado = JSON.parse(localStorage.getItem(CHAVE) || '{}'); } catch (e) {}
   function grava() { try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {} }
@@ -748,6 +931,73 @@ input.lac.errada { border-color: var(--erro); }
     });
   }
   placar();
+
+  /* ---- vale nota: RA, caderno cego, item travado e cartao ----
+     MODO CEGO (anti-cola, CFG-OA 2026-08-18): caderno = ['A','B','C'][RA % 3]; muda a ORDEM
+     das alternativas, e a letra nao aparece na tela nem no cartao. */
+  var ra = document.getElementById('ra'), conteudo = document.getElementById('conteudo');
+  function embaralha(l) {
+    if (l === 'A') { return; }
+    document.querySelectorAll('.q[data-tipo="simples"], .q[data-tipo="multipla"]').forEach(function (q) {
+      var ops = [].slice.call(q.querySelectorAll('.q-op')), n = ops.length;
+      var ancora = ops[n - 1].nextSibling, pai = ops[0].parentNode;
+      ops.forEach(function (_o, i) { pai.insertBefore(ops[l === 'B' ? (i + 1) % n : n - 1 - i], ancora); });
+    });
+  }
+  function abreCaderno() {
+    var v = (ra.value || '').replace(/\D/g, '');
+    if (!estado.caderno) {
+      if (v.length < 5) { return; }
+      estado.caderno = ['A', 'B', 'C'][parseInt(v.slice(-9), 10) % 3];
+      estado.ra = ra.value.trim(); grava();
+    }
+    ra.value = estado.ra; ra.readOnly = true;
+    document.getElementById('aviso-ra').style.display = 'none';
+    conteudo.style.display = '';
+    embaralha(estado.caderno);
+  }
+  /* item ja conferido nao se refaz, nem recarregando a pagina */
+  document.querySelectorAll('.q[data-tipo]').forEach(function (q) {
+    var r = estado[q.dataset.id];
+    if (r === 0 || r === 1) {
+      q.dataset.feita = '1'; q.dataset.ok = r ? '1' : '0';
+      var b = q.querySelector('.btn-conferir');
+      if (b) { b.disabled = true; b.insertAdjacentHTML('afterend', '<span class="ja-feito">' + (r ? 'certo' : 'errado') + ' &middot; já conferido</span>'); }
+      var p = q.querySelector('.q-porque'); if (p) { p.classList.add('visivel'); }
+    }
+  });
+  placar();
+  function cartao() {
+    var tot = 0, feitos = 0, ok = 0;
+    document.querySelectorAll('.q[data-tipo]').forEach(function (q) {
+      tot++; if (q.dataset.feita) { feitos++; if (q.dataset.ok === '1') { ok++; } }
+    });
+    var c = document.getElementById('cartao'), falta = document.getElementById('cartao-falta');
+    if (feitos < tot) { falta.textContent = 'Para o cartão sair, falta conferir ' + (tot - feitos) + ' de ' + tot + ' itens.'; return; }
+    falta.textContent = '';
+    var nota = Math.round(ok / tot * 100) / 10, txt = nota.toString().replace('.', ',');
+    c.querySelector('.cartao-nota').textContent = txt + ' / 10';
+    c.querySelector('.cartao-copia').textContent =
+      'LME T0B - Folha de Atividades v7\n' +
+      'RA: ' + estado.ra + '\n' +
+      'Nota: ' + txt + ' / 10 (' + ok + ' de ' + tot + ' itens certos)\n' +
+      'Data: ' + (estado.data || (estado.data = new Date().toLocaleDateString('pt-BR')));
+    grava();
+    c.classList.add('visivel');
+  }
+  document.querySelectorAll('.btn-conferir').forEach(function (b) {
+    b.addEventListener('click', function () { setTimeout(cartao, 0); });
+  });
+  document.querySelector('.cartao-btn').addEventListener('click', function () {
+    var b = this, t = document.querySelector('.cartao-copia').textContent;
+    navigator.clipboard.writeText(t).then(function () {
+      b.textContent = 'copiado';
+      setTimeout(function () { b.textContent = 'copiar o cartão'; }, 1800);
+    });
+  });
+  ra.addEventListener('input', abreCaderno);
+  if (estado.caderno) { abreCaderno(); }
+  cartao();
 })();
 </script>
 <!-- ABAS-OA-LME (trilho de 6 abas — abas_oa.py) -->

@@ -140,6 +140,22 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
 .placar-txt { font-size: .92rem; margin-top: 6px; }
 
 @media print { .perc-ops, .q-op { break-inside: avoid; } }
+
+.ra-box { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 6px 0 16px; }
+.ra-box input { flex: 1 1 200px; padding: 11px 12px; min-height: 44px; background: var(--superficie); border: 1px solid var(--cinza-borda); color: var(--texto); font-family: var(--mono); font-size: .95rem; }
+.estim { background: var(--painel); border-left: 3px solid var(--aco); padding: 14px 16px; margin: 18px 0; }
+.estim-perg { font-size: .96rem; margin: 6px 0 10px; }
+.estim-linha { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.estim-linha input { flex: 1 1 140px; padding: 10px 12px; min-height: 44px; background: var(--superficie); border: 1px solid var(--cinza-borda); color: var(--texto); font-family: var(--mono); font-size: 1rem; }
+.estim-linha select { padding: 10px; min-height: 44px; background: var(--superficie); color: var(--texto); border: 1px solid var(--cinza-borda); font-family: var(--mono); }
+.estim-linha button, .cartao-btn { padding: 11px 16px; min-height: 44px; background: transparent; border: 1px solid var(--aco); color: var(--aco); font-family: var(--mono); font-size: .85rem; cursor: pointer; }
+.estim-gravada { display: none; margin-top: 10px; font-size: .9rem; border-left: 3px solid var(--verde); padding: 9px 12px; background: var(--verde-bg); }
+.estim-gravada.visivel { display: block; }
+.cartao { display: none; background: var(--painel); border: 1px solid var(--cinza-borda); border-top: 3px solid var(--aco); padding: 18px; margin: 18px 0; }
+.cartao.visivel { display: block; }
+.cartao-txt { font-size: .92rem; margin: 0 0 12px; }
+.cartao-copia { font-family: var(--mono); font-size: .85rem; background: var(--fundo); border: 1px dashed var(--cinza-borda); padding: 12px; white-space: pre-wrap; }
+.cartao-falta { font-size: .86rem; color: var(--cinza); margin: 10px 0 0; }
 /* ICONES-LME */
 .lme-cab-marcas { display: flex; gap: 10px; align-items: center; justify-content: flex-start;
   flex-shrink: 0; }
@@ -231,6 +247,24 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
 .despedida:has(.desp-bg) .desp-coluna .desp-frase > .lme-inst-marcas { border-top-color: oklch(0.70 0 0 / .5); }
 /* /ICONES-LME */
 </style>
+<style>
+/* FIGURAS-LME (figuras_ilb.py) */
+.figura-lme { display: flex; flex-direction: column; align-items: stretch;
+  max-width: 680px; margin: 26px auto; border: 1px solid var(--cinza-borda, #b8c2bb);
+  border-radius: 6px; overflow: hidden; background: var(--superficie, #fff); }
+.figura-lme img { display: block; width: 100%; height: auto; margin: 0; }
+.figura-lme figcaption { border-top: 2px solid var(--verde, #3E8E5A);
+  background: var(--fundo-legenda, rgba(62,142,90,.10)); padding: 9px 14px;
+  font-size: .95rem; line-height: 1.45; text-align: left; }
+.figura-lme .figura-lme-num { font-weight: 700; color: var(--verde, #3E8E5A); }
+.figura-lme.figura-lme-p { max-width: 420px; }
+@media print {
+  .figura-lme { break-inside: avoid; page-break-inside: avoid; }
+  .figura-lme img { filter: grayscale(1); }
+  .figura-lme figcaption { background: #eeeeee; color: #222; }
+  .figura-lme .figura-lme-num { color: #222; }
+}
+</style>
 </head>
 <body data-pagina="t0b:pp">
 
@@ -239,7 +273,7 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
     <div class="lme-cab-marcas"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física"> <title>Prisma decompondo a luz — Licenciatura em Física</title> <defs> <radialGradient id="cab-prisma-fundo" cx="50%" cy="42%" r="60%"> <stop offset="0" stop-color="#26302B"/> <stop offset="1" stop-color="#0E1411"/> </radialGradient> <linearGradient id="cab-prisma-vidro" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/> <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/> </linearGradient> <clipPath id="cab-prisma-dentro"><circle cx="100" cy="100" r="86"/></clipPath> </defs> <circle cx="100" cy="100" r="96" fill="url(#cab-prisma-fundo)"/> <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/> <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1" stroke-dasharray="1.5 3" opacity="0.8"/> <g clip-path="url(#cab-prisma-dentro)"> <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/> <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/> <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/> <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/> <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/> <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/> <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/> <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/> <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/> </g> <polygon points="100,50 56,130 144,130" fill="url(#cab-prisma-vidro)" stroke="#DDEBF3" stroke-width="2.5" stroke-linejoin="round"/> <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/> <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/> <g fill="#FFFFFF" opacity="0.55"> <circle cx="46" cy="62" r="1.2"/> <circle cx="150" cy="56" r="1"/> <circle cx="70" cy="160" r="1"/> <circle cx="140" cy="164" r="1.2"/> </g> </svg><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica"> <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none"> <line x1="36" y1="10" x2="84" y2="10"/> <line x1="60" y1="10" x2="81.9" y2="70.1"/> </g> <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/> <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/> <circle cx="60" cy="10" r="4" fill="#3E8E5A"/> <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/> <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square"> <line x1="26" y1="110" x2="94" y2="110"/> <line x1="30" y1="110" x2="30" y2="104"/> <line x1="40" y1="110" x2="40" y2="104"/> <line x1="50" y1="110" x2="50" y2="104"/> <line x1="60" y1="110" x2="60" y2="98"/> <line x1="70" y1="110" x2="70" y2="104"/> <line x1="80" y1="110" x2="80" y2="104"/> <line x1="90" y1="110" x2="90" y2="104"/> </g> </svg></div><h1><span class="trilha-code">LME-T0B</span> &middot; Noções sobre Estimativas e Medidas</h1>
     <span class="badge">Ponto de Partida (PP)</span>
   </div>
-  <div class="header-sub">Antes de tudo &middot; 8 min &middot; sem nota, sem envio</div>
+  <div class="header-sub">Antes de tudo &middot; 10 min &middot; vale nota pelo envio &middot; Pré-Lab</div>
 </header>
 
 <main>
@@ -250,12 +284,28 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
   <span class="piazzi-text">a pergunta antes da resposta fixa mais do que a resposta antes da pergunta</span>
 </div>
 
+<figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-04-v2-web.jpg" alt="Figura 4 &mdash; No museu, Sofia aponta o prato vazio: quanto o minerador achava que tinha?" loading="lazy"><figcaption><span class="figura-lme-num">Figura 4</span> &mdash; No museu, Sofia aponta o prato vazio: quanto o minerador achava que tinha?</figcaption></figure>
 <div class="intro-box">
   <strong>O primeiro objeto da trilha.</strong> Responda <em>antes</em> de estudar qualquer coisa —
-  é essa a ideia. A Parte I pergunta o que você <em>acha</em>; a Parte II, o que você já sabe. Nada
-  aqui vale nota e nada sai do seu aparelho: as respostas ficam guardadas só neste navegador, para
-  você comparar depois do encontro.
+  é essa a ideia. Primeiro uma estimativa a caneta; depois a Parte I, o que você <em>acha</em>, e a
+  Parte II, o que você já sabe. O Ponto de Partida <strong>vale nota pelo envio</strong>: acertar ou
+  errar não muda a nota, fazer tudo muda. Nada sai do seu aparelho. No fim, a página monta um
+  <strong>cartão de resultado</strong> que você mostra ao professor no início do encontro.
 </div>
+<div class="ra-box">
+  <label for="ra" style="font-size:.9rem;">Seu RA (fica só neste aparelho):</label>
+  <input id="ra" type="text" inputmode="numeric" placeholder="0000000" maxlength="12">
+</div>
+<div class="intro-box" id="aviso-ra"><strong>Digite o seu RA acima</strong> para abrir o Ponto de Partida.</div>
+<div id="conteudo" style="display:none">
+<div class="estim">
+  <div class="parte-num">Antes de tudo</div>
+  <div class="parte-titulo">Uma estimativa a caneta</div>
+  <div class="estim-perg">Sem pegar nada, só com a memória: <b>qual é a massa de um clipe de papel comum?</b> Escreva o número e escolha a unidade.</div>
+  <div class="estim-linha"><input id="estim-num" type="text" inputmode="decimal" placeholder="número" autocomplete="off"><select id="estim-un"><option>mg</option><option selected>g</option><option>kg</option></select><button id="estim-gravar" type="button">gravar a caneta</button></div>
+  <div class="estim-gravada" id="estim-gravada"></div>
+</div>
+
 
 <div class="parte">
   <div class="parte-num">Parte I</div>
@@ -264,31 +314,31 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
 </div>
 
 <div class="perc" data-p="0">
-  <div class="perc-tema"><b>1.</b> A bancada primeiro — escrever uma estimativa antes de medir e decidir se ela aguentou</div>
+  <div class="perc-tema"><b>1.</b> Estimar uma medida antes de pegar o instrumento — e julgar a estimativa pela razão medido/estimado</div>
   <div class="perc-ops"><label class="perc-op" data-p="0" data-op="0"><input type="radio" name="p0" value="0"><span>Domino o tema</span></label>
     <label class="perc-op" data-p="0" data-op="1"><input type="radio" name="p0" value="1"><span>Acho que vai ser fácil</span></label>
     <label class="perc-op" data-p="0" data-op="2"><input type="radio" name="p0" value="2"><span>Acho que vai ser difícil</span></label></div>
 </div>
 <div class="perc" data-p="1">
-  <div class="perc-tema"><b>2.</b> Potências de dez e ordem de grandeza — onde um valor mora na escala</div>
+  <div class="perc-tema"><b>2.</b> Grandeza, mensurando e valor; medida direta e medida indireta</div>
   <div class="perc-ops"><label class="perc-op" data-p="1" data-op="0"><input type="radio" name="p1" value="0"><span>Domino o tema</span></label>
     <label class="perc-op" data-p="1" data-op="1"><input type="radio" name="p1" value="1"><span>Acho que vai ser fácil</span></label>
     <label class="perc-op" data-p="1" data-op="2"><input type="radio" name="p1" value="2"><span>Acho que vai ser difícil</span></label></div>
 </div>
 <div class="perc" data-p="2">
-  <div class="perc-tema"><b>3.</b> A estimativa como modelo — decompor uma pergunta difícil em fatores (estimativa de Fermi)</div>
+  <div class="perc-tema"><b>3.</b> Ler uma escala até o último traço: menor divisão, paralaxe e o zero do instrumento</div>
   <div class="perc-ops"><label class="perc-op" data-p="2" data-op="0"><input type="radio" name="p2" value="0"><span>Domino o tema</span></label>
     <label class="perc-op" data-p="2" data-op="1"><input type="radio" name="p2" value="1"><span>Acho que vai ser fácil</span></label>
     <label class="perc-op" data-p="2" data-op="2"><input type="radio" name="p2" value="2"><span>Acho que vai ser difícil</span></label></div>
 </div>
 <div class="perc" data-p="3">
-  <div class="perc-tema"><b>4.</b> O SI como régua de escala — prefixos, tonelada, rastreabilidade e grafia</div>
+  <div class="perc-tema"><b>4.</b> A diferença entre erro e incerteza; erro grosseiro, sistemático e aleatório</div>
   <div class="perc-ops"><label class="perc-op" data-p="3" data-op="0"><input type="radio" name="p3" value="0"><span>Domino o tema</span></label>
     <label class="perc-op" data-p="3" data-op="1"><input type="radio" name="p3" value="1"><span>Acho que vai ser fácil</span></label>
     <label class="perc-op" data-p="3" data-op="2"><input type="radio" name="p3" value="2"><span>Acho que vai ser difícil</span></label></div>
 </div>
 <div class="perc" data-p="4">
-  <div class="perc-tema"><b>5.</b> Do grão à cava — estimar a massa retirada de uma mina a partir da bancada</div>
+  <div class="perc-tema"><b>5.</b> Escrever uma medida na forma valor ± incerteza, com a unidade</div>
   <div class="perc-ops"><label class="perc-op" data-p="4" data-op="0"><input type="radio" name="p4" value="0"><span>Domino o tema</span></label>
     <label class="perc-op" data-p="4" data-op="1"><input type="radio" name="p4" value="1"><span>Acho que vai ser fácil</span></label>
     <label class="perc-op" data-p="4" data-op="2"><input type="radio" name="p4" value="2"><span>Acho que vai ser difícil</span></label></div>
@@ -301,64 +351,64 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
 </div>
 
 <div class="q" data-q="0">
-  <div class="q-enunciado">1. Terminologia &mdash; O que é a <b>ordem de grandeza</b> de uma medida?</div>
-  <label class="q-op" data-q="0" data-op="0"><input type="radio" name="q0" value="0"><span>O número de algarismos significativos da medida</span></label>
-  <label class="q-op" data-q="0" data-op="1"><input type="radio" name="q0" value="1"><span><b>A potência de dez mais próxima do valor</b></span></label>
-  <label class="q-op" data-q="0" data-op="2"><input type="radio" name="q0" value="2"><span>O valor exato, sem arredondamento</span></label>
-  <label class="q-op" data-q="0" data-op="3"><input type="radio" name="q0" value="3"><span>A unidade do SI em que a medida é escrita</span></label>
+  <div class="q-enunciado">1. Terminologia &mdash; A espessura de uma folha foi estimada em 0,03 mm e medida em 0,08 mm. A razão medido/estimado é cerca de 2,7. Pelo critério da bancada, a estimativa:</div>
+  <label class="q-op" data-q="0" data-op="0"><input type="radio" name="q0" value="0"><span>falhou, porque não chegou ao valor medido</span></label>
+  <label class="q-op" data-q="0" data-op="1"><input type="radio" name="q0" value="1"><span><b>acertou a ordem de grandeza, porque a razão ficou entre 0,3 e 3</b></span></label>
+  <label class="q-op" data-q="0" data-op="2"><input type="radio" name="q0" value="2"><span>falhou, porque só a razão igual a 1 é aceita</span></label>
+  <label class="q-op" data-q="0" data-op="3"><input type="radio" name="q0" value="3"><span>não pode ser julgada, porque falta a incerteza</span></label>
   
-  <div class="q-porque" id="porque-0-0">Algarismos significativos dizem quanto se confia no valor — é assunto da T0D, não da escala.</div>
-  <div class="q-porque" id="porque-0-1">Certo. A ordem de grandeza diz onde o valor mora na escala: 1 200 m é da ordem de 10³ m. O Texto Temático fixa a fronteira em √10 ≈ 3,16 para decidir o que é "mais próxima".</div>
-  <div class="q-porque" id="porque-0-2">É o contrário: a ordem de grandeza joga fora quase todo o detalhe e guarda só a potência de dez.</div>
-  <div class="q-porque" id="porque-0-3">A unidade diz em que se mede; a ordem de grandeza diz quanto, em potências de dez.</div>
+  <div class="q-porque" id="porque-0-0">Estimativa não precisa bater no valor: precisa acertar o tamanho da coisa, a ordem de grandeza.</div>
+  <div class="q-porque" id="porque-0-1">Certo. A bancada julga pela razão medido/estimado, na mesma unidade: entre 0,3 e 3, meia ordem de grandeza para cada lado, a estimativa acertou. 2,7 está dentro.</div>
+  <div class="q-porque" id="porque-0-2">Razão 1 seria a estimativa perfeita — rara e desnecessária. A faixa é de 0,3 a 3.</div>
+  <div class="q-porque" id="porque-0-3">A razão julga a estimativa sem a incerteza: compara dois números na mesma unidade.</div>
 </div>
 <div class="q" data-q="1">
-  <div class="q-enunciado">2. Relação &mdash; Qual sequência está em ordem <b>crescente</b> de tamanho?</div>
-  <label class="q-op" data-q="1" data-op="0"><input type="radio" name="q1" value="0"><span>cava da mina · amostra de rocha · grão de areia · degrau da cava</span></label>
-  <label class="q-op" data-q="1" data-op="1"><input type="radio" name="q1" value="1"><span>grão de areia · degrau da cava · amostra de rocha · cava da mina</span></label>
-  <label class="q-op" data-q="1" data-op="2"><input type="radio" name="q1" value="2"><span><b>grão de areia · amostra de rocha · degrau da cava · cava da mina</b></span></label>
-  <label class="q-op" data-q="1" data-op="3"><input type="radio" name="q1" value="3"><span>amostra de rocha · grão de areia · cava da mina · degrau da cava</span></label>
+  <div class="q-enunciado">2. Relação &mdash; Na bancada, o tempo de reação sai de t = √(2h/g), com h lido na régua que cai e é segurada. Essa medida de tempo é:</div>
+  <label class="q-op" data-q="1" data-op="0"><input type="radio" name="q1" value="0"><span>direta, porque se usa um instrumento de medida</span></label>
+  <label class="q-op" data-q="1" data-op="1"><input type="radio" name="q1" value="1"><span><b>indireta: a régua mede a altura h, e o tempo sai da conta</b></span></label>
+  <label class="q-op" data-q="1" data-op="2"><input type="radio" name="q1" value="2"><span>uma estimativa, porque ninguém usa cronômetro</span></label>
+  <label class="q-op" data-q="1" data-op="3"><input type="radio" name="q1" value="3"><span>impossível sem um cronômetro</span></label>
   
-  <div class="q-porque" id="porque-1-0">Esta é quase a ordem decrescente — e ainda troca o grão com o degrau.</div>
-  <div class="q-porque" id="porque-1-1">O degrau da cava (dezenas de metros) é muito maior que uma amostra de rocha de bancada.</div>
-  <div class="q-porque" id="porque-1-2">Certo: grão ~10⁻⁴ m · amostra ~10⁻¹ m · degrau ~10¹ m · cava ~10³ m. Sete ordens separam o grão da cava — é a "régua do mundo" desta trilha.</div>
-  <div class="q-porque" id="porque-1-3">A amostra de rocha cabe na mão; o grão de areia cabe na ponta do dedo.</div>
+  <div class="q-porque" id="porque-1-0">A régua é um instrumento, mas de comprimento. Ela não compara o tempo com nada.</div>
+  <div class="q-porque" id="porque-1-1">Certo. Na medida indireta, mede-se outra grandeza e o mensurando sai de uma conta. A régua mede h; a fórmula da queda livre dá t.</div>
+  <div class="q-porque" id="porque-1-2">É medida, e com instrumento: só que o instrumento mede h, não t.</div>
+  <div class="q-porque" id="porque-1-3">O cronômetro seria uma medida direta; sem ele, a medida indireta resolve.</div>
 </div>
 <div class="q" data-q="2">
-  <div class="q-enunciado">3. Transferência &mdash; Uma sala mede 10 m × 8 m × 3 m, e o ar tem cerca de 1,2 kg por metro cúbico. A massa de ar da sala é da ordem de…</div>
-  <label class="q-op" data-q="2" data-op="0"><input type="radio" name="q2" value="0"><span>10¹ kg</span></label>
-  <label class="q-op" data-q="2" data-op="1"><input type="radio" name="q2" value="1"><span><b>10² kg</b></span></label>
-  <label class="q-op" data-q="2" data-op="2"><input type="radio" name="q2" value="2"><span>10³ kg</span></label>
-  <label class="q-op" data-q="2" data-op="3"><input type="radio" name="q2" value="3"><span>10⁴ kg</span></label>
+  <div class="q-enunciado">3. Transferência &mdash; Numa régua milimetrada (menor divisão de 1 mm), a borda da moeda cai entre o traço de 26 mm e o de 27 mm, mais perto do 27. Qual leitura é a mais honesta?</div>
+  <label class="q-op" data-q="2" data-op="0"><input type="radio" name="q2" value="0"><span>27 mm</span></label>
+  <label class="q-op" data-q="2" data-op="1"><input type="radio" name="q2" value="1"><span>26 mm</span></label>
+  <label class="q-op" data-q="2" data-op="2"><input type="radio" name="q2" value="2"><span><b>26,8 mm</b></span></label>
+  <label class="q-op" data-q="2" data-op="3"><input type="radio" name="q2" value="3"><span>26,80 mm</span></label>
   
-  <div class="q-porque" id="porque-2-0">Pouco demais: só o volume já é de 240 m³, e cada metro cúbico tem mais de 1 kg.</div>
-  <div class="q-porque" id="porque-2-1">Certo. 240 m³ × 1,2 kg/m³ ≈ 290 kg = 2,9 × 10² kg; como 2,9 é menor que √10, a ordem é 10² kg. É uma estimativa de Fermi: decompor, multiplicar, arredondar.</div>
-  <div class="q-porque" id="porque-2-2">290 kg está mais perto de 100 do que de 1 000 na escala de potências (2,9 < 3,16).</div>
-  <div class="q-porque" id="porque-2-3">Seria o ar de uma sala cem vezes maior — um ginásio.</div>
+  <div class="q-porque" id="porque-2-0">Arredondar para o traço joga fora o que o olho ainda consegue ver entre os traços.</div>
+  <div class="q-porque" id="porque-2-1">A borda passou do 26: a leitura fica acima dele.</div>
+  <div class="q-porque" id="porque-2-2">Certo. Os milímetros são certos; o décimo, entre dois traços, se estima. Esse último algarismo é duvidoso — e é honesto escrevê-lo.</div>
+  <div class="q-porque" id="porque-2-3">Um centésimo de milímetro numa régua de 1 mm é algarismo inventado: o olho não chega lá.</div>
 </div>
 <div class="q" data-q="3">
-  <div class="q-enunciado">4. Teoria × prática &mdash; Antes de medir, você escreveu que um grão teria cerca de 1 mm. A medida deu 0,3 mm. O que se faz com a estimativa escrita?</div>
-  <label class="q-op" data-q="3" data-op="0"><input type="radio" name="q3" value="0"><span>Apaga-se e escreve-se 0,3 mm no lugar</span></label>
-  <label class="q-op" data-q="3" data-op="1"><input type="radio" name="q3" value="1"><span>Ignora-se: o que vale é a medida</span></label>
-  <label class="q-op" data-q="3" data-op="2"><input type="radio" name="q3" value="2"><span><b>Fica escrita, e ao lado se anota por que a estimativa se afastou da medida</b></span></label>
-  <label class="q-op" data-q="3" data-op="3"><input type="radio" name="q3" value="3"><span>Refaz-se a medida até ela chegar perto de 1 mm</span></label>
+  <div class="q-enunciado">4. Teoria × prática &mdash; Antes de pendurar o bloco, o dinamômetro já marca 0,1 N. Todas as leituras feitas com ele vão sair:</div>
+  <label class="q-op" data-q="3" data-op="0"><input type="radio" name="q3" value="0"><span>com erro aleatório, que desaparece se a medida for repetida</span></label>
+  <label class="q-op" data-q="3" data-op="1"><input type="radio" name="q3" value="1"><span><b>deslocadas para o mesmo lado: erro sistemático, que se corrige zerando o dinamômetro</b></span></label>
+  <label class="q-op" data-q="3" data-op="2"><input type="radio" name="q3" value="2"><span>com erro grosseiro, que obriga a jogar o instrumento fora</span></label>
+  <label class="q-op" data-q="3" data-op="3"><input type="radio" name="q3" value="3"><span>certas, porque 0,1 N é pouco</span></label>
   
-  <div class="q-porque" id="porque-3-0">Apagar a estimativa é apagar a previsão — e uma previsão que pode ser corrigida depois nunca erra, nem ensina.</div>
-  <div class="q-porque" id="porque-3-1">A medida vale, mas o confronto com a estimativa é justamente o que a trilha quer registrar.</div>
-  <div class="q-porque" id="porque-3-2">Certo. A estimativa não se apaga: a razão entre medida e estimativa decide se ela acertou a ordem, e a hipótese que falhou se escreve ao lado. É a primeira previsão da disciplina.</div>
-  <div class="q-porque" id="porque-3-3">Medir de novo até concordar com a previsão é ajustar o dado ao modelo — o contrário do laboratório.</div>
+  <div class="q-porque" id="porque-3-0">Repetir não revela esse erro: ele está em todas as leituras, igual.</div>
+  <div class="q-porque" id="porque-3-1">Certo. O zero fora do lugar soma 0,1 N a todo peso. É erro sistemático — repetir não o revela; descobrir a causa e zerar, sim. Conferir o zero é parte da leitura.</div>
+  <div class="q-porque" id="porque-3-2">Grosseiro é engano de quem mede (contar folhas a menos, ler a escala errada). Aqui o instrumento só precisa ser zerado.</div>
+  <div class="q-porque" id="porque-3-3">Num bloco de 1,6 N, 0,1 N é um desvio de 6 % — e ele aparece em todas as medidas.</div>
 </div>
 <div class="q" data-q="4">
-  <div class="q-enunciado">5. Formalização &mdash; Uma conta deu 2,5 × 10¹¹ kg de minério. Como fica em toneladas (1 t = 10³ kg)?</div>
-  <label class="q-op" data-q="4" data-op="0"><input type="radio" name="q4" value="0"><span>2,5 × 10¹⁴ t</span></label>
-  <label class="q-op" data-q="4" data-op="1"><input type="radio" name="q4" value="1"><span><b>2,5 × 10⁸ t</b></span></label>
-  <label class="q-op" data-q="4" data-op="2"><input type="radio" name="q4" value="2"><span>2,5 × 10¹¹ t</span></label>
-  <label class="q-op" data-q="4" data-op="3"><input type="radio" name="q4" value="3"><span>2,5 × 10⁵ t</span></label>
+  <div class="q-enunciado">5. Formalização &mdash; Qual linha escreve o resultado na forma valor ± incerteza?</div>
+  <label class="q-op" data-q="4" data-op="0"><input type="radio" name="q4" value="0"><span>26,8 mm ± 0,5</span></label>
+  <label class="q-op" data-q="4" data-op="1"><input type="radio" name="q4" value="1"><span>(26,812 ± 0,5) mm</span></label>
+  <label class="q-op" data-q="4" data-op="2"><input type="radio" name="q4" value="2"><span><b>(26,8 ± 0,5) mm</b></span></label>
+  <label class="q-op" data-q="4" data-op="3"><input type="radio" name="q4" value="3"><span>26,8 ± 0,5</span></label>
   
-  <div class="q-porque" id="porque-4-0">Aqui se multiplicou por 10³ em vez de dividir: a tonelada é maior que o kilograma, então o número diminui.</div>
-  <div class="q-porque" id="porque-4-1">Certo. Dividir por 10³ é subtrair 3 do expoente: 2,5 × 10⁸ t — centenas de milhões de toneladas.</div>
-  <div class="q-porque" id="porque-4-2">Mudou a unidade e o número ficou igual: faltou a conversão.</div>
-  <div class="q-porque" id="porque-4-3">Subtraíram-se 6 do expoente, como se 1 t fossem 10⁶ kg.</div>
+  <div class="q-porque" id="porque-4-0">A unidade vale para os dois números: fica fora do parêntese, depois dele.</div>
+  <div class="q-porque" id="porque-4-1">O 0,5 diz que o décimo já é duvidoso; o 1 e o 2 depois dele são ruído. O valor termina na casa da incerteza.</div>
+  <div class="q-porque" id="porque-4-2">Certo. Melhor estimativa ± incerteza, entre parênteses, com a unidade; a incerteza com um algarismo significativo e o valor terminando na mesma casa decimal dela.</div>
+  <div class="q-porque" id="porque-4-3">Sem unidade, o número não diz nada.</div>
 </div>
 
 <div class="placar" id="placar">
@@ -366,6 +416,13 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
   <div class="placar-txt" id="placar-txt"></div>
 </div>
 
+<div class="cartao" id="cartao">
+  <div class="cartao-txt">Copie o cartão e mostre ao professor no início do encontro. O Ponto de Partida vale pelo envio.</div>
+  <div class="cartao-copia"></div>
+  <button class="cartao-btn" type="button">copiar o cartão</button>
+</div>
+<div class="cartao-falta" id="cartao-falta"></div>
+</div>
 <div class="encerramento">
   <div class="fecho-frase">Você respondeu antes de estudar &mdash; e é exatamente essa a intenção.<br>A pergunta que fica na cabeça é a que o estudo responde.</div>
   <div class="fecho-acao">Agora ouça o Resumo em Áudio e leia o Texto Temático</div>
@@ -373,7 +430,7 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
     <a class="fecho-btn" href="../tt/">Texto Temático</a>
     <a class="fecho-btn secundario" href="../../">Todas as trilhas</a>
   </div>
-  </div>
+</div>
 
 <!-- RODAPE-LME:INICIO --><div class="lme-rodape"><div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div><div class="lme-rodape-texto">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; Primeira edição &middot; 2026</div><div class="lme-rodape-selo"><span id="seloAcessos" data-escopo="pagina" style="display:none;"></span></div></div><!-- RODAPE-LME:FIM -->
 
@@ -381,8 +438,8 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
 
 <script>
 (function () {
-  var CHAVE = 'LME-T0B-PP-v3';
-  var GABARITO = [1, 2, 1, 2, 1];
+  var CHAVE = 'LME-T0B-PP-v1';   /* a da v1: so entrou figura */
+  var GABARITO = [1, 1, 2, 1, 2];
   var estado = {};
   try { estado = JSON.parse(localStorage.getItem(CHAVE) || '{}'); } catch (e) { estado = {}; }
   function grava() { try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {} }
@@ -431,15 +488,100 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
     var txt = document.getElementById('placar-txt');
     document.getElementById('placar-num').textContent = acertos + ' de ' + GABARITO.length;
     if (acertos >= 4) {
-      txt.innerHTML = 'Você chega com o vocabulário quase pronto. Use o encontro para a parte que não se aprende lendo: a mão na bancada.';
+      txt.innerHTML = 'Você chega com o vocabulário da medida quase pronto. Use o encontro para o que não se aprende lendo: estimar, ler a escala e escrever a dúvida, seis vezes, na bancada.';
     } else if (acertos >= 2) {
-      txt.innerHTML = 'Está no ponto de quem vai aprender bastante hoje. Leia o Tópico 2 do Texto Temático antes da aula — é o das potências de dez e da ordem de grandeza.';
+      txt.innerHTML = 'Está no ponto de quem vai aprender bastante hoje. Leia o Texto Temático tópico a tópico e faça a Folha de Atividades: cada item que você errou aqui tem um tópico lá.';
     } else {
-      txt.innerHTML = 'Nada aqui é nota, e este resultado não significa nada além de <b>ainda não</b>. Ouça o Resumo em Áudio e leia o Texto Temático antes do encontro: os dois foram feitos exatamente para isto.';
+      txt.innerHTML = 'Este número não tira nota: o Ponto de Partida vale pelo envio. Ele só diz <b>ainda não</b>. Ouça o Resumo em Áudio e leia o Texto Temático antes do encontro: os dois foram feitos para isto.';
     }
     el.classList.add('visivel');
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
+
+  /* ---- vale nota pelo envio: RA, caderno cego, estimativa a caneta, cartao ----
+     MODO CEGO (anti-cola, CFG-OA 2026-08-18): o caderno sai do RA, ['A','B','C'][RA % 3], e
+     muda so a ORDEM das alternativas; a letra nao aparece na tela nem no cartao. Aberto, o
+     caderno nao muda mais, e o RA fica travado. */
+  var DEPOIS = 'Guarde este número. Na tarefa B1 do Roteiro de Bancada você mede a massa de um clipe na balança, divide o medido pelo estimado e julga a razão na faixa de 0,3 a 3.';
+  var ra = document.getElementById('ra'), conteudo = document.getElementById('conteudo');
+  function embaralha(l) {
+    if (l === 'A') { return; }
+    document.querySelectorAll('.q').forEach(function (q) {
+      var ops = [].slice.call(q.querySelectorAll('.q-op')), n = ops.length;
+      var ancora = ops[n - 1].nextSibling;
+      ops.forEach(function (_o, i) {
+        q.insertBefore(ops[l === 'B' ? (i + 1) % n : n - 1 - i], ancora);
+      });
+    });
+  }
+  function abreCaderno() {
+    var v = (ra.value || '').replace(/\D/g, '');
+    if (!estado.caderno) {
+      if (v.length < 5) { return; }
+      estado.caderno = ['A', 'B', 'C'][parseInt(v.slice(-9), 10) % 3];
+      estado.ra = ra.value.trim(); grava();
+    }
+    ra.value = estado.ra; ra.readOnly = true;
+    document.getElementById('aviso-ra').style.display = 'none';
+    conteudo.style.display = '';
+    embaralha(estado.caderno);
+  }
+  ra.addEventListener('input', abreCaderno);
+  if (estado.caderno) { abreCaderno(); }
+
+  var num = document.getElementById('estim-num'), un = document.getElementById('estim-un');
+  var gravada = document.getElementById('estim-gravada');
+  function mostraEstimativa() {
+    num.value = estado.estimNum; un.value = estado.estimUn;
+    num.readOnly = true; un.disabled = true; document.getElementById('estim-gravar').disabled = true;
+    gravada.innerHTML = '<b>Gravada a caneta: ' + estado.estimNum + ' ' + estado.estimUn + '.</b> Não se apaga. ' + DEPOIS;
+    gravada.classList.add('visivel');
+  }
+  document.getElementById('estim-gravar').addEventListener('click', function () {
+    var x = (num.value || '').trim();
+    if (!/\d/.test(x) || estado.estimNum) { return; }
+    estado.estimNum = x; estado.estimUn = un.value; grava();
+    mostraEstimativa(); confere();
+  });
+  if (estado.estimNum) { mostraEstimativa(); }
+
+  function confere() {
+    var falta = [];
+    if (!estado.estimNum) { falta.push('a estimativa a caneta'); }
+    var p = 0, q = 0, ac = 0;
+    for (var i = 0; i < 5; i++) { if (estado['p' + i] !== undefined) { p++; } }
+    for (var k = 0; k < GABARITO.length; k++) {
+      if (estado['q' + k] !== undefined) { q++; if (estado['q' + k] === GABARITO[k]) { ac++; } }
+    }
+    if (p < 5) { falta.push('a Parte I (' + (5 - p) + ' por marcar)'); }
+    if (q < GABARITO.length) { falta.push('a Parte II (' + (GABARITO.length - q) + ' por responder)'); }
+    var c = document.getElementById('cartao');
+    if (falta.length) {
+      document.getElementById('cartao-falta').textContent = 'Para o cartão sair, falta: ' + falta.join(', ') + '.';
+      return;
+    }
+    document.getElementById('cartao-falta').textContent = '';
+    c.querySelector('.cartao-copia').textContent =
+      'LME T0B - Ponto de Partida v4\n' +
+      'RA: ' + estado.ra + '\n' +
+      'Envio: completo (vale pelo envio)\n' +
+      'Estimativa a caneta: ' + estado.estimNum + ' ' + estado.estimUn + '\n' +
+      'Parte II: ' + ac + ' de ' + GABARITO.length + ' (diagnostico)\n' +
+      'Data: ' + (estado.data || (estado.data = new Date().toLocaleDateString('pt-BR')));
+    grava();
+    c.classList.add('visivel');
+  }
+  document.querySelectorAll('.perc-op, .q-op').forEach(function (op) {
+    op.addEventListener('click', function () { setTimeout(confere, 0); });
+  });
+  document.querySelector('.cartao-btn').addEventListener('click', function () {
+    var b = this, txt = document.querySelector('.cartao-copia').textContent;
+    navigator.clipboard.writeText(txt).then(function () {
+      b.textContent = 'copiado';
+      setTimeout(function () { b.textContent = 'copiar o cartão'; }, 1800);
+    });
+  });
+  confere();
 })();
 </script>
 <!-- ABAS-OA-LME (trilho de 6 abas — abas_oa.py) -->

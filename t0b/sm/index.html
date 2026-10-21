@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LME-T0B &middot; Noções sobre Estimativas e Medidas &mdash; Folha de Atividades 2</title>
+<title>LME-T0B &middot; Noções sobre Estimativas e Medidas &mdash; Simulações</title>
 <style>
   input, button, select, textarea { font-family: inherit; }
 :root {
@@ -109,109 +109,29 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
   .progresso, .player, .piazzi-bar { display: none !important; }
 }
 
-.escolha { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
-.escolha-btn { flex: 1 1 150px; padding: 14px 18px; min-height: 52px; background: var(--painel); border: 1px solid var(--cinza-borda); color: var(--texto); font-family: var(--mono); font-size: .95rem; font-weight: 700; cursor: pointer; }
-.escolha-btn:hover { border-color: var(--verde); color: var(--verde); }
-.escolha-btn.ativa { background: var(--verde); color: oklch(0.13 0.01 260); border-color: var(--verde); }
-.versao { display: none; }
-.versao.ativa { display: block; }
-
-.q { background: var(--painel); border-left: 3px solid var(--verde); padding: 14px 16px; margin-bottom: 14px; }
-.q-topo { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
-.q-num { font-family: var(--mono); font-size: .72rem; letter-spacing: 1.5px; color: var(--aco); text-transform: uppercase; }
-.q-peso { font-family: var(--mono); font-size: .72rem; color: var(--cinza); }
-.q-enunciado { font-size: .96rem; font-weight: 600; margin-bottom: 10px; }
-.q-op { display: flex; align-items: flex-start; gap: 9px; padding: 9px 12px; min-height: 44px; border: 1px solid var(--cinza-borda); margin-bottom: 7px; cursor: pointer; font-size: .9rem; }
-.q-op:hover { border-color: var(--verde); }
-.q-op input { margin-top: 3px; accent-color: var(--verde); }
-.q-op.certa { border-color: var(--ok); background: var(--ok-bg); }
-.q-op.errada { border-color: var(--erro); background: var(--erro-bg); }
-.vf-linha { display: flex; align-items: center; gap: 10px; padding: 8px 12px; min-height: 44px; border: 1px solid var(--cinza-borda); margin-bottom: 7px; font-size: .9rem; }
-.vf-linha .txt { flex: 1; }
-.vf-btn { padding: 6px 14px; min-height: 36px; border: 1px solid var(--cinza-borda); background: transparent; color: var(--texto); font-family: var(--mono); font-size: .8rem; cursor: pointer; }
-.vf-btn.sel { background: var(--verde); color: oklch(0.13 0.01 260); border-color: var(--verde); }
-.vf-linha.certa { border-color: var(--ok); }
-.vf-linha.errada { border-color: var(--erro); }
-.assoc-linha { display: flex; align-items: center; gap: 10px; padding: 8px 12px; min-height: 44px; border: 1px solid var(--cinza-borda); margin-bottom: 7px; font-size: .9rem; }
-.assoc-linha .item { flex: 0 0 140px; font-weight: 600; }
-.assoc-linha select { flex: 1; padding: 8px; background: var(--superficie); color: var(--texto); border: 1px solid var(--cinza-borda); font-family: var(--font); font-size: .88rem; }
-.assoc-linha.certa { border-color: var(--ok); }
-.assoc-linha.errada { border-color: var(--erro); }
-.q-porque { display: none; margin-top: 8px; font-size: .86rem; color: oklch(0.86 0 0); border-left: 3px solid var(--verde); padding: 9px 12px; background: var(--verde-bg); }
-.q-porque.visivel { display: block; }
-
-.btn-corrigir { display: block; width: 100%; padding: 15px; min-height: 54px; background: var(--verde); color: oklch(0.13 0.01 260); border: none; font-family: var(--mono); font-size: 1rem; font-weight: 700; cursor: pointer; margin: 18px 0; }
-.cartao { display: none; background: var(--painel); border: 1px solid var(--cinza-borda); border-top: 3px solid var(--aco); padding: 18px; margin: 18px 0; }
-.cartao.visivel { display: block; }
-.cartao-nota { font-family: var(--mono); font-size: 2rem; color: var(--verde); font-weight: 700; }
-.cartao-txt { font-size: .92rem; margin: 6px 0 12px; }
-.cartao-copia { font-family: var(--mono); font-size: .85rem; background: var(--fundo); border: 1px dashed var(--cinza-borda); padding: 12px; white-space: pre-wrap; }
-.cartao-btn { margin-top: 10px; padding: 11px 18px; min-height: 44px; background: transparent; border: 1px solid var(--aco); color: var(--aco); font-family: var(--mono); font-size: .85rem; cursor: pointer; }
-.ra-box { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
-.ra-box input { flex: 1 1 200px; padding: 11px 12px; min-height: 44px; background: var(--superficie); border: 1px solid var(--cinza-borda); color: var(--texto); font-family: var(--mono); font-size: .95rem; }
-
-.epi-fa { border-left: 3px solid var(--aco); padding: 10px 16px; margin: 0 0 22px; font-family: var(--serif); }
-.epi-fa .q-epi { font-style: italic; font-size: 1.02rem; }
-.epi-fa .a-epi { font-family: var(--mono); font-size: .78rem; color: var(--aco); margin-top: 6px; }
-.topico-fa { margin: 34px 0 10px; padding-top: 6px; border-top: 1px solid var(--cinza-borda); }
-.topico-fa h2 { font-family: var(--mono); font-size: .9rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--verde); margin: 8px 0 4px; }
-.topico-fa .reler { font-size: .82rem; color: var(--cinza); }
-.topico-fa .reler a { color: var(--aco); }
-.lembrete { margin: 10px 0 14px; padding: 10px 14px; background: var(--aco-bg); border-left: 3px solid var(--aco); font-size: .9rem; }
-.lembrete p { margin: 4px 0; }
-.q { display: block !important; }
-.q-bloom { font-family: var(--mono); font-size: .7rem; letter-spacing: 1px; color: var(--aco); border: 1px solid var(--aco); padding: 1px 6px; margin-left: 8px; white-space: nowrap; }
-.num-linha { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 8px 0; }
-.num-linha input { font-family: var(--mono); font-size: 1rem; padding: 6px 10px; background: var(--fundo); color: var(--texto); border: 1px solid var(--cinza-borda); min-width: 0; width: 220px; max-width: 100%; }
-.num-linha.certa input { border-color: var(--ok); }
-.num-linha.errada input { border-color: var(--erro); }
-input.lac { font-family: var(--mono); font-size: .95rem; padding: 3px 6px; margin: 2px 2px; background: var(--fundo); color: var(--texto); border: 1px solid var(--cinza-borda); border-bottom: 2px solid var(--aco); min-width: 0; max-width: 100%; }
-input.lac.certa { border-color: var(--ok); }
-input.lac.errada { border-color: var(--erro); }
-.corr { font-family: var(--mono); font-size: .78rem; color: var(--ok); margin-left: 4px; }
-.lac-texto { line-height: 2.1; margin: 8px 0; }
-.tab-fa { width: 100%; border-collapse: collapse; table-layout: fixed; margin: 10px 0; font-size: .9rem; }
-.tab-fa th { text-align: left; font-family: var(--mono); font-size: .72rem; letter-spacing: 1px; color: var(--aco); border-bottom: 1px solid var(--cinza-borda); padding: 6px 4px; }
-.tab-fa td { padding: 4px; border-bottom: 1px dashed var(--cinza-borda); vertical-align: middle; overflow-wrap: anywhere; }
-.tab-fa td input.lac { width: 100%; box-sizing: border-box; margin: 0; }
-.tab-fa td .pre { white-space: nowrap; margin-right: 4px; }
-.tab-fa td.cel-pre { display: flex; align-items: center; gap: 4px; }
-.tab-fa tr.exemplo td { color: var(--cinza); font-style: italic; }
-.btn-conferir { font-family: var(--mono); font-size: .8rem; letter-spacing: 1px; padding: 6px 14px; margin-top: 8px; background: transparent; color: var(--verde); border: 1px solid var(--verde); cursor: pointer; }
-.btn-conferir:disabled { opacity: .45; cursor: default; }
-.aberta textarea { width: 100%; min-height: 90px; font-family: var(--font); font-size: .95rem; padding: 8px 10px; background: var(--fundo); color: var(--texto); border: 1px solid var(--cinza-borda); box-sizing: border-box; }
-.modelo { display: none; margin-top: 10px; padding: 10px 14px; background: var(--aco-bg); border-left: 3px solid var(--aco); font-size: .9rem; }
-.modelo.visivel { display: block; }
-.autoav { display: none; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
-.autoav.visivel { display: flex; }
-.autoav button { font-family: var(--mono); font-size: .75rem; padding: 4px 10px; background: transparent; color: var(--texto); border: 1px solid var(--cinza-borda); cursor: pointer; }
-.autoav button.sel { border-color: var(--verde); color: var(--verde); }
-.placar-fa { margin: 34px 0 10px; padding: 16px 18px; border: 1px solid var(--verde); }
-.placar-fa h2 { font-family: var(--mono); font-size: .85rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--verde); margin: 0 0 10px; }
-.placar-linha { display: flex; justify-content: space-between; gap: 10px; padding: 5px 0; border-bottom: 1px dashed var(--cinza-borda); font-size: .9rem; }
-.placar-linha .pl-n { font-family: var(--mono); white-space: nowrap; }
-.placar-linha.voltar .pl-n { color: var(--erro); }
-.placar-dica { font-size: .85rem; color: var(--cinza); margin-top: 10px; }
-.aviso-lac { display: none; font-size: .8rem; color: var(--erro); margin-top: 6px; }
-.aviso-lac.visivel { display: block; }
-.figura-fa { margin: 14px 0 18px; }
-.figura-fa img { display: block; width: 100%; max-width: 560px; height: auto; margin: 0 auto; border: 1px solid var(--cinza-borda); }
-.figura-fa figcaption { font-size: .82rem; color: var(--cinza); margin: 6px auto 0; max-width: 560px; line-height: 1.45; }
-.figura-fa .figura-num { font-family: var(--mono); color: var(--verde); font-weight: 600; }
-.figura-fa .fig-fonte { white-space: nowrap; }
-.com-fundo { position: relative; overflow: hidden; margin: 34px 0 14px; padding: 4px 16px 12px; min-height: 260px; display: flex; flex-direction: column; border: 1px solid var(--cinza-borda); }
-.com-fundo .fundo-ilustra { position: absolute; top: 0; bottom: 0; background-size: cover; background-position: center; opacity: .34; filter: grayscale(1) contrast(.9); pointer-events: none; }
-.com-fundo > :not(.fundo-ilustra) { position: relative; }
-.com-fundo .topico-fa { margin: 0 0 6px; border-top: 0; }
-.com-fundo .topico-fa h2, .com-fundo .topico-fa .reler { text-shadow: 0 1px 3px #000, 0 0 8px #000; }
-.com-fundo .lembrete { background: color-mix(in oklch, var(--aco-bg) 84%, transparent); }
-.fundo-legenda { margin-top: auto; padding-top: 14px; font-size: .78rem; font-style: italic; line-height: 1.45; color: var(--texto); text-shadow: 0 1px 3px #000, 0 0 8px #000; }
-.fundo-legenda div + div { margin-top: 4px; }
-.fundo-legenda .figura-num { font-family: var(--mono); font-style: normal; color: var(--verde-claro); font-weight: 600; }
-.fundo-legenda .fig-fonte { white-space: nowrap; }
-.assoc-linha { flex-wrap: wrap; }
-.assoc-linha select { min-width: 0; max-width: 100%; }
-@media (max-width: 560px) { .q-bloom { display: inline-block; margin: 4px 0 0; } .tab-fa { font-size: .8rem; } .tab-fa td.cel-pre { display: block; } .assoc-linha .item { flex: 1 1 100%; } .assoc-linha select { width: 100%; } }
+.sim { background: var(--painel); border: 1px solid var(--cinza-borda); border-top: 3px solid var(--verde); margin: 22px 0; }
+.sim-head { display: flex; gap: 12px; align-items: baseline; padding: 12px 16px; border-bottom: 1px solid var(--cinza-borda); }
+.sim-num { font-family: var(--mono); font-size: .75rem; letter-spacing: 1.5px; color: var(--aco); text-transform: uppercase; white-space: nowrap; }
+.sim-titulo { font-size: 1.08rem; font-weight: 700; color: var(--verde); }
+.sim-body { padding: 14px 16px 16px; }
+.sim-body p { margin: 0 0 10px; font-size: .93rem; }
+.sim-ctl { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 8px 0; }
+.sim-ctl .rot { font-family: var(--mono); font-size: .75rem; color: var(--cinza); letter-spacing: 1px; text-transform: uppercase; margin-right: 4px; }
+.sim-btn { padding: 9px 14px; min-height: 42px; background: transparent; border: 1px solid var(--cinza-borda); color: var(--texto); font-family: var(--mono); font-size: .84rem; cursor: pointer; }
+.sim-btn:hover { border-color: var(--verde); }
+.sim-btn.ativa { background: var(--verde); color: oklch(0.13 0.01 260); border-color: var(--verde); }
+.sim-btn.prim { border-color: var(--aco); color: var(--aco); }
+.sim-btn:disabled { opacity: .45; cursor: default; }
+.sim-in { flex: 1 1 140px; max-width: 220px; padding: 10px 12px; min-height: 42px; background: var(--superficie); border: 1px solid var(--cinza-borda); color: var(--texto); font-family: var(--mono); font-size: 1rem; }
+.sim-sel { padding: 9px; min-height: 42px; background: var(--superficie); color: var(--texto); border: 1px solid var(--cinza-borda); font-family: var(--mono); }
+.sim-svg { display: block; width: 100%; height: auto; color: var(--texto); margin: 8px 0; }
+.sim-saida { margin-top: 10px; padding: 10px 14px; border-left: 3px solid var(--aco); background: var(--aco-bg); font-size: .92rem; display: none; }
+.sim-saida.visivel { display: block; }
+.sim-saida.ok { border-left-color: var(--ok); background: var(--ok-bg); }
+.sim-saida.erro { border-left-color: var(--erro); background: var(--erro-bg); }
+.sim-placar { font-family: var(--mono); font-size: .8rem; color: var(--cinza); margin-top: 8px; }
+.sim-tarefa { font-size: 1rem; font-weight: 600; margin: 4px 0 10px; }
+.sim-body textarea { width: 100%; min-height: 70px; box-sizing: border-box; margin-top: 8px; padding: 8px 10px; background: var(--fundo); color: var(--texto); border: 1px solid var(--cinza-borda); font-family: var(--font); font-size: .92rem; }
 /* ICONES-LME */
 .lme-cab-marcas { display: flex; gap: 10px; align-items: center; justify-content: flex-start;
   flex-shrink: 0; }
@@ -303,488 +223,273 @@ input.lac.errada { border-color: var(--erro); }
 .despedida:has(.desp-bg) .desp-coluna .desp-frase > .lme-inst-marcas { border-top-color: oklch(0.70 0 0 / .5); }
 /* /ICONES-LME */
 </style>
+<style>
+/* FIGURAS-LME (figuras_ilb.py) */
+.figura-lme { display: flex; flex-direction: column; align-items: stretch;
+  max-width: 680px; margin: 26px auto; border: 1px solid var(--cinza-borda, #b8c2bb);
+  border-radius: 6px; overflow: hidden; background: var(--superficie, #fff); }
+.figura-lme img { display: block; width: 100%; height: auto; margin: 0; }
+.figura-lme figcaption { border-top: 2px solid var(--verde, #3E8E5A);
+  background: var(--fundo-legenda, rgba(62,142,90,.10)); padding: 9px 14px;
+  font-size: .95rem; line-height: 1.45; text-align: left; }
+.figura-lme .figura-lme-num { font-weight: 700; color: var(--verde, #3E8E5A); }
+.figura-lme.figura-lme-p { max-width: 420px; }
+@media print {
+  .figura-lme { break-inside: avoid; page-break-inside: avoid; }
+  .figura-lme img { filter: grayscale(1); }
+  .figura-lme figcaption { background: #eeeeee; color: #222; }
+  .figura-lme .figura-lme-num { color: #222; }
+}
+</style>
 </head>
-<body data-pagina="t0b:fa2">
+<body data-pagina="t0b:sm">
 
 <header class="header">
   <div class="header-inner">
     <div class="lme-cab-marcas"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física"> <title>Prisma decompondo a luz — Licenciatura em Física</title> <defs> <radialGradient id="cab-prisma-fundo" cx="50%" cy="42%" r="60%"> <stop offset="0" stop-color="#26302B"/> <stop offset="1" stop-color="#0E1411"/> </radialGradient> <linearGradient id="cab-prisma-vidro" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/> <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/> </linearGradient> <clipPath id="cab-prisma-dentro"><circle cx="100" cy="100" r="86"/></clipPath> </defs> <circle cx="100" cy="100" r="96" fill="url(#cab-prisma-fundo)"/> <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/> <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1" stroke-dasharray="1.5 3" opacity="0.8"/> <g clip-path="url(#cab-prisma-dentro)"> <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/> <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/> <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/> <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/> <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/> <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/> <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/> <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/> <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/> </g> <polygon points="100,50 56,130 144,130" fill="url(#cab-prisma-vidro)" stroke="#DDEBF3" stroke-width="2.5" stroke-linejoin="round"/> <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/> <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/> <g fill="#FFFFFF" opacity="0.55"> <circle cx="46" cy="62" r="1.2"/> <circle cx="150" cy="56" r="1"/> <circle cx="70" cy="160" r="1"/> <circle cx="140" cy="164" r="1.2"/> </g> </svg><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica"> <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none"> <line x1="36" y1="10" x2="84" y2="10"/> <line x1="60" y1="10" x2="81.9" y2="70.1"/> </g> <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/> <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/> <circle cx="60" cy="10" r="4" fill="#3E8E5A"/> <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/> <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square"> <line x1="26" y1="110" x2="94" y2="110"/> <line x1="30" y1="110" x2="30" y2="104"/> <line x1="40" y1="110" x2="40" y2="104"/> <line x1="50" y1="110" x2="50" y2="104"/> <line x1="60" y1="110" x2="60" y2="98"/> <line x1="70" y1="110" x2="70" y2="104"/> <line x1="80" y1="110" x2="80" y2="104"/> <line x1="90" y1="110" x2="90" y2="104"/> </g> </svg></div><h1><span class="trilha-code">LME-T0B</span> &middot; Noções sobre Estimativas e Medidas</h1>
-    <span class="badge">Folha de Atividades 2 (FA2) &middot; a Tabela Geral</span>
+    <span class="badge">Simulações (SM)</span>
   </div>
-  <div class="header-sub">QGU, parte 5: a Tabela Geral &middot; 28 atividades &middot; sem nota, sem envio &middot; Pré-Lab</div>
+  <div class="header-sub">Explorar &middot; 2 simulações &middot; sem nota &middot; Pré-Lab</div>
 </header>
 
 <main>
 
 <div class="intro-box">
-  <strong>Como usar.</strong> Esta folha segue o Quadro Geral de Unidades de Medida no Brasil (QGU), parte por parte. Preencha as lacunas e as tabelas, toque em <em>conferir</em> e leia o porquê. Símbolos contam a caixa: <b>kg</b> está certo, <b>Kg</b> não. Potências: escreva 10^-34 ou use o sobrescrito. Nada vale nota e nada sai do seu aparelho. Prefere papel? <a href="LME-T0B-FA2-v6-estudante.pdf" target="_blank" rel="noopener">Abrir o PDF para imprimir</a>.
+  <strong>Errar sem risco.</strong> Duas simulações para treinar o gesto da bancada antes de tocar no
+  instrumento: ler uma escala até o último traço e julgar uma estimativa pela razão medido/estimado.
+  Nada aqui vale nota e nada sai do seu aparelho. Faça depois da Folha de Atividades e antes do Testinho.
 </div>
 
-<div class="epi-fa">
-  <div class="q-epi">&ldquo;O Quadro Geral de Unidades de Medida, para uso no País, baseia-se na tradução luso-brasileira autorizada da 9ª edição do Sistema Internacional de Unidades.&rdquo;</div>
-  <div class="a-epi">&mdash; Inmetro, <em>Quadro Geral de Unidades de Medida no Brasil</em> (2021)</div>
+<figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-10-v2-web.jpg" alt="Figura 10 &mdash; O olho na perpendicular lê o traço certo; o olho de lado lê o vizinho." loading="lazy"><figcaption><span class="figura-lme-num">Figura 10</span> &mdash; O olho na perpendicular lê o traço certo; o olho de lado lê o vizinho.</figcaption></figure>
+<div class="sim" id="sim1">
+  <div class="sim-head"><span class="sim-num">Simulação 1</span><span class="sim-titulo">Ler a escala até o último traço</span></div>
+  <div class="sim-body">
+    <p>Escolha o instrumento e a menor divisão. A seta marca a borda (ou o ponteiro). Leia com o <b>algarismo
+    estimado</b> &mdash; um a mais que a escala mostra &mdash; e confira. A simulação diz a incerteza de leitura
+    e como se escreve o resultado. Repita até ler de olhos fechados: na bancada são seis leituras.</p>
+    <div class="sim-ctl"><span class="rot">Instrumento</span>
+      <button class="sim-btn s1-ins ativa" data-i="0" type="button">Régua</button>
+      <button class="sim-btn s1-ins" data-i="1" type="button">Dinamômetro</button>
+      <button class="sim-btn s1-ins" data-i="2" type="button">Transferidor</button></div>
+    <div class="sim-ctl"><span class="rot">Menor divisão</span><span id="s1-divs"></span></div>
+    <svg class="sim-svg" id="s1-svg" viewBox="0 0 600 130" role="img" aria-label="Trecho da escala com a marca da leitura"></svg>
+    <div class="sim-ctl"><input class="sim-in" id="s1-in" type="text" inputmode="decimal" autocomplete="off" placeholder="sua leitura">
+      <span id="s1-un" style="font-family:var(--mono);"></span>
+      <button class="sim-btn prim" id="s1-conf" type="button">conferir</button>
+      <button class="sim-btn" id="s1-nova" type="button">nova leitura</button></div>
+    <div class="sim-saida" id="s1-saida"></div>
+    <div class="sim-placar" id="s1-placar"></div>
+  </div>
 </div>
 
-<div class="topico-fa" id="topico-1"><h2>Seção 1 · Tabela 5a — Grandezas espaciais e temporais</h2></div>
-
-<div class="lembrete"><p>Comprimento, área, volume, ângulo, tempo, velocidade, aceleração e frequência. O litro, o grau e o minuto estão aqui como unidades fora do SI em uso; o gal, como unidade do antigo CGS.</p></div>
-
-<div class="q" data-id="1.1" data-t="1" data-tipo="tabela">
-  <div class="q-topo"><span class="q-num">Item 1.1</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado">Complete o <b>nome da unidade</b> e o <b>símbolo</b> de cada grandeza. A primeira linha é o exemplo.</div>
-  <table class="tab-fa"><thead><tr><th>Grandeza</th><th>Nome da unidade</th><th>Símbolo</th></tr></thead><tbody><tr class="exemplo"><td>tempo</td><td>segundo</td><td>s</td></tr><tr><td>comprimento</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1"></td></tr><tr><td>área</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3"></td></tr><tr><td>ângulo plano</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="4"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="5"></td></tr><tr><td>frequência</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="6"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="7"></td></tr><tr><td>aceleração</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="8"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="9"></td></tr></tbody></table>
-  <div class="aviso-lac">Preencha todas as células antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">O hertz vale 1/s; o radiano é o nome especial do ângulo plano.</div>
-</div>
-
-<div class="q" data-id="1.2" data-t="1" data-tipo="lacunas">
-  <div class="q-topo"><span class="q-num">Item 1.2</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado">Escreva cada unidade como <b>produto de potências das unidades de base</b> (pode usar ponto, espaço ou barra; expoente com ^ ou sobrescrito).</div>
-  <div class="lac-texto">hertz = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:6ch"> · metro por segundo quadrado = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:7ch"></div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">1 Hz = 1 s⁻¹ (Tabela 5a); m/s² = m·s⁻².</div>
-</div>
-
-<div class="q" data-id="1.3" data-t="1" data-tipo="assoc">
-  <div class="q-topo"><span class="q-num">Item 1.3</span><span class="q-bloom">L2 · Entender</span></div>
-  <div class="q-enunciado"><b>Classifique</b> cada unidade:</div>
-  <div class="assoc-linha" data-it="0"><span class="item">metro</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="1"><span class="item">radiano</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="2"><span class="item">metro quadrado</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="3"><span class="item">litro</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="4"><span class="item">gal</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Metro é de base; radiano tem nome especial; m² não tem; o litro é fora do SI em uso; o gal é do CGS.</div>
-</div>
-
-<div class="q" data-id="1.4" data-t="1" data-tipo="vf">
-  <div class="q-topo"><span class="q-num">Item 1.4</span><span class="q-bloom">L4 · Analisar</span></div>
-  <div class="q-enunciado"><b>Ache o erro.</b> Cada linha diz grandeza — unidade — símbolo (ou uma regra). Está certa?</div>
-  <div class="vf-linha" data-af="0"><span class="txt">área — metro quadrado — m²</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="1"><span class="txt">frequência — Hertz — Hz</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="2"><span class="txt">aceleração — metro por segundo ao quadrado — m/s²</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="3"><span class="txt">volume — litro — L</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="4"><span class="txt">ângulo plano — grau — °</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">"Hertz" se escreve com minúscula (3.1.1), e o nome é "metro por segundo quadrado" (3.1.5).</div>
-</div>
-
-<div class="com-fundo"><div class="fundo-ilustra" style="left:0%;width:100%;background-image:url('../_imagens/_web/ILB-T0C-Figura-11-v2-web.jpg')"></div>
-<div class="topico-fa" id="topico-2"><h2>Seção 2 · Tabela 5b — Grandezas mecânicas</h2></div>
-<div class="lembrete"><p>Massa, densidade, quantidade de movimento, força, pressão, energia e potência. Cada derivada com nome especial esconde um produto de potências: o newton é 1 kg·m/s² (Tabela 5b).</p></div>
-<div class="q" data-id="2.1" data-t="2" data-tipo="tabela">
-  <div class="q-topo"><span class="q-num">Item 2.1</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado">Complete o <b>nome da unidade</b> e o <b>símbolo</b> de cada grandeza. A primeira linha é o exemplo.</div>
-  <table class="tab-fa"><thead><tr><th>Grandeza</th><th>Nome da unidade</th><th>Símbolo</th></tr></thead><tbody><tr class="exemplo"><td>densidade</td><td>kilograma por metro cúbico</td><td>kg/m³</td></tr><tr><td>massa</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1"></td></tr><tr><td>força</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3"></td></tr><tr><td>pressão</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="4"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="5"></td></tr><tr><td>trabalho, energia</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="6"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="7"></td></tr><tr><td>potência</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="8"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="9"></td></tr></tbody></table>
-  <div class="aviso-lac">Preencha todas as células antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Os nomes de cientista ficam minúsculos (newton, pascal, joule, watt); os símbolos, maiúsculos.</div>
-</div>
-<div class="q" data-id="2.2" data-t="2" data-tipo="lacunas">
-  <div class="q-topo"><span class="q-num">Item 2.2</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado">Escreva cada unidade como <b>produto de potências das unidades de base</b> (pode usar ponto, espaço ou barra; expoente com ^ ou sobrescrito).</div>
-  <div class="lac-texto">newton = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:10ch"> · pascal = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:12ch"> · joule = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2" style="width:11ch"> · watt = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3" style="width:11ch"></div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">N = kg·m·s⁻²; Pa = N/m² = kg·m⁻¹·s⁻²; J = N·m = kg·m²·s⁻²; W = J/s = kg·m²·s⁻³.</div>
-</div>
-<div class="fundo-legenda"><div><span class="figura-num">Figura 1</span> &mdash; Tarefa B2: Lucas pendura a massa de 100 g no dinamômetro e Barbara lê o mostrador &mdash; 0,98 N, o kg&middot;m/s² funcionando na mão.</div></div></div>
-
-<div class="q" data-id="2.3" data-t="2" data-tipo="assoc">
-  <div class="q-topo"><span class="q-num">Item 2.3</span><span class="q-bloom">L2 · Entender</span></div>
-  <div class="q-enunciado"><b>Classifique</b> cada unidade:</div>
-  <div class="assoc-linha" data-it="0"><span class="item">kilograma</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="1"><span class="item">newton</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="2"><span class="item">kilograma por metro cúbico</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="3"><span class="item">tonelada</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="4"><span class="item">dina</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Kilograma é de base; newton tem nome especial; kg/m³ não tem; a tonelada é fora do SI em uso; a dina, CGS.</div>
-</div>
-
-<div class="q" data-id="2.4" data-t="2" data-tipo="vf">
-  <div class="q-topo"><span class="q-num">Item 2.4</span><span class="q-bloom">L4 · Analisar</span></div>
-  <div class="q-enunciado"><b>Ache o erro.</b> Cada linha diz grandeza — unidade — símbolo (ou uma regra). Está certa?</div>
-  <div class="vf-linha" data-af="0"><span class="txt">força — newton — n</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="1"><span class="txt">massa — kilograma — Kg</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="2"><span class="txt">pressão — pascal — Pa</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="3"><span class="txt">torque — newton metro — N·m</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="4"><span class="txt">energia — Joule — J</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">O símbolo do newton é N, maiúsculo; o do kilograma é kg, minúsculo; e o nome "joule" é minúsculo.</div>
-</div>
-
-<div class="topico-fa" id="topico-3"><h2>Seção 3 · Tabela 5c — Grandezas elétricas e magnéticas</h2></div>
-
-<div class="lembrete"><p>O ampere é a unidade de base; as demais saem dele, do metro, do kilograma e do segundo. Os nomes de cientista continuam minúsculos — e "ampere" não leva acento no QGU.</p></div>
-
-<div class="q" data-id="3.1" data-t="3" data-tipo="tabela">
-  <div class="q-topo"><span class="q-num">Item 3.1</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado">Complete o <b>nome da unidade</b> e o <b>símbolo</b> de cada grandeza. A primeira linha é o exemplo.</div>
-  <table class="tab-fa"><thead><tr><th>Grandeza</th><th>Nome da unidade</th><th>Símbolo</th></tr></thead><tbody><tr class="exemplo"><td>resistência elétrica</td><td>ohm</td><td>Ω</td></tr><tr><td>corrente elétrica</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1"></td></tr><tr><td>carga elétrica</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3"></td></tr><tr><td>tensão elétrica</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="4"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="5"></td></tr><tr><td>capacitância</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="6"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="7"></td></tr><tr><td>densidade de fluxo magnético</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="8"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="9"></td></tr></tbody></table>
-  <div class="aviso-lac">Preencha todas as células antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Ampere é de base; coulomb, volt, farad e tesla têm nome especial.</div>
-</div>
-
-<div class="q" data-id="3.2" data-t="3" data-tipo="lacunas">
-  <div class="q-topo"><span class="q-num">Item 3.2</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado">Escreva cada unidade como <b>produto de potências das unidades de base</b> (pode usar ponto, espaço ou barra; expoente com ^ ou sobrescrito).</div>
-  <div class="lac-texto">coulomb = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:6ch"> · volt = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:15ch"> · tesla = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2" style="width:12ch"></div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">C = A·s; V = W/A = kg·m²·s⁻³·A⁻¹; T = Wb/m² = kg·s⁻²·A⁻¹.</div>
-</div>
-
-<div class="q" data-id="3.3" data-t="3" data-tipo="assoc">
-  <div class="q-topo"><span class="q-num">Item 3.3</span><span class="q-bloom">L2 · Entender</span></div>
-  <div class="q-enunciado"><b>Classifique</b> cada unidade:</div>
-  <div class="assoc-linha" data-it="0"><span class="item">ampere</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="1"><span class="item">volt</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="2"><span class="item">ampere por metro quadrado</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="3"><span class="item">gauss</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Ampere: base. Volt: nome especial. A/m²: sem nome especial. Gauss: CGS.</div>
-</div>
-
-<div class="q" data-id="3.4" data-t="3" data-tipo="vf">
-  <div class="q-topo"><span class="q-num">Item 3.4</span><span class="q-bloom">L4 · Analisar</span></div>
-  <div class="q-enunciado"><b>Ache o erro.</b> Cada linha diz grandeza — unidade — símbolo (ou uma regra). Está certa?</div>
-  <div class="vf-linha" data-af="0"><span class="txt">carga elétrica — coulomb — C</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="1"><span class="txt">tensão elétrica — Volt — V</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="2"><span class="txt">corrente elétrica — ampère — A</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="3"><span class="txt">indutância — henry — H</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="4"><span class="txt">fluxo magnético — weber — wb</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">"Volt" é minúsculo; no QGU o nome é "ampere", sem acento; o símbolo do weber é Wb.</div>
-</div>
-
-<div class="topico-fa" id="topico-4"><h2>Seção 4 · Tabela 5d — Grandezas químicas</h2></div>
-
-<div class="lembrete"><p>A quantidade de matéria (mol) é a grandeza de base desta tabela. O katal é a única derivada com nome especial dela. O plural de mol é mols.</p></div>
-
-<div class="q" data-id="4.1" data-t="4" data-tipo="tabela">
-  <div class="q-topo"><span class="q-num">Item 4.1</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado">Complete o <b>nome da unidade</b> e o <b>símbolo</b> de cada grandeza. A primeira linha é o exemplo.</div>
-  <table class="tab-fa"><thead><tr><th>Grandeza</th><th>Nome da unidade</th><th>Símbolo</th></tr></thead><tbody><tr class="exemplo"><td>quantidade de matéria</td><td>mol</td><td>mol</td></tr><tr><td>atividade catalítica</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1"></td></tr><tr><td>massa molar</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3"></td></tr><tr><td>concentração de quantidade de matéria</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="4"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="5"></td></tr><tr><td>volume molar</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="6"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="7"></td></tr></tbody></table>
-  <div class="aviso-lac">Preencha todas as células antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Katal: 1 kat = 1 mol/s (Tabela 5d).</div>
-</div>
-
-<div class="q" data-id="4.2" data-t="4" data-tipo="lacunas">
-  <div class="q-topo"><span class="q-num">Item 4.2</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado">Escreva cada unidade como <b>produto de potências das unidades de base</b> (pode usar ponto, espaço ou barra; expoente com ^ ou sobrescrito).</div>
-  <div class="lac-texto">katal = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:9ch"> · massa molar = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:10ch"></div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">kat = mol·s⁻¹; kg/mol = kg·mol⁻¹.</div>
-</div>
-
-<div class="q" data-id="4.3" data-t="4" data-tipo="assoc">
-  <div class="q-topo"><span class="q-num">Item 4.3</span><span class="q-bloom">L2 · Entender</span></div>
-  <div class="q-enunciado"><b>Classifique</b> cada unidade:</div>
-  <div class="assoc-linha" data-it="0"><span class="item">mol</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="1"><span class="item">katal</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="2"><span class="item">kilograma por mol</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Mol: base. Katal: nome especial. kg/mol: sem nome especial.</div>
-</div>
-
-<div class="q" data-id="4.4" data-t="4" data-tipo="vf">
-  <div class="q-topo"><span class="q-num">Item 4.4</span><span class="q-bloom">L4 · Analisar</span></div>
-  <div class="q-enunciado"><b>Ache o erro.</b> Cada linha diz grandeza — unidade — símbolo (ou uma regra). Está certa?</div>
-  <div class="vf-linha" data-af="0"><span class="txt">quantidade de matéria — mole — mol</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="1"><span class="txt">atividade catalítica — katal — kat</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="2"><span class="txt">massa molar — kilograma por mol — kg/mol</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="3"><span class="txt">o plural de mol é "moles"</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">O nome é mol, e o plural, mols — o plural não desfigura o nome (3.2).</div>
-</div>
-
-<div class="topico-fa" id="topico-5"><h2>Seção 5 · Tabela 5e — Grandezas térmicas</h2></div>
-
-<div class="lembrete"><p>O kelvin é a unidade de base; o grau Celsius é o nome especial do kelvin para a escala Celsius (1 °C de variação = 1 K de variação). Não existe "grau kelvin".</p></div>
-
-<div class="q" data-id="5.1" data-t="5" data-tipo="tabela">
-  <div class="q-topo"><span class="q-num">Item 5.1</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado">Complete o <b>nome da unidade</b> e o <b>símbolo</b> de cada grandeza. A primeira linha é o exemplo.</div>
-  <table class="tab-fa"><thead><tr><th>Grandeza</th><th>Nome da unidade</th><th>Símbolo</th></tr></thead><tbody><tr class="exemplo"><td>temperatura termodinâmica</td><td>kelvin</td><td>K</td></tr><tr><td>temperatura Celsius</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1"></td></tr><tr><td>calor, quantidade de calor</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3"></td></tr><tr><td>capacidade térmica</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="4"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="5"></td></tr><tr><td>condutividade térmica</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="6"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="7"></td></tr></tbody></table>
-  <div class="aviso-lac">Preencha todas as células antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">O grau Celsius é nome especial do kelvin; calor é energia, em joule.</div>
-</div>
-
-<div class="q" data-id="5.2" data-t="5" data-tipo="lacunas">
-  <div class="q-topo"><span class="q-num">Item 5.2</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado">Escreva cada unidade como <b>produto de potências das unidades de base</b> (pode usar ponto, espaço ou barra; expoente com ^ ou sobrescrito).</div>
-  <div class="lac-texto">joule por kelvin = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:15ch"> · watt por metro kelvin = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:14ch"></div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">J/K = kg·m²·s⁻²·K⁻¹; W/(m·K) = kg·m·s⁻³·K⁻¹.</div>
-</div>
-
-<div class="q" data-id="5.3" data-t="5" data-tipo="assoc">
-  <div class="q-topo"><span class="q-num">Item 5.3</span><span class="q-bloom">L2 · Entender</span></div>
-  <div class="q-enunciado"><b>Classifique</b> cada unidade:</div>
-  <div class="assoc-linha" data-it="0"><span class="item">kelvin</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="1"><span class="item">grau Celsius</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="2"><span class="item">joule por kelvin</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Kelvin: base. Grau Celsius: nome especial. J/K: sem nome especial.</div>
-</div>
-
-<div class="q" data-id="5.4" data-t="5" data-tipo="vf">
-  <div class="q-topo"><span class="q-num">Item 5.4</span><span class="q-bloom">L4 · Analisar</span></div>
-  <div class="q-enunciado"><b>Ache o erro.</b> Cada linha diz grandeza — unidade — símbolo (ou uma regra). Está certa?</div>
-  <div class="vf-linha" data-af="0"><span class="txt">temperatura termodinâmica — grau kelvin — °K</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="1"><span class="txt">temperatura Celsius — grau Celsius — °C</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="2"><span class="txt">calor — joule — J</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="3"><span class="txt">uma variação de 1 °C equivale a uma variação de 1 K</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="4"><span class="txt">o nome da unidade é "Grau Celsius", com G maiúsculo</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">É "kelvin", símbolo K, sem grau; e "grau" é minúsculo, só "Celsius" é nome próprio (3.1.1).</div>
-</div>
-
-<div class="topico-fa" id="topico-6"><h2>Seção 6 · Tabela 5f — Grandezas ópticas</h2></div>
-
-<div class="lembrete"><p>A candela é a unidade de base. O lúmen e o lux são derivadas com nome especial; o phot e o stilb são do antigo CGS. Lux não varia no plural (termina em x).</p></div>
-
-<div class="q" data-id="6.1" data-t="6" data-tipo="tabela">
-  <div class="q-topo"><span class="q-num">Item 6.1</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado">Complete o <b>nome da unidade</b> e o <b>símbolo</b> de cada grandeza. A primeira linha é o exemplo.</div>
-  <table class="tab-fa"><thead><tr><th>Grandeza</th><th>Nome da unidade</th><th>Símbolo</th></tr></thead><tbody><tr class="exemplo"><td>intensidade luminosa</td><td>candela</td><td>cd</td></tr><tr><td>fluxo luminoso</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1"></td></tr><tr><td>iluminância</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3"></td></tr><tr><td>luminância</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="4"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="5"></td></tr></tbody></table>
-  <div class="aviso-lac">Preencha todas as células antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Lúmen e lux têm nome especial; cd/m² não tem.</div>
-</div>
-
-<div class="q" data-id="6.2" data-t="6" data-tipo="lacunas">
-  <div class="q-topo"><span class="q-num">Item 6.2</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado">Escreva cada unidade como <b>produto de potências das unidades de base</b> (pode usar ponto, espaço ou barra; expoente com ^ ou sobrescrito).</div>
-  <div class="lac-texto">lux = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:11ch"> · candela por metro quadrado = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:8ch"></div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">lx = lm/m² = cd·sr·m⁻²; cd/m² = cd·m⁻².</div>
-</div>
-
-<div class="q" data-id="6.3" data-t="6" data-tipo="assoc">
-  <div class="q-topo"><span class="q-num">Item 6.3</span><span class="q-bloom">L2 · Entender</span></div>
-  <div class="q-enunciado"><b>Classifique</b> cada unidade:</div>
-  <div class="assoc-linha" data-it="0"><span class="item">candela</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="1"><span class="item">lux</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="2"><span class="item">candela por metro quadrado</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="3"><span class="item">phot</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="4"><span class="item">stilb</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Candela: base. Lux: nome especial. cd/m²: sem nome especial. Phot e stilb: CGS.</div>
-</div>
-
-<div class="q" data-id="6.4" data-t="6" data-tipo="vf">
-  <div class="q-topo"><span class="q-num">Item 6.4</span><span class="q-bloom">L4 · Analisar</span></div>
-  <div class="q-enunciado"><b>Ache o erro.</b> Cada linha diz grandeza — unidade — símbolo (ou uma regra). Está certa?</div>
-  <div class="vf-linha" data-af="0"><span class="txt">iluminância — lux — lx</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="1"><span class="txt">fluxo luminoso — lúmen — Lm</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="2"><span class="txt">o plural de lux é "luxes"</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="3"><span class="txt">luminância — candela por metro quadrado — cd/m²</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">O símbolo do lúmen é lm, minúsculo; lux é invariável no plural (3.2 c).</div>
-</div>
-
-<div class="topico-fa" id="topico-7"><h2>Seção 7 · Tabela 5g — Grandezas atômicas e da física nuclear</h2></div>
-
-<div class="lembrete"><p>Becquerel, gray e sievert são derivadas com nome especial, todas de nome de cientista — e por isso minúsculas por extenso, com símbolo de inicial maiúscula. O curie é aceito em uso: 1 Ci = 3,7 × 10¹⁰ Bq.</p></div>
-
-<div class="q" data-id="7.1" data-t="7" data-tipo="tabela">
-  <div class="q-topo"><span class="q-num">Item 7.1</span><span class="q-bloom">L1 · Lembrar</span></div>
-  <div class="q-enunciado">Complete o <b>nome da unidade</b> e o <b>símbolo</b> de cada grandeza. A primeira linha é o exemplo.</div>
-  <table class="tab-fa"><thead><tr><th>Grandeza</th><th>Nome da unidade</th><th>Símbolo</th></tr></thead><tbody><tr class="exemplo"><td>constante de decaimento</td><td>1 por segundo</td><td>s⁻¹</td></tr><tr><td>atividade</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1"></td></tr><tr><td>dose absorvida</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="2"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="3"></td></tr><tr><td>dose efetiva</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="4"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="5"></td></tr><tr><td>exposição (raios X e raios γ)</td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="6"></td><td><input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="7"></td></tr></tbody></table>
-  <div class="aviso-lac">Preencha todas as células antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Becquerel, gray e sievert: nomes de cientista, minúsculos; símbolos Bq, Gy, Sv.</div>
-</div>
-
-<div class="q" data-id="7.2" data-t="7" data-tipo="lacunas">
-  <div class="q-topo"><span class="q-num">Item 7.2</span><span class="q-bloom">L3 · Aplicar</span></div>
-  <div class="q-enunciado">Escreva cada unidade como <b>produto de potências das unidades de base</b> (pode usar ponto, espaço ou barra; expoente com ^ ou sobrescrito).</div>
-  <div class="lac-texto">becquerel = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="0" style="width:6ch"> · gray = <input class="lac" type="text" autocomplete="off" spellcheck="false" data-k="1" style="width:8ch"></div>
-  <div class="aviso-lac">Preencha todas as lacunas antes de conferir.</div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Bq = s⁻¹; Gy = J/kg = m²·s⁻².</div>
-</div>
-
-<div class="q" data-id="7.3" data-t="7" data-tipo="assoc">
-  <div class="q-topo"><span class="q-num">Item 7.3</span><span class="q-bloom">L2 · Entender</span></div>
-  <div class="q-enunciado"><b>Classifique</b> cada unidade:</div>
-  <div class="assoc-linha" data-it="0"><span class="item">becquerel</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="1"><span class="item">coulomb por kilograma</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="2"><span class="item">curie</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <div class="assoc-linha" data-it="3"><span class="item">gray</span><select><option value="-1">escolha&hellip;</option><option value="0">de base</option><option value="1">derivada com nome especial</option><option value="2">derivada sem nome especial</option><option value="3">fora do SI, em uso com o SI</option><option value="4">do antigo sistema CGS</option></select></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">Becquerel e gray: nome especial. C/kg: sem nome especial. Curie: fora do SI, aceito em uso.</div>
-</div>
-
-<div class="q" data-id="7.4" data-t="7" data-tipo="vf">
-  <div class="q-topo"><span class="q-num">Item 7.4</span><span class="q-bloom">L4 · Analisar</span></div>
-  <div class="q-enunciado"><b>Ache o erro.</b> Cada linha diz grandeza — unidade — símbolo (ou uma regra). Está certa?</div>
-  <div class="vf-linha" data-af="0"><span class="txt">atividade — becquerel — Bq</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="1"><span class="txt">dose absorvida — Gray — Gy</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="2"><span class="txt">dose efetiva — sievert — sv</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <div class="vf-linha" data-af="3"><span class="txt">1 Ci = 3,7 × 10¹⁰ Bq</span><button class="vf-btn" data-r="V" type="button">V</button><button class="vf-btn" data-r="F" type="button">F</button></div>
-  <button class="btn-conferir" type="button">conferir</button>
-  <div class="q-porque">"gray" é minúsculo por extenso; o símbolo do sievert é Sv, com S maiúsculo.</div>
-</div>
-
-<div class="placar-fa" id="placar">
-  <h2>Placar</h2>
-  <div class="placar-linha" data-t="1"><span>Seção 1 · Tabela 5a — Grandezas espaciais e temporais</span><span class="pl-n">&mdash;</span></div>
-<div class="placar-linha" data-t="2"><span>Seção 2 · Tabela 5b — Grandezas mecânicas</span><span class="pl-n">&mdash;</span></div>
-<div class="placar-linha" data-t="3"><span>Seção 3 · Tabela 5c — Grandezas elétricas e magnéticas</span><span class="pl-n">&mdash;</span></div>
-<div class="placar-linha" data-t="4"><span>Seção 4 · Tabela 5d — Grandezas químicas</span><span class="pl-n">&mdash;</span></div>
-<div class="placar-linha" data-t="5"><span>Seção 5 · Tabela 5e — Grandezas térmicas</span><span class="pl-n">&mdash;</span></div>
-<div class="placar-linha" data-t="6"><span>Seção 6 · Tabela 5f — Grandezas ópticas</span><span class="pl-n">&mdash;</span></div>
-<div class="placar-linha" data-t="7"><span>Seção 7 · Tabela 5g — Grandezas atômicas e da física nuclear</span><span class="pl-n">&mdash;</span></div>
-  <div class="placar-dica">Só contam os itens de correção automática. Uma parte fica marcada em vermelho quando você errou mais de um item dela: volte à regra e refaça antes do Testinho.</div>
+<figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-06-v2-web.jpg" alt="Figura 6 &mdash; A régua das potências de 10: de 1 a 10 em dois passos iguais de 3,16." loading="lazy"><figcaption><span class="figura-lme-num">Figura 6</span> &mdash; A régua das potências de 10: de 1 a 10 em dois passos iguais de 3,16.</figcaption></figure>
+<div class="sim" id="sim2">
+  <div class="sim-head"><span class="sim-num">Simulação 2</span><span class="sim-titulo">Estimar, medir e julgar a razão</span></div>
+  <div class="sim-body">
+    <p>A tarefa aparece abaixo. <b>Estime primeiro</b>, sem consultar nada, e grave a caneta: depois de gravada,
+    a estimativa não muda. Em seguida, meça: a simulação mostra o valor medido, calcula a razão
+    <b>medido ÷ estimado</b> na mesma unidade e põe o ponto no eixo de potências de 10. A faixa verde vai de
+    0,3 a 3.</p>
+    <div class="sim-tarefa" id="s2-tarefa"></div>
+    <div class="sim-ctl"><input class="sim-in" id="s2-in" type="text" inputmode="decimal" autocomplete="off" placeholder="sua estimativa">
+      <select class="sim-sel" id="s2-un"></select>
+      <button class="sim-btn prim" id="s2-gravar" type="button">gravar a caneta</button>
+      <button class="sim-btn" id="s2-medir" type="button" disabled>medir</button>
+      <button class="sim-btn" id="s2-nova" type="button">outra tarefa</button></div>
+    <svg class="sim-svg" id="s2-svg" viewBox="0 0 600 120" role="img" aria-label="Eixo da razão medido/estimado em potências de 10"></svg>
+    <div class="sim-saida" id="s2-saida"></div>
+    <div id="s2-porque" style="display:none;"><textarea placeholder="Falhou? Escreva por quê — o que no seu modelo da grandeza estava errado (fica só neste aparelho)."></textarea></div>
+    <div class="sim-placar" id="s2-placar"></div>
+  </div>
 </div>
 
 <div class="encerramento">
-  <div class="fecho-frase">Sete tabelas, uma régua só.<br>A escrita da unidade é a mesma em toda a Física.</div>
+  <div class="fecho-frase">O instrumento virtual errou com você sem custo.<br>Na bancada, a escala é de verdade e a caneta não apaga.</div>
   <div class="fecho-acao">Feche o Pré-Lab com o Testinho</div>
   <div class="fecho-links">
     <a class="fecho-btn" href="../tn/">Testinho</a>
-    <a class="fecho-btn secundario" href="../../index.html#t0b">Todas as trilhas</a>
+    <a class="fecho-btn secundario" href="../../">Todas as trilhas</a>
   </div>
 </div>
 
 <!-- RODAPE-LME:INICIO --><div class="lme-rodape"><div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div><div class="lme-rodape-texto">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; Primeira edição &middot; 2026</div><div class="lme-rodape-selo"><span id="seloAcessos" data-escopo="pagina" style="display:none;"></span></div></div><!-- RODAPE-LME:FIM -->
 
 </main>
-<script>var GAB = {"1.1": {"t": "lac", "c": [{"a": ["metro"], "cs": 0, "d": "metro"}, {"a": ["m"], "cs": 1, "d": "m"}, {"a": ["metroquadrado"], "cs": 0, "d": "metro quadrado"}, {"a": ["m^2"], "cs": 1, "d": "m²"}, {"a": ["radiano"], "cs": 0, "d": "radiano"}, {"a": ["rad"], "cs": 1, "d": "rad"}, {"a": ["hertz"], "cs": 0, "d": "hertz"}, {"a": ["Hz"], "cs": 1, "d": "Hz"}, {"a": ["metroporsegundoquadrado"], "cs": 0, "d": "metro por segundo quadrado"}, {"a": ["m/s^2", "ms^-2"], "cs": 1, "d": "m/s²"}]}, "1.2": {"t": "lac", "c": [{"a": ["1/s", "s^-1"], "cs": 1, "d": "s⁻¹"}, {"a": ["m/s^2", "ms^-2", "s^-2m"], "cs": 1, "d": "m·s⁻²"}]}, "1.3": {"t": "assoc", "c": [0, 1, 2, 3, 4]}, "1.4": {"t": "vf", "c": [true, false, false, true, true]}, "2.1": {"t": "lac", "c": [{"a": ["kilograma", "quilograma"], "cs": 0, "d": "kilograma"}, {"a": ["kg"], "cs": 1, "d": "kg"}, {"a": ["newton"], "cs": 0, "d": "newton"}, {"a": ["N"], "cs": 1, "d": "N"}, {"a": ["pascal"], "cs": 0, "d": "pascal"}, {"a": ["Pa"], "cs": 1, "d": "Pa"}, {"a": ["joule"], "cs": 0, "d": "joule"}, {"a": ["J"], "cs": 1, "d": "J"}, {"a": ["watt"], "cs": 0, "d": "watt"}, {"a": ["W"], "cs": 1, "d": "W"}]}, "2.2": {"t": "lac", "c": [{"a": ["kgm/s^2", "kgms^-2", "kgs^-2m", "mkg/s^2", "mkgs^-2", "ms^-2kg", "s^-2kgm", "s^-2mkg"], "cs": 1, "d": "kg·m·s⁻²"}, {"a": ["kg/(ms^2)", "kg/(s^2m)", "kgm^-1s^-2", "kgs^-2m^-1", "m^-1kgs^-2", "m^-1s^-2kg", "s^-2kgm^-1", "s^-2m^-1kg"], "cs": 1, "d": "kg·m⁻¹·s⁻²"}, {"a": ["kgm^2/s^2", "kgm^2s^-2", "kgs^-2m^2", "m^2kg/s^2", "m^2kgs^-2", "m^2s^-2kg", "s^-2kgm^2", "s^-2m^2kg"], "cs": 1, "d": "kg·m²·s⁻²"}, {"a": ["kgm^2/s^3", "kgm^2s^-3", "kgs^-3m^2", "m^2kg/s^3", "m^2kgs^-3", "m^2s^-3kg", "s^-3kgm^2", "s^-3m^2kg"], "cs": 1, "d": "kg·m²·s⁻³"}]}, "2.3": {"t": "assoc", "c": [0, 1, 2, 3, 4]}, "2.4": {"t": "vf", "c": [false, false, true, true, false]}, "3.1": {"t": "lac", "c": [{"a": ["ampere"], "cs": 0, "d": "ampere"}, {"a": ["A"], "cs": 1, "d": "A"}, {"a": ["coulomb"], "cs": 0, "d": "coulomb"}, {"a": ["C"], "cs": 1, "d": "C"}, {"a": ["volt"], "cs": 0, "d": "volt"}, {"a": ["V"], "cs": 1, "d": "V"}, {"a": ["farad"], "cs": 0, "d": "farad"}, {"a": ["F"], "cs": 1, "d": "F"}, {"a": ["tesla"], "cs": 0, "d": "tesla"}, {"a": ["T"], "cs": 1, "d": "T"}]}, "3.2": {"t": "lac", "c": [{"a": ["As", "sA"], "cs": 1, "d": "A·s"}, {"a": ["A^-1kgm^2s^-3", "A^-1kgs^-3m^2", "A^-1m^2kgs^-3", "A^-1m^2s^-3kg", "A^-1s^-3kgm^2", "A^-1s^-3m^2kg", "kgA^-1m^2s^-3", "kgA^-1s^-3m^2", "kgm^2/(As^3)", "kgm^2/(s^3A)", "kgm^2A^-1s^-3", "kgm^2s^-3A^-1", "kgs^-3A^-1m^2", "kgs^-3m^2A^-1", "m^2A^-1kgs^-3", "m^2A^-1s^-3kg", "m^2kg/(As^3)", "m^2kg/(s^3A)", "m^2kgA^-1s^-3", "m^2kgs^-3A^-1", "m^2s^-3A^-1kg", "m^2s^-3kgA^-1", "s^-3A^-1kgm^2", "s^-3A^-1m^2kg", "s^-3kgA^-1m^2", "s^-3kgm^2A^-1", "s^-3m^2A^-1kg", "s^-3m^2kgA^-1"], "cs": 1, "d": "kg·m²·s⁻³·A⁻¹"}, {"a": ["A^-1kgs^-2", "A^-1s^-2kg", "kg/(As^2)", "kg/(s^2A)", "kgA^-1s^-2", "kgs^-2A^-1", "s^-2A^-1kg", "s^-2kgA^-1"], "cs": 1, "d": "kg·s⁻²·A⁻¹"}]}, "3.3": {"t": "assoc", "c": [0, 1, 2, 4]}, "3.4": {"t": "vf", "c": [true, false, false, true, false]}, "4.1": {"t": "lac", "c": [{"a": ["katal"], "cs": 0, "d": "katal"}, {"a": ["kat"], "cs": 1, "d": "kat"}, {"a": ["kilogramapormol", "quilogramapormol"], "cs": 0, "d": "kilograma por mol"}, {"a": ["kg/mol"], "cs": 1, "d": "kg/mol"}, {"a": ["molpormetrocúbico"], "cs": 0, "d": "mol por metro cúbico"}, {"a": ["mol/m^3"], "cs": 1, "d": "mol/m³"}, {"a": ["metrocúbicopormol"], "cs": 0, "d": "metro cúbico por mol"}, {"a": ["m^3/mol"], "cs": 1, "d": "m³/mol"}]}, "4.2": {"t": "lac", "c": [{"a": ["mol/s", "mols^-1", "s^-1mol"], "cs": 1, "d": "mol·s⁻¹"}, {"a": ["kg/mol", "kgmol^-1", "mol^-1kg"], "cs": 1, "d": "kg·mol⁻¹"}]}, "4.3": {"t": "assoc", "c": [0, 1, 2]}, "4.4": {"t": "vf", "c": [false, true, true, false]}, "5.1": {"t": "lac", "c": [{"a": ["graucelsius"], "cs": 0, "d": "grau Celsius"}, {"a": ["°C"], "cs": 1, "d": "°C"}, {"a": ["joule"], "cs": 0, "d": "joule"}, {"a": ["J"], "cs": 1, "d": "J"}, {"a": ["jouleporkelvin"], "cs": 0, "d": "joule por kelvin"}, {"a": ["J/K"], "cs": 1, "d": "J/K"}, {"a": ["wattpormetrokelvin"], "cs": 0, "d": "watt por metro kelvin"}, {"a": ["W/(mK)", "W/mK"], "cs": 1, "d": "W/(m·K)"}]}, "5.2": {"t": "lac", "c": [{"a": ["K^-1kgm^2s^-2", "K^-1kgs^-2m^2", "K^-1m^2kgs^-2", "K^-1m^2s^-2kg", "K^-1s^-2kgm^2", "K^-1s^-2m^2kg", "kgK^-1m^2s^-2", "kgK^-1s^-2m^2", "kgm^2/(Ks^2)", "kgm^2/(s^2K)", "kgm^2K^-1s^-2", "kgm^2s^-2K^-1", "kgs^-2K^-1m^2", "kgs^-2m^2K^-1", "m^2K^-1kgs^-2", "m^2K^-1s^-2kg", "m^2kg/(Ks^2)", "m^2kg/(s^2K)", "m^2kgK^-1s^-2", "m^2kgs^-2K^-1", "m^2s^-2K^-1kg", "m^2s^-2kgK^-1", "s^-2K^-1kgm^2", "s^-2K^-1m^2kg", "s^-2kgK^-1m^2", "s^-2kgm^2K^-1", "s^-2m^2K^-1kg", "s^-2m^2kgK^-1"], "cs": 1, "d": "kg·m²·s⁻²·K⁻¹"}, {"a": ["K^-1kgms^-3", "K^-1kgs^-3m", "K^-1mkgs^-3", "K^-1ms^-3kg", "K^-1s^-3kgm", "K^-1s^-3mkg", "kgK^-1ms^-3", "kgK^-1s^-3m", "kgm/(Ks^3)", "kgm/(s^3K)", "kgmK^-1s^-3", "kgms^-3K^-1", "kgs^-3K^-1m", "kgs^-3mK^-1", "mK^-1kgs^-3", "mK^-1s^-3kg", "mkg/(Ks^3)", "mkg/(s^3K)", "mkgK^-1s^-3", "mkgs^-3K^-1", "ms^-3K^-1kg", "ms^-3kgK^-1", "s^-3K^-1kgm", "s^-3K^-1mkg", "s^-3kgK^-1m", "s^-3kgmK^-1", "s^-3mK^-1kg", "s^-3mkgK^-1"], "cs": 1, "d": "kg·m·s⁻³·K⁻¹"}]}, "5.3": {"t": "assoc", "c": [0, 1, 2]}, "5.4": {"t": "vf", "c": [false, true, true, true, false]}, "6.1": {"t": "lac", "c": [{"a": ["lumen", "lúmen"], "cs": 0, "d": "lúmen"}, {"a": ["lm"], "cs": 1, "d": "lm"}, {"a": ["lux"], "cs": 0, "d": "lux"}, {"a": ["lx"], "cs": 1, "d": "lx"}, {"a": ["candelapormetroquadrado"], "cs": 0, "d": "candela por metro quadrado"}, {"a": ["cd/m^2"], "cs": 1, "d": "cd/m²"}]}, "6.2": {"t": "lac", "c": [{"a": ["cdm^-2sr", "cdsr/m^2", "cdsrm^-2", "m^-2cdsr", "m^-2srcd", "srcd/m^2", "srcdm^-2", "srm^-2cd"], "cs": 1, "d": "cd·sr·m⁻²"}, {"a": ["cd/m^2", "cdm^-2", "m^-2cd"], "cs": 1, "d": "cd·m⁻²"}]}, "6.3": {"t": "assoc", "c": [0, 1, 2, 4, 4]}, "6.4": {"t": "vf", "c": [true, false, false, true]}, "7.1": {"t": "lac", "c": [{"a": ["becquerel"], "cs": 0, "d": "becquerel"}, {"a": ["Bq"], "cs": 1, "d": "Bq"}, {"a": ["gray"], "cs": 0, "d": "gray"}, {"a": ["Gy"], "cs": 1, "d": "Gy"}, {"a": ["sievert"], "cs": 0, "d": "sievert"}, {"a": ["Sv"], "cs": 1, "d": "Sv"}, {"a": ["coulombporkilograma", "coulombporquilograma"], "cs": 0, "d": "coulomb por kilograma"}, {"a": ["C/kg"], "cs": 1, "d": "C/kg"}]}, "7.2": {"t": "lac", "c": [{"a": ["1/s", "s^-1"], "cs": 1, "d": "s⁻¹"}, {"a": ["m^2/s^2", "m^2s^-2", "s^-2m^2"], "cs": 1, "d": "m²·s⁻²"}]}, "7.3": {"t": "assoc", "c": [1, 2, 3, 1]}, "7.4": {"t": "vf", "c": [true, false, false, true]}};</script>
 
 <script>
 (function () {
-  var CHAVE = 'LME-T0B-FA2-v6';
-  var estado = {};
-  try { estado = JSON.parse(localStorage.getItem(CHAVE) || '{}'); } catch (e) {}
-  function grava() { try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {} }
-  var SUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-'};
-  function sup(s) { return s.replace(/[⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+/g, function (m) { return '^' + m.split('').map(function (c) { return SUP[c]; }).join(''); }).replace(/\^+/g, '^'); }
-  function norm(s) {
-    s = (s || '').toLowerCase().replace(/[\s\u202f\u2009\u00a0]/g, '');
-    s = s.replace(/[×·*]/g, 'x');
-    s = sup(s);
-    s = s.replace(/(\d)e(-?\d+)$/, '$1x10^$2');
-    return s;
+  function br(x, casas) { return (casas === undefined ? String(x) : x.toFixed(casas)).replace('.', ','); }
+  function le(s) { s = (s || '').trim().replace(/\s/g, '').replace(',', '.'); return s === '' || isNaN(+s) ? null : +s; }
+  function unid(u) { return u === '°' ? '°' : ' ' + u; }
+  function casasLeitura(dv) { return Math.max(0, 1 - Math.floor(Math.log(dv) / Math.LN10 + 1e-9)); }
+  function casas(x) { var s = String(x); return s.indexOf('.') < 0 ? 0 : s.split('.')[1].length; }
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function el(pai, tag, at, txt) {
+    var e = document.createElementNS(SVGNS, tag);
+    for (var k in at) { e.setAttribute(k, at[k]); }
+    if (txt !== undefined) { e.textContent = txt; }
+    pai.appendChild(e); return e;
   }
-  /* simbolo de unidade: a caixa importa (kg nao e Kg); espacos e o ponto do produto, nao */
-  function normU(s) {
-    s = (s || '').replace(/[\s\u202f\u2009\u00a0·*.]/g, '').replace(/μ/g, 'µ').replace(/Ω/g, 'Ω').replace(/−/g, '-');
-    s = sup(s);
-    /* m2, s-2: expoente digitado sem ^ */
-    return s.replace(/([A-Za-zΩµ)])(-?\d+)/g, '$1^$2').replace(/\^+/g, '^');
-  }
-  function marcaFeito(q, ok) {
-    q.dataset.feita = '1'; q.dataset.ok = ok ? '1' : '0';
-    var p = q.querySelector('.q-porque'); if (p) p.classList.add('visivel');
-    var b = q.querySelector('.btn-conferir'); if (b) b.disabled = true;
-    estado[q.dataset.id] = ok ? 1 : 0; grava(); placar();
-  }
-  document.querySelectorAll('.vf-btn').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var l = b.closest('.vf-linha'); l.querySelectorAll('.vf-btn').forEach(function (o) { o.classList.remove('sel'); });
-      b.classList.add('sel');
+
+  /* ---------------- Simulacao 1: ler a escala ---------------- */
+  var INS = [
+    { nome: 'régua', un: 'mm', divs: [1, 2, 10], fmt: 0 },
+    { nome: 'dinamômetro', un: 'N', divs: [0.1, 0.2, 0.02], fmt: 2 },
+    { nome: 'transferidor', un: '°', divs: [1, 2, 10], fmt: 0 }
+  ];
+  var s1 = { i: 0, d: 0, valor: 0, ini: 0, feito: false, ok: 0, n: 0 };
+  var svg1 = document.getElementById('s1-svg');
+  function divsBotoes() {
+    var box = document.getElementById('s1-divs'); box.innerHTML = '';
+    INS[s1.i].divs.forEach(function (dv, k) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'sim-btn' + (k === s1.d ? ' ativa' : '');
+      b.textContent = br(dv) + unid(INS[s1.i].un);
+      b.addEventListener('click', function () { s1.d = k; divsBotoes(); nova1(); });
+      box.appendChild(b);
     });
-  });
-  document.querySelectorAll('.q[data-tipo]').forEach(function (q) {
-    var g = GAB[q.dataset.id], btn = q.querySelector('.btn-conferir');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      if (q.dataset.feita) return;
-      var ok = false;
-      if (g.t === 'simples') {
-        var marc = -1;
-        q.querySelectorAll('.q-op').forEach(function (op) { if (op.querySelector('input').checked) marc = +op.dataset.op; });
-        if (marc < 0) return;
-        q.querySelectorAll('.q-op').forEach(function (op) {
-          var j = +op.dataset.op;
-          if (j === g.c) op.classList.add('certa'); else if (j === marc) op.classList.add('errada');
-        });
-        ok = marc === g.c;
-      } else if (g.t === 'multipla') {
-        var cert = 0, err = 0;
-        q.querySelectorAll('.q-op').forEach(function (op) {
-          var j = +op.dataset.op, m = op.querySelector('input').checked, e = g.c.indexOf(j) >= 0;
-          if (e) op.classList.add('certa'); if (m && !e) { op.classList.add('errada'); err++; } if (m && e) cert++;
-        });
-        ok = cert === g.c.length && err === 0;
-      } else if (g.t === 'vf') {
-        var ac = 0, resp = 0;
-        q.querySelectorAll('.vf-linha').forEach(function (l, j) {
-          var s = l.querySelector('.vf-btn.sel'); if (s) resp++;
-          var r = s ? (s.dataset.r === 'V') : null;
-          if (r === g.c[j]) { l.classList.add('certa'); ac++; } else l.classList.add('errada');
-        });
-        if (!resp) { q.querySelectorAll('.vf-linha').forEach(function (l) { l.classList.remove('certa', 'errada'); }); return; }
-        ok = ac === g.c.length;
-      } else if (g.t === 'assoc') {
-        var oka = 0;
-        q.querySelectorAll('.assoc-linha').forEach(function (l, j) {
-          var v = parseInt(l.querySelector('select').value, 10);
-          if (v === g.c[j]) { l.classList.add('certa'); oka++; } else l.classList.add('errada');
-        });
-        ok = oka === g.c.length;
-      } else if (g.t === 'num') {
-        var inp = q.querySelector('.num-linha input'); if (!inp.value.trim()) return;
-        ok = g.c.indexOf(norm(inp.value)) >= 0;
-        q.querySelector('.num-linha').classList.add(ok ? 'certa' : 'errada');
-      } else if (g.t === 'lac') {
-        /* lacunas no texto e tabela para completar: todas preenchidas, cada uma conferida */
-        var ins = q.querySelectorAll('input.lac'), vazias = 0;
-        ins.forEach(function (i) { if (!i.value.trim()) vazias++; });
-        var av = q.querySelector('.aviso-lac');
-        if (vazias) { if (av) av.classList.add('visivel'); return; }
-        if (av) av.classList.remove('visivel');
-        var okl = 0;
-        ins.forEach(function (i, j) {
-          var sp = g.c[j], v = sp.cs ? normU(i.value) : norm(i.value);
-          var acertou = sp.a.indexOf(v) >= 0;
-          i.classList.add(acertou ? 'certa' : 'errada'); i.readOnly = true;
-          if (acertou) okl++;
-          else { var c = document.createElement('span'); c.className = 'corr'; c.textContent = sp.d; i.insertAdjacentElement('afterend', c); }
-        });
-        ok = okl === ins.length;
+    document.getElementById('s1-un').textContent = INS[s1.i].un;
+  }
+  function nova1() {
+    var ins = INS[s1.i], dv = ins.divs[s1.d];
+    var base = Math.floor(Math.random() * 6) + 1;          /* trecho de 10 divisoes, longe do zero */
+    s1.ini = +(base * 10 * dv).toFixed(4);
+    var k = 1 + Math.random() * 8;                            /* entre a 1.a e a 9.a divisao */
+    if (Math.abs(k - Math.round(k)) < 0.15) { k += 0.35; }    /* nunca em cima de um traco */
+    s1.valor = s1.ini + k * dv; s1.feito = false;
+    desenha1();
+    var inp = document.getElementById('s1-in'); inp.value = ''; inp.readOnly = false;
+    document.getElementById('s1-conf').disabled = false;
+    document.getElementById('s1-saida').className = 'sim-saida';
+  }
+  function desenha1() {
+    var ins = INS[s1.i], dv = ins.divs[s1.d];
+    while (svg1.firstChild) { svg1.removeChild(svg1.firstChild); }
+    var x0 = 30, x1 = 550, x = function (v) { return x0 + (v - s1.ini) / (10 * dv) * (x1 - x0); };
+    el(svg1, 'rect', { x: x0 - 8, y: 60, width: x1 - x0 + 16, height: 2, fill: 'currentColor' });
+    var g = el(svg1, 'g', { stroke: 'currentColor', 'stroke-width': 1.4 });
+    for (var t = 0; t <= 10; t++) {
+      var v = s1.ini + t * dv, h = (t % 10 === 0) ? 32 : (t % 5 === 0 ? 23 : 14);
+      el(g, 'line', { x1: x(v), y1: 60, x2: x(v), y2: 60 + h });
+      if (t % 5 === 0) {
+        el(svg1, 'text', { x: x(v), y: 112, 'text-anchor': 'middle', fill: 'currentColor',
+          'font-family': 'Century Gothic, Segoe UI, sans-serif', 'font-size': 14 }, br(+v.toFixed(ins.fmt + 1)));
       }
-      marcaFeito(q, ok);
+    }
+    el(svg1, 'text', { x: 594, y: 112, 'text-anchor': 'end', fill: 'currentColor', 'font-style': 'italic',
+      'font-family': 'Century Gothic, Segoe UI, sans-serif', 'font-size': 14 }, ins.un);
+    if (s1.i === 0) {   /* a regua: a peca encostada ate a borda */
+      el(svg1, 'rect', { x: 0, y: 24, width: x(s1.valor), height: 32, fill: 'currentColor', opacity: .18 });
+    }
+    var xm = x(s1.valor);
+    el(svg1, 'line', { x1: xm, y1: 14, x2: xm, y2: 96, stroke: '#7FB2D6', 'stroke-width': 3 });
+    el(svg1, 'path', { d: 'M' + (xm - 8) + ' 4 L' + (xm + 8) + ' 4 L' + xm + ' 16 Z', fill: '#7FB2D6' });
+  }
+  document.getElementById('s1-conf').addEventListener('click', function () {
+    if (s1.feito) { return; }
+    var ins = INS[s1.i], dv = ins.divs[s1.d], r = le(document.getElementById('s1-in').value);
+    if (r === null) { return; }
+    s1.feito = true; s1.n++;
+    var cas = casasLeitura(dv), ref = s1.valor.toFixed(cas), inc = dv / 2;
+    var bom = Math.abs(r - s1.valor) <= 0.3 * dv;
+    var dig = casas(String(document.getElementById('s1-in').value).trim().replace(',', '.'));
+    if (bom) { s1.ok++; }
+    var msg = bom ? '<b>Boa leitura.</b> ' : '<b>A leitura passou do traço certo.</b> ';
+    msg += 'A marca está em ' + br(ref) + unid(ins.un) + ' (o último algarismo é estimado: leituras vizinhas também são honestas). ';
+    if (dig < cas) { msg += 'Faltou o algarismo estimado: com menor divisão de ' + br(dv) + unid(ins.un) + ', a leitura vai um algarismo além do que a escala mostra' + (cas ? ', até a casa de ' + br(Math.pow(10, -cas).toFixed(cas)) : '') + '. '; }
+    msg += 'Incerteza de leitura (analógica): metade da menor divisão, ' + br(inc) + unid(ins.un) + '. ';
+    var casInc = casas(inc), val = (bom ? +r : s1.valor).toFixed(casInc);
+    msg += 'Resultado: <b>(' + br(val) + ' ± ' + br(inc) + ')' + unid(ins.un) + '</b>.';
+    var s = document.getElementById('s1-saida');
+    s.innerHTML = msg; s.className = 'sim-saida visivel ' + (bom ? 'ok' : 'erro');
+    document.getElementById('s1-in').readOnly = true; this.disabled = true;
+    document.getElementById('s1-placar').textContent = s1.ok + ' de ' + s1.n + ' leituras boas';
+  });
+  document.getElementById('s1-nova').addEventListener('click', nova1);
+  document.querySelectorAll('.s1-ins').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.s1-ins').forEach(function (o) { o.classList.remove('ativa'); });
+      b.classList.add('ativa'); s1.i = +b.dataset.i; s1.d = 0; divsBotoes(); nova1();
     });
   });
-  document.querySelectorAll('.aberta').forEach(function (q) {
-    var ver = q.querySelector('.btn-conferir'), ta = q.querySelector('textarea');
-    var k = q.dataset.id;
-    if (estado['txt-' + k]) ta.value = estado['txt-' + k];
-    ta.addEventListener('input', function () { estado['txt-' + k] = ta.value; grava(); });
-    ver.addEventListener('click', function () {
-      q.querySelector('.modelo').classList.add('visivel'); q.querySelector('.autoav').classList.add('visivel');
+  divsBotoes(); nova1();
+
+  /* ---------------- Simulacao 2: estimar, medir e julgar ---------------- */
+  /* valor medido na unidade-base (m, kg, s, N) e as unidades em que se pode estimar */
+  var UN = { comprimento: [['mm', 1e-3], ['cm', 1e-2], ['m', 1]], massa: [['mg', 1e-6], ['g', 1e-3], ['kg', 1]],
+             tempo: [['ms', 1e-3], ['s', 1]], forca: [['N', 1]] };
+  var TAREFAS = [
+    { t: 'A espessura de uma folha de papel sulfite', g: 'comprimento', v: 1.0e-4, m: '0,10 mm (pilha de 500 folhas: 50 mm)' },
+    { t: 'A massa de um clipe de papel comum', g: 'massa', v: 4.4e-4, m: '0,44 g (vinte clipes na balança: 8,7 g)' },
+    { t: 'O diâmetro da moeda de R$ 1', g: 'comprimento', v: 2.7e-2, m: '27,0 mm (paquímetro)' },
+    { t: 'A massa da moeda de R$ 1', g: 'massa', v: 7.0e-3, m: '7,0 g (balança)' },
+    { t: 'O seu tempo de reação, segurando uma régua que cai', g: 'tempo', v: 0.19, m: '0,19 s (régua caiu 18 cm; t = √(2h/g))' },
+    { t: 'A altura da porta de uma sala de aula', g: 'comprimento', v: 2.1, m: '2,10 m (trena)' },
+    { t: 'O peso de um caderno de 200 g de massa', g: 'forca', v: 1.96, m: '2,0 N (dinamômetro; P = m g)' },
+    { t: 'A massa de um litro de água', g: 'massa', v: 1.0, m: '1,0 kg (balança, descontada a jarra)' }
+  ];
+  var s2 = { k: -1, est: null, feitas: 0, dentro: 0, pontos: [] };
+  var svg2 = document.getElementById('s2-svg');
+  function eixo() {
+    while (svg2.firstChild) { svg2.removeChild(svg2.firstChild); }
+    var x0 = 30, x1 = 570, X = function (e) { return x0 + (e + 2) / 4 * (x1 - x0); };   /* expoente de -2 a +2 */
+    el(svg2, 'rect', { x: X(-0.5), y: 30, width: X(0.5) - X(-0.5), height: 40, fill: '#3E8E5A', opacity: .28 });
+    el(svg2, 'line', { x1: x0, y1: 70, x2: x1, y2: 70, stroke: 'currentColor', 'stroke-width': 1.5 });
+    [[-2, '0,01'], [-1, '0,1'], [-0.5, '0,3'], [0, '1'], [0.5, '3'], [1, '10'], [2, '100']].forEach(function (p) {
+      el(svg2, 'line', { x1: X(p[0]), y1: 64, x2: X(p[0]), y2: 76, stroke: 'currentColor', 'stroke-width': 1.3 });
+      el(svg2, 'text', { x: X(p[0]), y: 96, 'text-anchor': 'middle', fill: 'currentColor',
+        'font-family': 'Century Gothic, Segoe UI, sans-serif', 'font-size': 13 }, p[1]);
     });
-    q.querySelectorAll('.autoav button').forEach(function (b) {
-      b.addEventListener('click', function () {
-        q.querySelectorAll('.autoav button').forEach(function (o) { o.classList.remove('sel'); });
-        b.classList.add('sel'); estado['av-' + k] = b.dataset.av; grava();
-      });
-    });
-  });
-  function placar() {
-    document.querySelectorAll('.placar-linha').forEach(function (l) {
-      var t = l.dataset.t, tot = 0, feitos = 0, ok = 0;
-      document.querySelectorAll('.q[data-tipo][data-t="' + t + '"]').forEach(function (q) {
-        tot++; if (q.dataset.feita) { feitos++; if (q.dataset.ok === '1') ok++; }
-      });
-      l.querySelector('.pl-n').textContent = ok + ' de ' + tot + (feitos < tot ? ' (' + (tot - feitos) + ' por fazer)' : '');
-      l.classList.toggle('voltar', feitos === tot && ok < tot - 1);
+    el(svg2, 'text', { x: 300, y: 116, 'text-anchor': 'middle', fill: 'currentColor', opacity: .7,
+      'font-family': 'Century Gothic, Segoe UI, sans-serif', 'font-size': 12 }, 'razão = medido ÷ estimado (escala de potências de 10)');
+    s2.pontos.forEach(function (p, i) {
+      var e = Math.max(-2, Math.min(2, p));
+      el(svg2, 'circle', { cx: X(e), cy: 50, r: i === s2.pontos.length - 1 ? 8 : 5,
+        fill: Math.abs(p) <= 0.5 ? '#3E8E5A' : '#C0504D', opacity: i === s2.pontos.length - 1 ? 1 : .45 });
     });
   }
-  placar();
+  function nova2() {
+    var k; do { k = Math.floor(Math.random() * TAREFAS.length); } while (k === s2.k && TAREFAS.length > 1);
+    s2.k = k; s2.est = null;
+    var t = TAREFAS[k], sel = document.getElementById('s2-un');
+    document.getElementById('s2-tarefa').textContent = t.t + '.';
+    sel.innerHTML = ''; UN[t.g].forEach(function (u, i) {
+      var o = document.createElement('option'); o.value = i; o.textContent = u[0]; sel.appendChild(o);
+    });
+    var inp = document.getElementById('s2-in'); inp.value = ''; inp.readOnly = false; sel.disabled = false;
+    document.getElementById('s2-gravar').disabled = false; document.getElementById('s2-medir').disabled = true;
+    document.getElementById('s2-saida').className = 'sim-saida';
+    document.getElementById('s2-porque').style.display = 'none';
+    document.querySelector('#s2-porque textarea').value = '';
+  }
+  document.getElementById('s2-gravar').addEventListener('click', function () {
+    var x = le(document.getElementById('s2-in').value);
+    if (x === null || x <= 0) { return; }
+    var t = TAREFAS[s2.k], u = UN[t.g][+document.getElementById('s2-un').value];
+    s2.est = { num: x, un: u[0], base: x * u[1] };
+    document.getElementById('s2-in').readOnly = true; document.getElementById('s2-un').disabled = true;
+    this.disabled = true; document.getElementById('s2-medir').disabled = false;
+  });
+  document.getElementById('s2-medir').addEventListener('click', function () {
+    if (!s2.est) { return; }
+    var t = TAREFAS[s2.k], u = UN[t.g].filter(function (q) { return q[0] === s2.est.un; })[0];
+    var medidoNaUn = t.v / u[1], razao = t.v / s2.est.base, e = Math.log(razao) / Math.LN10;
+    var dentro = Math.abs(e) <= 0.5;
+    s2.feitas++; if (dentro) { s2.dentro++; } s2.pontos.push(e); eixo();
+    var fmt = function (x) { var a = Math.abs(x); return br(+x.toPrecision(a >= 100 ? 4 : 2)); };
+    var s = document.getElementById('s2-saida');
+    s.innerHTML = 'Medido: <b>' + t.m + '</b>. Na unidade da sua estimativa: ' + br(+medidoNaUn.toPrecision(3)) + ' ' + s2.est.un +
+      '. Razão = ' + br(+medidoNaUn.toPrecision(3)) + ' ÷ ' + br(s2.est.num) + ' ≈ <b>' + fmt(razao) + '</b> (expoente ' + br(e.toFixed(2)) + '). ' +
+      (dentro ? '<b>Acertou a ordem de grandeza</b>: a razão ficou entre 0,3 e 3.'
+              : '<b>Falhou</b>: a razão ficou ' + (razao < 0.3 ? 'abaixo de 0,3 — você estimou demais.' : 'acima de 3 — você estimou de menos.') +
+                ' Na bancada, a estimativa não se apaga: escreve-se o porquê.');
+    s.className = 'sim-saida visivel ' + (dentro ? 'ok' : 'erro');
+    document.getElementById('s2-porque').style.display = dentro ? 'none' : '';
+    this.disabled = true;
+    document.getElementById('s2-placar').textContent = s2.dentro + ' de ' + s2.feitas + ' estimativas dentro da faixa';
+  });
+  document.getElementById('s2-nova').addEventListener('click', nova2);
+  eixo(); nova2();
 })();
 </script>
 <!-- ABAS-OA-LME (trilho de 6 abas — abas_oa.py) -->

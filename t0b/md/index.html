@@ -199,6 +199,24 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
 .despedida:has(.desp-bg) .desp-coluna .desp-frase > .lme-inst-marcas { border-top-color: oklch(0.70 0 0 / .5); }
 /* /ICONES-LME */
 </style>
+<style>
+/* FIGURAS-LME (figuras_ilb.py) */
+.figura-lme { display: flex; flex-direction: column; align-items: stretch;
+  max-width: 680px; margin: 26px auto; border: 1px solid var(--cinza-borda, #b8c2bb);
+  border-radius: 6px; overflow: hidden; background: var(--superficie, #fff); }
+.figura-lme img { display: block; width: 100%; height: auto; margin: 0; }
+.figura-lme figcaption { border-top: 2px solid var(--verde, #3E8E5A);
+  background: var(--fundo-legenda, rgba(62,142,90,.10)); padding: 9px 14px;
+  font-size: .95rem; line-height: 1.45; text-align: left; }
+.figura-lme .figura-lme-num { font-weight: 700; color: var(--verde, #3E8E5A); }
+.figura-lme.figura-lme-p { max-width: 420px; }
+@media print {
+  .figura-lme { break-inside: avoid; page-break-inside: avoid; }
+  .figura-lme img { filter: grayscale(1); }
+  .figura-lme figcaption { background: #eeeeee; color: #222; }
+  .figura-lme .figura-lme-num { color: #222; }
+}
+</style>
 </head>
 <body data-pagina="t0b:md">
 
@@ -221,6 +239,7 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
   <span class="piazzi-text">J. S. Bach &mdash; Su&iacute;tes para violoncelo, BWV 1007 &middot; c. 1720 &middot; ~18 min</span>
 </div>
 
+<figure class="figura-lme"><img src="../_imagens/_web/LME-T0B-Figura-02-v2-web.jpg" alt="Figura 2 &mdash; Um mar de incertezas e um arquipélago de certezas: a navegação de Morin." loading="lazy"><figcaption><span class="figura-lme-num">Figura 2</span> &mdash; Um mar de incertezas e um arquipélago de certezas: a navegação de Morin.</figcaption></figure>
 <div class="intro-box">
   <strong>Como usar.</strong> Ou&ccedil;a no trajeto at&eacute; o campus, sem ler nada. Depois, com o texto na tela, abra cada trecho, marque o que j&aacute; ouviu e responda a autoavalia&ccedil;&atilde;o do fim &mdash; ela n&atilde;o vale nota e n&atilde;o sai do seu aparelho. S&oacute; ent&atilde;o v&aacute; ao <strong>Texto Tem&aacute;tico</strong>: o &aacute;udio monta o esqueleto, o texto preenche.
 </div>
@@ -228,152 +247,140 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
 <div class="player" id="player">
   <div class="player-topo">
     <span class="player-titulo">&Aacute;udio da trilha</span>
-    <button class="faixa-btn ativa" data-src="LME-T0B-MD-v3-padrao.m4a">Vers&atilde;o padr&atilde;o</button><button class="faixa-btn" data-src="LME-T0B-MD-v3-curto.m4a">Vers&atilde;o curta</button>
+    <button class="faixa-btn ativa" data-src="LME-T0B-MD-v1-padrao.m4a">Vers&atilde;o padr&atilde;o</button><button class="faixa-btn" data-src="LME-T0B-MD-v1-curto.m4a">Vers&atilde;o curta</button>
   </div>
-  <audio id="audio" controls preload="none" src="LME-T0B-MD-v3-padrao.m4a"></audio>
+  <audio id="audio" controls preload="none" src="LME-T0B-MD-v1-padrao.m4a"></audio>
   <div class="sem-audio">O arquivo de &aacute;udio ainda n&atilde;o foi publicado nesta pasta. O texto abaixo &eacute; o roteiro completo &mdash; d&aacute; para ler enquanto isso.</div>
 </div>
 
 <div class="secao" data-idx="0">
   <div class="secao-header" data-idx="0">
-    <span class="secao-num">00</span><span class="secao-titulo">Antes de tudo &mdash; uma pergunta de cabe&ccedil;a</span><div class="secao-check"><input type="checkbox" id="chk-0" data-idx="0"><label for="chk-0">ouvido</label></div><span class="secao-seta">&#9654;</span>
+    <span class="secao-num">00</span><span class="secao-titulo">Antes de tudo — quanto ouro o minerador achava que tinha?</span><div class="secao-check"><input type="checkbox" id="chk-0" data-idx="0"><label for="chk-0">ouvido</label></div><span class="secao-seta">&#9654;</span>
   </div>
   <div class="secao-body"><div class="secao-texto">
-<p>Responda sem calcular: quanto pesa a terra retirada de uma cava de min&eacute;rio de ferro do <span class="termo">Quadril&aacute;tero Ferr&iacute;fero</span>? Basta dizer se &eacute; mais perto de <strong>mil</strong> toneladas, de <strong>um milh&atilde;o</strong> ou de <strong>um bilh&atilde;o</strong>.</p>
-<p>Mil, um milh&atilde;o e um bilh&atilde;o soam todos como &ldquo;muito&rdquo;. Mas entre o primeiro e o &uacute;ltimo h&aacute; <strong>seis pot&ecirc;ncias de dez</strong> &mdash; a dist&acirc;ncia que separa um gr&atilde;o de areia de uma quadra de futebol.</p>
-<p>Na T0A voc&ecirc; ouviu que a previs&atilde;o vem antes do dado. Esta noite voc&ecirc; faz a primeira, com o modelo mais simples que existe: a <span class="termo">ordem de grandeza</span>. Escreve o que espera, mede, e o dado diz se a estimativa aguentou.</p>
-<p class="citacao">O homem suspenso entre dois infinitos: pequeno demais para o todo, vasto demais para o nada. &mdash; <em>Pensamentos</em>, Blaise Pascal, 1670</p></div></div>
+<p>Em 1720, Vila Rica se levantou contra uma balança. A Coroa mandou instalar as <span class="termo">Casas de Fundição</span>: o ouro em pó teria a massa medida na balança, e a Coroa ficaria com o <strong>quinto</strong>. Até então ele corria de mão em mão, com a massa medida em <span class="termo">oitavas</span>.</p>
+<p>Diante de uma balança de ouro do Museu de Ciência e Técnica da Escola de Minas, Sofia pergunta: <em>quanto ouro o minerador achava que tinha, antes de pôr o ouro na balança?</em> O minerador tinha um número na cabeça; a Coroa, outro na balança; e cada lado chamava o outro de ladrão.</p>
+<p>A resposta dá nome à trilha: <strong>toda medida é um número e uma dúvida</strong>. Cinco passos, na ordem da bancada: estimar, medir, ler a escala, separar erro de incerteza e escrever o resultado com a sua dúvida.</p>
+<p class="citacao">&ldquo;O conhecimento é a navegação em um oceano de incertezas, através de arquipélagos de certezas.&rdquo; &mdash; Edgar Morin</p></div></div>
 </div>
 <div class="secao" data-idx="1">
   <div class="secao-header" data-idx="1">
-    <span class="secao-num">01</span><span class="secao-titulo">1. A bancada primeiro: estimar antes de medir</span><div class="secao-check"><input type="checkbox" id="chk-1" data-idx="1"><label for="chk-1">ouvido</label></div><span class="secao-seta">&#9654;</span>
+    <span class="secao-num">01</span><span class="secao-titulo">1. Estimar antes de medir</span><div class="secao-check"><input type="checkbox" id="chk-1" data-idx="1"><label for="chk-1">ouvido</label></div><span class="secao-seta">&#9654;</span>
   </div>
   <div class="secao-body"><div class="secao-texto">
-<p>A bancada &eacute; a mesma da Introdu&ccedil;&atilde;o ao Laborat&oacute;rio, duas horas antes: r&eacute;gua, paqu&iacute;metro, trena, balan&ccedil;a, a massa aferida de 100&nbsp;g. Mudam os objetos: gr&atilde;os de areia de rejeito, gr&acirc;nulos de min&eacute;rio, uma amostra de rocha e a planta de uma cava.</p>
-<p><strong>Esta&ccedil;&atilde;o A &mdash; comprimento.</strong> O di&acirc;metro de um gr&atilde;o (quantos cabem em 1&nbsp;cm) &middot; o volume da amostra (tr&ecirc;s arestas) &middot; o comprimento real da cava (planta e escala).</p>
-<p><strong>Esta&ccedil;&atilde;o B &mdash; massa.</strong> A balan&ccedil;a conferida com a massa aferida &middot; a massa de um gr&acirc;nulo (20, divididos por 20) &middot; a densidade da rocha &middot; a massa retirada da cava, calculada.</p>
-<p>Cada tarefa, tr&ecirc;s linhas no Roteiro de Bancada: <span class="termo">estimativa</span> a caneta e justificada, <span class="termo">medida</span>, <span class="termo">raz&atilde;o</span>. Entre <strong>1/3 e 3</strong>, a estimativa acertou a ordem. Fora disso, escreve-se qual hip&oacute;tese falhou. <em>Errar a ordem n&atilde;o &eacute; erro de conduta; deixar de dizer por qu&ecirc;, &eacute;.</em></p></div></div>
+<p>A linha 1 de cada tarefa pede uma <span class="termo">estimativa</span>, feita com o cérebro e escrita <strong>a caneta</strong>. Estimar não é chutar: é comparar com uma referência que você leva consigo &mdash; 1&nbsp;mm na régua, 10&deg; no transferidor, 10,0&nbsp;g de clipes na palma, 100&nbsp;g de massa que pesam perto de 1,0&nbsp;N.</p>
+<p><strong>Ordem de grandeza</strong> é a potência de 10 mais próxima do valor. A base é sempre 10; o que varia é o <strong>expoente</strong>. A bancada julga pela <strong>razão = medido / estimado</strong>, na mesma unidade: o expoente da razão deve ficar entre &minus;0,5 e +0,5, isto é, a razão entre <strong>0,3 e 3</strong>.</p>
+<p><strong>Por que 0,3 e 3?</strong> 10<sup>0,5</sup> &times; 10<sup>0,5</sup> = 10<sup>1</sup> = 10, então 10<sup>0,5</sup> = &radic;10 &asymp; 3,16 &mdash; a <span class="termo">média geométrica</span> entre 1 e 10, o meio do caminho por fatores. O inverso é 0,316.</p>
+<p><strong>Estimativa de Fermi:</strong> o que não se compara de uma vez se quebra em partes que cabem na mão. Fermi estimou a energia do primeiro teste atômico pelo deslocamento de papeizinhos &mdash; e acertou a ordem de grandeza.</p></div></div>
 </div>
 <div class="secao" data-idx="2">
   <div class="secao-header" data-idx="2">
-    <span class="secao-num">02</span><span class="secao-titulo">2. Pot&ecirc;ncias de dez e ordem de grandeza</span><div class="secao-check"><input type="checkbox" id="chk-2" data-idx="2"><label for="chk-2">ouvido</label></div><span class="secao-seta">&#9654;</span>
+    <span class="secao-num">02</span><span class="secao-titulo">2. Grandeza, unidade e instrumento</span><div class="secao-check"><input type="checkbox" id="chk-2" data-idx="2"><label for="chk-2">ouvido</label></div><span class="secao-seta">&#9654;</span>
   </div>
   <div class="secao-body"><div class="secao-texto">
-<p>A <span class="termo">nota&ccedil;&atilde;o cient&iacute;fica</span> separa o que o n&uacute;mero &eacute; de onde ele mora: a cava de 1&nbsp;200&nbsp;m &eacute; 1,2&nbsp;&times;&nbsp;10<sup>3</sup>&nbsp;m; o gr&atilde;o de areia, 3&nbsp;&times;&nbsp;10<sup>&minus;4</sup>&nbsp;m.</p>
-<p>A <span class="termo">ordem de grandeza</span> &eacute; a pot&ecirc;ncia de dez mais pr&oacute;xima, com a fronteira em <strong>&radic;10 &asymp; 3,16</strong>. Por esse crit&eacute;rio, a densidade da hematita, 5,3&nbsp;&times;&nbsp;10<sup>3</sup>&nbsp;kg/m<sup>3</sup>, tem ordem <strong>10<sup>4</sup></strong>.</p>
-<p><strong>A r&eacute;gua da minera&ccedil;&atilde;o, em sete degraus:</strong> gr&atilde;o 10<sup>&minus;4</sup>&nbsp;m &middot; gr&acirc;nulo mm &middot; amostra 10<sup>&minus;1</sup>&nbsp;m &middot; pessoa 10<sup>0</sup>&nbsp;m &middot; degrau da cava 10<sup>1</sup>&nbsp;m &middot; profundidade 10<sup>2</sup>&nbsp;m &middot; comprimento da cava 10<sup>3</sup>&nbsp;m.</p>
-<p>Multiplicar &eacute; somar expoentes. Um gr&atilde;o com di&acirc;metro <strong>dez</strong> vezes menor tem massa <strong>mil</strong> vezes menor.</p></div></div>
+<p>O <span class="termo">Vocabulário Internacional de Metrologia (VIM)</span> chama de <strong>grandeza</strong> o que se exprime por um número e uma referência; o que se quer medir é o <strong>mensurando</strong>; o resultado é <strong>número &times; unidade</strong>. Medir é comparar com a unidade, por meio de um instrumento, numa faixa.</p>
+<p><strong>Massa não é peso.</strong> A massa mede a inércia, em kg, e não muda na Lua; o peso é uma força, <em>P</em> = <em>m</em>&thinsp;<em>g</em>, em N, vertical e para baixo. A <strong>balança</strong> indica massa; o <strong>dinamômetro</strong>, peso.</p>
+<p>Medida <strong>direta</strong>: o paquímetro abraça a moeda. <strong>Indireta</strong>: a régua do tempo de reação mede a queda, e o tempo sai de <em>t</em> = &radic;(2<em>h</em>/<em>g</em>). E o truque da pilha: 12 folhas em 1,0&nbsp;mm dão 0,083&nbsp;mm cada &mdash; a dúvida também se divide por 12.</p></div></div>
 </div>
 <div class="secao" data-idx="3">
   <div class="secao-header" data-idx="3">
-    <span class="secao-num">03</span><span class="secao-titulo">3. A estimativa como primeiro modelo</span><div class="secao-check"><input type="checkbox" id="chk-3" data-idx="3"><label for="chk-3">ouvido</label></div><span class="secao-seta">&#9654;</span>
+    <span class="secao-num">03</span><span class="secao-titulo">3. Leitura de escala e menor divisão</span><div class="secao-check"><input type="checkbox" id="chk-3" data-idx="3"><label for="chk-3">ouvido</label></div><span class="secao-seta">&#9654;</span>
   </div>
   <div class="secao-body"><div class="secao-texto">
-<p>As <span class="termo">estimativas de Fermi</span> respondem perguntas &ldquo;imposs&iacute;veis&rdquo; em ordem de grandeza. Quatro passos, a vers&atilde;o de bolso do <span class="termo">Protocolo C5</span>: <strong>decompor</strong> em fatores &middot; <strong>declarar</strong> a hip&oacute;tese de cada um &middot; <strong>calcular</strong> com unidades, somando expoentes &middot; <strong>julgar</strong> a plausibilidade.</p>
-<p>Os erros dos fatores tendem a se compensar &mdash; tendem, n&atilde;o &eacute; garantia. Se todos erram para o mesmo lado, somam-se.</p>
-<p><strong>A dobra da licenciatura:</strong> a calculadora, a planilha e a intelig&ecirc;ncia artificial n&atilde;o erram a conta, mas podem receber o dado errado. Um prefixo trocado muda o resultado em tr&ecirc;s ordens &mdash; e s&oacute; percebe quem tinha uma estimativa na cabe&ccedil;a.</p></div></div>
+<p>A <span class="termo">resolução</span> (VIM 4.14) é a menor variação que muda a indicação: a <strong>menor divisão</strong> da escala ou o último dígito do mostrador. É a fronteira do que o instrumento sabe.</p>
+<p><strong>Escala analógica:</strong> entre dois traços, o último algarismo se estima &mdash; e é duvidoso. Cuidado com a <span class="termo">paralaxe</span>: olho fora da perpendicular, leitura sempre deslocada para o mesmo lado. <strong>Mostrador digital:</strong> o último dígito faz o papel de duvidoso.</p>
+<p><strong>O zero:</strong> o dinamômetro que marca 0,1&nbsp;N vazio soma isso a todo peso; a balança sem tara soma o prato. As balanças de ouro do século XVIII tinham <strong>massas-padrão</strong> &mdash; os &ldquo;pesos&rdquo; da fala do dia a dia &mdash;, e abaixo da menor delas a balança não decidia.</p></div></div>
 </div>
 <div class="secao" data-idx="4">
   <div class="secao-header" data-idx="4">
-    <span class="secao-num">04</span><span class="secao-titulo">4. O SI, revisto como r&eacute;gua de escala</span><div class="secao-check"><input type="checkbox" id="chk-4" data-idx="4"><label for="chk-4">ouvido</label></div><span class="secao-seta">&#9654;</span>
+    <span class="secao-num">04</span><span class="secao-titulo">4. Erro e incerteza</span><div class="secao-check"><input type="checkbox" id="chk-4" data-idx="4"><label for="chk-4">ouvido</label></div><span class="secao-seta">&#9654;</span>
   </div>
   <div class="secao-body"><div class="secao-texto">
-<p>As sete unidades de base s&atilde;o definidas, desde <strong>2019</strong>, por constantes da natureza; o kilograma deixou de ser o cilindro de S&egrave;vres e passou a vir da <span class="termo">constante de Planck</span>.</p>
-<p>Os <span class="termo">prefixos</span> s&atilde;o ordens com nome: &micro; 10<sup>&minus;6</sup> &middot; m 10<sup>&minus;3</sup> &middot; k 10<sup>3</sup> &middot; M 10<sup>6</sup> &middot; G 10<sup>9</sup>. A <strong>tonelada</strong> (10<sup>3</sup>&nbsp;kg) mede a produ&ccedil;&atilde;o mineral; o quilate e a oitava pesaram as pedras e o ouro da regi&atilde;o.</p>
-<p>A massa aferida da bancada liga cada grama da noite, pelo Inmetro e pelo BIPM, &agrave; constante de Planck: isso &eacute; <span class="termo">rastreabilidade</span>. E a grafia vale: 5&nbsp;kg, nunca 5&nbsp;kgs; espa&ccedil;o entre n&uacute;mero e s&iacute;mbolo.</p></div></div>
+<p><span class="termo">Erro de medição</span> (VIM 2.16) é a diferença para um valor de referência &mdash; que quase nunca se conhece. <span class="termo">Incerteza de medição</span> (VIM 2.26) é a dúvida que quem mediu declara. O erro quase nunca se conhece; a incerteza sempre se declara.</p>
+<p><strong>Três famílias:</strong> o <strong>grosseiro</strong> (engano) se elimina; o <strong>sistemático</strong> (todas as leituras para o mesmo lado) se corrige achando a causa; o <strong>aleatório</strong> (ora mais, ora menos) não se elimina &mdash; repete-se a medida e trata-se o conjunto.</p>
+<p>A estimativa que falhou <strong>não é erro de medição</strong>: errou o modelo que você tinha da grandeza. Por isso o roteiro pergunta &ldquo;por quê?&rdquo;.</p></div></div>
 </div>
 <div class="secao" data-idx="5">
   <div class="secao-header" data-idx="5">
-    <span class="secao-num">05</span><span class="secao-titulo">5. Do gr&atilde;o &agrave; cava</span><div class="secao-check"><input type="checkbox" id="chk-5" data-idx="5"><label for="chk-5">ouvido</label></div><span class="secao-seta">&#9654;</span>
+    <span class="secao-num">05</span><span class="secao-titulo">5. Valor ± incerteza</span><div class="secao-check"><input type="checkbox" id="chk-5" data-idx="5"><label for="chk-5">ouvido</label></div><span class="secao-seta">&#9654;</span>
   </div>
   <div class="secao-body"><div class="secao-texto">
-<p>Massa retirada = comprimento &times; largura &times; profundidade &times; densidade. Com a cava da ordem de 1&nbsp;km, meia largura, 100&nbsp;m de fundo e a densidade medida na bancada, sai na ordem de <strong>centenas de milh&otilde;es de toneladas</strong>.</p>
-<p>Confronte com a produ&ccedil;&atilde;o anual publicada: uma d&eacute;cada de lavra &eacute; plaus&iacute;vel. Se a conta desse 10<sup>5</sup>&nbsp;t, a mina teria sido escavada num dia.</p>
-<p>A mesma ideia desce a escala: o gr&acirc;nulo pesou cerca de 10<sup>&minus;5</sup>&nbsp;kg; o gr&atilde;o de areia, dez vezes menor em di&acirc;metro, pesa cerca de 10<sup>&minus;8</sup>&nbsp;kg &mdash; <em>medido com racioc&iacute;nio, onde a balan&ccedil;a n&atilde;o alcan&ccedil;a.</em></p></div></div>
+<p>O resultado é <strong>(melhor estimativa &plusmn; incerteza) unidade</strong>: <em>d</em> = (26,8 &plusmn; 0,5)&nbsp;mm. A convenção da LME: na escala analógica, metade da menor divisão; no mostrador digital, uma unidade do último dígito.</p>
+<p>A incerteza leva <strong>um algarismo significativo</strong> (dois, se o primeiro for 1), e o valor termina na mesma casa decimal. A <span class="termo">incerteza relativa</span> mostra por que a pilha funciona: uma folha sozinha, 500&nbsp;%; doze folhas, 50&nbsp;%; cem, perto de 5&nbsp;%.</p>
+<p>Duas medidas <strong>concordam</strong> quando os intervalos se sobrepõem. Essa regra vai julgar o equilíbrio de forças na Estática.</p></div></div>
 </div>
 <div class="secao" data-idx="6">
   <div class="secao-header" data-idx="6">
-    <span class="secao-num">06</span><span class="secao-titulo">S&iacute;ntese &mdash; a r&eacute;gua do mundo</span><div class="secao-check"><input type="checkbox" id="chk-6" data-idx="6"><label for="chk-6">ouvido</label></div><span class="secao-seta">&#9654;</span>
+    <span class="secao-num">06</span><span class="secao-titulo">Síntese — de volta a Vila Rica</span><div class="secao-check"><input type="checkbox" id="chk-6" data-idx="6"><label for="chk-6">ouvido</label></div><span class="secao-seta">&#9654;</span>
   </div>
   <div class="secao-body"><div class="secao-texto">
-<p>Seis linhas no Roteiro de Bancada: o que voc&ecirc; esperava, o que mediu e a raz&atilde;o. A linha fora de 1/3 a 3, com a hip&oacute;tese que falhou ao lado, &eacute; a mais valiosa do roteiro.</p>
-<p><strong>Pascal</strong> viu o homem suspenso entre dois infinitos; <strong>Fermi</strong> mediu uma explos&atilde;o com peda&ccedil;os de papel e uma ordem de grandeza; <strong>Charles e Ray Eames</strong>, em <em>Powers of Ten</em>, foram de um piquenique &agrave;s gal&aacute;xias, dez vezes mais longe a cada dez segundos.</p>
-<p><strong>Na T0C</strong>, as unidades ganham padr&atilde;o; <strong>na T0D</strong>, a medida ganha algarismos significativos. A r&eacute;gua de hoje &eacute; o que impede a conta mais cuidadosa de sair seis ordens errada.</p></div></div>
-</div>
-<div class="secao" data-idx="7">
-  <div class="secao-header" data-idx="7">
-    <span class="secao-num">07</span><span class="secao-titulo">Conex&otilde;es &mdash; pr&aacute;tica docente, hist&oacute;ria, metrologia, minera&ccedil;&atilde;o e arte</span><div class="secao-check"><input type="checkbox" id="chk-7" data-idx="7"><label for="chk-7">ouvido</label></div><span class="secao-seta">&#9654;</span>
-  </div>
-  <div class="secao-body"><div class="secao-texto">
-<p><strong>Pr&aacute;tica docente:</strong> a estimativa escrita antes da medida &eacute; a atividade mais barata que um professor tem, e a melhor defesa da turma contra o n&uacute;mero pronto.</p>
-<p><strong>Hist&oacute;ria de Ouro Preto:</strong> da oitava do ouro colonial, cerca de 3,6&nbsp;g, &agrave;s cavas do Quadril&aacute;tero medidas em kilometros &mdash; nove ordens de grandeza na mesma regi&atilde;o.</p>
-<p><strong>Metrologia:</strong> a ordem de grandeza &eacute; a incerteza mais grosseira que existe; a rastreabilidade liga a massa aferida &agrave; constante de Planck.</p>
-<p><strong>Minera&ccedil;&atilde;o:</strong> a britagem reduz o bloco de metro ao gr&atilde;o de mil&iacute;metro; o planejamento de lavra estima antes de detonar e pesa depois.</p>
-<p><strong>Arte:</strong> em <em>Powers of Ten</em>, cada pot&ecirc;ncia de dez &eacute; um enquadramento.</p></div></div>
+<p>O minerador tinha uma <strong>estimativa</strong>; a Coroa, uma <strong>medida</strong> com unidade, a oitava; a balança, uma <strong>resolução</strong>; a diferença podia ser engano, erro sistemático ou dispersão &mdash; e <strong>erro não é incerteza</strong>; e ninguém escreveu a sua dúvida.</p>
+<p>Na bancada, seis vezes: o número da cabeça, a caneta; o do instrumento, com a menor divisão; a razão; e, se ela sair da faixa, a frase que diz por quê. <strong>Toda medida é um número e uma dúvida.</strong></p>
+<p><strong>O que vem na T0C.</strong> A unidade, até aqui metade do resultado, ganha a trilha inteira: o Sistema Internacional e o Quadro Geral de Unidades.</p></div></div>
 </div>
 
 <div class="quiz-section">
   <div class="quiz-titulo">Autoavalia&ccedil;&atilde;o</div>
   <div class="quiz-sub">Cinco perguntas, sem nota e sem envio. Escolha e veja o porqu&ecirc;.</div>
   <div class="quiz-q" data-q="0">
-  <div class="quiz-enunciado">1. Pelo crit&eacute;rio da trilha (fronteira em &radic;10), qual &eacute; a ordem de grandeza de 5,3&nbsp;&times;&nbsp;10<sup>3</sup>&nbsp;kg/m<sup>3</sup>?</div>
-  <div class="quiz-opcoes"><label class="quiz-op" data-q="0" data-op="0"><input type="radio" name="q0" value="0"><span>10<sup>3</sup> kg/m<sup>3</sup></span></label>
-<label class="quiz-op" data-q="0" data-op="1"><input type="radio" name="q0" value="1"><span>10<sup>4</sup> kg/m<sup>3</sup></span></label>
-<label class="quiz-op" data-q="0" data-op="2"><input type="radio" name="q0" value="2"><span>10<sup>5</sup> kg/m<sup>3</sup></span></label>
-<label class="quiz-op" data-q="0" data-op="3"><input type="radio" name="q0" value="3"><span>5 kg/m<sup>3</sup></span></label></div>
-  <div class="quiz-porque" id="porque-0">O n&uacute;mero da frente, 5,3, &eacute; maior que &radic;10 &asymp; 3,16 &mdash; ent&atilde;o a ordem sobe uma pot&ecirc;ncia: <strong>10<sup>4</sup></strong>. &Eacute; o resultado que surpreende, e por isso o crit&eacute;rio precisa estar escrito.</div>
+  <div class="quiz-enunciado">1. Você estimou 0,1&nbsp;mm para a espessura de uma folha e mediu 0,083&nbsp;mm. A estimativa acertou a ordem de grandeza?</div>
+  <div class="quiz-opcoes"><label class="quiz-op" data-q="0" data-op="0"><input type="radio" name="q0" value="0"><span>Não, porque 0,083 é diferente de 0,1</span></label>
+<label class="quiz-op" data-q="0" data-op="1"><input type="radio" name="q0" value="1"><span>Sim: a razão medido/estimado é 0,83, entre 0,3 e 3</span></label>
+<label class="quiz-op" data-q="0" data-op="2"><input type="radio" name="q0" value="2"><span>Sim, porque toda estimativa feita a caneta vale</span></label>
+<label class="quiz-op" data-q="0" data-op="3"><input type="radio" name="q0" value="3"><span>Não dá para saber sem o valor verdadeiro</span></label></div>
+  <div class="quiz-porque" id="porque-0">Razão = 0,083 / 0,1 = 0,83. Está entre 0,3 e 3 &mdash; o expoente da razão ficou entre &minus;0,5 e +0,5.</div>
 </div>
 <div class="quiz-q" data-q="1">
-  <div class="quiz-enunciado">2. Voc&ecirc; estimou 10<sup>&minus;3</sup>&nbsp;m para o gr&atilde;o de areia e mediu 3&nbsp;&times;&nbsp;10<sup>&minus;4</sup>&nbsp;m. Pelo crit&eacute;rio da raz&atilde;o, o que se escreve no roteiro?</div>
-  <div class="quiz-opcoes"><label class="quiz-op" data-q="1" data-op="0"><input type="radio" name="q1" value="0"><span>A estimativa acertou a ordem: a raz&atilde;o 0,3 est&aacute; dentro de 1/3 a 3</span></label>
-<label class="quiz-op" data-q="1" data-op="1"><input type="radio" name="q1" value="1"><span>A estimativa errou a ordem: a raz&atilde;o 0,3 fica fora de 1/3 a 3, e anota-se a hip&oacute;tese que falhou</span></label>
-<label class="quiz-op" data-q="1" data-op="2"><input type="radio" name="q1" value="2"><span>Apaga-se a estimativa e escreve-se 10<sup>&minus;4</sup></span></label>
-<label class="quiz-op" data-q="1" data-op="3"><input type="radio" name="q1" value="3"><span>Nada: s&oacute; a medida importa</span></label></div>
-  <div class="quiz-porque" id="porque-1">Medida &divide; estimativa = 0,3, abaixo de 1/3 &asymp; 0,33: fora da faixa por pouco. A estimativa <strong>fica escrita</strong> e, ao lado, a hip&oacute;tese que falhou &mdash; talvez o gr&atilde;o imaginado fosse de areia grossa.</div>
+  <div class="quiz-enunciado">2. Por que o limite superior da faixa é 3 (e não 5,5, a média entre 1 e 10)?</div>
+  <div class="quiz-opcoes"><label class="quiz-op" data-q="1" data-op="0"><input type="radio" name="q1" value="0"><span>Porque 3 é o número de tarefas de cada estação</span></label>
+<label class="quiz-op" data-q="1" data-op="1"><input type="radio" name="q1" value="1"><span>Porque 10<sup>0,5</sup> = &radic;10 &asymp; 3,16 é a média geométrica entre 1 e 10, o meio do caminho por fatores</span></label>
+<label class="quiz-op" data-q="1" data-op="2"><input type="radio" name="q1" value="2"><span>Porque a régua tem divisão de 3&nbsp;mm</span></label>
+<label class="quiz-op" data-q="1" data-op="3"><input type="radio" name="q1" value="3"><span>Por convenção sem justificativa</span></label></div>
+  <div class="quiz-porque" id="porque-1">10<sup>0,5</sup> &times; 10<sup>0,5</sup> = 10<sup>1</sup>. O meio entre 1 e 10 por fatores é &radic;10 &asymp; 3,16: dois passos iguais de fator 3,16. A média aritmética (5,5) mede o meio pela diferença.</div>
 </div>
 <div class="quiz-q" data-q="2">
-  <div class="quiz-enunciado">3. Um gr&atilde;o tem di&acirc;metro dez vezes menor que um gr&acirc;nulo do mesmo material. A massa dele &eacute;&hellip;</div>
-  <div class="quiz-opcoes"><label class="quiz-op" data-q="2" data-op="0"><input type="radio" name="q2" value="0"><span>dez vezes menor</span></label>
-<label class="quiz-op" data-q="2" data-op="1"><input type="radio" name="q2" value="1"><span>cem vezes menor</span></label>
-<label class="quiz-op" data-q="2" data-op="2"><input type="radio" name="q2" value="2"><span>mil vezes menor</span></label>
-<label class="quiz-op" data-q="2" data-op="3"><input type="radio" name="q2" value="3"><span>igual, porque o material &eacute; o mesmo</span></label></div>
-  <div class="quiz-porque" id="porque-2">A massa acompanha o volume, e o volume vai com o <strong>cubo</strong> do di&acirc;metro: 10<sup>3</sup> = mil. &Eacute; assim que a trilha &ldquo;mede&rdquo; o gr&atilde;o de areia que a balan&ccedil;a n&atilde;o l&ecirc;.</div>
+  <div class="quiz-enunciado">3. A balança digital da bancada mostra 4,36&nbsp;g para 10 clipes. O que ela mediu?</div>
+  <div class="quiz-opcoes"><label class="quiz-op" data-q="2" data-op="0"><input type="radio" name="q2" value="0"><span>O peso dos clipes</span></label>
+<label class="quiz-op" data-q="2" data-op="1"><input type="radio" name="q2" value="1"><span>A massa dos clipes</span></label>
+<label class="quiz-op" data-q="2" data-op="2"><input type="radio" name="q2" value="2"><span>A força-peso em gramas</span></label>
+<label class="quiz-op" data-q="2" data-op="3"><input type="radio" name="q2" value="3"><span>A densidade dos clipes</span></label></div>
+  <div class="quiz-porque" id="porque-2">A balança indica <strong>massa</strong> (g, kg). Peso é força, em newton, e se lê no dinamômetro: são grandezas distintas.</div>
 </div>
 <div class="quiz-q" data-q="3">
-  <div class="quiz-enunciado">4. A planilha devolveu 2,5&nbsp;&times;&nbsp;10<sup>14</sup>&nbsp;kg para a massa da cava, mas a sua estimativa era da ordem de 10<sup>11</sup>&nbsp;kg. Qual &eacute; a suspeita mais prov&aacute;vel?</div>
-  <div class="quiz-opcoes"><label class="quiz-op" data-q="3" data-op="0"><input type="radio" name="q3" value="0"><span>A estimativa estava errada e a planilha est&aacute; certa</span></label>
-<label class="quiz-op" data-q="3" data-op="1"><input type="radio" name="q3" value="1"><span>Um prefixo trocado: tr&ecirc;s ordens de diferen&ccedil;a, como mil&iacute;metro por metro ou tonelada por kilograma</span></label>
-<label class="quiz-op" data-q="3" data-op="2"><input type="radio" name="q3" value="2"><span>A densidade da rocha mudou</span></label>
-<label class="quiz-op" data-q="3" data-op="3"><input type="radio" name="q3" value="3"><span>Diferen&ccedil;a normal de arredondamento</span></label></div>
-  <div class="quiz-porque" id="porque-3">Tr&ecirc;s ordens exatas de diferen&ccedil;a s&atilde;o a assinatura de um <strong>prefixo trocado</strong>. A planilha n&atilde;o erra a conta; recebe o dado errado. Quem estimou antes percebe em um segundo.</div>
+  <div class="quiz-enunciado">4. O dinamômetro marca 0,1&nbsp;N sem nada pendurado, e todas as leituras saem 0,1&nbsp;N acima. Que erro é esse?</div>
+  <div class="quiz-opcoes"><label class="quiz-op" data-q="3" data-op="0"><input type="radio" name="q3" value="0"><span>Grosseiro</span></label>
+<label class="quiz-op" data-q="3" data-op="1"><input type="radio" name="q3" value="1"><span>Aleatório</span></label>
+<label class="quiz-op" data-q="3" data-op="2"><input type="radio" name="q3" value="2"><span>Sistemático</span></label>
+<label class="quiz-op" data-q="3" data-op="3"><input type="radio" name="q3" value="3"><span>Não é erro, é incerteza</span></label></div>
+  <div class="quiz-porque" id="porque-3">Desloca todas as leituras para o mesmo lado e não aparece ao repetir: é <strong>sistemático</strong>. Corrige-se conferindo o zero antes de medir.</div>
 </div>
 <div class="quiz-q" data-q="4">
-  <div class="quiz-enunciado">5. O que liga a massa medida na bancada ao kilograma definido pela constante de Planck?</div>
-  <div class="quiz-opcoes"><label class="quiz-op" data-q="4" data-op="0"><input type="radio" name="q4" value="0"><span>Nada: a balan&ccedil;a mede sozinha</span></label>
-<label class="quiz-op" data-q="4" data-op="1"><input type="radio" name="q4" value="1"><span>A rastreabilidade: a massa aferida foi comparada com padr&otilde;es at&eacute; o Inmetro e o BIPM</span></label>
-<label class="quiz-op" data-q="4" data-op="2"><input type="radio" name="q4" value="2"><span>O fato de a balan&ccedil;a ser digital</span></label>
-<label class="quiz-op" data-q="4" data-op="3"><input type="radio" name="q4" value="3"><span>A grafia correta do s&iacute;mbolo kg</span></label></div>
-  <div class="quiz-porque" id="porque-4">&Eacute; a cadeia de <strong>rastreabilidade</strong>. Conferir a balan&ccedil;a com a massa aferida, na tarefa B0, pendura cada massa da noite nessa corrente &mdash; sem esse elo, nenhuma massa vale.</div>
+  <div class="quiz-enunciado">5. Qual escrita do diâmetro da moeda, medido com a régua milimetrada, está correta?</div>
+  <div class="quiz-opcoes"><label class="quiz-op" data-q="4" data-op="0"><input type="radio" name="q4" value="0"><span>(26,812 &plusmn; 0,5)&nbsp;mm</span></label>
+<label class="quiz-op" data-q="4" data-op="1"><input type="radio" name="q4" value="1"><span>(26,8 &plusmn; 0,5)&nbsp;mm</span></label>
+<label class="quiz-op" data-q="4" data-op="2"><input type="radio" name="q4" value="2"><span>26,8&nbsp;mm</span></label>
+<label class="quiz-op" data-q="4" data-op="3"><input type="radio" name="q4" value="3"><span>(26,8 &plusmn; 0,5)</span></label></div>
+  <div class="quiz-porque" id="porque-4">Incerteza de leitura da régua = metade da menor divisão (0,5&nbsp;mm), com um algarismo significativo; o valor termina na mesma casa decimal; e a unidade não pode faltar.</div>
 </div>
 </div>
 
 <div class="encerramento">
-  <div class="fecho-frase">Voc&ecirc; vai medir seis coisas &mdash; mas escreve antes o que espera.<br>A estimativa que errou a ordem, com a hip&oacute;tese ao lado, &eacute; a linha mais valiosa do roteiro.</div>
+  <div class="fecho-frase">Toda medida é um número e uma dúvida.<br>Na bancada, a estimativa vem primeiro &mdash; a caneta.</div>
   <div class="fecho-acao">Agora leia o Texto Tem&aacute;tico</div>
   <div class="fecho-links">
     <a class="fecho-btn" href="../tt/">Texto Tem&aacute;tico</a>
     <a class="fecho-btn secundario" href="../../">Todas as trilhas</a>
   </div>
-  </div>
+</div>
 
 <!-- RODAPE-LME:INICIO --><div class="lme-rodape"><div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div><div class="lme-rodape-texto">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; Primeira edição &middot; 2026</div><div class="lme-rodape-selo"><span id="seloAcessos" data-escopo="pagina" style="display:none;"></span></div></div><!-- RODAPE-LME:FIM -->
 
 </main>
-<script>var GABARITO = [1, 1, 2, 1, 1];</script>
+<script>var GABARITO = [1, 1, 1, 2, 1];</script>
 
 <script>
 (function () {
-  var CHAVE = 'LME-T0B-MD-v3';
+  var CHAVE = 'LME-T0B-MD-v1';   /* a da v1: so entrou figura */
   var estado = {};
   try { estado = JSON.parse(localStorage.getItem(CHAVE) || '{}'); } catch (e) { estado = {}; }
   function grava() { try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {} }

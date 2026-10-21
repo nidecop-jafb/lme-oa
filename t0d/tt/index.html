@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LME · T0D · A Matemática das Medidas — Texto Temático v3</title>
+<title>LME · T0D · A matemática da medida — Texto Temático v4</title>
 <style>
   input, button, select, textarea { font-family: inherit; }
 /* ═══ DESIGN SYSTEM: BRUTALISMO CIENTIFICO ═══ */
@@ -13,7 +13,7 @@
   --azul-bg: oklch(0.28 0.05 45);
   --ouro: oklch(0.72 0.13 152);
   --ouro-claro: oklch(0.25 0.04 152);
-  /* Verde realinhado com a identidade dos sites da Licenciatura (2026-09-13): o tom
+  /* Verde realinhado com a identidade do site lme-oa (2026-09-13): o tom
      anterior (oklch hue 95, amarelo-esverdeado) nao batia com o verde real
      do site (#3E8E5A) e vibrava demais sobre o fundo escuro. */
   --verde: #3E8E5A;
@@ -85,45 +85,14 @@ body {
 .toolbar button.active { color: var(--ouro); border-color: var(--ouro); }
 
 /* ═══ TOC SIDEBAR ═══ */
-.toc-toggle {
-  position: fixed; top: 275px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.toc-toggle:hover { color: var(--ouro); }
-
-.toc-sidebar {
-  position: fixed; top: 60px; left: 0; z-index: 997;
-  width: 280px; max-height: calc(100vh - 80px); overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 20px 16px 20px 40px; transform: translateX(-100%); transition: transform 0.25s;
-}
-.toc-sidebar.open { transform: translateX(0); }
-.toc-sidebar h3 {
-  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
-  color: var(--cinza); margin-bottom: 12px;
-}
-.toc-sidebar a {
-  display: block; padding: 6px 0; font-size: 0.85rem; color: oklch(0.75 0 0);
-  text-decoration: none; border-bottom: 1px solid oklch(0.22 0.02 260);
-  transition: color 0.15s;
-}
-[data-theme="light"] .toc-sidebar a { border-bottom-color: oklch(0.90 0.02 260); }
-.toc-sidebar a:hover { color: var(--ouro); }
-.toc-sidebar a.toc-ato { font-weight: 700; color: var(--azul); font-size: 0.9rem; }
-.toc-sidebar a.toc-topico { padding-left: 16px; font-size: 0.8rem; }
-.toc-sidebar a.toc-extra { font-style: italic; color: var(--cinza); font-size: 0.8rem; }
 
 /* ═══ HEADER ═══ */
 .header {
-  background: linear-gradient(180deg, oklch(0.14 0.03 240) 0%, var(--fundo) 100%);
+  background: linear-gradient(180deg, oklch(0.14 0.03 45) 0%, var(--fundo) 100%);
   padding: 48px 20px 24px; text-align: center;
 }
 [data-theme="light"] .header {
-  background: linear-gradient(180deg, oklch(0.95 0.02 240) 0%, var(--fundo) 100%);
+  background: linear-gradient(180deg, oklch(0.95 0.02 45) 0%, var(--fundo) 100%);
 }
 .header-inner { max-width: 720px; margin: 0 auto; }
 .header h1 {
@@ -300,126 +269,12 @@ p strong { color: var(--branco); }
 [data-theme="light"] .audio-hint { background: oklch(0.94 0.03 95); color: oklch(0.30 0 0); }
 
 /* ═══ CREDITOS / CIP SIDEBAR ═══ */
-.creditos-toggle {
-  position: fixed; top: 365px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.creditos-toggle:hover { color: var(--ouro); }
 
 /* ═══ MUSICA TOGGLE + SIDEBAR ═══ */
-.musica-toggle {
-  position: fixed; top: 60px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.musica-toggle:hover { color: var(--ouro); }
-.musica-sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 340px; height: 100vh; overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.95rem; line-height: 1.7;
-  color: var(--texto);
-}
-.musica-sidebar.open { transform: translateX(0); }
-.musica-sidebar .musica-titulo {
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
-  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
-}
-.musica-sidebar .musica-ref { font-style: italic; color: var(--cinza); margin-bottom: 16px; display: block; }
-.musica-sidebar .musica-tags { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-.musica-sidebar .musica-tag {
-  background: var(--ouro); color: oklch(0.12 0 0); font-weight: 700;
-  font-size: 0.75rem; padding: 4px 10px; text-transform: uppercase; letter-spacing: 1px;
-}
-.musica-sidebar .musica-album { font-weight: 700; color: var(--branco); margin-bottom: 8px; }
-.musica-sidebar .musica-detail { color: var(--cinza); font-size: 0.85rem; margin-bottom: 16px; }
-.musica-sidebar .musica-link {
-  display: inline-block; padding: 8px 16px; background: var(--erro);
-  color: oklch(0.98 0 0); font-weight: 700; font-size: 0.8rem;
-  text-decoration: none; letter-spacing: 0.5px; transition: opacity 0.15s;
-}
-.musica-sidebar .musica-link:hover { opacity: 0.85; }
 
 /* ═══ INEDITISMO TOGGLE + SIDEBAR ═══ */
-.ineditismo-toggle {
-  position: fixed; top: 145px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.ineditismo-toggle:hover { color: var(--ouro); }
-.ineditismo-sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 340px; height: 100vh; overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.95rem; line-height: 1.7;
-  color: var(--texto);
-}
-.ineditismo-sidebar.open { transform: translateX(0); }
-.ineditismo-sidebar .ineditismo-titulo {
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
-  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
-}
-.ineditismo-sidebar p {
-  font-size: 0.95rem; color: oklch(0.65 0 0); line-height: 1.7; margin-bottom: 10px;
-}
-[data-theme="light"] .ineditismo-sidebar p { color: oklch(0.40 0 0); }
 
 /* ═══ FIGURAS TOGGLE + SIDEBAR ═══ */
-.figuras-toggle {
-  position: fixed; top: 460px; left: 0; z-index: 998;
-  background: var(--superficie); border: 1px solid var(--cinza-borda); border-left: none;
-  color: var(--cinza); font-size: 0.7rem; padding: 8px 10px; cursor: pointer;
-  font-family: var(--font); writing-mode: vertical-rl; text-orientation: mixed;
-  letter-spacing: 1px; text-transform: uppercase; border-radius: 0;
-  transition: color 0.15s;
-}
-.figuras-toggle:hover { color: var(--ouro); }
-.figuras-sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 380px; height: 100vh; overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.88rem; line-height: 1.7;
-  color: var(--texto);
-}
-.figuras-sidebar.open { transform: translateX(0); }
-.figuras-sidebar .figuras-titulo {
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
-  border-bottom: 1px solid var(--cinza-borda); padding-bottom: 8px;
-}
-.figuras-sidebar p {
-  font-size: 0.85rem; color: var(--texto); margin-bottom: 8px; line-height: 1.5;
-}
-.figuras-sidebar .figura-num { color: var(--azul); font-weight: 700; }
-
-.creditos-sidebar {
-  position: fixed; top: 0; left: 0; z-index: 996;
-  width: 340px; height: 100vh; overflow-y: auto;
-  background: var(--superficie); border-right: 1px solid var(--cinza-borda);
-  padding: 24px 20px 24px 40px; transform: translateX(-100%); transition: transform 0.25s;
-  font-family: var(--font); font-size: 0.85rem; line-height: 1.7;
-  color: var(--texto);
-}
-.creditos-sidebar.open { transform: translateX(0); }
-.creditos-sidebar p {
-  font-family: var(--font); font-size: 0.85rem; color: var(--texto);
-  line-height: 1.6; margin-bottom: 4px;
-}
 .creditos-titulo, .cip-titulo {
   font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: 2px; color: var(--ouro); margin-bottom: 16px;
@@ -467,12 +322,12 @@ p strong { color: var(--branco); }
 
 /* ═══ DESTAQUE ═══ */
 .destaque {
-  background: oklch(0.16 0.04 240); padding: 14px 20px; margin: 16px 0;
+  background: oklch(0.16 0.04 45); padding: 14px 20px; margin: 16px 0;
   font-family: var(--serif); font-size: 1.2rem; font-style: italic;
   color: var(--azul-claro); border-left: 3px solid var(--azul);
 }
 [data-theme="light"] .destaque {
-  background: oklch(0.95 0.03 240); color: oklch(0.40 0.10 240);
+  background: oklch(0.95 0.03 45); color: oklch(0.40 0.15 45);
 }
 
 /* ═══ BLOCKQUOTE ═══ */
@@ -635,8 +490,6 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   /* Gutter para as abas laterais: sem ele, as abas fixas da borda esquerda
      cobrem o texto durante a rolagem em tela estreita. */
   .conteudo { padding: 0 14px 0 46px; }
-  .toc-toggle, .musica-toggle, .ineditismo-toggle, .creditos-toggle, .figuras-toggle { font-size: 0.6rem; padding: 6px 6px; }
-  .toc-sidebar, .musica-sidebar, .ineditismo-sidebar, .creditos-sidebar, .figuras-sidebar { width: 82vw; }
   .toolbar { padding: 4px 8px; }
   .ato-titulo { font-size: 1rem; letter-spacing: 2px; }
   .topico-titulo { font-size: 1.2rem; }
@@ -652,8 +505,7 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 
 /* ═══ PRINT ═══ */
 @media print {
-  body { background: white !important; color: #1A1A1A !important; padding-bottom: 0 !important; }
-  .progress-top, .toolbar, .toc-toggle, .toc-sidebar, .creditos-toggle, .creditos-sidebar, .musica-toggle, .musica-sidebar, .ineditismo-toggle, .ineditismo-sidebar, .figuras-toggle, .figuras-sidebar, .capa-scroll, .audio-hint { display: none !important; }
+  body { background: white !important; color: #1A1A1A !important; padding-bottom: 0 !important; }.progress-top, .toolbar, .capa-scroll, .audio-hint{ display: none !important; }
   .capa { min-height: auto !important; background: none !important; padding: 30px 20px !important; }
   .header { background: none !important; }
   .ato-titulo { color: #1F3864 !important; border-top-color: #CCC !important; }
@@ -668,38 +520,12 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 /* PADRAO-ABAS-CREDITOS (decisao do autor 2026-09-02): cargos dos Creditos na secundaria (verde), caixa normal. */
 .creditos-cargo { color: var(--verde); text-transform: none; }
 /* PADRAO-ABAS-MUSICA (decisao do autor 2026-09-02): album e artistas na cor primaria (ouro). */
-.musica-sidebar .musica-album { color: var(--ouro); }
-.musica-sidebar .musica-detail strong { color: var(--ouro); }
 
-/* ── lista numerada das cinco perguntas do Ato I ── */
+/* ── LME: lista numerada das cinco perguntas do Ato I ── */
 .lista-perguntas { margin: 18px 0 18px 0; padding-left: 22px; }
 .lista-perguntas li { margin-bottom: 8px; }
-/* o Explore nao tem figura; o link fica visivel nos dois temas */
+/* o Explore da LME nao tem figura; o link fica visivel nos dois temas */
 .explore a { color: var(--accent); }
-
-/* ── LME: paleta da Licenciatura (verde-quadro #3E8E5A + azul-aco #7FB2D6) ── */
-:root { --azul: #7FB2D6; --azul-claro: #A5CBE5; --azul-bg: oklch(0.28 0.04 240); --accent: var(--azul); }
-[data-theme="light"] { --azul: #3F7AA3; --azul-claro: #4F8BB5; --azul-bg: oklch(0.92 0.03 240); }
-.capa-subtitulo { font-family: var(--serif); font-style: italic; font-size: 1.4rem; color: var(--azul); margin: -6px 0 18px; }
-.eixo-destino { border-left-color: var(--azul); }
-.eixo-destino { background: var(--azul-bg); padding: 10px 14px; }
-.eixo-destino .eixo-label { color: var(--texto); }
-.figura-pendente .figura-aviso { border: 2px dashed var(--azul); padding: 48px 20px; text-align: center;
-  font-family: var(--mono); font-size: .95rem; color: var(--azul); max-width: 560px; margin: 0 auto; }
-@media print { .figura-pendente .figura-aviso { color: #555 !important; border-color: #999 !important; } }
-/* Figura em destaque (2026-09-14): a epigrafe de abertura nao repete a
-   citacao em texto — ela ja esta na propria imagem — entao a imagem
-   ganha mais espaco do que uma figura comum. */
-.figura-destaque .figura-img { max-width: 880px; border-width: 2px; border-color: var(--azul);
-  box-shadow: 0 10px 32px rgba(0,0,0,.28); }
-/* Biografia do autor da epigrafe: abaixo da legenda da figura, com
-   espaco de respiro (2026-09-14) para nao prender o olhar junto da
-   imagem — funciona como uma nota de rodape, nao como legenda extra. */
-.figura-bio {
-  font-size: 0.8rem; color: var(--cinza); font-style: normal;
-  max-width: 480px; margin: 40px auto 0; text-align: center;
-  padding-top: 20px; border-top: 1px solid var(--cinza-borda);
-}
 /* ICONES-LME */
 .lme-cab-marcas { display: flex; gap: 10px; align-items: center; justify-content: flex-start;
   flex-shrink: 0; }
@@ -818,6 +644,26 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   <button id="btnTheme" title="Alternar tema claro/escuro">Tema</button>
 </div>
 
+<!-- TOC TOGGLE -->
+
+<!-- CREDITOS TOGGLE -->
+
+<!-- MUSICA TOGGLE -->
+
+<!-- INEDITISMO TOGGLE -->
+
+<!-- INEDITISMO SIDEBAR -->
+
+<!-- FIGURAS TOGGLE -->
+
+<!-- FIGURAS SIDEBAR -->
+
+<!-- MUSICA SIDEBAR -->
+
+<!-- CREDITOS / CIP SIDEBAR -->
+
+<!-- TOC SIDEBAR -->
+
 <!-- ═══════════════════ CAPA ═══════════════════ -->
 <div class="capa" id="capa">
   <div class="capa-marca"><div class="lme-cab-marcas"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física"> <title>Prisma decompondo a luz — Licenciatura em Física</title> <defs> <radialGradient id="cab-prisma-fundo" cx="50%" cy="42%" r="60%"> <stop offset="0" stop-color="#26302B"/> <stop offset="1" stop-color="#0E1411"/> </radialGradient> <linearGradient id="cab-prisma-vidro" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/> <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/> </linearGradient> <clipPath id="cab-prisma-dentro"><circle cx="100" cy="100" r="86"/></clipPath> </defs> <circle cx="100" cy="100" r="96" fill="url(#cab-prisma-fundo)"/> <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/> <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1" stroke-dasharray="1.5 3" opacity="0.8"/> <g clip-path="url(#cab-prisma-dentro)"> <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/> <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/> <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/> <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/> <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/> <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/> <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/> <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/> <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/> </g> <polygon points="100,50 56,130 144,130" fill="url(#cab-prisma-vidro)" stroke="#DDEBF3" stroke-width="2.5" stroke-linejoin="round"/> <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/> <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/> <g fill="#FFFFFF" opacity="0.55"> <circle cx="46" cy="62" r="1.2"/> <circle cx="150" cy="56" r="1"/> <circle cx="70" cy="160" r="1"/> <circle cx="140" cy="164" r="1.2"/> </g> </svg><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica"> <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none"> <line x1="36" y1="10" x2="84" y2="10"/> <line x1="60" y1="10" x2="81.9" y2="70.1"/> </g> <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/> <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/> <circle cx="60" cy="10" r="4" fill="#3E8E5A"/> <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/> <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square"> <line x1="26" y1="110" x2="94" y2="110"/> <line x1="30" y1="110" x2="30" y2="104"/> <line x1="40" y1="110" x2="40" y2="104"/> <line x1="50" y1="110" x2="50" y2="104"/> <line x1="60" y1="110" x2="60" y2="98"/> <line x1="70" y1="110" x2="70" y2="104"/> <line x1="80" y1="110" x2="80" y2="104"/> <line x1="90" y1="110" x2="90" y2="104"/> </g> </svg></div></div>
@@ -825,9 +671,9 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   <div class="capa-curso">Licenciatura em Física &mdash; IFMG campus Ouro Preto</div>
   <div class="capa-img"><img src="../_imagens/_web/LME-T0D-Figura-01-v1-web.jpg" alt="Seis medidas escritas duas vezes: como se costuma escrever e como o SI exige"></div>
   <div class="capa-trilha">Trilha de Aprendizagem T0D</div>
-  <div class="capa-titulo">A Matemática das Medidas</div>
-  <div class="capa-autores"><strong>Júlio Azevedo</strong> &middot; <strong>Felipe Beato</strong></div>
-  <div class="capa-inst">IFMG campus Ouro Preto - Coordenadoria da Área de Física - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; LME &middot; T0D &middot; Primeira edição &middot; 2026</div>
+  <div class="capa-titulo">A matemática da medida</div>
+  <div class="capa-autores"><strong>Júlio Azevedo</strong></div>
+  <div class="capa-inst">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; LME &middot; T0D &middot; Primeira edição &middot; 2026</div>
   <div class="capa-scroll">&#x25BC; role para ler</div>
 </div>
 
@@ -836,248 +682,222 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 <div class="conteudo">
 
 <!-- ═══════════════════ EPIGRAFE ═══════════════════ -->
-<!-- Enquanto a Figura 2 nao existe, a legenda de obra entra em texto; quando a
-     figura for aprovada, o texto sai e a imagem fica em destaque, como na T0A. -->
-<div id="epigrafe">
-<blockquote>Tudo é número.</blockquote>
-<div class="ca-autor">&mdash; atribuída aos pitagóricos, século VI a.C.</div>
+<div class="epigrafe" id="epigrafe">
+  <blockquote>&ldquo;Ninguém ignora tudo. Ninguém sabe tudo. Todos nós sabemos alguma coisa. Todos nós ignoramos alguma coisa.&rdquo;</blockquote>
+  <div class="autor">&mdash; Paulo Freire (1921&ndash;1997)</div>
+  <div class="nota"><strong>Paulo Freire</strong> (Recife, 1921 &mdash; São Paulo, 1997). Educador pernambucano, patrono da educação brasileira. <em>A importância do ato de ler</em>, 1989. A frase serve de porta para esta trilha: a lacuna não é defeito de quem a tem, é o lugar exato por onde o estudo começa.</div>
 </div>
-
-<div class="figura-bio"><strong>Os pitagóricos</strong> foram a escola reunida em torno de Pitágoras de Samos (c. 570–495 a.C.). A frase não tem fonte primária: chegou até nós pela tradição, sobretudo pelo que Aristóteles escreveu sobre eles — por isso entra assinada como "atribuída". Para os pitagóricos, a harmonia de uma corda e o movimento dos astros eram razões entre números. Esta trilha leva a ideia ao pé da letra: um modelo da Mecânica só se encontra com o dado por meio de números — e eles precisam estar bem escritos.</div>
 
 <div class="ato" id="ato-i">
   <div class="ato-titulo">Ato I &mdash; O Gancho</div>
 
-    <p>Na T0B você previu antes de medir. Agora imagine a próxima trilha de bancada. O modelo do pêndulo simples diz que, para um fio de 0,500 m, o período é T = 2π√(L/g). Pedro põe g = 9,8 m/s<sup>2</sup> na calculadora e lê: 1,419 229 6 s. Na bancada, dez oscilações dão 14,2 s no cronômetro — um período de 1,42 s.</p>
+    <p>Na bancada da T0C, a tarefa parecia a mais simples do encontro: medir a espessura de uma folha de papel. Pedro mediu a pilha de 100 folhas com a régua — 10,4 mm — e dividiu na calculadora. O visor mostrou 0,104. Até aí, nada de errado.</p>
 
-    <p>Pedro compara 1,419 229 6 com 1,42, vê que não são iguais e escreve no relatório: <em>o modelo falhou por 0,000 770 4 s</em>.</p>
+    <p>Depois veio o tempo de reação. Bárbara soltou a régua, Lucas a segurou depois de ela cair 18,0 cm, e a conta t=√(2h/g) deu, no visor, 0,191 662 969 8. Lucas copiou os dez algarismos no Roteiro de Bancada. Sofia olhou e perguntou: <em>você mediu isso até o bilionésimo de segundo, com uma régua?</em></p>
 
-    <p>O modelo não falhou. O que falhou foi a conta. O g entrou com dois algarismos significativos, e o resultado não pode ter mais que isso: a previsão é <strong>1,4 s</strong>, e o dado, 1,42 s, concorda com ela. Pedro comparou um número com sete algarismos inventados com um número medido — e culpou o modelo por um erro que era de escrita.</p>
+    <p>O professor Julio não corrigiu ninguém. Escreveu na lousa cinco perguntas e disse que, por trás delas, estava tudo o que faltava para a bancada fazer sentido:</p>
 
-    <p>É o perigo que esta trilha previne. No Laboratório de Mecânica (LME), o experimento é <strong>objeto</strong>: o modelo prevê, a bancada mede, e a decisão "o modelo aguentou?" depende de comparar os dois <strong>na escala certa e com os algarismos que cada um tem o direito de ter</strong>. Para isso são precisas cinco ferramentas — as mesmas que a Introdução ao Laboratório (ILB) deveria ter deixado prontas, e que a T0B mostrou que não estão: ler e escrever decimais, contar algarismos significativos, arredondar, operar potências e escrever em potência de 10.</p>
+    <ul>
+      <li>Como se <strong>lê</strong> 0,104 mm em voz alta — e como se escreve "cinco milésimos"?</li>
+      <li>Quantos desses dez algarismos a régua <strong>tem o direito</strong> de dar?</li>
+      <li>Se é preciso cortar algarismos, <strong>onde</strong> se corta e <strong>como</strong> se arredonda?</li>
+      <li>O que significa a unidade m/s<sup>2</sup> — e por que 10<sup>3</sup> × 10<sup>&minus;6</sup> = 10<sup>&minus;3</sup>?</li>
+      <li>Como se escreve 0,000 104 m sem contar zeros?</li>
+    </ul>
 
-    <p><strong>Como estudar.</strong> A T0D não tem encontro: é o Pré-Lab desta semana. Leia um tópico, faça os oito itens dele na Folha de Atividades (FA) e só então passe ao seguinte. O Testinho (TN) fecha a trilha e vale a nota dela; a FA não vale nota, e o placar dela diz para onde voltar. Em 20/10, o encontro começa por ela.</p>
+    <p>A turma inteira, ele contou depois, tropeçou em pelo menos uma delas. Não é falta de inteligência: é ferramenta que ficou para trás no caminho da escola. Esta trilha devolve as cinco ferramentas, uma por tópico, sempre a partir de uma medida que você já fez.</p>
+
+    <p><strong>Como estudar.</strong> Esta trilha não tem encontro próprio: é o seu Pré-Lab da semana. Leia um tópico, faça os oito itens dele na Folha de Atividades (FA), confira o porquê de cada resposta e só então passe ao tópico seguinte. O Testinho (TN) fecha a trilha. Nada aqui vale nota — e o placar da FA diz exatamente para onde voltar.</p>
 
 </div>
 
 <div class="ato" id="ato-ii">
   <div class="ato-titulo">Ato II &mdash; O Desenvolvimento</div>
 
-    <p>Os cinco tópicos seguem a ordem em que uma comparação modelo × dado precisa deles. Cada um termina com a mesma pergunta: <em>que decisão sobre o modelo esta ferramenta permite — ou impede?</em> A ordem de grandeza e a estimativa de Fermi ficaram na T0B; aqui entra o procedimento que elas pressupõem.</p>
+    <p>Cinco tópicos, na ordem em que uma medida precisa deles: primeiro ler e escrever o número; depois saber quantos algarismos ele tem o direito de ter; depois cortar os que sobram; e, por fim, as duas ferramentas que tornam qualquer escala manejável — a potência e a potência de 10.</p>
 
-  <!-- TOPICO 1 -->
   <div class="topico" id="topico-1">
     <div class="topico-titulo">Tópico 1 &mdash; Números decimais: escrita e leitura</div>
 
-    <p>O valor de g que os livros dão é 9,8 m/s<sup>2</sup>. Em Ouro Preto, por causa da latitude e da altitude, ele vale cerca de 9,78 m/s<sup>2</sup>. Antes de decidir se a diferença importa, é preciso ler os dois números do mesmo jeito.</p>
+    <p>A moeda da Estação A mediu 23,5 mm. Antes de qualquer conta, esse número precisa ser lido e escrito do mesmo jeito por todo mundo — e é aí que a primeira lacuna aparece.</p>
 
-    <p><strong>Posição.</strong> À direita da vírgula estão os décimos, centésimos e milésimos: em 9,78, o 7 são sete décimos e o 8, oito centésimos. O decimal se lê pela última ordem ("novecentos e setenta e oito centésimos") ou algarismo por algarismo ("nove vírgula sete oito"); misturar as duas leituras é ditar outro número ao colega.</p>
+    <p><strong>O sistema é posicional.</strong> Cada algarismo vale conforme a posição que ocupa. À esquerda da vírgula estão as unidades, dezenas, centenas; à direita, as <strong>ordens decimais</strong>: décimos, centésimos, milésimos, décimos de milésimo. Cada posição vale um décimo da que está à sua esquerda.</p>
 
-    <p><strong>Comparar.</strong> Iguale as casas: 9,80 e 9,78. A diferença é de 0,02 m/s<sup>2</sup> — dois centésimos, cerca de 0,2 % de g. Comparar só é possível depois de alinhar as ordens; "9,78 tem mais algarismos" não diz nada sobre qual é maior.</p>
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 1 — As ordens decimais</div>
+      <table class="tabela">
+        <thead><tr><th>Ordem</th><th>Valor</th><th>Exemplo da bancada</th></tr></thead>
+        <tbody>
+          <tr><td>décimo</td><td>0,1</td><td>23,<strong>5</strong> mm: cinco décimos de milimetro</td></tr>
+          <tr><td>centésimo</td><td>0,01</td><td>0,9<strong>8</strong> N: oito centésimos de newton</td></tr>
+          <tr><td>milésimo</td><td>0,001</td><td>0,10<strong>4</strong> mm: quatro milésimos de milimetro</td></tr>
+          <tr><td>décimo de milésimo</td><td>0,0001</td><td>0,000 <strong>1</strong> m: a espessura da folha, em metro</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <p><strong>O zero à direita.</strong> 9,8 e 9,80 têm o mesmo valor, mas não dizem a mesma coisa: o segundo afirma que alguém conhece o centésimo. Numa comparação modelo × dado, o zero que você acrescenta a mais é uma informação que você inventou.</p>
+    <p><strong>Ler.</strong> O decimal se lê pela <strong>última ordem</strong> que ele ocupa: 23,5 é "vinte e três inteiros e cinco décimos"; 0,104 é "cento e quatro milésimos"; 0,005 é "cinco milésimos". No laboratório também se lê algarismo por algarismo ("zero vírgula um zero quatro"), e as duas leituras são corretas — desde que ninguém leia 0,104 como "zero vírgula cento e quatro", que mistura as duas e muda o número que o colega ouve.</p>
 
-    <p><strong>Quadro 1 — Ler antes de comparar</strong></p>
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
-      <tr><th style="text-align:left;">Número</th><th style="text-align:left;">Última ordem</th><th style="text-align:left;">O que ele afirma</th></tr>
-      <tr><td>9,8 m/s<sup>2</sup></td><td>décimo</td><td>conheço g até o décimo</td></tr>
-      <tr><td>9,78 m/s<sup>2</sup></td><td>centésimo</td><td>conheço g até o centésimo</td></tr>
-      <tr><td>9,80 m/s<sup>2</sup></td><td>centésimo</td><td>conheço até o centésimo — e o centésimo é zero</td></tr>
-      <tr><td>1,42 s</td><td>centésimo</td><td>o cronômetro (10 oscilações) chegou ao centésimo do período</td></tr>
-    </table>
+    <p><strong>Escrever.</strong> A vírgula separa a parte inteira, com 0 à esquerda quando o número é menor que 1 (0,5, e não ,5); em texto técnico, os algarismos se agrupam de três em três a partir da vírgula, com pequenos espaços (QGU, seção 3.5) — a mesma regra que a T0C apresentou.</p>
 
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>A turma de ensino médio compara decimais pelo comprimento: "9,78 é maior porque tem mais números". Igualar as casas antes de comparar é o gesto que desfaz isso — e é o mesmo que o licenciando vai fazer para comparar previsão e dado.</p>
-</div>
+    <p><strong>Comparar.</strong> O erro mais comum é achar que mais algarismos significam número maior. Qual é maior: 0,5 ou 0,45? Iguale as casas — 0,50 e 0,45 — e compare: 0,5 é maior. A régua que mede 0,5 mm a mais não é a que "tem mais números".</p>
 
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>Simon Stevin publicou <em>De Thiende</em> em 1585 para que comerciantes fizessem contas com décimos em vez de frações. O ouro de Ouro Preto, dois séculos depois, ainda se pesava em oitavas, num sistema de frações.</p>
-</div>
+    <p><strong>Os zeros.</strong> No número puro, o zero à esquerda da parte inteira (023,5) e o zero à direita da parte decimal (23,50) não mudam o valor. <strong>Numa medida, o zero à direita muda a informação</strong>: 23,5 mm diz que o instrumento chegou ao décimo; 23,50 mm diz que chegou ao centésimo. É a ponte para o Tópico 2.</p>
 
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>A escrita do número segue o QGU (seções 3.5 e 3.6): vírgula decimal, zero à esquerda, grupos de três com pequenos espaços.</p>
-</div>
+    <p><strong>Aplicação — história.</strong> O decimal é recente. Em 1585 o engenheiro flamengo Simon Stevin publicou <em>De Thiende</em> ("O décimo"), um livreto que ensinava os comerciantes e agrimensores a fazer contas com decimais em vez de frações. Duzentos anos depois, a massa do ouro de Ouro Preto ainda se media em oitavas — a oitava parte da onça —, num sistema em que cada degrau tinha o seu fator. Converter era fazer conta de fração. O decimal trocou isso por mover a vírgula.</p>
 
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>Na usina, o teor de ferro de um lote é dado com uma casa decimal (por exemplo, 64,5 %). Ler 64,5 como "sessenta e quatro vírgula cinquenta" já é vender um lote diferente.</p>
-</div>
+    <p><strong>Aplicação — prática docente.</strong> Peça a uma turma para ordenar 0,5; 0,45 e 0,405. Quem erra quase sempre escolhe 0,405 como o maior, "porque tem mais algarismos". O erro não é de atenção, é de modelo: o aluno está lendo a parte decimal como se fosse um número inteiro. Igualar as casas desfaz o modelo errado.</p>
 
   </div>
 
-  <!-- TOPICO 2 -->
   <div class="topico" id="topico-2">
     <div class="topico-titulo">Tópico 2 &mdash; Algarismos significativos</div>
 
-    <p>Na T0B, vinte grânulos de minério foram para a balança de 0,1 g. Suponha que o visor tenha mostrado 0,3 g. Quanto pesa <em>um</em> grânulo — e com quantos algarismos?</p>
+    <p>Lucas copiou 0,191 662 969 8 s porque a calculadora mostrou isso. Mas a régua que ele usou tem divisão de 1 mm. Uma pergunta resolve: quantos daqueles algarismos a régua <em>sabe</em>?</p>
 
-    <p><strong>O que são.</strong> Algarismos significativos são <strong>os corretos mais o primeiro duvidoso</strong>. O visor de 0,1 g dá um único algarismo para 0,3 g: o 3, já duvidoso. A massa de um grânulo, 0,3 g  20 = 0,015 g, tem direito a <strong>um</strong> algarismo significativo: 0,02 g (o arredondamento está no Tópico 3). O 20 é contagem: exato, não limita.</p>
+    <p><strong>O que são.</strong> Os algarismos significativos de uma medida são <strong>os algarismos corretos mais o primeiro duvidoso</strong>. Na régua milimetrada, a borda de um objeto cai entre dois traços: os milímetros inteiros são certos, e o décimo de milímetro é <em>estimado</em> — é o duvidoso. A moeda medida com a régua daria algo como 23,5 mm: o 2 e o 3 são corretos, o 5 é duvidoso. Três algarismos significativos.</p>
 
-    <p><strong>Por que importam aqui.</strong> O número de significativos do dado é o limite do que você pode afirmar sobre o modelo. Com um algarismo na massa do grânulo, nenhum modelo de massa pode ser "confirmado" na segunda casa.</p>
+    <p><strong>O que representam.</strong> A quantidade de algarismos significativos diz <strong>até onde o instrumento e o método chegaram</strong>. 2,3 kg e 2,300 kg têm o mesmo valor, mas o segundo afirma que a balança resolve o grama. Escrever algarismo que o instrumento não deu é inventar informação; omitir algarismo que ele deu é jogar informação fora.</p>
 
-    <p><strong>Quadro 2 — As regras de identificação</strong></p>
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
-      <tr><th style="text-align:left;">Regra</th><th style="text-align:left;">Exemplo</th><th style="text-align:left;">Significativos</th></tr>
-      <tr><td>não nulo é significativo</td><td>1,42 s</td><td>3</td></tr>
-      <tr><td>zero entre não nulos é</td><td>0,500 m</td><td>3</td></tr>
-      <tr><td>zero à esquerda nunca é</td><td>0,015 g</td><td>2</td></tr>
-      <tr><td>zero à direita depois da vírgula é</td><td>9,80 m/s<sup>2</sup></td><td>3</td></tr>
-      <tr><td>zero à direita em inteiro é ambíguo</td><td>1 500 t</td><td>2, 3 ou 4?</td></tr>
-      <tr><td>a potência de 10 resolve</td><td>1,50 × 10<sup>3</sup> t</td><td>3</td></tr>
-    </table>
+    <p><strong>Por que importam.</strong> Em medida <strong>científica</strong>, o número de algarismos é a primeira declaração de precisão — a T01 vai transformá-la em incerteza. Em medida <strong>industrial</strong>, a peça é aceita ou rejeitada pela tolerância: um eixo de 25,00 mm não é o mesmo pedido que um de 25 mm. Em medida <strong>comercial</strong>, a balança do mercado e a bomba de combustível têm a sua resolução fixada pela metrologia legal — e o consumidor paga pelo último algarismo.</p>
 
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>Três alunos medem o mesmo fio de pêndulo; o algarismo em que eles discordam é o duvidoso. A regra vem depois, como nome do que eles já viram.</p>
-</div>
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 2 — As regras para identificar algarismos significativos</div>
+      <table class="tabela">
+        <thead><tr><th>Regra</th><th>Exemplo</th><th>Significativos</th></tr></thead>
+        <tbody>
+          <tr><td>todo algarismo não nulo é significativo</td><td>23,5 mm</td><td>3</td></tr>
+          <tr><td>zero entre não nulos é significativo</td><td>0,104 mm</td><td>3</td></tr>
+          <tr><td>zero à esquerda nunca é (só posiciona a vírgula)</td><td>0,0052 kg</td><td>2</td></tr>
+          <tr><td>zero à direita depois da vírgula é</td><td>2,30 s</td><td>3</td></tr>
+          <tr><td>zero à direita em número inteiro é ambíguo</td><td>2 300 g</td><td>2, 3 ou 4?</td></tr>
+          <tr><td>a potência de 10 desfaz a ambiguidade (Tópico 5)</td><td>2,30 × 10<sup>3</sup> g</td><td>3</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>Na Escola de Minas de Ouro Preto, fundada em 1876, cubar uma jazida já era dar cada número com os algarismos que a sondagem permitia — nem mais, nem menos.</p>
-</div>
+    <p><strong>O zero à esquerda não conta</strong> porque ele muda com a unidade: 0,0052 kg são 5,2 g — e a balança não ficou mais precisa ao trocar de unidade. Já o zero à direita depois da vírgula conta, porque alguém o leu no instrumento.</p>
 
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>Os significativos são a forma escrita da resolução do instrumento (VIM). O dado não pode julgar o modelo além do que o instrumento sabe.</p>
-</div>
+    <p><strong>Instrumento e algarismos.</strong> Na régua milimetrada, o duvidoso está no décimo de milímetro; no paquímetro de 0,05 mm, no centésimo; na balança digital de 0,1 g, no décimo de grama — no instrumento digital, o último dígito do visor faz o papel de duvidoso.</p>
 
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>Uma balança rodoviária que resolve 10 kg não pode confirmar uma previsão de carga em quilos.</p>
-</div>
+    <p><strong>Aplicação — metrologia.</strong> O Vocabulário Internacional de Metrologia chama de <em>resolução</em> a menor variação que o instrumento consegue indicar. Os algarismos significativos são a forma escrita da resolução: quem lê a sua medida descobre até onde o seu instrumento chegava sem precisar vê-lo.</p>
+
+    <p><strong>Aplicação — prática docente.</strong> "Contar os significativos" vira decoreba de cinco regras quando falta a régua na mão. Comece pela régua: peça a três alunos a mesma medida e veja onde os três discordam. O algarismo em que eles discordam é o duvidoso — e tudo à esquerda dele é o que eles concordam ser verdade.</p>
 
   </div>
 
-  <!-- TOPICO 3 -->
   <div class="topico" id="topico-3">
     <div class="topico-titulo">Tópico 3 &mdash; Regras de arredondamento</div>
 
-    <p>Pedro cometeu dois erros no Ato I. O primeiro foi não arredondar a previsão. O segundo teria sido arredondá-la errado.</p>
+    <p>Agora Lucas sabe que a régua dá três algarismos para a distância de queda (18,0 cm) e que g foi usado com dois (9,8 m/s<sup>2</sup>). O tempo calculado não pode saber mais do que os dados que entraram na conta. Ele precisa cortar algarismos — e cortar tem regra.</p>
 
-    <p><strong>O procedimento.</strong> (1) Escolha o <strong>critério</strong>: <strong>casas decimais</strong> em somas e subtrações; <strong>algarismos significativos</strong> em produtos, quocientes e raízes. (2) Ache o <strong>último dígito a manter</strong>. (3) Olhe o <strong>primeiro dígito a descartar</strong>: menor que 5, mantém; maior que 5, soma 1; <strong>igual a 5</strong>, sem nada depois, aplica a <strong>regra do par</strong> — o último mantido fica par. Se o 5 vem seguido de algarismo não nulo, o número já passou do meio: soma 1. E <strong>arredonda-se uma vez, no fim</strong>.</p>
+    <p><strong>Para que serve.</strong> O arredondamento garante que <strong>o resultado de um cálculo seja coerente com os instrumentos e os métodos usados na medição</strong>. A calculadora não sabe o que você mediu; você sabe.</p>
 
-    <p><strong>Quadro 3 — A previsão do pêndulo, no critério certo</strong></p>
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
-      <tr><th style="text-align:left;">Passo</th><th style="text-align:left;">O que acontece</th></tr>
-      <tr><td>critério</td><td>raiz e divisão: significativos; L tem 3 e g tem 2 ⇒ 2</td></tr>
-      <tr><td>calculadora</td><td>1,419 229 6 s</td></tr>
-      <tr><td>último mantido</td><td>o 4 (1,4)</td></tr>
-      <tr><td>primeiro descartado</td><td>1, menor que 5: mantém</td></tr>
-      <tr><td>previsão</td><td><strong>1,4 s</strong>, contra o dado 1,42 s: concordam</td></tr>
-    </table>
+    <p><strong>O procedimento, em três passos.</strong></p>
 
-    <p><strong>A discordância falsa.</strong> Se Pedro tivesse usado g = 9,78 m/s<sup>2</sup> (três significativos), a previsão seria 1,42 s — e a comparação ficaria mais fina. Arredondamento não é cosmético: é o que define <em>a que distância</em> o modelo e o dado podem discordar sem que isso signifique nada.</p>
+    <ul>
+      <li><strong>Escolher o critério.</strong> Em <strong>somas e subtrações</strong>, o resultado fica com o número de <strong>casas decimais</strong> da parcela que tem menos casas. Em <strong>multiplicações e divisões</strong>, com o número de <strong>algarismos significativos</strong> do fator que tem menos.</li>
+      <li><strong>Achar o último dígito a manter.</strong> Contando pelo critério escolhido, marque o último algarismo que fica.</li>
+      <li><strong>Olhar o primeiro dígito a descartar</strong> — o que vem logo depois do último mantido — e aplicar a regra.</li>
+    </ul>
 
-    <p><strong>A regra do par, nos grânulos.</strong> 0,015 g com um significativo: último mantido 1 (ímpar), descartado 5 exato ⇒ sobe: <strong>0,02 g</strong>. Se fosse 0,025 g: último mantido 2 (par) ⇒ fica: 0,02 g. Se fosse 0,0151 g: o 5 vem seguido de não nulo ⇒ sobe: 0,02 g.</p>
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 3 — A regra pelo primeiro dígito a descartar</div>
+      <table class="tabela">
+        <thead><tr><th>Primeiro descartado</th><th>O que fazer</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td>menor que 5</td><td>mantém o último</td><td>0,1917 → 0,19 (2 significativos)</td></tr>
+          <tr><td>menor que 5</td><td>mantém o último</td><td>9,8432 → 9,84 (3 significativos)</td></tr>
+          <tr><td>maior que 5</td><td>soma 1 ao último</td><td>0,1047 → 0,105 (3 significativos)</td></tr>
+          <tr><td>igual a 5, e nada depois (ou só zeros)</td><td><strong>regra do par</strong>: o último mantido fica par</td><td>2,245 → 2,24    2,235 → 2,24</td></tr>
+          <tr><td>igual a 5, seguido de algarismo não nulo</td><td>soma 1 ao último</td><td>2,2451 → 2,25</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>Some 0,5 + 1,5 + 2,5 + 3,5 com a turma: "sempre para cima" dá 10, a regra do par dá 8, e a soma verdadeira é 8,0. A regra deixa de ser capricho.</p>
-</div>
+    <p><strong>A regra do par.</strong> Quando o primeiro dígito descartado é exatamente 5 — sem nada depois, ou só com zeros —, o número está <em>exatamente no meio</em> entre as duas opções. Arredondar sempre para cima, nesse caso, empurraria todos os resultados de uma série para o mesmo lado. A regra do par decide pelo último algarismo mantido: se ele é par, fica; se é ímpar, sobe para o par seguinte. Em muitos arredondamentos, metade sobe e metade fica, e o desvio se cancela. É a regra adotada pelas normas técnicas de arredondamento.</p>
 
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>Cobrar o quinto do ouro, na Casa dos Contos, era dividir por cinco um peso que raramente dava conta exata: decidir quem fica com a fração é um problema antigo desta cidade.</p>
-</div>
+    <p><strong>O tempo de reação, arredondado.</strong> A conta é uma divisão e uma raiz: vale o critério dos algarismos significativos. A distância tem três (18,0 cm) e g tem dois (9,8 m/s<sup>2</sup>): o resultado fica com <strong>dois</strong>. No visor, 0,191 662 969 8 s. Último mantido: o 9. Primeiro descartado: o 1, menor que 5. Resultado: <strong>0,19 s</strong>.</p>
 
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>A regra do par é a adotada pelas normas técnicas de arredondamento: em muitas operações, o desvio para cima e para baixo se cancela.</p>
-</div>
+    <p><strong>A folha, arredondada.</strong> 10,4 mm  100 folhas. O 100 é uma <em>contagem</em>, não uma medida: é exato e não limita os algarismos. Vale o da régua, três: <strong>0,104 mm</strong>.</p>
 
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>Somar mil cargas arredondadas "sempre para cima" superestima a produção do mês. Com a regra do par, o erro não se acumula.</p>
-</div>
+    <p><strong>Arredonda-se uma vez, no fim.</strong> Arredondar cada etapa intermediária acumula erro. Guarde os algarismos da calculadora até o resultado final, e só então corte.</p>
+
+    <p><strong>Aplicação — metrologia.</strong> A T01 vai dar a esses algarismos um número de incerteza, e a regra mudará de forma: o resultado se arredonda <em>pela incerteza</em>. Mas o gesto é o mesmo de hoje — escolher até onde vai, achar o último que fica, decidir o corte.</p>
+
+    <p><strong>Aplicação — prática docente.</strong> A regra do par costuma surpreender: a escola ensina "de 5 para cima, arredonda para cima". Mostre a uma turma dez números terminados em 5, arredonde-os das duas maneiras e some. Com "sempre para cima", a soma arredondada sai sempre maior que a verdadeira; com a regra do par, ela fica perto. A regra deixa de ser capricho e vira honestidade estatística.</p>
 
   </div>
 
-  <!-- TOPICO 4 -->
   <div class="topico" id="topico-4">
     <div class="topico-titulo">Tópico 4 &mdash; Potenciação</div>
 
-    <p>Antes de medir, um modelo pode ser descartado só olhando os expoentes. Suponha que alguém proponha T = 2π√(g/L). A unidade seria √((m·s<sup>&minus;2</sup>/m) = √(s<sup>&minus;2</sup> = s<sup>&minus;1</sup> — um período medido em "por segundo". O modelo cai sem ir à bancada.</p>
+    <p>A aceleração da gravidade é 9,8 m/s<sup>2</sup>. O "quadrado" do segundo é uma potência, e por trás de cada unidade derivada do QGU há uma conta com expoentes. Sem as propriedades da potenciação, a unidade vira enfeite.</p>
 
-    <p><strong>O conceito e as propriedades.</strong> a^n é o produto de n fatores a. As seis propriedades, com número e com unidade:</p>
+    <p><strong>O conceito.</strong> a<sup>n</sup> é o produto de n fatores iguais a a: 10<sup>3</sup> = 10 × 10 × 10 = 1 000. O a é a <strong>base</strong>; o n, o <strong>expoente</strong>.</p>
 
-    <p><strong>Quadro 4 — Propriedades, com a unidade junto</strong></p>
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
-      <tr><th style="text-align:left;">Propriedade</th><th style="text-align:left;">Regra</th><th style="text-align:left;">Na Mecânica</th></tr>
-      <tr><td>produto de mesma base</td><td>a^m a^n = a^m+n</td><td>kg·m·s<sup>&minus;2</sup>·m = kg·m<sup>2</sup>·s<sup>&minus;2</sup> (J)</td></tr>
-      <tr><td>quociente de mesma base</td><td>a^m/a^n = a^m-n</td><td>m/(m·s<sup>&minus;2</sup> = s<sup>2</sup></td></tr>
-      <tr><td>potência de potência</td><td>(a^m)^n = a^mn</td><td>(s<sup>2</sup><sup>1/2</sup> = s</td></tr>
-      <tr><td>potência de um produto</td><td>(ab)^n = a^n b^n</td><td>(10<sup>&minus;1</sup> m)<sup>3</sup> = 10<sup>&minus;3</sup> m<sup>3</sup></td></tr>
-      <tr><td>expoente zero</td><td>a<sup>0</sup> = 1</td><td>m/m = m<sup>0</sup> = 1</td></tr>
-      <tr><td>expoente negativo</td><td>a^-n = 1/a^n</td><td>s<sup>&minus;1</sup> = 1/s</td></tr>
-    </table>
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 4 — As propriedades da potenciação, com número e com unidade</div>
+      <table class="tabela">
+        <thead><tr><th>Propriedade</th><th>Regra</th><th>Número e unidade</th></tr></thead>
+        <tbody>
+          <tr><td>produto de mesma base</td><td>a<sup>m</sup> · a<sup>n</sup> = a<sup>m+n</sup></td><td>10<sup>2</sup> · 10<sup>3</sup> = 10<sup>5</sup> · m<sup>2</sup> · m = m<sup>3</sup></td></tr>
+          <tr><td>quociente de mesma base</td><td>a<sup>m</sup> / a<sup>n</sup> = a<sup>m&minus;n</sup></td><td>10<sup>5</sup> / 10<sup>2</sup> = 10<sup>3</sup> · m<sup>3</sup>/m<sup>2</sup> = m</td></tr>
+          <tr><td>potência de potência</td><td>(a<sup>m</sup>)<sup>n</sup> = a<sup>m</sup> · n</td><td>(10<sup>3</sup>)<sup>2</sup> = 10<sup>6</sup> · (m<sup>2</sup>)<sup>3</sup> = m<sup>6</sup></td></tr>
+          <tr><td>potência de um produto</td><td>(a · b)<sup>n</sup> = a<sup>n</sup> · b<sup>n</sup></td><td>(2 · 10)<sup>3</sup> = 8 · 10<sup>3</sup> · (10 cm)<sup>3</sup> = 10<sup>3</sup> cm<sup>3</sup></td></tr>
+          <tr><td>expoente zero</td><td>a<sup>0</sup> = 1 (a ≠ 0)</td><td>10<sup>0</sup> = 1 · m<sup>2</sup>/m<sup>2</sup> = m<sup>0</sup> = 1</td></tr>
+          <tr><td>expoente negativo</td><td>a<sup>&minus;n</sup> = 1/a<sup>n</sup></td><td>10<sup>&minus;3</sup> = 1/1 000 · s<sup>&minus;1</sup> = 1/s</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <p><strong>A razão dos diâmetros ao cubo.</strong> Na T0B, a massa do grão de areia foi inferida da massa do grânulo: m<sub>grão</sub> = m<sub>gr</sub>ânulo · (d<sub>grão</sub>/d<sub>gr</sub>ânulo)<sup>3</sup>. Com diâmetros de 0,2 mm e 2 mm, a razão é 10<sup>&minus;1</sup>, e o cubo, 10<sup>&minus;3</sup>: o grão tem um milésimo da massa do grânulo. É a potência de um quociente.</p>
+    <p><strong>Por que o expoente zero dá 1.</strong> Pela regra do quociente, 10<sup>3/10</sup><sup>3</sup> = 10<sup>3</sup>-3 = 10<sup>0</sup>. Mas qualquer número não nulo dividido por ele mesmo dá 1. Então 10<sup>0</sup> = 1 — não é convenção arbitrária, é consequência.</p>
 
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>O erro clássico, 2<sup>3</sup>·2<sup>2</sup> = 4<sup>5</sup>, some quando o aluno escreve os fatores por extenso uma vez. A análise dimensional é a mesma conta, com unidades no lugar de números.</p>
-</div>
+    <p><strong>Por que o expoente negativo é inverso.</strong> Pela mesma regra, 10<sup>2/10</sup><sup>5</sup> = 10<sup>&minus;3</sup>; e 100/100 000 = 1/1 000. O expoente negativo é só a fração escrita de outro jeito — e é por isso que o QGU escreve m/s<sup>2</sup> ou m·s<sup>&minus;2</sup>, as duas formas.</p>
 
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>A massa específica dos minérios do Quadrilátero, em kg/m<sup>3</sup>, é uma unidade com expoente negativo que os engenheiros da Escola de Minas usavam para cubar jazidas.</p>
-</div>
+    <p><strong>A ponte com o QGU.</strong> A seção 3.4.2 do QGU diz que o expoente afeta o prefixo junto com a unidade: dm<sup>3</sup> = (10<sup>&minus;1</sup> m)<sup>3</sup> = 10<sup>&minus;3</sup> m<sup>3</sup>. É a potência de um produto, aplicada. Do mesmo jeito, 1 cm<sup>3</sup> = (10<sup>&minus;2</sup> m)<sup>3</sup> = 10<sup>&minus;6</sup> m<sup>3</sup> — a conta que a T02 vai pedir para a densidade dos cilindros.</p>
 
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>Toda unidade derivada do QGU é um produto de potências das unidades de base; conferir os expoentes é a primeira auditoria de um modelo.</p>
-</div>
+    <p><strong>Aplicação — metrologia.</strong> A unidade derivada é um produto de potências das unidades de base: o newton é kg·m·s<sup>&minus;2</sup>. Conferir os expoentes de um resultado é a primeira conferência de qualquer conta — se a força saiu em kg·m·s<sup>&minus;1</sup>, a conta está errada antes de qualquer número.</p>
 
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>Cubagem de pilha: volume em m<sup>3</sup> vezes massa específica em kg·m<sup>&minus;3</sup> dá kg — o expoente do metro se cancela, e é por isso que a conta faz sentido.</p>
-</div>
+    <p><strong>Aplicação — prática docente.</strong> O erro clássico é somar as bases: 2<sup>3</sup> · 2<sup>2</sup> = 4<sup>5</sup>. Ele desaparece quando o aluno escreve os fatores por extenso uma única vez — (2·2·2)·(2·2) — e conta. A regra deve vir depois da contagem, nunca antes.</p>
 
   </div>
 
-  <!-- TOPICO 5 -->
   <div class="topico" id="topico-5">
     <div class="topico-titulo">Tópico 5 &mdash; Potências de 10</div>
 
-    <p>A T0B usou a potência de dez para estimar; aqui ela serve para <strong>escrever e calcular sem errar o expoente</strong>. Do grão à cava, as medidas atravessam onze ordens de grandeza, e ninguém as escreve por extenso sem perder um zero.</p>
+    <p>A espessura da folha é 0,000 104 m. A constante de Planck, que define o kilograma, é 0,000 000 000 000 000 000 000 000 000 000 662 607 015 J s. Ninguém escreve isso duas vezes sem errar um zero. A potência de 10 existe para que ninguém precise.</p>
 
-    <p><strong>Mover a vírgula.</strong> Multiplicar por 10^n leva a vírgula n casas para a direita; por 10^-n, n casas para a esquerda. Na dúvida, confira com um número fácil: multiplicar por 10<sup>&minus;1</sup> = 0,1 tem de diminuir o número.</p>
+    <p><strong>Mover a vírgula.</strong> Multiplicar por 10<sup>n</sup> <strong>desloca a vírgula n casas para a direita</strong>; multiplicar por 10<sup>&minus;n</sup>, <strong>n casas para a esquerda</strong>. 1,04 × 10<sup>2</sup> = 104; 1,04 × 10<sup>&minus;4</sup> = 0,000 104. Faltando algarismo, completa-se com zeros.</p>
 
-    <p><strong>Escrever.</strong> Notação científica: a × 10^n, com 1 ≤ a &lt; 10. Número maior que 1 ⇒ expoente positivo; menor que 1 ⇒ negativo; conta-se quantas casas a vírgula andou.</p>
+    <p><strong>Escrever em potência de 10.</strong> A <strong>notação científica</strong> escreve o número como a × 10<sup>n</sup>, com 1 ≤ a &lt; 10. O procedimento:</p>
 
-    <p><strong>Quadro 5 — Do grão à cava, em potência de 10</strong></p>
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
-      <tr><th style="text-align:left;">Medida</th><th style="text-align:left;">Notação científica</th><th style="text-align:left;">Escala</th></tr>
-      <tr><td>grão de areia: 0,000 2 m</td><td>2 × 10<sup>&minus;4</sup> m</td><td>a vírgula andou 4 casas à direita</td></tr>
-      <tr><td>grânulo: 0,02 g</td><td>2 × 10<sup>&minus;5</sup> kg</td><td>grama para kilograma: mais 3 casas</td></tr>
-      <tr><td>fio do pêndulo: 0,500 m</td><td>5,00 × 10<sup>&minus;1</sup> m</td><td>os zeros à direita ficam</td></tr>
-      <tr><td>cava: 1 000 m × 1 000 m × 100 m</td><td>1 × 10<sup>8</sup> m<sup>3</sup></td><td>10<sup>3</sup> · 10<sup>3</sup> · 10<sup>2</sup> = 10<sup>8</sup></td></tr>
-    </table>
+    <ul>
+      <li><strong>Número maior que 1</strong> (ex.: 149 597 870 700 m, a unidade astronômica): leve a vírgula para a <em>esquerda</em> até sobrar um só algarismo antes dela; o número de casas que ela andou é o expoente, <strong>positivo</strong>: 1,495 978 707 × 10<sup>11</sup> m.</li>
+      <li><strong>Número menor que 1</strong> (ex.: 0,000 104 m): leve a vírgula para a <em>direita</em> até passar o primeiro algarismo não nulo; o número de casas é o expoente, <strong>negativo</strong>: 1,04 × 10<sup>&minus;4</sup> m.</li>
+    </ul>
 
-    <p><strong>Operar.</strong> Multiplicam-se os números e somam-se os expoentes; dividem-se e subtraem-se. A massa da cava, com massa específica de 3 × 10<sup>3</sup> kg/m<sup>3</sup>: (1 × 10<sup>8</sup>(3 × 10<sup>3</sup> = 3 × 10<sup>11</sup> kg = 3 × 10<sup>8</sup> t.</p>
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 5 — Da medida à potência de 10</div>
+      <table class="tabela">
+        <thead><tr><th>Medida</th><th>Potência de 10</th><th>O que a vírgula fez</th></tr></thead>
+        <tbody>
+          <tr><td>moeda: 0,0235 m</td><td>2,35 × 10<sup>&minus;2</sup> m</td><td>andou 2 casas para a direita</td></tr>
+          <tr><td>folha: 0,000 104 m</td><td>1,04 × 10<sup>&minus;4</sup> m</td><td>andou 4 casas para a direita</td></tr>
+          <tr><td>peso: 0,98 N</td><td>9,8 × 10<sup>&minus;1</sup> N</td><td>andou 1 casa para a direita</td></tr>
+          <tr><td>massa de 100 g: 0,100 kg</td><td>1,00 × 10<sup>&minus;1</sup> kg</td><td>andou 1 casa (e os zeros à direita ficaram)</td></tr>
+          <tr><td>1 ua: 149 597 870 700 m</td><td>1,495 978 707 × 10<sup>11</sup> m</td><td>andou 11 casas para a esquerda</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-<div class="eixo eixo-tecnico">
-  <div class="eixo-label">Eixo Didático &mdash; a dobra da licenciatura</div>
-  <p>Peça o sentido da vírgula pelo tamanho do resultado, nunca por regra decorada: "ficou maior ou menor?".</p>
-</div>
+    <p><strong>Operar.</strong> Multiplicar e dividir em notação científica é o Tópico 4 aplicado: multiplicam-se os números e <em>somam-se</em> os expoentes; dividem-se os números e <em>subtraem-se</em> os expoentes. (2,0 × 10<sup>3</sup>) · (3,0 × 10<sup>&minus;5</sup>) = 6,0 × 10<sup>&minus;2</sup>.</p>
 
-<div class="eixo eixo-historico">
-  <div class="eixo-label">Eixo Histórico-Cultural &mdash; Ouro Preto</div>
-  <p>Arquimedes, em <em>O Contador de Areia</em>, inventou ordens de números para escrever quantos grãos caberiam no universo — a ideia da notação científica, quase dois mil anos antes dela.</p>
-</div>
+    <p><strong>Três ligações.</strong> Os <strong>prefixos</strong> do QGU são potências de 10 com nome: 10<sup>&minus;4</sup> m = 100 × 10<sup>&minus;6</sup> m = 100 µm. As <strong>constantes</strong> da Tabela 1 do QGU só cabem nessa escrita: h = 6,626 070 15 × 10<sup>&minus;34</sup> J s. E a potência de 10 <strong>resolve a ambiguidade</strong> do Tópico 2: 2 300 g com três significativos é 2,30 × 10<sup>3</sup> g, sem dúvida.</p>
 
-<div class="eixo eixo-cotidiano">
-  <div class="eixo-label">Eixo Metrológico &mdash; a ciência da medida</div>
-  <p>Os prefixos do QGU são potências de 10 com nome; as constantes da Tabela 1 só cabem nessa escrita.</p>
-</div>
+    <p><strong>Aplicação — história.</strong> No século III a.C., Arquimedes escreveu <em>O Contador de Areia</em> para responder a quem achava que os grãos de areia eram infinitos. Para escrevê-los, inventou um sistema de ordens de números que crescem por potências — e estimou quantos grãos caberiam no universo que ele conhecia. É a ideia da notação científica, quase dois mil anos antes da notação.</p>
 
-<div class="eixo eixo-destino">
-  <div class="eixo-label">Destino do modelo &mdash; a mineração</div>
-  <p>A produção anual de uma mina se escreve em 10<sup>7</sup> toneladas; a do grão, em 10<sup>&minus;8</sup> kg. A mesma régua, dezoito ordens de grandeza de distância.</p>
-</div>
+    <p><strong>Aplicação — prática docente.</strong> O sentido da vírgula é o erro mais teimoso: expoente negativo "vai para a direita" ou "para a esquerda"? Em vez de decorar, faça o aluno conferir com um número fácil: 10<sup>&minus;1</sup> é 0,1, menor que 1; então multiplicar por 10<sup>&minus;1</sup> tem de <em>diminuir</em> o número — a vírgula vai para a esquerda.</p>
 
 </div>
 
@@ -1086,23 +906,25 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 <div class="ato" id="ato-iii">
   <div class="ato-titulo">Ato III &mdash; O Fechamento</div>
 
-    <p><strong>O relatório de Pedro, reescrito.</strong> Leitura: 1,419 229 6 e 1,42 são decimais de última ordem diferente (Tópico 1). O g tinha dois significativos (Tópico 2). Raiz e divisão pedem o critério dos significativos; a previsão é 1,4 s (Tópico 3). A unidade de √(L/g) é segundo, e o modelo passou na auditoria dos expoentes antes de chegar à bancada (Tópico 4). Em potência de 10, 1,4 × 10<sup>0</sup> s (Tópico 5). A frase certa no relatório: <strong>o modelo prevê 1,4 s; o dado, 1,42 s; concordam dentro dos algarismos da previsão</strong>.</p>
+    <p><strong>O tempo de reação, reescrito.</strong> Volte ao Roteiro de Bancada de Lucas. O que ele copiou — 0,191 662 969 8 s — agora tem diagnóstico completo: é um decimal que se lê "zero vírgula um nove" (Tópico 1); os dados davam dois algarismos significativos (Tópico 2); a divisão pede o critério dos significativos, o último mantido é o 9 e o descartado é 1 (Tópico 3); a fórmula tem s<sup>2</sup> e uma raiz quadrada, potências de expoente 2 e 1/2 (Tópico 4); e o resultado, em potência de 10, é 1,9 × 10<sup>&minus;1</sup> s (Tópico 5). A linha certa no Roteiro: <strong>0,19 s</strong>.</p>
 
-    <p>A bancada da Etapa 2 troca "dentro dos algarismos" por um número: a incerteza. Mas ela parte daqui. Sem as cinco ferramentas, toda incerteza é calculada sobre números mal escritos — e todo modelo é julgado por erros que não são dele.</p>
+    <p>Cinco ferramentas para uma linha. É assim em toda trilha de bancada daqui para a frente: a T01 acrescenta a incerteza, a T02 a densidade (kg/m<sup>3</sup>, com cm<sup>3</sup> convertido por potência), a T05 a reta ajustada — e cada uma pressupõe que estas cinco já estão na mão.</p>
 
-    <p><strong>Agora a Folha de Atividades.</strong> Oito itens por tópico; os últimos de cada um pedem uma decisão sobre um modelo.</p>
+    <p><strong>Agora a Folha de Atividades.</strong> Oito itens por tópico, do reconhecer ao criar. O placar mostra em que tópico voltar. E na T02, em 20/10, o encontro começa por ela.</p>
 
 </div>
 
+<div class="separador"></div>
+
 <div class="ciencia-arte" id="ciencia-arte">
   <div class="ciencia-arte-titulo">Ciência e Arte</div>
-  <div class="ciencia-arte-obra"><strong>Xilogravura:</strong> <em>Limite Circular III</em>, 1959 &mdash; M. C. Escher</div>
+  <div class="ciencia-arte-obra"><strong>Filme:</strong> <em>Powers of Ten</em>, 1977 &mdash; Charles e Ray Eames</div>
 
-    <p>Em 1959, o gravador holandês <strong>M. C. Escher</strong> cortou em madeira <em>Limite Circular III</em>: peixes que nadam em fileiras curvas dentro de um disco, cada fileira menor que a anterior, até que, perto da borda, ficam pequenos demais para o olho. A regra é uma só, repetida; o que muda é a escala. Escher chegou ao desenho estudando uma figura de geometria hiperbólica que o matemático H. S. M. Coxeter lhe mostrou — um artista lendo matemática para conseguir desenhar o infinito num espaço finito.</p>
+    <p>Em 1977, os designers americanos <strong>Charles e Ray Eames</strong> lançaram um filme de nove minutos chamado <em>Powers of Ten</em>. O subtítulo diz tudo: um filme sobre o tamanho relativo das coisas no universo e o efeito de acrescentar mais um zero. Começa num casal fazendo piquenique num gramado de Chicago, num quadrado de um metro de lado. A cada dez segundos, a câmera se afasta uma potência de dez: dez metros, cem metros, a cidade, o planeta, o Sistema Solar, a galáxia — até 10<sup>24</sup> m. Depois volta, e mergulha na mão do homem que dorme: a pele, a célula, o DNA, o átomo, o núcleo — até 10<sup>&minus;16</sup> m.</p>
 
-    <p>É a potência de 10 vista por dentro. O peixe da borda é o mesmo peixe do centro, multiplicado muitas vezes por um fator menor que 1. Errar o expoente, na gravura, seria pôr um peixe gigante na borda — e o desenho inteiro deixaria de fazer sentido, como a previsão de Pedro com sete algarismos inventados.</p>
+    <p>É o Tópico 5 em imagem, e é mais do que isso. O filme mostra que <em>mudar o expoente é mudar de mundo</em>: a regra é a mesma a cada passo — multiplicar por dez —, mas o que aparece no quadro é outro. A mesma coisa acontece com a sua medida quando a vírgula anda uma casa para o lado errado.</p>
 
-    <p><strong>Três cérebros, o mesmo gesto.</strong> Os pitagóricos disseram que tudo é número; Galileu, que abre a sua Folha de Atividades, escreveu que o livro da natureza está em língua matemática; e Escher fez a escala virar imagem, peixe a peixe, até a borda. O número como linguagem, a medida como leitura, a escala como forma — três criações do mesmo cérebro, como escreveu Miguel Nicolelis.</p>
+    <p><strong>Três cérebros, o mesmo gesto.</strong> Paulo Freire viu que ninguém ignora tudo nem sabe tudo, e fez da lacuna o ponto de partida; Simon Stevin, que abre a sua Folha de Atividades, trocou as frações dos comerciantes pelo décimo e ensinou todo mundo a contar do mesmo jeito; e Charles e Ray Eames puseram a potência de dez em movimento, um zero de cada vez. Partir do que falta, contar com a ferramenta certa, ver a escala inteira — três criações do mesmo cérebro, como escreveu Miguel Nicolelis.</p>
 
 </div>
 
@@ -1114,6 +936,12 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   <p>PIACENTINI, J. J. et al. <em>Introdução ao laboratório de física</em>. 2. ed. Florianópolis: Editora da UFSC, 2018.</p>
   <p>SANTORO, A. et al. <em>Estimativas e erros em experimentos de física</em>. 2. ed. Rio de Janeiro: EdUERJ, 2013.</p>
 
+  <div class="refs-titulo" style="margin-top:20px;">Complementar</div>
+
+  <p>HEWITT, P. G. <em>Física conceitual</em>. 12. ed. Porto Alegre: Bookman, 2015.</p>
+  <p>FEYNMAN, R. P.; LEIGHTON, R. B.; SANDS, M. L. <em>Feynman: lições de física</em>. Porto Alegre: Bookman, 2008. v. 1, 2 e 3.</p>
+  <p>HALLIDAY, D.; RESNICK, R.; WALKER, J. <em>Fundamentos de física</em>: mecânica. 10. ed. Rio de Janeiro: LTC, 2016. v. 1.</p>
+
   <div class="refs-titulo" style="margin-top:20px;">Documentos e normas</div>
 
   <p>INMETRO. <em>Quadro Geral de Unidades de Medida no Brasil</em>. [S. l.]: Inmetro, 2021.</p>
@@ -1121,17 +949,16 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 
   <div class="refs-titulo" style="margin-top:20px;">Epígrafes e obras citadas</div>
 
-  <p>ARISTÓTELES. <em>Metafísica</em>, livro A. (fonte da tradição sobre os pitagóricos)</p>
-  <p>GALILEI, G. <em>O Ensaiador</em>. 1623. (abre a Folha de Atividades desta trilha)</p>
-  <p>ESCHER, M. C. <em>Limite Circular III</em>. Xilogravura, 1959.</p>
-  <p>STEVIN, S. <em>De Thiende</em>. Leiden: Christoffel Plantijn, 1585.</p>
+  <p>FREIRE, P. <em>A importância do ato de ler</em>: em três artigos que se completam. São Paulo: Cortez, 1989.</p>
+  <p>STEVIN, S. <em>De Thiende</em>. Leiden: Christoffel Plantijn, 1585. (abre a Folha de Atividades desta trilha)</p>
+  <p>EAMES, C.; EAMES, R. <em>Powers of Ten</em>. Filme, 9 min. Estados Unidos: IBM, 1977.</p>
   <p>ARQUIMEDES. <em>O Contador de Areia</em>. Século III a.C.</p>
 
 </div>
 
-</div><!-- fim .conteudo -->
+</div>
 
-<!-- ═══════════════════ ENCERRAMENTO ═══════════════════ -->
+
 <div class="encerramento">
   <div class="fecho-frase">Terminamos por aqui, um abraço, e até o próximo encontro.</div>
   <div class="fecho-links">
@@ -1156,7 +983,7 @@ window.addEventListener('scroll', function() {
 // Restauracao de scroll REMOVIDA (2026-09-13): computador de laboratorio e
 // compartilhado entre turmas — o scroll salvo por um estudante reabria a
 // pagina de todo o proximo estudante ja no final do TT.
-var STORAGE_KEY = 'LME-T0D-TT-v3';
+var STORAGE_KEY = 'LME-T0D-TT-v4';
 window.scrollTo(0, 0);
 
 // ─── FONT SIZE ───
@@ -1198,8 +1025,15 @@ document.getElementById('btnTheme').addEventListener('click', function() {
   var current = document.documentElement.getAttribute('data-theme');
   setTheme(current === 'dark' ? 'light' : 'dark');
 });
-
-
+// O atalho de audio abre o painel Musica do trilho de 7 abas (abas_oa_ilb.py).
+var audioHint = document.getElementById('audioHint');
+if (audioHint) {
+  audioHint.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var b = document.querySelector('.lme-aba-toggle[data-aba="musica"]');
+    if (b) { b.click(); }
+  });
+}
 </script>
 <!-- ABAS-OA-LME (trilho de 6 abas — abas_oa.py) -->
 
