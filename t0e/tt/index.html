@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LME · T0E · O Número Pi na Física Experimental — Texto Temático v3</title>
+<title>LME · T0E · O Número Pi na Física Experimental — Texto Temático v4</title>
 <style>
   input, button, select, textarea { font-family: inherit; }
 /* ═══ DESIGN SYSTEM: BRUTALISMO CIENTIFICO ═══ */
@@ -700,6 +700,35 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   max-width: 480px; margin: 40px auto 0; text-align: center;
   padding-top: 20px; border-top: 1px solid var(--cinza-borda);
 }
+
+/* ═══ PADRAO DO TT DA LME v1 (2026-10-31) ═══ */
+p { line-height: 1.75; margin-bottom: 14px; }
+.figura { display: flex; flex-direction: column; align-items: center; margin: 28px calc(50% - min(440px, 50vw - 20px)); }
+.figura-img { max-width: 880px; }
+.figura-legenda { max-width: 880px; width: 100%; margin-top: 0; padding: 8px 12px; text-align: left;
+  font-size: .95rem; background: var(--superficie); border-top: 2px solid var(--verde); }
+.figura-num { text-transform: none; color: var(--verde); }
+#epigrafe .figura { margin-left: 0; margin-right: 0; }
+.quadro-titulo { text-transform: none; font-family: var(--font); letter-spacing: 0; font-size: .95rem; }
+.tabela, .quadro table { width: 100%; border-collapse: collapse; margin: 0; }
+.tabela th, .tabela td, .quadro table { font-family: var(--font); font-size: .95rem; text-align: left; }
+.rcp summary, .rcp-step-label { text-transform: none; letter-spacing: 0; }
+.tabela th, .tabela td { padding: 6px 8px; border-bottom: 1px solid var(--cinza-borda); vertical-align: top; }
+.box-artista { background: var(--superficie); border-left: 4px solid var(--verde); margin: 24px 0; padding: 0 0 12px; }
+.box-artista-titulo { font-family: var(--font); font-weight: 700; font-size: .95rem; color: var(--branco);
+  background: var(--verde); padding: 6px 14px; margin-bottom: 10px; }
+.box-artista p { margin: 0 14px 8px; }
+.box-artista .box-artista-link { font-family: var(--font); font-size: .9rem; }
+.box-artista .box-artista-link a { word-break: break-all; }
+.box-artista a, .refs a, .uso-ia a { color: var(--azul); }
+.uso-ia { margin: 36px 0 12px; }
+.uso-ia-titulo { font-family: var(--serif); font-size: 1.5rem; color: var(--branco); margin-bottom: 12px; }
+.refs p { word-break: break-word; }
+@media (max-width: 600px) {
+  .figura { margin-left: 0; margin-right: 0; }
+  .quadro { padding: 10px 6px; }
+  .tabela th, .tabela td { font-size: .74rem; padding: 4px 3px; hyphens: auto; -webkit-hyphens: auto; }
+}
 /* ICONES-LME */
 .lme-cab-marcas { display: flex; gap: 10px; align-items: center; justify-content: flex-start;
   flex-shrink: 0; }
@@ -900,8 +929,9 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 
     <p><strong>O modelo.</strong> A Geometria afirma que, em qualquer círculo, o perímetro C é proporcional ao diâmetro D, e chama de π a constante de proporcionalidade: C = π D, com π = 3,141 592 65… Dobre o diâmetro, e o perímetro dobra; a razão não muda.</p>
 
-    <p><strong>Quadro 1 — A razão C/D na simulação (Tabela 3 da FA)</strong></p>
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 1 — A razão C/D na simulação (Tabela 3 da FA)</div>
+      <table class="tabela">
       <tr><th style="text-align:left;">Circunferência</th><th style="text-align:left;">D (cm)</th><th style="text-align:left;">C (cm)</th><th style="text-align:left;">C/D (calculadora)</th></tr>
       <tr><td>1 · violeta</td><td>2,2</td><td>6,8</td><td>3,0909…</td></tr>
       <tr><td>2 · azul</td><td>2,6</td><td>8,2</td><td>3,1538…</td></tr>
@@ -909,7 +939,8 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
       <tr><td>4 · amarela</td><td>3,7</td><td>11,7</td><td>3,1621…</td></tr>
       <tr><td>5 · laranja</td><td>4,1</td><td>12,9</td><td>3,1463…</td></tr>
       <tr><td>6 · vermelha</td><td>4,6</td><td>14,6</td><td>3,1739…</td></tr>
-    </table>
+      </table>
+    </div>
 
     <p><strong>"Constante" na bancada.</strong> Os seis valores não são iguais: vão de 3,09 a 3,17. Isso derruba o modelo? Ainda não. Na bancada, <em>constante</em> quer dizer <strong>igual dentro do que a medida permite distinguir</strong>, e não igual no último algarismo da calculadora. A pergunta certa é: a diferença entre os seis valores é maior ou menor que a dúvida de cada leitura?</p>
 
@@ -929,12 +960,14 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 
     <p><strong>Corretos mais um duvidoso.</strong> Uma leitura escreve todos os algarismos que a escala garante e <strong>um</strong> algarismo estimado entre dois traços (T0D, Tópico 2). O duvidoso fica <strong>uma casa além da menor divisão</strong>:</p>
 
-    <p><strong>Quadro 2 — Onde fica o duvidoso em cada régua</strong></p>
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 2 — Onde fica o duvidoso em cada régua</div>
+      <table class="tabela">
       <tr><th style="text-align:left;">Régua</th><th style="text-align:left;">Menor divisão</th><th style="text-align:left;">Duvidoso</th><th style="text-align:left;">Leituras da FA (Questão 3)</th></tr>
       <tr><td>graduada em cm</td><td>1 cm</td><td>0,1 cm</td><td>6,7 cm · 5,0 cm</td></tr>
       <tr><td>graduada em mm</td><td>0,1 cm</td><td>0,01 cm</td><td>3,63 cm · 3,40 cm</td></tr>
-    </table>
+      </table>
+    </div>
 
     <p><strong>O zero que conta.</strong> 5,0 cm e 3,40 cm terminam em zero, e o zero fica. Ele diz que a borda caiu <em>sobre</em> um traço e que alguém olhou a casa seguinte e não viu nada a acrescentar. Apagar esse zero é apagar uma medida.</p>
 
@@ -954,7 +987,7 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 
     <p><strong>Decisão sobre o modelo.</strong> O modelo prevê que a régua de menor divisão menor dará C/D mais concentrados em torno de π. A Tabela 4 confirma: dispersão de 0,08 com a régua em cm, de 0,001 com a régua em mm. <strong>A previsão passou</strong>, e é ela que você escreve, a caneta, antes de medir no RB.</p>
 
-    <p><strong>Aplicação — metrologia.</strong> A <em>resolução</em> de um instrumento é a menor variação que ele consegue indicar (Vocabulário Internacional de Metrologia, VIM). Trocar de régua não muda o disco; muda quantos algarismos do disco a medida consegue enxergar.</p>
+    <p><strong>Aplicação — metrologia.</strong> A <em>resolução</em> de um instrumento é a menor variação que ele consegue indicar, segundo o Vocabulário Internacional de Metrologia (VIM). Trocar de régua não muda o disco; muda quantos algarismos do disco a medida consegue enxergar.</p>
 
     <p><strong>Aplicação — prática docente.</strong> A rolagem tem quatro fontes de erro que a turma descobre sozinha se você deixar: o disco que escorrega em vez de rolar, a partida fora do início, a volta incompleta e a leitura de lado (paralaxe). Peça que cada grupo anote a sua antes de ler o RB.</p>
 
@@ -976,7 +1009,7 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
     <p><strong>Ler a declividade.</strong> Escolha dois pontos <em>distantes</em> da reta (os extremos), e não dois vizinhos: a dúvida de cada leitura pesa menos quando ΔD é grande. Com as circunferências 1 e 6 da Tabela 4:</p>
 
     <details class="rcp" open>
-      <summary>RCP — Resolução Científica do Problema · Pensamento Quantitativo</summary>
+      <summary>Resolução Científica do Problema (RCP) · Pensamento Quantitativo</summary>
       <div class="rcp-step"><div class="rcp-step-label">1. O que a questão quer?</div><div class="rcp-step-text">O valor de π medido na simulação, como a declividade do Gráfico 2 da FA (régua em mm).</div></div>
       <div class="rcp-step"><div class="rcp-step-label">2. O que eu tenho?</div><div class="rcp-step-text">Circunferência 1: D<sub>1</sub> = 2,18 cm, C<sub>1</sub> = 6,85 cm. Circunferência 6: D<sub>6</sub> = 4,64 cm, C<sub>6</sub> = 14,58 cm. Todos com três ou quatro algarismos significativos, duvidoso no centésimo de centímetro.</div></div>
       <div class="rcp-step"><div class="rcp-step-label">3. Qual é o desenho?</div><div class="rcp-step-text">Os dois pontos extremos sobre a reta pela origem (Figura 8); estimativa: perto de 3,1.</div></div>
@@ -1004,7 +1037,7 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
     <p><strong>Medido não é um número, é um intervalo.</strong> Uma maneira simples e honesta de dar a dúvida de uma série é a <strong>semiamplitude</strong>: metade da diferença entre o maior e o menor valor. O resultado se escreve como (valor ± dúvida), e o modelo <strong>passa</strong> se o valor tabelado cair dentro do intervalo. A T01 vai substituir a semiamplitude pelo desvio padrão; a decisão continua a mesma.</p>
 
     <details class="rcp" open>
-      <summary>RCP — Resolução Científica do Problema · Pensamento Quantitativo</summary>
+      <summary>Resolução Científica do Problema (RCP) · Pensamento Quantitativo</summary>
       <div class="rcp-step"><div class="rcp-step-label">1. O que a questão quer?</div><div class="rcp-step-text">O π medido com cada régua, com a sua dúvida, e se ele é compatível com π = 3,141 59.</div></div>
       <div class="rcp-step"><div class="rcp-step-label">2. O que eu tenho?</div><div class="rcp-step-text">Os seis C/D calculados com D e C das Tabelas 3 e 4 da FA, guardando um algarismo a mais nas contas intermediárias. Régua em cm: de 3,091 a 3,174, média 3,136. Régua em mm: de 3,1411 a 3,1422, média 3,1417.</div></div>
       <div class="rcp-step"><div class="rcp-step-label">3. Qual é o desenho?</div><div class="rcp-step-text">Dois intervalos sobre a reta numérica, com π marcado; estimativa: o da régua em mm deve ser bem mais estreito.</div></div>
@@ -1034,20 +1067,22 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 
     <p><strong>π não é medido, mas é arredondado.</strong> Os algarismos de π não acabam, e na conta você usa sempre um π cortado. Se o corte for grosseiro, ele passa a limitar o resultado no lugar da medida. A Questão 6 da FA mostra isso com a área da seção do mesmo rolete:</p>
 
-    <p><strong>Quadro 4 — O rolete com π cada vez mais longo (Questão 6 da FA)</strong></p>
-    <table class="tabela" style="width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;">
+    <div class="quadro">
+      <div class="quadro-titulo">Quadro 4 — O rolete com π cada vez mais longo (Questão 6 da FA)</div>
+      <table class="tabela">
       <tr><th style="text-align:left;">π usado</th><th style="text-align:left;">A (mm<sup>2</sup>, visor</th><th style="text-align:left;">O 4.º algarismo de A</th></tr>
       <tr><td>3,14</td><td>6 208,207…</td><td>6 20<strong>8</strong></td></tr>
       <tr><td>3,142</td><td>6 212,162…</td><td>6 21<strong>2</strong></td></tr>
       <tr><td>3,1416</td><td>6 211,371…</td><td>6 21<strong>1</strong></td></tr>
       <tr><td>3,14159</td><td>6 211,351…</td><td>6 21<strong>1</strong></td></tr>
       <tr><td>3,141593</td><td>6 211,357…</td><td>6 21<strong>1</strong></td></tr>
-    </table>
+      </table>
+    </div>
 
     <p><strong>A regra.</strong> O diâmetro tem quatro algarismos significativos, e o resultado também terá quatro. O 4.º algarismo de A só para de mudar quando π tem <strong>cinco</strong> algarismos: <strong>use π com pelo menos um algarismo significativo a mais que o dado de menor número de algarismos</strong>. Assim o π nunca é o elo fraco da conta.</p>
 
     <details class="rcp" open>
-      <summary>RCP — Resolução Científica do Problema · Pensamento Quantitativo</summary>
+      <summary>Resolução Científica do Problema (RCP) · Pensamento Quantitativo</summary>
       <div class="rcp-step"><div class="rcp-step-label">1. O que a questão quer?</div><div class="rcp-step-text">Quantas voltas o rolete de D = 88,93 mm dá enquanto a correia anda 1 m, com o número correto de algarismos.</div></div>
       <div class="rcp-step"><div class="rcp-step-label">2. O que eu tenho?</div><div class="rcp-step-text">D = 88,93 mm (4 algarismos significativos); L = 1 m = 1 000 mm, um comprimento definido na pergunta (exato, não limita os algarismos); hipótese: a correia não escorrega sobre o rolete.</div></div>
       <div class="rcp-step"><div class="rcp-step-label">3. Qual é o desenho?</div><div class="rcp-step-text">Uma volta do rolete desenrola o seu perímetro sobre a correia: N = L/C = L/(π D). Estimativa: C ≈ 3 × 90 = 270 mm, então N ≈ 3,7.</div></div>
@@ -1102,24 +1137,38 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
 
     <p><strong>Três cérebros, o mesmo gesto.</strong> Nicolau de Cusa viu no polígono que se aproxima do círculo a imagem de todo conhecimento: chegar mais perto sem nunca coincidir; Arquimedes, que abre o seu Roteiro de Bancada, transformou esse polígono num intervalo para π, com dúvida declarada; e Wassily Kandinsky encheu uma tela de círculos de todos os tamanhos, que a razão C/D torna, por baixo da cor, um só. Aproximar, medir com dúvida, reconhecer o invariante — três criações do mesmo cérebro, como escreveu Miguel Nicolelis.</p>
 
+<div class="box-artista" id="conheca-o-artista">
+  <div class="box-artista-titulo">Conheça o artista &mdash; Wassily Kandinsky</div>
+  <p>Kandinsky (1866–1944) nasceu em Moscou, formou-se em Direito e só começou a estudar pintura perto dos 30 anos, em Munique. Foi professor da Bauhaus e é considerado um dos pioneiros da arte abstrata. Visite a página dele no Google Arts &amp; Culture: leia a biografia, percorra as obras e escolha uma tela com círculos. Depois, faça a pergunta desta trilha: o que muda de um círculo para outro — e o que não muda?</p>
+  <p class="box-artista-link"><strong>Página do artista no Google Arts &amp; Culture:</strong> <a href="https://artsandculture.google.com/entity/wassily-kandinsky/m0856z" target="_blank" rel="noopener">https://artsandculture.google.com/entity/wassily-kandinsky/m0856z</a></p>
+</div>
+
 </div>
 
 <div class="refs" id="referencias">
 
-  <div class="refs-titulo" style="margin-top:20px;">Básica</div>
+  <div class="refs-titulo" style="margin-top:20px;">Bibliografia Básica</div>
 
   <p>CAMPOS, A. A.; ALVES, E. S.; SPEZIALI, N. L. <em>Física experimental básica na universidade</em>. 2. ed. Belo Horizonte: Editora UFMG, 2008.</p>
   <p>PIACENTINI, J. J. et al. <em>Introdução ao laboratório de física</em>. 2. ed. Florianópolis: Editora da UFSC, 2018.</p>
   <p>SANTORO, A. et al. <em>Estimativas e erros em experimentos de física</em>. 2. ed. Rio de Janeiro: EdUERJ, 2013.</p>
 
-  <div class="refs-titulo" style="margin-top:20px;">Complementar</div>
+  <div class="refs-titulo" style="margin-top:20px;">Bibliografia Pedagógica e Científica</div>
 
-  <p>HEWITT, P. G. <em>Física conceitual</em>. 12. ed. Porto Alegre: Bookman, 2015.</p>
+  <p>BLOOM, Benjamin S. (org.). <em>O desenvolvimento de talentos na juventude</em>. Porto Alegre: Globo, 1988.</p>
+  <p>HEWITT, Paul G. <em>Física conceitual</em>. 12. ed. Porto Alegre: Bookman, 2015.</p>
+  <p>NICOLELIS, Miguel. <em>O verdadeiro criador de tudo</em>: como o cérebro humano esculpiu o universo que conhecemos. São Paulo: Planeta, 2020.</p>
+  <p>PIAZZI, Pierluigi. <em>Aprendendo inteligência</em>: manual de instruções do cérebro para estudantes em geral. São Paulo: Aleph, 2008.</p>
+
+  <div class="refs-titulo" style="margin-top:20px;">Bibliografia Complementar</div>
+
+  <p>FEYNMAN, R. P.; LEIGHTON, R. B.; SANDS, M. L. <em>Feynman</em>: lições de física. Porto Alegre: Bookman, 2008. v. 1, 2 e 3.</p>
   <p>HALLIDAY, D.; RESNICK, R.; WALKER, J. <em>Fundamentos de física</em>: mecânica. 10. ed. Rio de Janeiro: LTC, 2016. v. 1.</p>
 
   <div class="refs-titulo" style="margin-top:20px;">Simulação, documentos e normas</div>
 
-  <p>UNIVERSIDADE FEDERAL DO CEARÁ. Laboratório Virtual de Física. <em>Algarismos Significativos 1</em>. Simulação. Fortaleza: UFC. Disponível em: https://www.laboratoriovirtual.fisica.ufc.br/algarismos-significativos-1.</p>
+  <p>UNIVERSIDADE FEDERAL DO CEARÁ. Laboratório Virtual de Física. <em>Algarismos Significativos 1</em>. Simulação. Fortaleza: UFC. Disponível em: <a href="https://www.laboratoriovirtual.fisica.ufc.br/algarismos-significativos-1" target="_blank" rel="noopener">https://www.laboratoriovirtual.fisica.ufc.br/algarismos-significativos-1</a>.</p>
+  <p>INMETRO. <em>Quadro Geral de Unidades de Medida no Brasil</em>. [S. l.]: Inmetro, 2021. Baseado na tradução luso-brasileira de 2021 da 9.ª edição do SI.</p>
   <p>INMETRO. <em>Vocabulário Internacional de Metrologia (VIM)</em>: conceitos fundamentais e gerais e termos associados. Duque de Caxias: Inmetro, 2012.</p>
 
   <div class="refs-titulo" style="margin-top:20px;">Epígrafes e obras citadas</div>
@@ -1127,6 +1176,14 @@ blockquote .bq-autor { font-size: 0.9rem; color: var(--ouro); font-style: normal
   <p>NICHOLAS OF CUSA. <em>On learned ignorance</em> (<em>De docta ignorantia</em>, 1440). Tradução de Jasper Hopkins. Minneapolis: Arthur J. Banning Press. Livro I, cap. 3.</p>
   <p>ARCHIMEDES. Measurement of a circle. <em>In</em>: HEATH, T. L. (ed.). <em>The works of Archimedes</em>. Cambridge: Cambridge University Press, 1897. p. 93. (abre o Roteiro de Bancada desta trilha)</p>
   <p>KANDINSKY, W. <em>Vários Círculos</em> (<em>Einige Kreise</em>). 1926. Óleo sobre tela, 140,7 × 140,3 cm. Nova York: Solomon R. Guggenheim Museum.</p>
+  <p>GOOGLE ARTS &amp; CULTURE. <em>Wassily Kandinsky</em>. [S. l.]: Google, [2026]. Disponível em: <a href="https://artsandculture.google.com/entity/wassily-kandinsky/m0856z" target="_blank" rel="noopener">https://artsandculture.google.com/entity/wassily-kandinsky/m0856z</a>. Acesso em: 31 out. 2026.</p>
+
+</div>
+
+<div class="uso-ia" id="uso-ia">
+  <div class="uso-ia-titulo">Uso de IA</div>
+
+    <p>Este Texto Temático foi elaborado com auxílio de inteligência artificial (IA) — Claude Opus 5.5, Anthropic, 2026 — sob direção autoral, no âmbito do projeto Trilhas de Aprendizagem da disciplina <strong>Laboratório de Mecânica (LME)</strong>, da Licenciatura em Física do Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais (IFMG), Campus Ouro Preto. Os dados citados são os do gabarito da Folha de Atividades da trilha, medidos na simulação da UFC; a redação, os exemplos e a estrutura narrativa foram conferidos e aprovados pelo autor. A responsabilidade pelo texto é humana.</p>
 
 </div>
 
@@ -1157,7 +1214,7 @@ window.addEventListener('scroll', function() {
 // Restauracao de scroll REMOVIDA (2026-09-13): computador de laboratorio e
 // compartilhado entre turmas — o scroll salvo por um estudante reabria a
 // pagina de todo o proximo estudante ja no final do TT.
-var STORAGE_KEY = 'LME-T0E-TT-v3';
+var STORAGE_KEY = 'LME-T0E-TT-v4';
 window.scrollTo(0, 0);
 
 // ─── FONT SIZE ───
