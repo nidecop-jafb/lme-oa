@@ -1308,7 +1308,7 @@ html, body {
         <div class="col-text">
           <div class="def" style="border-left-color:var(--erro);">
             <div class="termo" style="color:var(--erro)">Esta trilha é a exceção</div>
-            <p>A T0A <strong>não vale nota de conteúdo</strong>: cobra presença e o termo de segurança assinado &mdash; que é pré-requisito para entrar na bancada na T0B.</p>
+            <p>A T0A <strong>vale 2,0 pela entrega completa</strong>: presença, o termo de segurança assinado &mdash; pré-requisito para entrar na bancada na T0B &mdash; e o Roteiro de Bancada de reconhecimento, entregue hoje.</p>
           </div>
         </div>
       </div>
@@ -1448,7 +1448,7 @@ html, body {
 
 <script>
 (function() {
-  var STORAGE_KEY = 'LME-T0A-AP-v3';
+  var STORAGE_KEY = 'LME-T0A-AP-v4';
   var slides = document.querySelectorAll('.slide');
   var total = slides.length;
   var atual = 1;
@@ -1799,7 +1799,7 @@ html, body {
 (function () {
   'use strict';
 
-  var KEY = 'LME-T0A-AP-v3-crono';
+  var KEY = 'LME-T0A-AP-v4-crono';
 
 
   var slides = document.querySelectorAll('.slide');
@@ -1821,7 +1821,7 @@ html, body {
   window.__AP_PREVISTO_ORIGINAL = previstoOriginal;
 
   try {
-    var tcust = JSON.parse(localStorage.getItem('LME-T0A-AP-v3-tempos-custom') || '{}');
+    var tcust = JSON.parse(localStorage.getItem('LME-T0A-AP-v4-tempos-custom') || '{}');
     for (var kc in tcust) { if (tcust.hasOwnProperty(kc)) previsto[parseInt(kc, 10)] = tcust[kc]; }
   } catch(e) {}
 
@@ -2103,7 +2103,7 @@ html, body {
 <script>
 (function() {
   'use strict';
-  var STORAGE_KEY = 'LME-T0A-AP-v3';
+  var STORAGE_KEY = 'LME-T0A-AP-v4';
   var KEY_TEMPOS = STORAGE_KEY + '-tempos-custom';
   var allSlides = document.querySelectorAll('.slide');
   var configSlideNum = allSlides.length;

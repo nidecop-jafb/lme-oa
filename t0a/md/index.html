@@ -228,9 +228,9 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
 <div class="player" id="player">
   <div class="player-topo">
     <span class="player-titulo">&Aacute;udio da trilha</span>
-    <button class="faixa-btn ativa" data-src="LME-T0A-MD-v2-padrao.m4a">Vers&atilde;o padr&atilde;o</button><button class="faixa-btn" data-src="LME-T0A-MD-v2-curto.m4a">Vers&atilde;o curta</button>
+    <button class="faixa-btn ativa" data-src="LME-T0A-MD-v3-padrao.m4a">Vers&atilde;o padr&atilde;o</button><button class="faixa-btn" data-src="LME-T0A-MD-v3-curto.m4a">Vers&atilde;o curta</button>
   </div>
-  <audio id="audio" controls preload="none" src="LME-T0A-MD-v2-padrao.m4a"></audio>
+  <audio id="audio" controls preload="none" src="LME-T0A-MD-v3-padrao.m4a"></audio>
   <div class="sem-audio">O arquivo de &aacute;udio ainda n&atilde;o foi publicado nesta pasta. O texto abaixo &eacute; o roteiro completo &mdash; d&aacute; para ler enquanto isso.</div>
 </div>
 
@@ -286,7 +286,7 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
   <div class="secao-body"><div class="secao-texto">
 <p>A avalia&ccedil;&atilde;o &eacute; <span class="termo">processual</span>: acompanha as tr&ecirc;s paradas, e os pesos espelham a estrutura da trilha. Quem mede bem na bancada e quem relata bem pesam igual.</p>
 <p>Quatro instrumentos, v&aacute;lidos da T01 &agrave; T10: <strong>Pr&eacute;-Lab 20%</strong> (a ficha do TT avalia preparo, n&atilde;o acerto da previs&atilde;o) &middot; <strong>Lab 40%</strong> (RB preenchido, conduta de seguran&ccedil;a, registro leg&iacute;vel, reprodutibilidade) &middot; <strong>RM 15%</strong> (uma p&aacute;gina, 1 dia, resultado como valor &plusmn; incerteza, com unidade) &middot; <strong>RC 25%</strong> (incertezas, gr&aacute;ficos, lineariza&ccedil;&atilde;o, ajuste, an&aacute;lise cr&iacute;tica).</p>
-<p><strong>Esta trilha &eacute; a exce&ccedil;&atilde;o:</strong> a T0A n&atilde;o vale nota de conte&uacute;do. Cobra-se <strong>presen&ccedil;a</strong> e o <strong>termo de seguran&ccedil;a assinado</strong>.</p>
+<p><strong>Esta trilha &eacute; a exce&ccedil;&atilde;o:</strong> a T0A n&atilde;o tem relat&oacute;rio. Vale <strong>2,0 pontos pela entrega completa</strong>: <strong>presen&ccedil;a</strong>, o <strong>termo de seguran&ccedil;a assinado</strong> e o Roteiro de Bancada de reconhecimento, entregue no encontro.</p>
 <p>Repare onde est&aacute; o peso, porque da&iacute; sai a sua estrat&eacute;gia: <strong>60% da nota se decide antes de voc&ecirc; sair do laborat&oacute;rio</strong>. Quem chega preparado mede melhor; quem registra bem escreve o RM no mesmo dia, enquanto o dado ainda est&aacute; quente &mdash; &eacute; para isso que o RM existe, para impedir o dado de esfriar. Feito isso, o RC vira revis&atilde;o, e n&atilde;o reconstru&ccedil;&atilde;o de uma noite que voc&ecirc; j&aacute; n&atilde;o lembra direito.</p></div></div>
 </div>
 <div class="secao" data-idx="5">
@@ -379,7 +379,7 @@ main { max-width: 800px; margin: 0 auto; padding: 16px; }
 
 <script>
 (function () {
-  var CHAVE = 'LME-T0A-MD-v2';
+  var CHAVE = 'LME-T0A-MD-v3';
   var estado = {};
   try { estado = JSON.parse(localStorage.getItem(CHAVE) || '{}'); } catch (e) { estado = {}; }
   function grava() { try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {} }
