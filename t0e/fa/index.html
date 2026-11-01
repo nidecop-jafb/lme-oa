@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LME-T0E-FA-v2-estudante-impresso</title>
+<title>LME-T0E-FA-v3-estudante-impresso</title>
 <style>
   input, button, select, textarea { font-family: inherit; }
 /* ============================================================
@@ -625,6 +625,105 @@ td:first-child { text-align: left; padding-left: 8px; }
   .barra-tela { display: none !important; }
 }
 
+/* ── PADRAO RB/RC DA LME (2026-10-31): fundo so atras de texto, em cinza (FA v2 da T0E) ── */
+.fundo-ilustra.fig-cor { filter: grayscale(1) contrast(.9); opacity: .34; }
+.enun { padding: 3px 6px 4px; margin: 0 -6px 4px; }
+/* dentro da tarefa (v5t) a faixa nao pode roubar altura: as linhas do 'por que' encolhem */
+.v5t > .enun { padding: 0 3px; margin: 0 -3px; }
+/* overflow:hidden do .com-fundo zera o min-height do item flex: sem isto, a pagina cheia espreme o texto */
+.enun, .com-fundo { flex-shrink: 0; }
+.enun .tarefa-i, .enun .lembrete, .enun .diretriz, .enun .v5t-t, .fechamento.com-fundo .frase { color: #262626; }
+.gab-faixa { background: #C00000; color: #fff; font-weight: 700; text-align: center; padding: 3px; font-size: .78rem;
+  letter-spacing: .5px; margin-bottom: 6px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.gab-lista { color: #1A1A1A; font-size: .78rem; margin: 2px 0 6px 18px; padding: 0; }
+.gab-lista li { margin-bottom: 3px; }
+.gab-lista b { color: #C00000; }
+table.rubrica-rb { width: 100%; border-collapse: collapse; font-size: .76rem; margin: 2px 0 6px; }
+table.rubrica-rb th, table.rubrica-rb td { border: 1px solid #C8C8C8; padding: 3px 5px; text-align: left;
+  vertical-align: top; text-transform: none; letter-spacing: 0; }
+table.rubrica-rb td.pts, table.rubrica-rb th.pts { text-align: center; width: 16%; }
+table.rubrica-rb tr.total td { font-weight: 700; }
+@media print {
+  .enun .fundo-ilustra, .fechamento.com-fundo .fundo-ilustra, .fundo-ilustra.fig-cor {
+    opacity: .17 !important; filter: grayscale(1) contrast(.9) !important; }
+  .enun .tarefa-i, .enun .lembrete, .enun .diretriz, .enun .v5t-t, .fechamento.com-fundo .frase { color: #262626 !important; }
+  table.rubrica-rb th { text-transform: none !important; letter-spacing: 0 !important; }
+}
+
+.tab-col.rc-med th { text-transform: none; letter-spacing: 0; font-size: .7rem; }
+.tab-col.rc-med td { height: 11mm; }
+.tab-col.rc-med td.rot { font-size: .74rem; }
+.secao-titulo h2 { text-transform: none; letter-spacing: 0; }
+@media print {
+  .tab-col.rc-med th, .secao-titulo h2 { text-transform: none !important; letter-spacing: 0 !important; }
+  .tab-col.rc-med td { height: 10mm; }
+}
+
+.grade-box { text-align: center; margin: 4px 0 2px; }
+.grade-box svg { max-width: 100%; height: auto; background: #fff; }
+.campo-resultado .rot { font-size: .8rem; }
+.lado { display: flex; gap: 16px; }
+.lado .campo-resultado { flex: 1 1 0; }
+.rm-tab th.cod, .rm-tab td.cod { width: 10%; text-align: center; }
+table.rubrica-rb.rm-rub { font-size: .7rem; }
+table.rm-contas { width: 100%; border-collapse: collapse; table-layout: fixed; flex: 1 1 auto; }
+table.rm-contas th { font-size: .7rem; font-weight: 700; text-align: left; padding: 3px 5px; border: 1px solid #999;
+  background: #E8E8E8; text-transform: none; letter-spacing: 0; }
+table.rm-contas td { border: 1px solid #999; height: 30mm; }
+.prompt-ia-imp { border: 1px dashed #808080; padding: 4px 8px; font-size: .72rem; line-height: 1.4; margin: 2px 0 4px; }
+.fechamento .fecho-destaque { font-size: .86rem; }
+.fechamento .frase.ciclo { font-weight: 700; font-style: normal; text-align: center; }
+table.rubrica-rb.rm-rub .destaque { font-weight: 700; background: #E8E8E8; }
+table.rubrica-rb.rm-rub td.pts, table.rubrica-rb.rm-rub th.pts { width: 8%; }
+/* v8: o gabarito do professor — o que o estudante escreve sai em vermelho; a RCP em caixa abaixo do bloco */
+.val, .val b { color: #C00000; font-weight: 600; }
+.campo-resultado .linha-r.val { padding-left: 4px; }
+.rcp-prof { border: 1px solid #C00000; border-left-width: 4px; padding: 4px 8px; margin: -2px 0 9px; font-size: .74rem; line-height: 1.38; }
+.rcp-prof .rcp-tit { font-weight: 700; color: #C00000; margin-bottom: 2px; }
+.rcp-prof ol { margin: 0 0 3px 0; padding-left: 0; list-style: none; }
+.rcp-prof li { margin-bottom: 2px; }
+.rcp-prof li b { color: #C00000; }
+.rcp-prof .rcp-cond { border-top: 1px dotted #C00000; padding-top: 2px; }
+table.rm-contas.rm-contas-v8 td { height: auto; padding: 4px 5px; font-size: .72rem; vertical-align: top; line-height: 1.4; text-align: left; }
+/* v10: "1 · Identificacao" como os titulos 2 a 5; bloco de IA; legenda do grafico e reta numerica do professor */
+.secao-titulo.id-titulo { margin-bottom: 4px; }
+.dicas-ia-imp { margin: 2px 0 3px 16px; padding: 0; font-size: .74rem; line-height: 1.35; }
+.contas-ia-imp { font-size: .74rem; margin: 2px 0 4px; }
+.contas-ia-imp .caixa { white-space: nowrap; margin-right: 8px; }
+.graf-leg { text-align: center; font-size: .74rem; margin: 2px 0 4px; }
+.esq-box { text-align: center; margin: 3px 0 2px; }
+.esq-box svg { max-width: 100%; height: auto; }
+svg.cronometro { vertical-align: -.22em; }
+@media print {
+  .secao-titulo.id-titulo { margin-bottom: 3pt; }
+  .dicas-ia-imp, .contas-ia-imp { font-size: 7.4pt !important; }
+  .graf-leg { font-size: 7.6pt !important; }
+  .grade-box svg { width: auto; }
+  .tab-col.rc-med.rm-tab td { height: 7.5mm; }
+  /* v9: as duas faixas de rubrica sobem para a frente; a Tabela 2 e as secoes apertam para caber */
+  .tab-col.rc-med.rm-tab.rm-tab-v9 td { height: 6.3mm; }
+  .pagina:has(.rm-tab-v9) .secao { margin-bottom: 4.5pt; }
+  .prompt-ia-imp { font-size: 7.2pt !important; line-height: 1.3 !important; }
+  /* v4: o ciclo no tamanho das instrucoes (tarefa-i, ~8,9 pt), em negrito */
+  .fechamento .frase.ciclo { font-size: 8.9pt !important; }
+  /* v5: faixas justas ao texto (o template poe td { height: 11mm }) e a do RM em ate 3 linhas por coluna */
+  table.rubrica-rb.rm-rub th, table.rubrica-rb.rm-rub td { height: auto !important; padding: 2px 5px !important; }
+  table.rubrica-rb.rm-rub { font-size: 7pt !important; }
+  table.rm-contas td { height: 30mm !important; }
+  table.rm-contas.rm-contas-v9 td { height: 24mm !important; }
+  /* v10: o bloco de IA cresceu no verso; o quadro de Contas encolhe mais */
+  .pagina:has(.dicas-ia-imp) table.rm-contas.rm-contas-v9 td { height: 18mm !important; }
+  /* v10: o titulo "1 · Identificacao" e a coluna da IA na faixa da trilha pedem espaco na frente */
+  .pagina:has(.id-titulo) .tab-col.rc-med.rm-tab.rm-tab-v9 td { height: 5.6mm; }
+  table.rubrica-rb.rm-rub td.pts, table.rubrica-rb.rm-rub th.pts { white-space: nowrap; width: 9%; }
+  table.rm-contas.rm-contas-v8 td { height: 26mm !important; font-size: 7.4pt !important; }
+  .rcp-prof { font-size: 7.6pt !important; }
+  table.rm-contas th { font-size: 7.4pt !important; text-transform: none !important; }
+  table.rubrica-rb.rm-full { font-size: 7.2pt !important; }
+  /* o template poe td { height: 11mm } na impressao: a rubrica nao e campo de escrita */
+  table.rubrica-rb.rm-full th, table.rubrica-rb.rm-full td { padding: 2px 5px !important; height: auto !important; }
+}
+
 /* v2 (autor, 2026-10-13): padrao do RB da ILB — fecho centralizado, frase menor */
 .fechamento .fecho-destaque { text-align: center; }
 .fechamento .frase { font-size: .8rem; }
@@ -723,6 +822,19 @@ td:first-child { text-align: left; padding-left: 8px; }
   .tab-col th { text-transform: none !important; letter-spacing: 0 !important; }
   .secao-titulo h2 { text-transform: none !important; letter-spacing: 0 !important; }
   .grade-box svg { width: auto; }
+}
+
+/* ── v3 (padrao do RM v11): botoes Copiar e Meu Perfil so na tela ── */
+.so-tela { margin: 4px 0 6px; }
+.so-tela .perfil-txt { font-size: .72rem; line-height: 1.4; border: 1px dashed #808080; padding: 4px 8px; margin: 2px 0 4px; }
+.btn-copiar { font: inherit; font-size: .76rem; font-weight: 700; color: #fff; background: var(--verde, #3E8E5A);
+  border: 0; border-radius: 4px; padding: 4px 12px; cursor: pointer; margin: 0 0 6px; }
+.fechamento .frase + .frase { margin-top: 4px; }
+@media print {
+  .so-tela, .btn-copiar { display: none !important; }
+  /* professor: as tabelas ja preenchidas nao precisam da altura de escrita a mao (cabe a RCP na mesma pagina) */
+  .folha.prof .tab-col td { height: 5.6mm !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+  .rcp-prof .esq-box svg { max-height: 36mm; }
 }
 /* ICONES-LME */
 .lme-cab-marcas { display: flex; gap: 10px; align-items: center; justify-content: flex-start;
@@ -843,10 +955,10 @@ td:first-child { text-align: left; padding-left: 8px; }
       <div class="entrega">Imprima a FA, preencha à mão e traga para o próximo encontro presencial dessa disciplina: ____/____/____</div>
     </div>
   </div>
-  <div class="lme-header-sub">Pré-Lab · Roteiro de Simulação · cerca de 60 min</div>
+  <div class="lme-header-sub">Pré-Lab · Roteiro de Simulação · cerca de 60 min · 0,40 ponto</div>
 
+  <div class="secao-titulo id-titulo"><h2>1 · Identificação</h2></div>
   <div class="id-box">
-    <div class="id-box-titulo">Identificação</div>
     <div class="campo-linha">
       <label>Nome:</label><div class="linha"></div>
       <label>Registro Acadêmico (RA):</label><div class="linha ra"></div>
@@ -866,10 +978,7 @@ td:first-child { text-align: left; padding-left: 8px; }
 
   <div class="lembrete com-fundo">
     <div class="fundo-ilustra" style="background-image:url('../_imagens/_web/LME-T0E-Figura-01-v2-web.jpg')"></div>
-    <div><strong>Hoje o π vira medida.</strong> Numa simulação, você mede o diâmetro D e o comprimento C de seis
-    circunferências com duas réguas: uma só com centímetros, outra com milímetros. O modelo diz
-    <strong>C = π D</strong>. A pergunta desta folha é quantos algarismos de π cada régua consegue sustentar.
-    A teoria dos algarismos significativos está no Texto Temático (TT): consulte-o se travar.</div>
+    <div><strong>Hoje o π vira medida.</strong> Numa simulação, você mede o diâmetro D e o comprimento C de seis circunferências com duas réguas: uma só com centímetros, outra com milímetros. O modelo diz <strong>C = π D</strong>. A pergunta desta folha é quantos algarismos de π cada régua consegue sustentar. A teoria dos algarismos significativos está no Texto Temático (TT): consulte-o se travar.</div>
   </div>
 
   <div class="sim com-fundo">
@@ -911,13 +1020,12 @@ td:first-child { text-align: left; padding-left: 8px; }
   </div>
 
   <div class="rodape-print">
-    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v2 ·
-    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 1 de 4
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v3 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 1 de 5
   </div>
 </div>
 
 <div class="pagina">
-
   <div class="secao">
     <div class="secao-titulo"><h2>Gráfico 1 — C × D com a régua em centímetros</h2></div>
     <div class="tarefa-i" style="margin-bottom:4px;">Escolha as escalas para que os pontos ocupem a maior parte da
@@ -1224,13 +1332,12 @@ td:first-child { text-align: left; padding-left: 8px; }
   </div>
 
   <div class="rodape-print">
-    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v2 ·
-    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 2 de 4
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v3 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 2 de 5
   </div>
 </div>
 
 <div class="pagina">
-
   <div class="secao">
     <div class="secao-titulo"><h2>Gráfico 2 — C × D com a régua em milímetros</h2></div>
     <div class="tarefa-i" style="margin-bottom:4px;">Mesmas regras do Gráfico 1, com os pontos da Tabela 4.</div>
@@ -1562,13 +1669,12 @@ td:first-child { text-align: left; padding-left: 8px; }
   </div>
 
   <div class="rodape-print">
-    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v2 ·
-    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 3 de 4
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v3 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 3 de 5
   </div>
 </div>
 
 <div class="pagina">
-
   <div class="secao">
     <div class="secao-titulo"><h2>Questão 4 — o resultado com o número correto de algarismos significativos</h2></div>
     <table class="tab-col tab-mini">
@@ -1629,18 +1735,43 @@ td:first-child { text-align: left; padding-left: 8px; }
     </div>
   </div>
 
+  <div class="rodape-print">
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v3 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 4 de 5
+  </div>
+</div>
+
+<div class="pagina">
+  <div class="secao">
+    <div class="secao-titulo"><h2>Rubrica desta Trilha de Aprendizagem — a T0E vale 2,0 no SUAP</h2></div>
+    <table class="rubrica-rb rm-rub faixa"><thead><tr><th class="destaque">Pré-Lab · Folha de Atividades (FA)</th><th>Lab · Roteiro de Bancada (RB)</th><th>Pós-Lab · Relatório Mínimo (RM)</th><th>Pós-Lab · Relatório Completo (RC)</th><th>Uso de Tecnologias (IA)</th><th class="pts">Total</th></tr></thead><tbody><tr><td data-rot="Pré-Lab · Folha de Atividades (FA)" class="destaque"><b>0,40</b> (20 %)</td><td data-rot="Lab · Roteiro de Bancada (RB)"><b>0,80</b> (40 %)</td><td data-rot="Pós-Lab · Relatório Mínimo (RM)"><b>0,30</b> (15 %)</td><td data-rot="Pós-Lab · Relatório Completo (RC)"><b>0,50</b> (25 %)</td><td data-rot="Uso de Tecnologias (IA)"><b>0,40</b> (20 %) Extra</td><td data-rot="Total" class="pts"><b>2,0</b> (100 %)</td></tr></tbody></table>
+  </div>
+  <div class="secao">
+    <div class="secao-titulo"><h2>Como a FA é corrigida (20 pontos = 0,40 ponto desta trilha no SUAP)</h2></div>
+    <table class="rubrica-rb rm-full"><thead><tr><th>Critério</th><th>O que se avalia</th><th class="pts">Pontos</th></tr></thead><tbody><tr><td><strong>Dado bruto</strong></td><td>Tabelas 3 e 4: D e C com 1 casa decimal (régua em cm) e 2 casas (régua em mm); C/D com os algarismos coerentes</td><td class="pts">5</td></tr><tr><td><strong>Os gráficos</strong></td><td>Gráficos 1 e 2: escala que ocupa a grade, valores nos eixos, os seis pontos marcados, sem ligar</td><td class="pts">4</td></tr><tr><td><strong>A área</strong></td><td>Questões 1 e 2: π com um algarismo a mais que D, anotado como usado; A com os algarismos certos, em cm²</td><td class="pts">3</td></tr><tr><td><strong>Leituras e operações</strong></td><td>Questões 3 e 4: o duvidoso de cada régua, o início da peça e as regras da soma e do produto</td><td class="pts">4</td></tr><tr><td><strong>Minério, rolete e π</strong></td><td>Questões 5 a 7: diagonal e área com 3 algarismos, a tabela do rolete e a justificativa pela tabela</td><td class="pts">4</td></tr><tr class="total"><td>Total</td><td></td><td class="pts">20</td></tr></tbody></table>
+  </div>
+
+  <div class="secao">
+    <div class="enun">
+    <div class="secao-titulo"><h2>Uso de Tecnologias (IA)</h2></div>
+    <div class="tarefa-i">Vale nota extra de 0,40 até completar 2,0 pontos da trilha no SUAP. Cole o prompt na IA que você usa e mande a foto da FA (o botão Copiar e o texto do <b>Meu Perfil</b> estão no site).</div>
+    </div>
+    <ol class="dicas-ia-imp"><li><b>Dica 1.</b> Peça perguntas, não respostas: a IA aponta o passo do erro e quem corrige é você.</li><li><b>Dica 2.</b> Confira tudo o que ela disser contra a sua medida, a sua conta e a unidade: a IA erra com a mesma segurança com que acerta.</li><li><b>Dica 3.</b> Declare o uso, qual IA e para quê: registrar o método com honestidade é parte da ciência e é o que vale a nota extra.</li></ol>
+      <div class="contas-ia-imp"><strong>Recomendação do Professor:</strong> crie uma conta gratuita (marque a que criou): <span class="caixa">( ) Claude (Anthropic)</span> <span class="caixa">( ) Gemini (Google)</span> <span class="caixa">( ) ChatGPT (OpenAI)</span> <span class="caixa">( ) Copilot (Microsoft)</span> <span class="caixa">( ) Perplexity</span></div>
+      <div class="prompt-ia-imp">Fiz à mão a Folha de Atividades (FA) da T0E da LME, O Número Pi na Física Experimental: as seis circunferências da simulação medidas com a régua em cm e com a régua em mm (Tabelas 3 e 4), os Gráficos 1 e 2 de C × D e as Questões 1 a 7 sobre algarismos significativos, pelos 5 passos da Resolução Científica do Problema (1 O que a questão quer?; 2 O que eu tenho?; 3 Qual é o desenho?; 4 Minha solução; 5 Confiro e respondo). Vou te mandar a foto. Não me dê a resposta nem refaça as contas por mim. Diga em que passo está o primeiro erro, faça uma pergunta que me ajude a corrigir sozinho e, no fim, me diga um ponto forte do meu raciocínio.</div>
+      <div class="so-tela"><button class="btn-copiar s-copiar" type="button">Copiar o prompt</button><div class="perfil-txt"><b>Meu Perfil</b> — cole na personalização (instruções personalizadas) da IA, uma vez só: <span>Sou estudante do 4.º período da Licenciatura em Física do IFMG campus Ouro Preto e curso o Laboratório de Mecânica. Estou me formando para dar aulas de Física na Educação Básica. Quando eu pedir ajuda, não me dê a resposta pronta: faça perguntas que me levem a pensar, aponte o passo em que errei e deixe que eu corrija sozinho. Responda em português do Brasil, com as grandezas nas unidades do SI e a linguagem da Física com rigor. Quando eu acertar, diga o ponto forte do meu raciocínio.</span></div><button class="btn-copiar s-copiar-perfil" type="button">Copiar o perfil</button></div>
+      <div class="campo-resultado"><span class="rot">Usei IA?</span><span class="opts"><span class="opt">não</span><span class="opt">sim</span></span><span class="rot">qual e para quê:</span><span class="linha-r"></span></div>
+  </div>
   <div class="fechamento com-fundo">
     <div class="fundo-ilustra" style="background-image:url('../_imagens/_web/LME-T0E-Figura-10-v2-web.jpg')"></div>
+    <div class="frase ciclo">Ciclo Circadiano de Aprendizagem: começa ao acordar e se encerra ao acordar. <svg class="cronometro" viewBox="0 0 24 24" width="1.15em" height="1.15em" role="img" aria-label="cronômetro" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="14" r="8"/><path d="M12 14V9.5M9.5 2.5h5M12 2.5V6M18.4 6.6l1.6-1.6"/></svg> Ciclo normal = 24 h.<br>O que é estudado no Pré-Lab, antes de você dormir e sonhar, chega consolidado à bancada: o sono organiza o aprendizado, como explica Pierluigi Piazzi em <em>Aprendendo Inteligência</em>.</div>
+    <div class="frase">Imprima a FA, preencha à mão e traga para o próximo encontro presencial dessa disciplina: ____/____/____. Na bancada, o mesmo C × D sai de objetos de verdade.</div>
     <div class="fecho-destaque">Terminamos por aqui, um abraço, e até o próximo encontro.</div>
-    <div class="frase">
-      Imprima a FA, preencha à mão e traga para o próximo encontro presencial dessa disciplina: ____/____/____.
-      Na bancada, o mesmo C × D sai de objetos de verdade.
-    </div>
   </div>
 
   <!-- RODAPE-LME:INICIO --><div class="lme-rodape"><div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div><div class="lme-rodape-texto">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; Primeira edição &middot; 2026</div><div class="lme-rodape-selo"><span id="seloAcessos" data-escopo="pagina" style="display:none;"></span></div></div><!-- RODAPE-LME:FIM --><div class="rodape-print">
-    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v2 ·
-    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 4 de 4
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v3 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 5 de 5
   </div>
 </div>
 
@@ -1657,7 +1788,7 @@ td:first-child { text-align: left; padding-left: 8px; }
 /* Impressao em janela propria (padrao FA): o <title> vira o nome sugerido do
    PDF, a barra de botoes fica de fora e o @page { margin: 0 } suprime o
    cabecalho/rodape que o navegador injeta. */
-var NOME_ARQUIVO_PDF = 'LME-T0E-FA-v2-estudante-impresso';
+var NOME_ARQUIVO_PDF = 'LME-T0E-FA-v3-estudante-impresso';
 
 function abrirParaImpressao() {
   var folha = document.querySelector('.folha').cloneNode(true);
@@ -1685,6 +1816,30 @@ function abrirParaImpressao() {
   if (w.document.readyState === 'complete') { setTimeout(imprimir, 500); }
   else { w.addEventListener('load', function () { setTimeout(imprimir, 500); }); }
 }
+</script>
+
+<script>
+(function () {
+  function copiar(btn, txt) {
+    var rotulo = btn.textContent;
+    var ok = function () { btn.textContent = 'Copiado!'; setTimeout(function () { btn.textContent = rotulo; }, 1800); };
+    var velho = function () {
+      var ta = document.createElement('textarea'); ta.value = txt; ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); ok(); } catch (x) { btn.textContent = 'Selecione e copie'; }
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(txt).then(ok, velho); } else { velho(); }
+  }
+  document.querySelectorAll('.s-copiar').forEach(function (b) {
+    b.addEventListener('click', function () {
+      copiar(b, b.closest('.secao').querySelector('.prompt-ia-imp').textContent.trim());
+    });
+  });
+  document.querySelectorAll('.s-copiar-perfil').forEach(function (b) {
+    b.addEventListener('click', function () { copiar(b, b.previousElementSibling.querySelector('span').textContent.trim()); });
+  });
+})();
 </script>
 <!-- ABAS-OA-LME (trilho de 6 abas — abas_oa.py) -->
 
