@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LME-T0E-FA-v4-estudante-impresso</title>
+<title>LME-T0E-FA-v5-estudante-impresso</title>
 <style>
   input, button, select, textarea { font-family: inherit; }
 /* ============================================================
@@ -830,8 +830,12 @@ svg.cronometro { vertical-align: -.22em; }
 .btn-copiar { font: inherit; font-size: .76rem; font-weight: 700; color: #fff; background: var(--verde, #3E8E5A);
   border: 0; border-radius: 4px; padding: 4px 12px; cursor: pointer; margin: 0 0 6px; }
 .fechamento .frase + .frase { margin-top: 4px; }
+/* v5: a linha que remete a rubrica ao site, em caixa destacada */
+.rubrica-site { border: 1px solid #808080; background: #EEEEEE; font-weight: 700; font-size: .9rem; text-align: center;
+  padding: 5px 10px; margin: 6px 0 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 @media print {
   .so-tela, .btn-copiar { display: none !important; }
+  .rubrica-site { font-size: 9pt !important; border: .6pt solid #808080 !important; }
   /* professor: as tabelas ja preenchidas nao precisam da altura de escrita a mao (cabe a RCP na mesma pagina) */
   .folha.prof .tab-col td { height: 5.6mm !important; padding-top: 0 !important; padding-bottom: 0 !important; }
   .rcp-prof .esq-box svg { max-height: 36mm; }
@@ -971,11 +975,6 @@ svg.cronometro { vertical-align: -.22em; }
       <label>Registro Acadêmico (RA):</label><div class="linha ra"></div>
       <label>Data:</label><span class="data-campo">______/______/_______</span>
     </div>
-    <div class="campo-linha">
-      <label>Curso:</label><div class="linha meia"></div>
-      <label>Professor:</label><div class="linha"></div>
-      <label>Encontro:</label><div class="linha meia"></div>
-    </div>
   </div>
 
   <div class="piazzi">
@@ -1027,7 +1026,7 @@ svg.cronometro { vertical-align: -.22em; }
   </div>
 
   <div class="rodape-print">
-    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v4 ·
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v5 ·
     IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 1 de 4
   </div>
 </div>
@@ -1035,8 +1034,7 @@ svg.cronometro { vertical-align: -.22em; }
 <div class="pagina">
   <div class="secao">
     <div class="secao-titulo"><h2>Gráfico 1 — C × D com a régua em centímetros</h2></div>
-    <div class="tarefa-i" style="margin-bottom:4px;">Escolha as escalas para que os pontos ocupem a maior parte da
-      grade, escreva os valores nos eixos e marque os seis pontos da Tabela 3. Não ligue os pontos.</div>
+    <div class="tarefa-i" style="margin-bottom:4px;">Marque os seis pontos da Tabela 3 na escala impressa. Não ligue os pontos.</div>
     <div class="grade-box"><svg class="grade" viewBox="0 0 183 124" width="183mm" height="124mm" xmlns="http://www.w3.org/2000/svg">
 <line x1="11" y1="5" x2="11" y2="115" stroke="#D88C6A" stroke-width="0.32"/>
 <line x1="12" y1="5" x2="12" y2="115" stroke="#F2D3C3" stroke-width="0.1"/>
@@ -1317,6 +1315,32 @@ svg.cronometro { vertical-align: -.22em; }
 <text x="182" y="121" font-size="3.4" font-weight="700" text-anchor="end">D (cm)</text>
 <text x="13" y="4" font-size="3.4" font-weight="700">C (cm)</text>
 <text x="9" y="118" font-size="3" text-anchor="end">0</text>
+<line x1="36.0" y1="114.0" x2="36.0" y2="116.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="36.0" y="119.0" font-size="3" text-anchor="middle">1</text>
+<line x1="61.0" y1="114.0" x2="61.0" y2="116.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="61.0" y="119.0" font-size="3" text-anchor="middle">2</text>
+<line x1="86.0" y1="114.0" x2="86.0" y2="116.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="86.0" y="119.0" font-size="3" text-anchor="middle">3</text>
+<line x1="111.0" y1="114.0" x2="111.0" y2="116.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="111.0" y="119.0" font-size="3" text-anchor="middle">4</text>
+<line x1="136.0" y1="114.0" x2="136.0" y2="116.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="136.0" y="119.0" font-size="3" text-anchor="middle">5</text>
+<line x1="10.0" y1="105.0" x2="12.0" y2="105.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="106.0" font-size="3" text-anchor="end">2</text>
+<line x1="10.0" y1="95.0" x2="12.0" y2="95.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="96.0" font-size="3" text-anchor="end">4</text>
+<line x1="10.0" y1="85.0" x2="12.0" y2="85.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="86.0" font-size="3" text-anchor="end">6</text>
+<line x1="10.0" y1="75.0" x2="12.0" y2="75.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="76.0" font-size="3" text-anchor="end">8</text>
+<line x1="10.0" y1="65.0" x2="12.0" y2="65.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="66.0" font-size="3" text-anchor="end">10</text>
+<line x1="10.0" y1="55.0" x2="12.0" y2="55.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="56.0" font-size="3" text-anchor="end">12</text>
+<line x1="10.0" y1="45.0" x2="12.0" y2="45.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="46.0" font-size="3" text-anchor="end">14</text>
+<line x1="10.0" y1="35.0" x2="12.0" y2="35.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="36.0" font-size="3" text-anchor="end">16</text>
 </svg></div>
   </div>
 
@@ -1339,7 +1363,7 @@ svg.cronometro { vertical-align: -.22em; }
   </div>
 
   <div class="rodape-print">
-    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v4 ·
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v5 ·
     IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 2 de 4
   </div>
 </div>
@@ -1628,6 +1652,32 @@ svg.cronometro { vertical-align: -.22em; }
 <text x="182" y="121" font-size="3.4" font-weight="700" text-anchor="end">D (cm)</text>
 <text x="13" y="4" font-size="3.4" font-weight="700">C (cm)</text>
 <text x="9" y="118" font-size="3" text-anchor="end">0</text>
+<line x1="36.0" y1="114.0" x2="36.0" y2="116.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="36.0" y="119.0" font-size="3" text-anchor="middle">1</text>
+<line x1="61.0" y1="114.0" x2="61.0" y2="116.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="61.0" y="119.0" font-size="3" text-anchor="middle">2</text>
+<line x1="86.0" y1="114.0" x2="86.0" y2="116.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="86.0" y="119.0" font-size="3" text-anchor="middle">3</text>
+<line x1="111.0" y1="114.0" x2="111.0" y2="116.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="111.0" y="119.0" font-size="3" text-anchor="middle">4</text>
+<line x1="136.0" y1="114.0" x2="136.0" y2="116.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="136.0" y="119.0" font-size="3" text-anchor="middle">5</text>
+<line x1="10.0" y1="105.0" x2="12.0" y2="105.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="106.0" font-size="3" text-anchor="end">2</text>
+<line x1="10.0" y1="95.0" x2="12.0" y2="95.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="96.0" font-size="3" text-anchor="end">4</text>
+<line x1="10.0" y1="85.0" x2="12.0" y2="85.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="86.0" font-size="3" text-anchor="end">6</text>
+<line x1="10.0" y1="75.0" x2="12.0" y2="75.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="76.0" font-size="3" text-anchor="end">8</text>
+<line x1="10.0" y1="65.0" x2="12.0" y2="65.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="66.0" font-size="3" text-anchor="end">10</text>
+<line x1="10.0" y1="55.0" x2="12.0" y2="55.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="56.0" font-size="3" text-anchor="end">12</text>
+<line x1="10.0" y1="45.0" x2="12.0" y2="45.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="46.0" font-size="3" text-anchor="end">14</text>
+<line x1="10.0" y1="35.0" x2="12.0" y2="35.0" stroke="#1A1A1A" stroke-width=".4"/>
+<text x="9.4" y="36.0" font-size="3" text-anchor="end">16</text>
 </svg></div>
   </div>
 
@@ -1676,7 +1726,7 @@ svg.cronometro { vertical-align: -.22em; }
   </div>
 
   <div class="rodape-print">
-    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v4 ·
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v5 ·
     IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 3 de 4
   </div>
 </div>
@@ -1742,9 +1792,17 @@ svg.cronometro { vertical-align: -.22em; }
     </div>
   </div>
 
+  <div class="so-tela">
   <div class="secao">
-    <div class="tarefa-i">A rubrica da trilha e a da FA estão publicadas no site (lme-oa, T0E).</div>
+    <div class="secao-titulo"><h2>Rubrica desta Trilha de Aprendizagem — a T0E vale 2,0 no SUAP</h2></div>
+    <table class="rubrica-rb rm-rub faixa"><thead><tr><th class="destaque">Pré-Lab · Folha de Atividades (FA)</th><th>Lab · Roteiro de Bancada (RB)</th><th>Pós-Lab · Relatório Mínimo (RM)</th><th>Pós-Lab · Relatório Completo (RC)</th><th>Uso de Tecnologias (IA)</th><th class="pts">Total</th></tr></thead><tbody><tr><td data-rot="Pré-Lab · Folha de Atividades (FA)" class="destaque"><b>0,40</b> (20 %)</td><td data-rot="Lab · Roteiro de Bancada (RB)"><b>0,80</b> (40 %)</td><td data-rot="Pós-Lab · Relatório Mínimo (RM)"><b>0,30</b> (15 %)</td><td data-rot="Pós-Lab · Relatório Completo (RC)"><b>0,50</b> (25 %)</td><td data-rot="Uso de Tecnologias (IA)"><b>0,40</b> (20 %) Extra</td><td data-rot="Total" class="pts"><b>2,0</b> (100 %)</td></tr></tbody></table>
   </div>
+  <div class="secao">
+    <div class="secao-titulo"><h2>Como a FA é corrigida (20 pontos = 0,40 ponto desta trilha no SUAP)</h2></div>
+    <table class="rubrica-rb rm-full"><thead><tr><th>Critério</th><th>O que se avalia</th><th class="pts">Pontos</th></tr></thead><tbody><tr><td><strong>Dado bruto</strong></td><td>Tabelas 3 e 4: D e C com 1 casa decimal (régua em cm) e 2 casas (régua em mm); C/D com os algarismos coerentes</td><td class="pts">5</td></tr><tr><td><strong>Os gráficos</strong></td><td>Gráficos 1 e 2: os seis pontos no lugar certo da escala impressa, sem ligar</td><td class="pts">4</td></tr><tr><td><strong>A área</strong></td><td>Questões 1 e 2: π com um algarismo a mais que D, anotado como usado; A com os algarismos certos, em cm²</td><td class="pts">3</td></tr><tr><td><strong>Leituras e operações</strong></td><td>Questões 3 e 4: o duvidoso de cada régua, o início da peça e as regras da soma e do produto</td><td class="pts">4</td></tr><tr><td><strong>Minério, rolete e π</strong></td><td>Questões 5 a 7: diagonal e área com 3 algarismos, a tabela do rolete e a justificativa pela tabela</td><td class="pts">4</td></tr><tr class="total"><td>Total</td><td></td><td class="pts">20</td></tr></tbody></table>
+  </div>
+  </div>
+  <div class="rubrica-site">A rubrica da trilha e a da FA estão publicadas no site (lme-oa, T0E).</div>
 
   <div class="fechamento com-fundo">
     <div class="fundo-ilustra" style="background-image:url('../_imagens/_web/LME-T0E-Figura-10-v2-web.jpg')"></div>
@@ -1752,7 +1810,7 @@ svg.cronometro { vertical-align: -.22em; }
   </div>
 
   <!-- RODAPE-LME:INICIO --><div class="lme-rodape"><div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div><div class="lme-rodape-texto">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; Primeira edição &middot; 2026</div><div class="lme-rodape-selo"><span id="seloAcessos" data-escopo="pagina" style="display:none;"></span></div></div><!-- RODAPE-LME:FIM --><div class="rodape-print">
-    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v4 ·
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v5 ·
     IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 4 de 4
   </div>
 </div>
@@ -1770,7 +1828,7 @@ svg.cronometro { vertical-align: -.22em; }
 /* Impressao em janela propria (padrao FA): o <title> vira o nome sugerido do
    PDF, a barra de botoes fica de fora e o @page { margin: 0 } suprime o
    cabecalho/rodape que o navegador injeta. */
-var NOME_ARQUIVO_PDF = 'LME-T0E-FA-v4-estudante-impresso';
+var NOME_ARQUIVO_PDF = 'LME-T0E-FA-v5-estudante-impresso';
 
 function abrirParaImpressao() {
   var folha = document.querySelector('.folha').cloneNode(true);
