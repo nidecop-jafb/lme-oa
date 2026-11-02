@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LME-T0E-FA-v7-estudante-impresso</title>
+<title>LME-T0E-FA-v8-estudante-impresso</title>
 <style>
   input, button, select, textarea { font-family: inherit; }
 /* ============================================================
@@ -855,6 +855,23 @@ svg.cronometro { vertical-align: -.22em; }
   .folha .pagina > .lme-rodape .lme-inst-marcas svg { width: 24px !important; height: 24px !important; }
   .folha .rodape-print { color: #333 !important; }
 }
+
+/* v8: a faixa que nomeia a parte e a RCP do estudante em branco */
+.parte-faixa { border-left: 4px solid #3E8E5A; background: #EEF5F0; padding: 4px 10px; margin: 2px 0 6px; font-size: .95rem;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.parte-faixa b { color: #3E8E5A; }
+.rcp-est { border: 1px solid #808080; border-left-width: 4px; padding: 4px 8px; margin: 2px 0 8px; font-size: .8rem; }
+.rcp-est .rcp-tit { font-weight: 700; margin-bottom: 2px; }
+.rcp-est ol { margin: 0; padding: 0; list-style: none; }
+.rcp-est li { min-height: 14mm; border-top: 1px dotted #B5B5B5; padding-top: 2px; }
+.rcp-est li:first-child { border-top: 0; }
+@media print {
+  .parte-faixa { font-size: 10pt !important; }
+  .rcp-est { flex: 1 1 auto; display: flex; flex-direction: column; }
+  .rcp-est ol { flex: 1 1 auto; display: flex; flex-direction: column; }
+  .rcp-est li { flex: 1 1 0; min-height: 8mm; }
+  .rcp-est li.p3, .rcp-est li.p4 { flex-grow: 2; }
+}
 /* ICONES-LME */
 .lme-cab-marcas { display: flex; gap: 10px; align-items: center; justify-content: flex-start;
   flex-shrink: 0; }
@@ -976,6 +993,8 @@ svg.cronometro { vertical-align: -.22em; }
   </div>
   <div class="lme-header-sub">Pré-Lab · Roteiro de Simulação · cerca de 60 min · 0,40 ponto</div>
 
+  <div class="parte-faixa"><b>Parte I</b> · O Número Pi na Física Experimental</div>
+
   <div class="secao-titulo id-titulo"><h2>1 · Identificação</h2></div>
   <div class="id-box">
     <div class="campo-linha">
@@ -1011,7 +1030,7 @@ svg.cronometro { vertical-align: -.22em; }
     </div>
   </div>
 
-  <div class="secao cresce sem-esticar">
+  <div class="secao">
     <div class="secao-titulo"><h2>Procedimento 1 — régua graduada em centímetros</h2></div>
     <div class="tarefa-i" style="margin-bottom:4px;">A régua não tem os milímetros: cada medida tem só
       <b>1 casa decimal</b> — o algarismo que você estima entre duas marcas. Calcule C/D com o número correto
@@ -1029,10 +1048,14 @@ svg.cronometro { vertical-align: -.22em; }
       </tbody>
     </table>
   </div>
+  <div class="rcp-est">
+    <div class="rcp-tit">Resolução Científica do Problema (RCP) · Pensamento Quantitativo</div>
+    <ol><li class="p1"><b>1 · O que a questão quer?</b></li><li class="p2"><b>2 · O que eu tenho?</b></li><li class="p3"><b>3 · Qual é o desenho?</b></li><li class="p4"><b>4 · Minha solução</b></li><li class="p5"><b>5 · Confiro e respondo</b></li></ol>
+  </div>
 
   <div class="rodape-print">
-    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v7 ·
-    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 1 de 4
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v8 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 1 de 8
   </div>
 </div>
 
@@ -1348,8 +1371,19 @@ svg.cronometro { vertical-align: -.22em; }
 <text x="9.4" y="36.0" font-size="3" text-anchor="end">16</text>
 </svg></div>
   </div>
+  <div class="rcp-est">
+    <div class="rcp-tit">RCP · Pensamento Quantitativo</div>
+    <ol><li class="p1"><b>1 · O que a questão quer?</b></li><li class="p2"><b>2 · O que eu tenho?</b></li><li class="p3"><b>3 · Qual é o desenho?</b></li><li class="p4"><b>4 · Minha solução</b></li><li class="p5"><b>5 · Confiro e respondo</b></li></ol>
+  </div>
 
-  <div class="secao cresce sem-esticar">
+  <div class="rodape-print">
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v8 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 2 de 8
+  </div>
+</div>
+
+<div class="pagina">
+  <div class="secao">
     <div class="secao-titulo"><h2>Procedimento 2 — régua graduada em milímetros</h2></div>
     <div class="tarefa-i" style="margin-bottom:4px;">Agora a régua tem os milímetros: anote em centímetros, com
       <b>2 casas decimais</b>. Calcule C/D com o número correto de algarismos significativos.</div>
@@ -1366,10 +1400,14 @@ svg.cronometro { vertical-align: -.22em; }
       </tbody>
     </table>
   </div>
+  <div class="rcp-est">
+    <div class="rcp-tit">RCP · Pensamento Quantitativo</div>
+    <ol><li class="p1"><b>1 · O que a questão quer?</b></li><li class="p2"><b>2 · O que eu tenho?</b></li><li class="p3"><b>3 · Qual é o desenho?</b></li><li class="p4"><b>4 · Minha solução</b></li><li class="p5"><b>5 · Confiro e respondo</b></li></ol>
+  </div>
 
   <div class="rodape-print">
-    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v7 ·
-    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 2 de 4
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v8 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 3 de 8
   </div>
 </div>
 
@@ -1685,6 +1723,46 @@ svg.cronometro { vertical-align: -.22em; }
 <text x="9.4" y="36.0" font-size="3" text-anchor="end">16</text>
 </svg></div>
   </div>
+  <div class="rcp-est">
+    <div class="rcp-tit">RCP · Pensamento Quantitativo</div>
+    <ol><li class="p1"><b>1 · O que a questão quer?</b></li><li class="p2"><b>2 · O que eu tenho?</b></li><li class="p3"><b>3 · Qual é o desenho?</b></li><li class="p4"><b>4 · Minha solução</b></li><li class="p5"><b>5 · Confiro e respondo</b></li></ol>
+  </div>
+
+  <div class="fechamento com-fundo">
+    <div class="fundo-ilustra" style="background-image:url('../_imagens/_web/LME-T0E-Figura-10-v2-web.jpg')"></div>
+    <div class="fecho-destaque">Terminamos por aqui, um abraço, e até o próximo encontro.</div>
+  </div>
+
+  <!-- RODAPE-LME-PARTE:INICIO --><div class="lme-rodape"><div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div><div class="lme-rodape-texto">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; Primeira edição &middot; 2026</div></div><!-- RODAPE-LME-PARTE:FIM --><div class="rodape-print">
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v8 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 4 de 8
+  </div>
+</div>
+
+<div class="pagina">
+  <div class="header"><div class="lme-cab-marcas"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Prisma decompondo a luz — Licenciatura em Física"> <title>Prisma decompondo a luz — Licenciatura em Física</title> <defs> <radialGradient id="cab-prisma-fundo" cx="50%" cy="42%" r="60%"> <stop offset="0" stop-color="#26302B"/> <stop offset="1" stop-color="#0E1411"/> </radialGradient> <linearGradient id="cab-prisma-vidro" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#E8F2F8" stop-opacity="0.42"/> <stop offset="1" stop-color="#7FB2D6" stop-opacity="0.16"/> </linearGradient> <clipPath id="cab-prisma-dentro"><circle cx="100" cy="100" r="86"/></clipPath> </defs> <circle cx="100" cy="100" r="96" fill="url(#cab-prisma-fundo)"/> <circle cx="100" cy="100" r="95" fill="none" stroke="#3E8E5A" stroke-width="3"/> <circle cx="100" cy="100" r="88" fill="none" stroke="#3E8E5A" stroke-width="1" stroke-dasharray="1.5 3" opacity="0.8"/> <g clip-path="url(#cab-prisma-dentro)"> <polygon points="12,116 12,110 79,88 80,92" fill="#FFFFFF" opacity="0.95"/> <polygon points="79,88 80,92 121,95 119,86" fill="#FFFFFF" opacity="0.35"/> <polygon points="119,86 120.1,88 190,92 190,82"   fill="#E53935"/> <polygon points="120.1,88 120.9,89.5 190,102 190,92" fill="#FB8C00"/> <polygon points="120.9,89.5 121.7,91 190,112 190,102" fill="#FDD835"/> <polygon points="121.7,91 122.5,92.4 190,122 190,112" fill="#43A047"/> <polygon points="122.5,92.4 123.3,93.8 190,132 190,122" fill="#1E88E5"/> <polygon points="123.3,93.8 124.1,95.2 190,142 190,132" fill="#3949AB"/> <polygon points="124.1,95.2 125,97 190,152 190,142" fill="#8E24AA"/> </g> <polygon points="100,50 56,130 144,130" fill="url(#cab-prisma-vidro)" stroke="#DDEBF3" stroke-width="2.5" stroke-linejoin="round"/> <line x1="100" y1="54" x2="64" y2="121" stroke="#FFFFFF" stroke-width="1.2" opacity="0.5"/> <line x1="50" y1="138" x2="150" y2="138" stroke="#7FB2D6" stroke-width="3" stroke-linecap="round"/> <g fill="#FFFFFF" opacity="0.55"> <circle cx="46" cy="62" r="1.2"/> <circle cx="150" cy="56" r="1"/> <circle cx="70" cy="160" r="1"/> <circle cx="140" cy="164" r="1.2"/> </g> </svg><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Marca do Laboratório de Mecânica"> <g stroke="#3E8E5A" stroke-width="3" stroke-linecap="round" fill="none"> <line x1="36" y1="10" x2="84" y2="10"/> <line x1="60" y1="10" x2="81.9" y2="70.1"/> </g> <path d="M 28 65.4 A 64 64 0 0 0 92 65.4" fill="none" stroke="#7FB2D6" stroke-width="2" stroke-dasharray="4 5"/> <line x1="60" y1="15" x2="60" y2="86" stroke="#7FB2D6" stroke-width="1.5" stroke-dasharray="3 4"/> <circle cx="60" cy="10" r="4" fill="#3E8E5A"/> <circle cx="81.9" cy="70.1" r="10" fill="#3E8E5A"/> <g stroke="#7FB2D6" stroke-width="3" stroke-linecap="square"> <line x1="26" y1="110" x2="94" y2="110"/> <line x1="30" y1="110" x2="30" y2="104"/> <line x1="40" y1="110" x2="40" y2="104"/> <line x1="50" y1="110" x2="50" y2="104"/> <line x1="60" y1="110" x2="60" y2="98"/> <line x1="70" y1="110" x2="70" y2="104"/> <line x1="80" y1="110" x2="80" y2="104"/> <line x1="90" y1="110" x2="90" y2="104"/> </g> </svg></div>
+    <div class="header-left">
+      <h1><span class="trilha-code">LME-T0E</span> · O Número Pi na Física Experimental</h1>
+    </div>
+    <div class="header-right">
+      <div class="badge">Folha de Atividades (FA)</div>
+      <div class="entrega">Imprima a FA, preencha à mão e traga para o próximo encontro presencial dessa disciplina: ____/____/____</div>
+    </div>
+  </div>
+  <div class="lme-header-sub">Pré-Lab · Roteiro de Simulação · cerca de 60 min · 0,40 ponto</div>
+
+  <div class="parte-faixa"><b>Parte II</b> · Resolução Científica de Problemas de Física Experimental sobre o número π (Questões 1 a 7)</div>
+
+  <div class="secao-titulo id-titulo"><h2>1 · Identificação</h2></div>
+  <div class="id-box">
+    <div class="campo-linha">
+      <label>Nome:</label><div class="linha"></div>
+      <label>Registro Acadêmico (RA):</label><div class="linha ra"></div>
+      <label>Data:</label><span class="data-campo">______/______/_______</span>
+    </div>
+  </div>
+
+  <div class="rubrica-site">A rubrica desta trilha e a desta Folha de Atividades (FA) estão publicadas no site desta disciplina.</div>
 
   <div class="secao">
     <div class="enun com-fundo"><div class="fundo-ilustra" style="background-image:url('../_imagens/_web/LME-T0E-Figura-11-v2-web.jpg')"></div>
@@ -1717,8 +1795,19 @@ svg.cronometro { vertical-align: -.22em; }
       </div>
     </div>
   </div>
+  <div class="rcp-est">
+    <div class="rcp-tit">RCP · Pensamento Quantitativo</div>
+    <ol><li class="p1"><b>1 · O que a questão quer?</b></li><li class="p2"><b>2 · O que eu tenho?</b></li><li class="p3"><b>3 · Qual é o desenho?</b></li><li class="p4"><b>4 · Minha solução</b></li><li class="p5"><b>5 · Confiro e respondo</b></li></ol>
+  </div>
 
-  <div class="secao cresce sem-esticar">
+  <div class="rodape-print">
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v8 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 5 de 8
+  </div>
+</div>
+
+<div class="pagina">
+  <div class="secao">
     <div class="secao-titulo"><h2>Questão 3 — leia os comprimentos</h2></div>
     <div class="tarefa-i" style="margin-bottom:4px;">Escreva cada leitura com o número correto de algarismos
       significativos: os corretos e mais um, o duvidoso. Atenção: nem toda peça começa no zero.</div>
@@ -1729,14 +1818,11 @@ svg.cronometro { vertical-align: -.22em; }
       <div><img src="../_imagens/_web/LME-T0E-Esquema-04-v1-web.png" alt="Leitura 4">      <div class="campo-resultado"><span class="rot"><b>Leitura 4:</b> </span><span class="linha-r"></span></div></div>
     </div>
   </div>
-
-  <div class="rodape-print">
-    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v7 ·
-    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 3 de 4
+  <div class="rcp-est">
+    <div class="rcp-tit">RCP · Pensamento Quantitativo</div>
+    <ol><li class="p1"><b>1 · O que a questão quer?</b></li><li class="p2"><b>2 · O que eu tenho?</b></li><li class="p3"><b>3 · Qual é o desenho?</b></li><li class="p4"><b>4 · Minha solução</b></li><li class="p5"><b>5 · Confiro e respondo</b></li></ol>
   </div>
-</div>
 
-<div class="pagina">
   <div class="secao">
     <div class="secao-titulo"><h2>Questão 4 — o resultado com o número correto de algarismos significativos</h2></div>
     <table class="tab-col tab-mini">
@@ -1750,7 +1836,18 @@ svg.cronometro { vertical-align: -.22em; }
       </tbody>
     </table>
   </div>
+  <div class="rcp-est">
+    <div class="rcp-tit">RCP · Pensamento Quantitativo</div>
+    <ol><li class="p1"><b>1 · O que a questão quer?</b></li><li class="p2"><b>2 · O que eu tenho?</b></li><li class="p3"><b>3 · Qual é o desenho?</b></li><li class="p4"><b>4 · Minha solução</b></li><li class="p5"><b>5 · Confiro e respondo</b></li></ol>
+  </div>
 
+  <div class="rodape-print">
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v8 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 6 de 8
+  </div>
+</div>
+
+<div class="pagina">
   <div class="secao">
     <div class="secao-titulo"><h2>Questão 5 — a amostra de minério</h2></div>
     <div class="q5">
@@ -1761,6 +1858,10 @@ svg.cronometro { vertical-align: -.22em; }
       <div class="campo-resultado"><span class="rot"><b>(a)</b> A diagonal d da face ac: </span><span class="linha-r"></span></div>      <div class="campo-resultado"><span class="rot"><b>(b)</b> A área total das faces: </span><span class="linha-r"></span></div>
       </div>
     </div>
+  </div>
+  <div class="rcp-est">
+    <div class="rcp-tit">RCP · Pensamento Quantitativo</div>
+    <ol><li class="p1"><b>1 · O que a questão quer?</b></li><li class="p2"><b>2 · O que eu tenho?</b></li><li class="p3"><b>3 · Qual é o desenho?</b></li><li class="p4"><b>4 · Minha solução</b></li><li class="p5"><b>5 · Confiro e respondo</b></li></ol>
   </div>
 
   <div class="secao">
@@ -1782,19 +1883,31 @@ svg.cronometro { vertical-align: -.22em; }
     </table>
       <div class="campo-resultado"><span class="rot">Resposta com o número correto de algarismos significativos: </span><span class="linha-r"></span></div>
   </div>
+  <div class="rcp-est">
+    <div class="rcp-tit">RCP · Pensamento Quantitativo</div>
+    <ol><li class="p1"><b>1 · O que a questão quer?</b></li><li class="p2"><b>2 · O que eu tenho?</b></li><li class="p3"><b>3 · Qual é o desenho?</b></li><li class="p4"><b>4 · Minha solução</b></li><li class="p5"><b>5 · Confiro e respondo</b></li></ol>
+  </div>
 
-  <div class="secao cresce sem-esticar">
+  <div class="rodape-print">
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v8 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 7 de 8
+  </div>
+</div>
+
+<div class="pagina">
+  <div class="secao">
     <div class="secao-titulo"><h2>Questão 7 — quantos algarismos de π?</h2></div>
     <div class="esc-lista desce em-branco">
       <div class="esc-item">
         <div class="esc-label">Com quantos algarismos significativos devemos usar o π para que a área da Questão 6
           saia com quatro algarismos significativos, na Física Experimental? Justifique com a sua tabela.</div>
-        <div class="esc-linha"></div>
-        <div class="esc-linha"></div>
-        <div class="esc-linha"></div>
-        <div class="esc-linha"></div>
+
       </div>
     </div>
+  </div>
+  <div class="rcp-est">
+    <div class="rcp-tit">RCP · Pensamento Qualitativo</div>
+    <ol><li class="p1"><b>1 · O que a questão quer?</b></li><li class="p2"><b>2 · O que eu tenho?</b></li><li class="p3"><b>3 · Como eu separo as afirmações?</b></li><li class="p4"><b>4 · Julgo uma por uma</b></li><li class="p5"><b>5 · Confiro e respondo</b></li></ol>
   </div>
 
   <div class="so-tela">
@@ -1803,8 +1916,8 @@ svg.cronometro { vertical-align: -.22em; }
     <table class="rubrica-rb rm-rub faixa"><thead><tr><th class="destaque">Pré-Lab · Folha de Atividades (FA)</th><th>Lab · Roteiro de Bancada (RB)</th><th>Pós-Lab · Relatório Mínimo (RM)</th><th>Pós-Lab · Relatório Completo (RC)</th><th>Uso de Tecnologias (IA)</th><th class="pts">Total</th></tr></thead><tbody><tr><td data-rot="Pré-Lab · Folha de Atividades (FA)" class="destaque"><b>0,40</b> (20 %)</td><td data-rot="Lab · Roteiro de Bancada (RB)"><b>0,80</b> (40 %)</td><td data-rot="Pós-Lab · Relatório Mínimo (RM)"><b>0,30</b> (15 %)</td><td data-rot="Pós-Lab · Relatório Completo (RC)"><b>0,50</b> (25 %)</td><td data-rot="Uso de Tecnologias (IA)"><b>0,40</b> (20 %) Extra</td><td data-rot="Total" class="pts"><b>2,0</b> (100 %)</td></tr></tbody></table>
   </div>
   <div class="secao">
-    <div class="secao-titulo"><h2>Como a FA é corrigida (20 pontos = 0,40 ponto desta trilha no SUAP)</h2></div>
-    <table class="rubrica-rb rm-full"><thead><tr><th>Critério</th><th>O que se avalia</th><th class="pts">Pontos</th></tr></thead><tbody><tr><td><strong>Dado bruto</strong></td><td>Tabelas 3 e 4: D e C com 1 casa decimal (régua em cm) e 2 casas (régua em mm); C/D com os algarismos coerentes</td><td class="pts">5</td></tr><tr><td><strong>Os gráficos</strong></td><td>Gráficos 1 e 2: os seis pontos no lugar certo da escala impressa, sem ligar</td><td class="pts">4</td></tr><tr><td><strong>A área</strong></td><td>Questões 1 e 2: π com um algarismo a mais que D, anotado como usado; A com os algarismos certos, em cm²</td><td class="pts">3</td></tr><tr><td><strong>Leituras e operações</strong></td><td>Questões 3 e 4: o duvidoso de cada régua, o início da peça e as regras da soma e do produto</td><td class="pts">4</td></tr><tr><td><strong>Minério, rolete e π</strong></td><td>Questões 5 a 7: diagonal e área com 3 algarismos, a tabela do rolete e a justificativa pela tabela</td><td class="pts">4</td></tr><tr class="total"><td>Total</td><td></td><td class="pts">20</td></tr></tbody></table>
+    <div class="secao-titulo"><h2>Como a FA é corrigida (10,0 pontos = 0,40 ponto desta trilha no SUAP) · Parte I = 5,0 · Parte II = 5,0</h2></div>
+    <table class="rubrica-rb rm-full"><thead><tr><th>Critério</th><th>O que se avalia</th><th class="pts">Pontos</th></tr></thead><tbody><tr><td><strong>Parte I · Dado bruto</strong></td><td>Tabelas 3 e 4: D e C com 1 casa decimal (régua em cm) e 2 casas (régua em mm); C/D com os algarismos coerentes</td><td class="pts">2,5</td></tr><tr><td><strong>Parte I · Os gráficos</strong></td><td>Gráficos 1 e 2: os seis pontos no lugar certo da escala impressa, sem ligar</td><td class="pts">2,5</td></tr><tr><td><strong>Parte II · A área</strong></td><td>Questões 1 e 2: π com um algarismo a mais que D, anotado como usado; A com os algarismos certos, em cm²</td><td class="pts">1,5</td></tr><tr><td><strong>Parte II · Leituras e operações</strong></td><td>Questões 3 e 4: o duvidoso de cada régua, o início da peça e as regras da soma e do produto</td><td class="pts">2,0</td></tr><tr><td><strong>Parte II · Minério, rolete e π</strong></td><td>Questões 5 a 7: diagonal e área com 3 algarismos, a tabela do rolete e a justificativa pela tabela</td><td class="pts">1,5</td></tr><tr class="total"><td>Total</td><td></td><td class="pts">10,0</td></tr></tbody></table>
   </div>
   </div>
 
@@ -1814,8 +1927,8 @@ svg.cronometro { vertical-align: -.22em; }
   </div>
 
   <!-- RODAPE-LME:INICIO --><div class="lme-rodape"><div class="lme-inst-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div><div class="lme-rodape-texto">IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) &middot; Primeira edição &middot; 2026</div><div class="lme-rodape-selo"><span id="seloAcessos" data-escopo="pagina" style="display:none;"></span></div></div><!-- RODAPE-LME:FIM --><div class="rodape-print">
-    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v7 ·
-    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 4 de 4
+    Laboratório de Mecânica (LME) · T0E · Folha de Atividades v8 ·
+    IFMG — Campus Ouro Preto · NIDEC/CODAFIS · página 8 de 8
   </div>
 </div>
 
@@ -1832,7 +1945,7 @@ svg.cronometro { vertical-align: -.22em; }
 /* Impressao em janela propria (padrao FA): o <title> vira o nome sugerido do
    PDF, a barra de botoes fica de fora e o @page { margin: 0 } suprime o
    cabecalho/rodape que o navegador injeta. */
-var NOME_ARQUIVO_PDF = 'LME-T0E-FA-v7-estudante-impresso';
+var NOME_ARQUIVO_PDF = 'LME-T0E-FA-v8-estudante-impresso';
 
 function abrirParaImpressao() {
   var folha = document.querySelector('.folha').cloneNode(true);
