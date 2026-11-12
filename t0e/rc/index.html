@@ -325,7 +325,7 @@ body h2:not(:is(header, footer, nav, aside, table, figcaption, .lme-topo, .lme-m
 </style><script>
 (function () {
   var RE = /^[\s(±+\-−–]*\d[\d\s.,]*(\s*[±]\s*[\d.,]+)?\s*[)]?\s*([a-zA-Zµμ°%²³·\/]{1,8}\)?)?\s*$/;
-  var NAO = 'header, footer, nav, aside, figcaption, small, svg, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="legenda"], [class*="header"], [class*="piazzi"], [class*="selo"], .badge, button, label';
+  var NAO = 'header, footer, nav, aside, figcaption, small, svg, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="legenda"], [class*="header"], [class*="piazzi"], [class*="selo"], [class*="cartao"], .badge, button, label';
   function marcar() {
     var cs = document.querySelectorAll('td, th'), i, e, n, t;
     for (i = 0; i < cs.length; i++) {
@@ -366,6 +366,10 @@ body h2:not(:is(header, footer, nav, aside, table, figcaption, .lme-topo, .lme-m
 <div class="intro-box">
   <strong>O relatório completo.</strong> Até <strong>6 dias após o Lab (09/11/2026)</strong>. As sete seções do modelo da disciplina: a Tabela 2 do RB (régua em mm), o ajuste C = a·D + b (a página calcula e desenha), o π ± incerteza, a <strong>decisão</strong> de compatibilidade, o que o b diz sobre a medida e a sua tomada de posição. Entrega retroativa aceita até <strong>17/11/2026</strong> (Plano de Ensino v9, seção 8.1). O que você digita fica <strong>só neste aparelho</strong>; no fim, <strong>gere o PDF</strong> e entregue ao professor. Prefere papel? A <a href="LME-T0E-RC-v6-estudante.pdf" target="_blank" rel="noopener">folha impressa</a> (A4) tem as mesmas sete seções: vale a folha preenchida à mão ou o PDF do site.
 </div>
+<!-- BOTAO-PDF:INICIO -->
+<style id="botao-pdf-lme">.botao-pdf{margin:10px 0 18px}.botao-pdf a{display:inline-block;padding:9px 16px;border:2px solid #3E8E5A;border-radius:6px;color:#3E8E5A;font-weight:700;text-decoration:none}.botao-pdf a:hover{background:#3E8E5A;color:#fff}@media print{.botao-pdf{display:none}}</style>
+<div class="botao-pdf so-tela"><a href="LME-T0E-RC-v6-estudante.pdf" target="_blank" rel="noopener">Abrir o PDF do Relatório Completo (4 páginas)</a></div>
+<!-- BOTAO-PDF:FIM -->
 
 
 <section class="bloco"><div class="bloco-num">Identificação</div><div class="bloco-tit">Quem assina o relatório</div><div class="bloco-dica nao-imprime">Nome, RA e colegas de bancada.</div><div class="ident"><div class="campo"><label>Nome</label><input type="text" data-k="nome" placeholder=""></div><div class="campo"><label>RA</label><input type="text" data-k="ra" placeholder="0000000"></div><div class="campo"><label>RA dos colegas de bancada (separe por vírgula)</label><input type="text" data-k="colegas" placeholder="0000001, 0000002"></div><div class="campo"><label>Data do encontro</label><input type="text" data-k="data" placeholder="03/11/2026"></div></div><div class="acoes nao-imprime"><button class="acao-btn" id="trazer" type="button">Trazer os dados do RM</button></div></section>

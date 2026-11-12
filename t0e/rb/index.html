@@ -946,7 +946,7 @@ body h2:not(:is(header, footer, nav, aside, table, figcaption, .lme-topo, .lme-m
 </style><script>
 (function () {
   var RE = /^[\s(±+\-−–]*\d[\d\s.,]*(\s*[±]\s*[\d.,]+)?\s*[)]?\s*([a-zA-Zµμ°%²³·\/]{1,8}\)?)?\s*$/;
-  var NAO = 'header, footer, nav, aside, figcaption, small, svg, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="legenda"], [class*="header"], [class*="piazzi"], [class*="selo"], .badge, button, label';
+  var NAO = 'header, footer, nav, aside, figcaption, small, svg, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="legenda"], [class*="header"], [class*="piazzi"], [class*="selo"], [class*="cartao"], .badge, button, label';
   function marcar() {
     var cs = document.querySelectorAll('td, th'), i, e, n, t;
     for (i = 0; i < cs.length; i++) {
@@ -1002,6 +1002,8 @@ body h2:not(:is(header, footer, nav, aside, table, figcaption, .lme-topo, .lme-m
   <div class="rubrica-site">A rubrica desta trilha e a deste Roteiro de Bancada (RB) estão publicadas no site desta disciplina.</div>
 
 <!-- PROF-USO:INICIO -->
+<style id="botao-pdf-lme">.botao-pdf{margin:10px 0 18px}.botao-pdf a{display:inline-block;padding:9px 16px;border:2px solid #3E8E5A;border-radius:6px;color:#3E8E5A;font-weight:700;text-decoration:none}.botao-pdf a:hover{background:#3E8E5A;color:#fff}@media print{.botao-pdf{display:none}}</style>
+<div class="botao-pdf"><a href="LME-T0E-RB-v7-estudante.pdf" target="_blank" rel="noopener">Abrir o PDF do Roteiro de Bancada (4 páginas)</a></div>
 <style>
 .prof-uso { border: 1px solid #3E8E5A; background: oklch(0.27 0.05 150); color: inherit; padding: 8px 12px; margin: 6px 0 8px; font-size: .9rem; line-height: 1.45; }
 .prof-uso h3 { margin: 0 0 4px; font-size: .95rem; color: oklch(0.8 0.13 150); }
