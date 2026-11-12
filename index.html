@@ -156,6 +156,76 @@
 
   .footer-marcas svg { width: 30px; height: 30px; display: block; } .footer-marcas a { display: flex; } .lme-agr-marca { display: flex; justify-content: center; margin: 0 auto 8px; } .lme-agr-marca a { display: flex; } .lme-agr-marca svg { width: 30px; height: 30px; display: block; }
 </style>
+<!-- VISUAL:INICIO --><style id="visual-lme">
+@media screen {
+:root { --lme-sans: 'Segoe UI', Arial, sans-serif; --lme-mono: 'Courier New', Courier, monospace; }
+/* modo escuro: o cinza de apoio dos OAs (oklch .50-.55) fica abaixo de 4,5:1 no fundo escuro */
+:root:not([data-tema="claro"]) { --cinza: oklch(0.72 0.02 260); }
+/* folhas com fundo de papel (FA/RB da T0E): texto escuro so onde o fundo e claro */
+body .enun .tarefa-i, body .fechamento.com-fundo .frase { color: inherit !important; }
+body .rubrica-site { color: #1A1A1A !important; }
+/* laranja-EPI herdado da FE1 sobre fundo claro (2,4-3,0:1) e branco sobre o verde (3,3:1) */
+body th.destaque, body .secao-titulo h2 { color: #9A4A18 !important; }
+body .box-artista-titulo { background-color: #2F6E45 !important; }
+@media (max-width: 560px) {
+  body :is(.enun, .com-fundo, .resp, .resp-regua, .campo-resultado) { flex-shrink: 1 !important; min-width: 0 !important;
+    max-width: 100%; overflow-wrap: anywhere; white-space: normal; }
+  body table { table-layout: fixed; width: 100% !important; max-width: 100%; min-width: 0 !important; }
+  body :is(th, td) { overflow-wrap: anywhere; min-width: 0 !important; white-space: normal; }
+  body .q5 { flex-wrap: wrap; }
+  body .q5 img { width: 100% !important; max-width: 72mm; }
+  body .q5 .resp { flex: 1 1 100%; }
+  body .campo-resultado { flex-wrap: wrap; }
+  body .campo-resultado .rot { flex: 1 1 100% !important; width: auto; min-width: 0; }
+}
+:root:not([data-tema="claro"]) { --erro: oklch(0.70 0.2 25); }
+:root:not([data-tema="claro"]) body .folha figcaption { color: var(--cinza); }
+html[data-tema="claro"] body :is(main, article, section, .conteudo) :is(a, summary):not(:is(.lme-topo, .lme-menu, [class*="aba"], [class*="card"], [class*="cartao"], button) *) { color: #1F5F8B; }
+body, body *:not(:is(svg, svg *, canvas, math, math *, .katex, .katex *)) { font-family: var(--lme-sans) !important; }
+body *:not(:is(svg, svg *, canvas, math, math *, .katex, .katex *))::before, body *:not(:is(svg, svg *, canvas, math, math *, .katex, .katex *))::after { font-family: var(--lme-sans) !important; }
+body :is(code, pre, kbd, samp, input[type="number"], .lme-num, .lme-aba-selo, .lme-rodape-selo, .badge, .oa-sigla, .selo, .lme-selo-ap, .capa-selo, .contador, .contador *, .ip-mono) { font-family: var(--lme-mono) !important; }
+
+body :is(p, li, dd, blockquote):not(:is(header, footer, nav, aside, table, figcaption, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="card"], [class*="cartao"], [class*="oa-"], .fase, .selos, .badge, button, label) *):not(:is(header, footer, nav, aside, table, figcaption, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="card"], [class*="cartao"], [class*="oa-"], .fase, .selos, .badge, button, label)) {
+  font-size: 1.0625rem; line-height: 1.6; }
+body p:not(:is(header, footer, nav, aside, table, figcaption, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="card"], [class*="cartao"], [class*="oa-"], .fase, .selos, .badge, button, label) *) { max-width: 72ch; }
+body .lme-corrido { font-size: 1.0625rem !important; line-height: 1.6 !important; }
+svg[width$="mm"] { max-width: 100%; height: auto; }
+body :is(h1, h2, h3):not(:is(header, footer, nav, aside, table, figcaption, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="card"], [class*="cartao"], [class*="oa-"], .fase, .selos, .badge, button, label) *) { letter-spacing: normal; line-height: 1.25; }
+body h2:not(:is(header, footer, nav, aside, table, figcaption, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="card"], [class*="cartao"], [class*="oa-"], .fase, .selos, .badge, button, label) *) { font-weight: 700; }
+
+body :is(h1, h2):not(:is(footer, nav, aside, table, figcaption, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="card"], [class*="cartao"], [class*="oa-"], .fase, .selos, .badge, button, label, [class*="capa"]) *) { text-transform: none; }
+body h1:not(:is(footer, nav, aside, table, figcaption, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="card"], [class*="cartao"], [class*="oa-"], .fase, .selos, .badge, button, label) *) { font-size: 1.75rem; font-weight: 700; }
+body h2:not(:is(footer, nav, aside, table, figcaption, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="card"], [class*="cartao"], [class*="oa-"], .fase, .selos, .badge, button, label) *) { font-size: 1.35rem; }
+body h3:not(:is(footer, nav, aside, table, figcaption, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="card"], [class*="cartao"], [class*="oa-"], .fase, .selos, .badge, button, label) *) { font-size: 1.15rem; font-weight: 700; }
+/* cabecalho de tabela em verde #3E8E5A sobre fundo escuro fica em 3,9-4,4:1: verde mais claro */
+:root:not([data-tema="claro"]) body th { color: #6FBF8A; }
+}
+</style><script>
+(function () {
+  var RE = /^[\s(±+\-−–]*\d[\d\s.,]*(\s*[±]\s*[\d.,]+)?\s*[)]?\s*([a-zA-Zµμ°%²³·\/]{1,8}\)?)?\s*$/;
+  var NAO = 'header, footer, nav, aside, figcaption, small, svg, .lme-topo, .lme-menu, .lme-estilo, [class*="aba"], [class*="rodape"], [class*="footer"], [class*="legenda"], [class*="header"], [class*="piazzi"], [class*="selo"], .badge, button, label';
+  function marcar() {
+    var cs = document.querySelectorAll('td, th'), i, e, n, t;
+    for (i = 0; i < cs.length; i++) {
+      t = cs[i].textContent;
+      if (t && t.length < 40 && RE.test(t)) cs[i].classList.add('lme-num');
+    }
+    if (!true) return;
+    var raiz = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    var todos = document.body.querySelectorAll('div, span, p, li, dd, blockquote');
+    for (i = 0; i < todos.length; i++) {
+      e = todos[i];
+      if (e.closest(NAO)) continue;
+      t = 0;
+      for (n = e.firstChild; n; n = n.nextSibling) if (n.nodeType === 3) t += n.textContent.trim().length;
+      if (t < 60) continue;
+      if (parseFloat(getComputedStyle(e).fontSize) / raiz < 1.06) e.classList.add('lme-corrido');
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', marcar);
+  else marcar();
+})();
+</script><!-- VISUAL:FIM -->
 <!-- TOPO-LME-CABECA:INICIO -->
 <script data-lme-tema="fixo">(function () {
   var h = document.documentElement, t, l;
@@ -680,6 +750,19 @@ html[data-tema="claro"] .lme-estilo a.est-btn-2 { background: #fff; color: #1F5F
           <line x1="90" y1="110" x2="90" y2="104"/>
         </g>
       </svg>
+      <!-- ACESSOS:INICIO -->
+      <style>
+        .lme-acessos { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 2px; }
+        .lme-acessos-olho { width: 56px; height: 56px; flex: 0 0 auto; display: block; }
+        .lme-acessos-txt { display: flex; flex-direction: column; align-items: center; line-height: 1; }
+        .lme-acessos-num { color: #3E8E5A; font-weight: bold; font-size: 1.35rem; }
+        .lme-acessos-rot { color: inherit; font-size: .72rem; margin-top: 3px; }
+      </style>
+      <div class="lme-acessos" id="blocoAcessos" style="display:none;" title="Acessos ao site do Laboratório de Mecânica">
+        <svg class="lme-acessos-olho" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 32 C16 13 48 13 60 32 C48 51 16 51 4 32 Z" fill="none" stroke="#3E8E5A" stroke-width="4" stroke-linejoin="round"/><circle cx="32" cy="32" r="11" fill="none" stroke="#7FB2D6" stroke-width="4"/><circle cx="32" cy="32" r="4.5" fill="#7FB2D6"/></svg>
+        <span class="lme-acessos-txt"><span class="lme-acessos-num" id="acessosNum"></span><span class="lme-acessos-rot" id="acessosRot">acessos</span></span>
+      </div>
+      <!-- ACESSOS:FIM -->
     </figure>
     <section>
       <h2 class="intro-t">Trilhas de Aprendizagem</h2>
@@ -864,9 +947,6 @@ html[data-tema="claro"] .lme-estilo a.est-btn-2 { background: #fff; color: #1F5F
   <div class="footer">
     <div class="footer-marcas"><a href="https://ouropreto.ifmg.edu.br/ouropreto" target="_blank" rel="noopener" title="IFMG — Campus Ouro Preto (abre em nova aba)"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="-36.75 -4 258.5 258.5" role="img" aria-label="Instituto Federal de Minas Gerais"> <title>Instituto Federal de Minas Gerais</title> <circle cx="27" cy="27" r="30" fill="#C8191E"/> <g fill="#32A041"> <rect x="65.5" y="0" width="54" height="54"/> <rect x="131" y="0" width="54" height="54"/> <rect x="0" y="65.5" width="54" height="54"/> <rect x="65.5" y="65.5" width="54" height="54"/> <rect x="0" y="131" width="54" height="54"/> <rect x="65.5" y="131" width="54" height="54"/> <rect x="131" y="131" width="54" height="54"/> <rect x="0" y="196.5" width="54" height="54"/> <rect x="65.5" y="196.5" width="54" height="54"/> </g> </svg></a><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos"> <title>NIDEC — Núcleo de Inovação e Desenvolvimento de Experimentos Científicos</title> <defs> <linearGradient id="inst-nidec-o1" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-30 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o2" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-90 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <linearGradient id="inst-nidec-o3" gradientUnits="userSpaceOnUse" x1="8" y1="100" x2="192" y2="100" gradientTransform="rotate(-150 100 100)"> <stop offset="0" stop-color="#4A1F95"/><stop offset=".38" stop-color="#2C5AA4"/> <stop offset=".70" stop-color="#2CC2A2"/><stop offset="1" stop-color="#2C9E41"/> </linearGradient> <radialGradient id="inst-nidec-nucleo" cx="40%" cy="36%" r="70%"> <stop offset="0" stop-color="#A0EBE1"/> <stop offset=".45" stop-color="#2CC8C2"/> <stop offset="1" stop-color="#1E5DA5"/> </radialGradient> </defs> <g fill="none" stroke-width="8"> <g transform="rotate(30 100 100)" stroke="url(#inst-nidec-o1)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o1)" stroke="none"/> </g> <g transform="rotate(90 100 100)" stroke="url(#inst-nidec-o2)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="12" cy="100" r="8" fill="url(#inst-nidec-o2)" stroke="none"/> </g> <g transform="rotate(150 100 100)" stroke="url(#inst-nidec-o3)"> <ellipse cx="100" cy="100" rx="88" ry="31"/> <circle cx="188" cy="100" r="8" fill="url(#inst-nidec-o3)" stroke="none"/> </g> </g> <circle cx="100" cy="100" r="23" fill="url(#inst-nidec-nucleo)"/> </svg></div><div class="lme-agr-marca"><a href="https://nidecop-jafb.github.io/lme-oa/agradecimentos/" title="Agradecimentos &middot; F&iacute;sica e Poesia"><svg class="lme-ic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Agradecimentos — Física e Poesia"> <g fill="none" stroke="#7FB2D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"> <path d="M 60 44 C 46 36 28 36 12 40 L 12 104 C 28 100 46 100 60 108 C 74 100 92 100 108 104 L 108 40 C 92 36 74 36 60 44 Z"/> <line x1="60" y1="44" x2="60" y2="108"/> </g> <g stroke="#7FB2D6" stroke-width="2" stroke-linecap="round" opacity=".7"> <line x1="22" y1="58" x2="50" y2="56"/><line x1="22" y1="70" x2="50" y2="68"/><line x1="22" y1="82" x2="44" y2="81"/> </g> <path d="M 68 70 C 72 62 76 62 80 70 S 88 78 92 70 S 98 62 100 66" fill="none" stroke="#3E8E5A" stroke-width="2.5" stroke-linecap="round"/> <path d="M 104 8 C 86 12 72 24 66 44 C 80 40 94 28 104 8 Z" fill="none" stroke="#3E8E5A" stroke-width="3" stroke-linejoin="round"/> <line x1="100" y1="13" x2="62" y2="56" stroke="#3E8E5A" stroke-width="3" stroke-linecap="round"/> </svg></a></div>
     IFMG campus Ouro Preto - Coordenadoria da Área de Física (CODAFIS) - Núcleo de Inovação e Desenvolvimento de Experimentos Científicos (NIDEC) · Primeira edição · 2026
-    <!-- SELO:INICIO -->
-    <div style="margin-top:10px;"><span id="seloAcessos" style="display:none;"></span></div>
-    <!-- SELO:FIM -->
   </div>
 </div>
 
